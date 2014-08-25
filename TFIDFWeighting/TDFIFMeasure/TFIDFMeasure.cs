@@ -38,7 +38,31 @@ namespace ServiceRanking
             }
         }
 
-        
+
+        public ArrayList Terms
+        {
+            get
+            {
+                return _terms;
+            }
+            set
+            {
+                _terms = value;
+            }
+        }
+
+        public float[][] TermWeight
+        {
+            get
+            {
+                return _termWeight;
+            }
+            set
+            {
+                _termWeight = value;
+            }
+        }
+
 
 		private IDictionary _wordsIndex=new Hashtable() ;
 
