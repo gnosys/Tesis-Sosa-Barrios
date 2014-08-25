@@ -4,6 +4,7 @@
  */
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Preprocessing.TDFIFMeasure;
 using Preprocessing.Utils;
 
@@ -15,7 +16,7 @@ namespace ServiceRanking
 	/// </summary>
 	public class TFIDFMeasure
 	{
-		private string[][] _docs;
+        private List<string[]> _docs;
 		private string[][] _ngramDoc;
 		private int _numDocs=0;
 		private int _numTerms=0;
@@ -25,7 +26,7 @@ namespace ServiceRanking
 		private int[] _maxTermFreq;
 		private int[] _docFreq;
 
-        public string[][] Docs 
+        public List<string[]> Docs 
         { 
             get
             {
@@ -41,10 +42,10 @@ namespace ServiceRanking
 
 		private IDictionary _wordsIndex=new Hashtable() ;
 
-		public TFIDFMeasure(string[][] documents)
+        public TFIDFMeasure(List<string[]> documents)
 		{
 			_docs = documents;
-			_numDocs = documents.Length ;
+			_numDocs = documents.Count ;
 			Process();
 		}
 
@@ -53,11 +54,11 @@ namespace ServiceRanking
 			
 		}
 
-		private ArrayList GenerateTerms(string[][] docs)
+        private ArrayList GenerateTerms(List<string[]> docs)
 		{
 			ArrayList uniques=new ArrayList() ;
 			_ngramDoc=new string[_numDocs][] ;
-			for (int i=0; i < docs.Length ; i++)
+			for (int i=0; i < docs.Count ; i++)
 			{
                 string[] words = docs[i];
                 

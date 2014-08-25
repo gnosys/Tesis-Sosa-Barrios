@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ServiceRanking;
+using Stemming;
+using System.Linq;
 
 namespace Preprocessing
 {
@@ -11,7 +9,7 @@ namespace Preprocessing
     {
         static void Main(string[] args)
         {
-            //input
+            //text corpus
             string[] docs = new string[3] {
 										   "watching the King’s Speech",
 										   "I like the King’s Speech",
@@ -19,14 +17,33 @@ namespace Preprocessing
 			};
 
             //preprocessing
-            Tokeniser tokeniser = new Tokeniser();
 
-            string[][] tfidfInput = new string[3][];
+            //1. TOKENIZING
+            Tokeniser tokeniser = new Tokeniser();
+            List<string[]> tfidfInput = new List<string[]>();
             for (int i = 0; i < docs.Length; i++)
             {
-                tfidfInput[i] = tokeniser.Partition(docs[i]);
+                tfidfInput.Add(tokeniser.Partition(docs[i]));
             }
-            TFIDFMeasure tfdif = new TFIDFMeasure(tfidfInput);
+            //2. Remove Stop words
+            StopWordsHandler stopWordsHandler = new StopWordsHandler();
+            List<string[]> tfidfInputWithoutStopWords = new List<string[]>();
+            foreach (string[] tokens in tfidfInput)
+            {
+                tfidfInputWithoutStopWords.Add(tokens.Where(t => !stopWordsHandler.IsStopword(t)).ToArray());
+            }
+            //3. Stemming
+            StemmerInterface stemmer = new PorterStemmer();
+            foreach (string[] tokens in tfidfInputWithoutStopWords)
+            {
+                for (int i = 0; i < tokens.Length; i++)
+                {
+                    tokens[i] = stemmer.stemTerm(tokens[i]);
+                }
+            }
+
+            //representation
+            TFIDFMeasure tfdif = new TFIDFMeasure(tfidfInputWithoutStopWords);
 
 
         }

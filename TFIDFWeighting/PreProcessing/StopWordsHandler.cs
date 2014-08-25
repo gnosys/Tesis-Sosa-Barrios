@@ -465,16 +465,16 @@ namespace ServiceRanking
 															  "z", 
 		} ;
 
-		private static Hashtable _stopwords=null;
+		private Hashtable _stopwords=null;
 
-		public static object AddElement(IDictionary collection,Object key, object newValue)
+		public object AddElement(IDictionary collection,Object key, object newValue)
 		{
 			object element = collection[key];
 			collection[key] = newValue;
 			return element;
 		}
 
-		public static bool IsStopword(string str)
+		public bool IsStopword(string str)
 		{
 			return _stopwords.ContainsKey(str.ToLower());
 		}
