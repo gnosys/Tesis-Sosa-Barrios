@@ -6,19 +6,10 @@ Copyright (c) Martin Porter.
 using System;
 using System.Runtime.InteropServices;
 
-namespace Stemming
+namespace Tonkenizer.Filters.AroundFilters
 {
-    /// <summary>
-    /// 
-    /// 
-    /// </summary>
-    public interface StemmerInterface
-    {
-        string stemTerm(string s);
-    }
 
-    [ClassInterface(ClassInterfaceType.None)]
-    public class PorterStemmer : StemmerInterface
+    public class StemmingFilter : AroundFilter
     {
         private char[] _b;
         private int i,     // offset into b 
@@ -27,21 +18,21 @@ namespace Stemming
         private static int INC = 200;
         // unit of size whereby b is increased 
 
-        public PorterStemmer()
+        public StemmingFilter(AroundFilter next) : base(next)
         {
             _b = new char[INC];
             i = 0;
             i_end = 0;
         }
 
-        public string stemTerm(string s)
+        private string stemTerm(string s)
         {
             setTerm(s);
             stem();
             return getTerm();
         }
 
-        void setTerm(string s)
+        private void setTerm(string s)
         {
             i = s.Length;
             char[] new_b = new char[i];
@@ -52,13 +43,13 @@ namespace Stemming
 
         }
 
-        public string getTerm()
+        private string getTerm()
         {
             return new String(_b, 0, i_end);
         }
 
 
-        public void add(char ch)
+        private void add(char ch)
         {
             if (i == _b.Length)
             {
@@ -70,7 +61,7 @@ namespace Stemming
             _b[i++] = ch;
         }
 
-        public void add(char[] w, int wLen)
+        private void add(char[] w, int wLen)
         {
             if (i + wLen >= _b.Length)
             {
@@ -88,12 +79,12 @@ namespace Stemming
             return new String(_b, 0, i_end);
         }
 
-        public int getResultLength()
+        private int getResultLength()
         {
             return i_end;
         }
 
-        public char[] getResultBuffer()
+        private char[] getResultBuffer()
         {
             return _b;
         }
@@ -387,7 +378,7 @@ namespace Stemming
                 k--;
         }
 
-        public void stem()
+        private void stem()
         {
             k = i - 1;
             if (k > 1)
@@ -404,5 +395,10 @@ namespace Stemming
         }
 
 
+
+        protected override string DoFilter(string doc)
+        {
+            return stemTerm(doc);
+        }
     }
 }

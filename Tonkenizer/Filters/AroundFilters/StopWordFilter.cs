@@ -2,16 +2,16 @@
 using System;
 using System.Collections;
 
-namespace ServiceRanking
+namespace Tonkenizer.Filters.AroundFilters
 {
 	/// <summary>
 	/// Stop words are frequently occurring, insignificant words words 
 	/// that appear in a database record, article or web page. 
 	/// Common stop words include
 	/// </summary>
-	public class StopWordsHandler
+	public class StopWordFilter : AroundFilter
 	{		
-		public static string[] stopWordsList=new string[] {
+		public static string[] stopWordsList = new string[] {
 
 															  "a", 																													  
 															  "about", 
@@ -474,13 +474,12 @@ namespace ServiceRanking
 			return element;
 		}
 
-		public bool IsStopword(string str)
+		private bool IsStopword(string str)
 		{
 			return _stopwords.ContainsKey(str.ToLower());
 		}
-	
 
-		public StopWordsHandler()
+		public StopWordFilter(AroundFilter next) : base(next)
 		{
 			if (_stopwords == null)
 			{
@@ -492,6 +491,15 @@ namespace ServiceRanking
 				}
 			}
 		}
-	}
+
+        protected override string DoFilter(string doc)
+        {
+            if (IsStopword(doc))
+            {
+                return null;
+            }
+            return doc;
+        }
+    }
 }
 

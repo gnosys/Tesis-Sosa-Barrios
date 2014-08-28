@@ -6,11 +6,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Preprocessing.TDFIFMeasure;
-using Preprocessing.Utils;
 
 
 namespace ServiceRanking
 {
+
+
+
 	/// <summary>
 	/// Summary description for TF_IDFLib.
 	/// </summary>
@@ -25,6 +27,14 @@ namespace ServiceRanking
 		private float[][] _termWeight;
 		private int[] _maxTermFreq;
 		private int[] _docFreq;
+
+
+        private static string[] ArrayListToArray(ArrayList arraylist)
+        {
+            string[] array = new string[arraylist.Count];
+            for (int i = 0; i < arraylist.Count; i++) array[i] = (string)arraylist[i];
+            return array;
+        }
 
         public List<string[]> Docs 
         { 
@@ -245,7 +255,7 @@ namespace ServiceRanking
 					if (!list.Contains(input[i])) // N-GRAM SIMILARITY?				
 						list.Add(input[i]);
 
-                return StringUtils.ArrayListToArray(list);
+                return ArrayListToArray(list);
 			}
 		}
 		

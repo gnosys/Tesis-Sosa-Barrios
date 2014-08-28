@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Preprocessing.Utils
+namespace Tonkenizer.Utils
 {
     public static class StringUtils
     {
