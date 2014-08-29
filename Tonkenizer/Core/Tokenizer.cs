@@ -14,9 +14,11 @@ namespace Tonkenizer.Core
     {
         private PreFilter _prefilter;
         private AroundFilter _aroundFilter;
+        private Regex _delimiter;
 
-        public Tokenizer(PreFilter prefilter, AroundFilter aroundFilter)
+        public Tokenizer(Regex delimiter, PreFilter prefilter, AroundFilter aroundFilter)
         {
+            _delimiter = delimiter;
             _prefilter = prefilter;
             _aroundFilter = aroundFilter;
         }
@@ -43,14 +45,13 @@ namespace Tonkenizer.Core
 
         private string[] Partition(string input)
         {
-            Regex r = new Regex("([ \\t{}():;. \n])");
             input = input.ToLower();//necessary or filter?
-            String[] tokens = r.Split(input);
+            String[] tokens = _delimiter.Split(input);
             ArrayList filter = new ArrayList();
 
             for (int i = 0; i < tokens.Length; i++)
             {
-                MatchCollection mc = r.Matches(tokens[i]);
+                MatchCollection mc = _delimiter.Matches(tokens[i]);
                 if (mc.Count <= 0 && tokens[i].Trim().Length > 0)
                 {
                     //here we filter the word

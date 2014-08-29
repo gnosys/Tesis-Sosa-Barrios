@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Core\ITokenizer.cs" />
     <Compile Include="Core\Tokenizer.cs" />
     <Compile Include="Filters\AroundFilter.cs" />

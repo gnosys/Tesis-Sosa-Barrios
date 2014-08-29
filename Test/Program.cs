@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ServiceRanking;
 using Tonkenizer.Core;
@@ -22,12 +23,15 @@ namespace Test
 										   "I like the King’s Speech",
 										   "they decide to watch a movie"
 			};
+            //tokenizer delimiter
+            Regex delimiter = new Regex("([ \\t{}():;. \n])");
 
-            //chain of responsability
+            //chain of responsability: docs and words transformations
             PreFilter preFilter = new EmptyPreFilter(null);
             AroundFilter aroundFilter = new StopWordFilter(new StemmingFilter(null));
 
-            ITokenizer tokenizer = new Tokenizer(preFilter, aroundFilter);
+            //preprocessing
+            ITokenizer tokenizer = new Tokenizer(delimiter, preFilter, aroundFilter);
             var TFIDFInput = tokenizer.Tokenize(docs).ToList();
 
             //representation
