@@ -21,13 +21,14 @@ namespace Test
             List<string> docs = new List<string>() {
 										   "watching the King’s Speech",
 										   "I like the King’s Speech",
-										   "they decide to watch a movie"
+										   "they decide to watch a movie",
+                                           "hey! read this: http://www.imdb.com/title/tt0070511/"
 			};
             //tokenizer delimiter
             Regex delimiter = new Regex("([ \\t{}():;. \n])");
 
             //chain of responsability: docs and words transformations
-            PreFilter preFilter = new EmptyPreFilter(null);
+            PreFilter preFilter = new AddLinkContextPreFilter(null);
             AroundFilter aroundFilter = new StopWordFilter(new StemmingFilter(null));
 
             //preprocessing
