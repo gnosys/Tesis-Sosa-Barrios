@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DataBaseSQL
@@ -17,8 +18,9 @@ namespace DataBaseSQL
 
         public DataBase()
         {
-            connectionString = (@"Data Source=MATI-PC\SQLEXPRESS;Initial Catalog=Tweets;Integrated Security=True");
+            connectionString = (@"Data Source=np:\\.\pipe\LOCALDB#3AD98518\tsql\query;Initial Catalog=Tweets;Integrated Security=True");
             connection = new SqlConnection(connectionString);
+            CuantitativeAnalysis();
         }
 
         public List<Tweet> Search(int cantTuplas)
@@ -39,7 +41,7 @@ namespace DataBaseSQL
                     dato.Entity_Id = reader.GetValue(3).ToString();
                     dato.Category = reader.GetValue(4).ToString();
                     dato.Text = reader.GetValue(5).ToString();
-                    dato.Id_Category = reader.GetValue(6).ToString();
+                    //dato.Id_Category = reader.GetValue(6).ToString();
                     list.Add(dato);
                 }
             }
@@ -93,6 +95,36 @@ namespace DataBaseSQL
             }
             connection.Close();
             return list;
+        }
+
+        void CuantitativeAnalysis()
+        {
+            List<string> list = new List<string>();
+            queryString = @"SELECT Text FROM [Tweets].[dbo].[Tweet]";
+
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader.GetValue(0).ToString());
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            if (list.Count > 0)
+            {
+                string pattern = @"(http|https|ftp|)\://|[a-zA-Z0-9\-\.]+\.[a-zA-Z](:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]";
+                Regex reg = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                
+                var numerototaldetweets = list.Count;
+                var numerotoaldetweetsConHipervinculos = list.Where(x => reg.IsMatch(x)).Count();
+            }
         }
     }
 }
