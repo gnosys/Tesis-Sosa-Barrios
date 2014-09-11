@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,43 @@ using System.Threading.Tasks;
 
 namespace DataBaseSQL
 {
-    public class DataBase
+    public class DataBase : IDisposable
     {
         public string connectionString;
         protected string queryString;
-        protected SqlConnection connection;
-        protected SqlCommand command;
-        protected SqlDataReader reader;
+        protected SqlConnection connection = null;
+        protected SqlCommand command = null;
+        protected SqlDataReader reader = null;
 
-        public DataBase()
+        public DataBase(string connectionString)
         {
-            connectionString = (@"Data Source=np:\\.\pipe\LOCALDB#3AD98518\tsql\query;Initial Catalog=Tweets;Integrated Security=True");
-            connection = new SqlConnection(connectionString);
-            CuantitativeAnalysis();
+            try
+            {
+                connection = new SqlConnection(connectionString);
+                this.connectionString = connectionString;
+            	CuantitativeAnalysis();
+            }
+            catch
+            {
+            }
+            
+        }
+
+        public void Dispose()
+        {
+            if (connection != null)
+                connection.Dispose();
+            if (command != null)
+                command.Dispose();
+            if (reader != null)
+                reader.Dispose();
+        }
+
+        public bool CheckConnection()
+        {
+            if (connection != null)
+                return true;
+            return false;
         }
 
         public List<Tweet> Search(int cantTuplas)
@@ -57,6 +82,28 @@ namespace DataBaseSQL
         {
             List<string> list = new List<string>();
             queryString = string.Format(@"SELECT TOP {0} [Category] FROM [Tweets].[dbo].[Tweet]", cantTuplas);
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader.GetValue(0).ToString());
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            return list;
+        }
+
+        public List<string> Texts(int cantTuplas)
+        {
+            List<string> list = new List<string>();
+            queryString = string.Format(@"SELECT TOP {0} [Text] FROM [Tweets].[dbo].[Tweet]", cantTuplas);
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();

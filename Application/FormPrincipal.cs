@@ -12,12 +12,45 @@ namespace AppPrincipal
 {
     public partial class App : Form
     {
-        DataBase db = new DataBase();
+        DataBase db = null;
 
         public App()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+        }
+
+        private void cleanLabels()
+        {
+            labelConeccionEstablecida.Visible = false;
+            labelConeccionFallida.Visible = false;
+        }
+
+        private void enableForms()
+        {
+            SelectCantTuplas.Enabled = true;
+            SelectCantDatos.Enabled = true;
+            buttonMostrarTuplas.Enabled = true;
+            buttonMostrarCategorias.Enabled = true;
+            buttonMostrarTextos.Enabled = true;
+            cleanGrid();
+        }
+
+        private void disableForms()
+        {
+            SelectCantTuplas.Enabled = false;
+            SelectCantDatos.Enabled = false;
+            buttonMostrarTuplas.Enabled = false;
+            buttonMostrarCategorias.Enabled = false;
+            buttonMostrarTextos.Enabled = false;
+            cleanGrid();
+        }
+
+        private void cleanGrid()
+        {
+            dataGridViewTuplas.Rows.Clear();
+            dataGridViewDatos.Rows.Clear();
+            dataGridViewDatos.Columns.Clear();
         }
 
         private void buttonMostrarTuplas_Click(object sender, System.EventArgs e)
@@ -33,15 +66,63 @@ namespace AppPrincipal
 
         private void buttonMostrarCategorias_Click(object sender, System.EventArgs e)
         {
-            if (SelectCantCategorias.Text!= "" && int.Parse(SelectCantCategorias.Text) > 0 && int.Parse(SelectCantCategorias.Text) < 1001)
+            if (SelectCantDatos.Text!= "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 1001)
             {
-                List<string> categorias = db.Categories(int.Parse(SelectCantCategorias.Text));
-                dataGridViewCategorias.Rows.Clear();
+                List<string> categorias = db.Categories(int.Parse(SelectCantDatos.Text));
+                dataGridViewDatos.Rows.Clear();
+                dataGridViewDatos.Columns.Clear();
+                DataGridViewColumn columna = new DataGridViewTextBoxColumn();
+                columna.HeaderText = "Categoria";
+                columna.Width = 700;
+                dataGridViewDatos.Columns.Add(columna);
                 foreach (string s in categorias)
-                    dataGridViewCategorias.Rows.Add(s);
+                    dataGridViewDatos.Rows.Add(s);
             }
         }
 
+        private void buttonMostrarTextos_Click(object sender, System.EventArgs e)
+        {
+            if (SelectCantDatos.Text != "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 1001)
+            {
+                List<string> textos = db.Texts(int.Parse(SelectCantDatos.Text));
+                dataGridViewDatos.Rows.Clear();
+                dataGridViewDatos.Columns.Clear();
+                DataGridViewColumn columna = new DataGridViewTextBoxColumn();
+                columna.HeaderText = "Texto";
+                columna.Width = 700;
+                dataGridViewDatos.Columns.Add(columna);
+                foreach (string t in textos)
+                    dataGridViewDatos.Rows.Add(t);
+            }
+        }
+
+        private void buttonDataBase_Click(object sender, System.EventArgs e)
+        {
+            panelDataBase.Visible = true;
+        }
+
+        private void buttonComprobarConeccion_Click(object sender, System.EventArgs e)
+        {
+            cleanLabels();
+            if (!textBoxConeccionSQL.Text.Equals(""))
+            {
+                if (db != null)
+                    db.Dispose();
+                db = new DataBase(textBoxConeccionSQL.Text);
+                if (db.CheckConnection())
+                {
+                    labelConeccionEstablecida.Visible = true;
+                    enableForms();
+                }
+                else
+                {
+                    labelConeccionFallida.Visible = true;
+                    disableForms();
+                }
+            }
+        }
+
+        
 
     }
 }

@@ -40,12 +40,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SelectCantTuplas = new System.Windows.Forms.TextBox();
             this.buttonMostrarCategorias = new System.Windows.Forms.Button();
-            this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
+            this.dataGridViewDatos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.SelectCantCategorias = new System.Windows.Forms.TextBox();
-            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SelectCantDatos = new System.Windows.Forms.TextBox();
+            this.panelDataBase = new System.Windows.Forms.Panel();
+            this.buttonMostrarTextos = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labelConeccionFallida = new System.Windows.Forms.Label();
+            this.labelConeccionEstablecida = new System.Windows.Forms.Label();
+            this.buttonComprobarConeccion = new System.Windows.Forms.Button();
+            this.textBoxConeccionSQL = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonDataBase = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTuplas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).BeginInit();
+            this.panelDataBase.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewTuplas
@@ -60,7 +69,7 @@
             this.Category,
             this.Texto,
             this.Id_Category});
-            this.dataGridViewTuplas.Location = new System.Drawing.Point(27, 78);
+            this.dataGridViewTuplas.Location = new System.Drawing.Point(17, 91);
             this.dataGridViewTuplas.Name = "dataGridViewTuplas";
             this.dataGridViewTuplas.Size = new System.Drawing.Size(743, 204);
             this.dataGridViewTuplas.TabIndex = 0;
@@ -102,7 +111,8 @@
             // 
             // buttonMostrarTuplas
             // 
-            this.buttonMostrarTuplas.Location = new System.Drawing.Point(294, 39);
+            this.buttonMostrarTuplas.Enabled = false;
+            this.buttonMostrarTuplas.Location = new System.Drawing.Point(301, 60);
             this.buttonMostrarTuplas.Name = "buttonMostrarTuplas";
             this.buttonMostrarTuplas.Size = new System.Drawing.Size(103, 23);
             this.buttonMostrarTuplas.TabIndex = 1;
@@ -113,7 +123,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 41);
+            this.label1.Location = new System.Drawing.Point(14, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 13);
             this.label1.TabIndex = 2;
@@ -121,14 +131,16 @@
             // 
             // SelectCantTuplas
             // 
-            this.SelectCantTuplas.Location = new System.Drawing.Point(239, 41);
+            this.SelectCantTuplas.Enabled = false;
+            this.SelectCantTuplas.Location = new System.Drawing.Point(200, 62);
             this.SelectCantTuplas.Name = "SelectCantTuplas";
             this.SelectCantTuplas.Size = new System.Drawing.Size(36, 20);
             this.SelectCantTuplas.TabIndex = 3;
             // 
             // buttonMostrarCategorias
             // 
-            this.buttonMostrarCategorias.Location = new System.Drawing.Point(294, 297);
+            this.buttonMostrarCategorias.Enabled = false;
+            this.buttonMostrarCategorias.Location = new System.Drawing.Point(301, 312);
             this.buttonMostrarCategorias.Name = "buttonMostrarCategorias";
             this.buttonMostrarCategorias.Size = new System.Drawing.Size(103, 23);
             this.buttonMostrarCategorias.TabIndex = 4;
@@ -136,57 +148,147 @@
             this.buttonMostrarCategorias.UseVisualStyleBackColor = true;
             this.buttonMostrarCategorias.Click += new System.EventHandler(this.buttonMostrarCategorias_Click);
             // 
-            // dataGridViewCategorias
+            // dataGridViewDatos
             // 
-            this.dataGridViewCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCategorias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Categorias});
-            this.dataGridViewCategorias.Location = new System.Drawing.Point(27, 337);
-            this.dataGridViewCategorias.Name = "dataGridViewCategorias";
-            this.dataGridViewCategorias.Size = new System.Drawing.Size(743, 204);
-            this.dataGridViewCategorias.TabIndex = 5;
+            this.dataGridViewDatos.Location = new System.Drawing.Point(17, 343);
+            this.dataGridViewDatos.Name = "dataGridViewDatos";
+            this.dataGridViewDatos.Size = new System.Drawing.Size(743, 204);
+            this.dataGridViewDatos.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 303);
+            this.label2.Location = new System.Drawing.Point(14, 317);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(199, 13);
+            this.label2.Size = new System.Drawing.Size(222, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Ingrese cantidad de categorias a mostrar";
+            this.label2.Text = "Ingrese cantidad de datos en tuplas a mostrar";
             // 
-            // SelectCantCategorias
+            // SelectCantDatos
             // 
-            this.SelectCantCategorias.Location = new System.Drawing.Point(239, 300);
-            this.SelectCantCategorias.Name = "SelectCantCategorias";
-            this.SelectCantCategorias.Size = new System.Drawing.Size(36, 20);
-            this.SelectCantCategorias.TabIndex = 7;
+            this.SelectCantDatos.Enabled = false;
+            this.SelectCantDatos.Location = new System.Drawing.Point(244, 314);
+            this.SelectCantDatos.Name = "SelectCantDatos";
+            this.SelectCantDatos.Size = new System.Drawing.Size(36, 20);
+            this.SelectCantDatos.TabIndex = 7;
             // 
-            // Categorias
+            // panelDataBase
             // 
-            this.Categorias.HeaderText = "Categorias";
-            this.Categorias.Name = "Categorias";
-            this.Categorias.Width = 700;
+            this.panelDataBase.Controls.Add(this.buttonMostrarTextos);
+            this.panelDataBase.Controls.Add(this.label4);
+            this.panelDataBase.Controls.Add(this.labelConeccionFallida);
+            this.panelDataBase.Controls.Add(this.labelConeccionEstablecida);
+            this.panelDataBase.Controls.Add(this.buttonComprobarConeccion);
+            this.panelDataBase.Controls.Add(this.textBoxConeccionSQL);
+            this.panelDataBase.Controls.Add(this.label3);
+            this.panelDataBase.Controls.Add(this.label1);
+            this.panelDataBase.Controls.Add(this.dataGridViewDatos);
+            this.panelDataBase.Controls.Add(this.SelectCantDatos);
+            this.panelDataBase.Controls.Add(this.buttonMostrarCategorias);
+            this.panelDataBase.Controls.Add(this.SelectCantTuplas);
+            this.panelDataBase.Controls.Add(this.label2);
+            this.panelDataBase.Controls.Add(this.buttonMostrarTuplas);
+            this.panelDataBase.Controls.Add(this.dataGridViewTuplas);
+            this.panelDataBase.Location = new System.Drawing.Point(162, 5);
+            this.panelDataBase.Name = "panelDataBase";
+            this.panelDataBase.Size = new System.Drawing.Size(836, 552);
+            this.panelDataBase.TabIndex = 8;
+            this.panelDataBase.Visible = false;
+            // 
+            // buttonMostrarTextos
+            // 
+            this.buttonMostrarTextos.Enabled = false;
+            this.buttonMostrarTextos.Location = new System.Drawing.Point(427, 312);
+            this.buttonMostrarTextos.Name = "buttonMostrarTextos";
+            this.buttonMostrarTextos.Size = new System.Drawing.Size(103, 23);
+            this.buttonMostrarTextos.TabIndex = 14;
+            this.buttonMostrarTextos.Text = "Mostrar Textos";
+            this.buttonMostrarTextos.UseVisualStyleBackColor = true;
+            this.buttonMostrarTextos.Click += new System.EventHandler(this.buttonMostrarTextos_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.DarkGray;
+            this.label4.Location = new System.Drawing.Point(233, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(470, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Ejemplo : Data Source=NAME-PC\\SQLEXPRESS;Initial Catalog=Tweets;Integrated Securi" +
+    "ty=True";
+            // 
+            // labelConeccionFallida
+            // 
+            this.labelConeccionFallida.AutoSize = true;
+            this.labelConeccionFallida.ForeColor = System.Drawing.Color.Red;
+            this.labelConeccionFallida.Location = new System.Drawing.Point(727, 45);
+            this.labelConeccionFallida.Name = "labelConeccionFallida";
+            this.labelConeccionFallida.Size = new System.Drawing.Size(91, 13);
+            this.labelConeccionFallida.TabIndex = 12;
+            this.labelConeccionFallida.Text = "Coneccion Fallida";
+            this.labelConeccionFallida.Visible = false;
+            // 
+            // labelConeccionEstablecida
+            // 
+            this.labelConeccionEstablecida.AutoSize = true;
+            this.labelConeccionEstablecida.ForeColor = System.Drawing.Color.Green;
+            this.labelConeccionEstablecida.Location = new System.Drawing.Point(716, 45);
+            this.labelConeccionEstablecida.Name = "labelConeccionEstablecida";
+            this.labelConeccionEstablecida.Size = new System.Drawing.Size(116, 13);
+            this.labelConeccionEstablecida.TabIndex = 11;
+            this.labelConeccionEstablecida.Text = "Coneccion Establecida";
+            this.labelConeccionEstablecida.Visible = false;
+            // 
+            // buttonComprobarConeccion
+            // 
+            this.buttonComprobarConeccion.Location = new System.Drawing.Point(713, 13);
+            this.buttonComprobarConeccion.Name = "buttonComprobarConeccion";
+            this.buttonComprobarConeccion.Size = new System.Drawing.Size(120, 23);
+            this.buttonComprobarConeccion.TabIndex = 10;
+            this.buttonComprobarConeccion.Text = "Comprobar Coneccion";
+            this.buttonComprobarConeccion.UseVisualStyleBackColor = true;
+            this.buttonComprobarConeccion.Click += new System.EventHandler(this.buttonComprobarConeccion_Click);
+            // 
+            // textBoxConeccionSQL
+            // 
+            this.textBoxConeccionSQL.Location = new System.Drawing.Point(281, 15);
+            this.textBoxConeccionSQL.Name = "textBoxConeccionSQL";
+            this.textBoxConeccionSQL.Size = new System.Drawing.Size(422, 20);
+            this.textBoxConeccionSQL.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(260, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Ingrese ruta de coneccion con su base de datos SQL";
+            // 
+            // buttonDataBase
+            // 
+            this.buttonDataBase.Location = new System.Drawing.Point(13, 13);
+            this.buttonDataBase.Name = "buttonDataBase";
+            this.buttonDataBase.Size = new System.Drawing.Size(130, 23);
+            this.buttonDataBase.TabIndex = 9;
+            this.buttonDataBase.Text = "DataBase";
+            this.buttonDataBase.UseVisualStyleBackColor = true;
+            this.buttonDataBase.Click += new System.EventHandler(this.buttonDataBase_Click);
             // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 553);
-            this.Controls.Add(this.SelectCantCategorias);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridViewCategorias);
-            this.Controls.Add(this.buttonMostrarCategorias);
-            this.Controls.Add(this.SelectCantTuplas);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonMostrarTuplas);
-            this.Controls.Add(this.dataGridViewTuplas);
+            this.ClientSize = new System.Drawing.Size(1010, 564);
+            this.Controls.Add(this.buttonDataBase);
+            this.Controls.Add(this.panelDataBase);
             this.Name = "App";
             this.Text = "Preprocesamiento de Tweets";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTuplas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).EndInit();
+            this.panelDataBase.ResumeLayout(false);
+            this.panelDataBase.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -204,10 +306,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Texto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id_Category;
         private System.Windows.Forms.Button buttonMostrarCategorias;
-        private System.Windows.Forms.DataGridView dataGridViewCategorias;
+        private System.Windows.Forms.DataGridView dataGridViewDatos;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox SelectCantCategorias;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categorias;
+        private System.Windows.Forms.TextBox SelectCantDatos;
+        private System.Windows.Forms.Panel panelDataBase;
+        private System.Windows.Forms.Button buttonDataBase;
+        private System.Windows.Forms.TextBox textBoxConeccionSQL;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonComprobarConeccion;
+        private System.Windows.Forms.Label labelConeccionEstablecida;
+        private System.Windows.Forms.Label labelConeccionFallida;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonMostrarTextos;
     }
 }
 
