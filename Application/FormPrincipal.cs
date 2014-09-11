@@ -13,6 +13,7 @@ namespace AppPrincipal
     public partial class App : Form
     {
         DataBase db = null;
+        int indexs;
 
         public App()
         {
@@ -53,9 +54,14 @@ namespace AppPrincipal
             dataGridViewDatos.Columns.Clear();
         }
 
+        private void cleanPanels()
+        {
+            panelDataBase.Visible = false;
+        }
+
         private void buttonMostrarTuplas_Click(object sender, System.EventArgs e)
         {
-            if (SelectCantTuplas.Text!= "" && int.Parse(SelectCantTuplas.Text) > 0 && int.Parse(SelectCantTuplas.Text) < 1001)
+            if (SelectCantTuplas.Text!= "" && int.Parse(SelectCantTuplas.Text) > 0 && int.Parse(SelectCantTuplas.Text) < 10001)
             {
                 List<Tweet> tuplas = db.Search(int.Parse(SelectCantTuplas.Text));
                 dataGridViewTuplas.Rows.Clear();
@@ -66,38 +72,49 @@ namespace AppPrincipal
 
         private void buttonMostrarCategorias_Click(object sender, System.EventArgs e)
         {
-            if (SelectCantDatos.Text!= "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 1001)
+            if (SelectCantDatos.Text!= "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 10001)
             {
                 List<string> categorias = db.Categories(int.Parse(SelectCantDatos.Text));
                 dataGridViewDatos.Rows.Clear();
                 dataGridViewDatos.Columns.Clear();
-                DataGridViewColumn columna = new DataGridViewTextBoxColumn();
-                columna.HeaderText = "Categoria";
-                columna.Width = 700;
-                dataGridViewDatos.Columns.Add(columna);
+                DataGridViewColumn columnaId = new DataGridViewTextBoxColumn();
+                columnaId.HeaderText = "Id";
+                columnaId.Width = 50;
+                DataGridViewColumn columnaCategoria = new DataGridViewTextBoxColumn();
+                columnaCategoria.HeaderText = "Categoria";
+                columnaCategoria.Width = 650;
+                dataGridViewDatos.Columns.Add(columnaId);
+                dataGridViewDatos.Columns.Add(columnaCategoria);
+                indexs = 1;
                 foreach (string s in categorias)
-                    dataGridViewDatos.Rows.Add(s);
+                    dataGridViewDatos.Rows.Add(indexs++, s);
             }
         }
 
         private void buttonMostrarTextos_Click(object sender, System.EventArgs e)
         {
-            if (SelectCantDatos.Text != "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 1001)
+            if (SelectCantDatos.Text != "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 10001)
             {
                 List<string> textos = db.Texts(int.Parse(SelectCantDatos.Text));
                 dataGridViewDatos.Rows.Clear();
                 dataGridViewDatos.Columns.Clear();
-                DataGridViewColumn columna = new DataGridViewTextBoxColumn();
-                columna.HeaderText = "Texto";
-                columna.Width = 700;
-                dataGridViewDatos.Columns.Add(columna);
+                DataGridViewColumn columnaId = new DataGridViewTextBoxColumn();
+                columnaId.HeaderText = "Id";
+                columnaId.Width = 50;
+                DataGridViewColumn columnaTexto = new DataGridViewTextBoxColumn();
+                columnaTexto.HeaderText = "Texto";
+                columnaTexto.Width = 650;
+                dataGridViewDatos.Columns.Add(columnaId);
+                dataGridViewDatos.Columns.Add(columnaTexto);
+                indexs = 1;
                 foreach (string t in textos)
-                    dataGridViewDatos.Rows.Add(t);
+                    dataGridViewDatos.Rows.Add(indexs++, t);
             }
         }
 
         private void buttonDataBase_Click(object sender, System.EventArgs e)
         {
+            cleanPanels();
             panelDataBase.Visible = true;
         }
 
@@ -122,7 +139,15 @@ namespace AppPrincipal
             }
         }
 
-        
+        private void buttonStopWords_Click(object sender, System.EventArgs e)
+        {
+            cleanPanels();
+        }
+
+        private void buttonStemmer_Click(object sender, System.EventArgs e)
+        {
+            cleanPanels();
+        }
 
     }
 }

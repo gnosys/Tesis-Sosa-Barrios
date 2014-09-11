@@ -66,7 +66,6 @@ namespace DataBaseSQL
                     dato.Entity_Id = reader.GetValue(3).ToString();
                     dato.Category = reader.GetValue(4).ToString();
                     dato.Text = reader.GetValue(5).ToString();
-                    //dato.Id_Category = reader.GetValue(6).ToString();
                     list.Add(dato);
                 }
             }

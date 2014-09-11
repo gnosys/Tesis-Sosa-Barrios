@@ -44,6 +44,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SelectCantDatos = new System.Windows.Forms.TextBox();
             this.panelDataBase = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.buttonMostrarTextos = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.labelConeccionFallida = new System.Windows.Forms.Label();
@@ -52,6 +54,8 @@
             this.textBoxConeccionSQL = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonDataBase = new System.Windows.Forms.Button();
+            this.buttonStopWords = new System.Windows.Forms.Button();
+            this.buttonStemmer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTuplas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).BeginInit();
             this.panelDataBase.SuspendLayout();
@@ -112,7 +116,7 @@
             // buttonMostrarTuplas
             // 
             this.buttonMostrarTuplas.Enabled = false;
-            this.buttonMostrarTuplas.Location = new System.Drawing.Point(301, 60);
+            this.buttonMostrarTuplas.Location = new System.Drawing.Point(357, 60);
             this.buttonMostrarTuplas.Name = "buttonMostrarTuplas";
             this.buttonMostrarTuplas.Size = new System.Drawing.Size(103, 23);
             this.buttonMostrarTuplas.TabIndex = 1;
@@ -140,7 +144,7 @@
             // buttonMostrarCategorias
             // 
             this.buttonMostrarCategorias.Enabled = false;
-            this.buttonMostrarCategorias.Location = new System.Drawing.Point(301, 312);
+            this.buttonMostrarCategorias.Location = new System.Drawing.Point(357, 312);
             this.buttonMostrarCategorias.Name = "buttonMostrarCategorias";
             this.buttonMostrarCategorias.Size = new System.Drawing.Size(103, 23);
             this.buttonMostrarCategorias.TabIndex = 4;
@@ -174,6 +178,8 @@
             // 
             // panelDataBase
             // 
+            this.panelDataBase.Controls.Add(this.label6);
+            this.panelDataBase.Controls.Add(this.label5);
             this.panelDataBase.Controls.Add(this.buttonMostrarTextos);
             this.panelDataBase.Controls.Add(this.label4);
             this.panelDataBase.Controls.Add(this.labelConeccionFallida);
@@ -195,10 +201,28 @@
             this.panelDataBase.TabIndex = 8;
             this.panelDataBase.Visible = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(286, 317);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Max 10000";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(242, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Max 10000";
+            // 
             // buttonMostrarTextos
             // 
             this.buttonMostrarTextos.Enabled = false;
-            this.buttonMostrarTextos.Location = new System.Drawing.Point(427, 312);
+            this.buttonMostrarTextos.Location = new System.Drawing.Point(466, 312);
             this.buttonMostrarTextos.Name = "buttonMostrarTextos";
             this.buttonMostrarTextos.Size = new System.Drawing.Size(103, 23);
             this.buttonMostrarTextos.TabIndex = 14;
@@ -210,7 +234,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.DarkGray;
-            this.label4.Location = new System.Drawing.Point(233, 38);
+            this.label4.Location = new System.Drawing.Point(234, 38);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(470, 13);
             this.label4.TabIndex = 13;
@@ -275,11 +299,33 @@
             this.buttonDataBase.UseVisualStyleBackColor = true;
             this.buttonDataBase.Click += new System.EventHandler(this.buttonDataBase_Click);
             // 
+            // buttonStopWords
+            // 
+            this.buttonStopWords.Location = new System.Drawing.Point(13, 50);
+            this.buttonStopWords.Name = "buttonStopWords";
+            this.buttonStopWords.Size = new System.Drawing.Size(130, 23);
+            this.buttonStopWords.TabIndex = 10;
+            this.buttonStopWords.Text = "Stop Words";
+            this.buttonStopWords.UseVisualStyleBackColor = true;
+            this.buttonStopWords.Click += new System.EventHandler(this.buttonStopWords_Click);
+            // 
+            // buttonStemmer
+            // 
+            this.buttonStemmer.Location = new System.Drawing.Point(13, 86);
+            this.buttonStemmer.Name = "buttonStemmer";
+            this.buttonStemmer.Size = new System.Drawing.Size(130, 23);
+            this.buttonStemmer.TabIndex = 11;
+            this.buttonStemmer.Text = "Stemmer";
+            this.buttonStemmer.UseVisualStyleBackColor = true;
+            this.buttonStemmer.Click += new System.EventHandler(this.buttonStemmer_Click);
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1010, 564);
+            this.Controls.Add(this.buttonStemmer);
+            this.Controls.Add(this.buttonStopWords);
             this.Controls.Add(this.buttonDataBase);
             this.Controls.Add(this.panelDataBase);
             this.Name = "App";
@@ -318,6 +364,10 @@
         private System.Windows.Forms.Label labelConeccionFallida;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonMostrarTextos;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonStopWords;
+        private System.Windows.Forms.Button buttonStemmer;
     }
 }
 
