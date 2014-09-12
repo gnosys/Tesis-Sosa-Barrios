@@ -116,6 +116,7 @@ namespace AppPrincipal
         {
             cleanPanels();
             panelDataBase.Visible = true;
+            panelSeleccionarCategoria.Visible = false;
         }
 
         private void buttonComprobarConeccion_Click(object sender, System.EventArgs e)
@@ -148,6 +149,57 @@ namespace AppPrincipal
         {
             cleanPanels();
         }
+
+        private void buttonSeleccionarCategoria_Click(object sender, System.EventArgs e)
+        {
+            cleanPanels();
+            panelDataBase.Visible = true;
+            panelSeleccionarCategoria.Visible = true;
+        }
+
+        private void buttonCalcularNiveles_Click(object sender, System.EventArgs e)
+        {
+            labelCalculandoNiveles.Visible = true;
+            labelNivelesCalculados.Visible = false;
+            labelCantidadNiveles.Text = db.GetAmountNiveles().ToString();
+            labelCalculandoNiveles.Visible = false;
+            labelNivelesCalculados.Visible = true;
+        }
+
+        private void buttonSeleccionarNivel_Click(object sender, System.EventArgs e)
+        {
+            if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text))
+            {
+                labelSeleccionandoNivel.Visible = true;
+                List<string> categorias = db.CategoriesSelected(int.Parse(textBoxSeleccionarNivel.Text));
+                listBoxCategoriasNivel.Items.Clear();
+                foreach (string c in categorias)
+                {
+                    listBoxCategoriasNivel.Items.Add(c);
+                }
+                labelSeleccionandoNivel.Visible = false;
+            }
+        }
+
+        private void buttonCrearCategorias_Click(object sender, System.EventArgs e)
+        {
+            if (listBoxCategoriasNivel.Items.Count != 0)
+            {
+                List<string> newCategorias = new List<string>();
+                for (int i = 0; i < listBoxCategoriasNivel.Items.Count; i++)
+                    newCategorias.Add(listBoxCategoriasNivel.Items[i].ToString());
+                db.ClearTableCategories();
+                db.CreateCategories(newCategorias);
+                List<string> categoriasDB = db.AllNewCategories();
+                dataGridViewCategoriasCreadas.Rows.Clear();
+                int id = 1;
+                foreach (string c in categoriasDB)
+                {
+                    dataGridViewCategoriasCreadas.Rows.Add(id++, c);
+                }
+            }
+        }
+
 
     }
 }

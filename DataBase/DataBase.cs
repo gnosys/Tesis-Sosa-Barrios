@@ -74,6 +74,7 @@ namespace DataBaseSQL
                 reader.Close();
             }
             connection.Close();
+            command.Dispose();
             return list;
         }
 
@@ -96,6 +97,7 @@ namespace DataBaseSQL
                 reader.Close();
             }
             connection.Close();
+            command.Dispose();
             return list;
         }
 
@@ -118,6 +120,7 @@ namespace DataBaseSQL
                 reader.Close();
             }
             connection.Close();
+            command.Dispose();
             return list;
         }
 
@@ -140,6 +143,86 @@ namespace DataBaseSQL
                 reader.Close();
             }
             connection.Close();
+            command.Dispose();
+            return list;
+        }
+
+        public int GetAmountNiveles()
+        {
+            int result = -1;
+            int resultCategoria = 0;
+            List<string> list = AllCategories();
+            foreach (string c in list)
+            {
+                string[] parts = c.Split('/');
+                resultCategoria = parts.Length;
+                if (result < 0 || resultCategoria < result)
+                    result = resultCategoria;
+            }
+            return result;
+        }
+
+        public List<string> CategoriesSelected(int nivel)
+        {
+            List<string> list = AllCategories();
+            List<string> categories = new List<string>();
+            foreach (string c in list)
+            {
+                string[] parts = c.Split('/');
+                if (parts.Length >= nivel)
+                {
+                    if (!categories.Contains(parts[nivel - 1]))
+                        categories.Add(parts[nivel - 1]);
+                }
+            }
+            return categories;
+        }
+
+        public void CreateCategories(List<string> newCategories)
+        {
+            int id = 1;
+            connection.Open();
+            queryString = "";
+            foreach (string nc in newCategories)
+            {
+                queryString += string.Format(@"INSERT INTO [dbo].[Category]([Id],[Name]) VALUES ({0}, '{1}'); ", id++, nc);
+            }
+            command = new SqlCommand(queryString, connection);
+            command.ExecuteReader();
+            command.Dispose();
+            connection.Close();
+        }
+
+        public void ClearTableCategories()
+        {
+            connection.Open();
+            queryString = string.Format(@"DELETE FROM [dbo].[Category]");
+            command = new SqlCommand(queryString, connection);
+            command.ExecuteReader();
+            command.Dispose();
+            connection.Close();
+        }
+
+        public List<string> AllNewCategories()
+        {
+            List<string> list = new List<string>();
+            queryString = string.Format(@"SELECT [Name] FROM [dbo].[Category]");
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader.GetValue(0).ToString());
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
             return list;
         }
 
