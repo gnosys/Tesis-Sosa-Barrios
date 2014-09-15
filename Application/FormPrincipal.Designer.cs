@@ -45,6 +45,11 @@
             this.SelectCantDatos = new System.Windows.Forms.TextBox();
             this.panelDataBase = new System.Windows.Forms.Panel();
             this.panelSeleccionarCategoria = new System.Windows.Forms.Panel();
+            this.dataGridViewCategoriasCreadas = new System.Windows.Forms.DataGridView();
+            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelSeleccionandoNivel = new System.Windows.Forms.Label();
+            this.labelCalculandoNiveles = new System.Windows.Forms.Label();
             this.labelNivelesCalculados = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.buttonCalcularNiveles = new System.Windows.Forms.Button();
@@ -77,11 +82,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.labelCalculandoNiveles = new System.Windows.Forms.Label();
-            this.labelSeleccionandoNivel = new System.Windows.Forms.Label();
-            this.dataGridViewCategoriasCreadas = new System.Windows.Forms.DataGridView();
-            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonActualizarTweets = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTuplas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).BeginInit();
             this.panelDataBase.SuspendLayout();
@@ -232,6 +233,7 @@
             // 
             // panelSeleccionarCategoria
             // 
+            this.panelSeleccionarCategoria.Controls.Add(this.buttonActualizarTweets);
             this.panelSeleccionarCategoria.Controls.Add(this.dataGridViewCategoriasCreadas);
             this.panelSeleccionarCategoria.Controls.Add(this.labelSeleccionandoNivel);
             this.panelSeleccionarCategoria.Controls.Add(this.labelCalculandoNiveles);
@@ -257,6 +259,51 @@
             this.panelSeleccionarCategoria.TabIndex = 17;
             this.panelSeleccionarCategoria.Visible = false;
             // 
+            // dataGridViewCategoriasCreadas
+            // 
+            this.dataGridViewCategoriasCreadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCategoriasCreadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdC,
+            this.Categorias});
+            this.dataGridViewCategoriasCreadas.Location = new System.Drawing.Point(658, 136);
+            this.dataGridViewCategoriasCreadas.Name = "dataGridViewCategoriasCreadas";
+            this.dataGridViewCategoriasCreadas.Size = new System.Drawing.Size(174, 147);
+            this.dataGridViewCategoriasCreadas.TabIndex = 21;
+            // 
+            // IdC
+            // 
+            this.IdC.HeaderText = "Id";
+            this.IdC.Name = "IdC";
+            this.IdC.Width = 30;
+            // 
+            // Categorias
+            // 
+            this.Categorias.HeaderText = "Categorias";
+            this.Categorias.Name = "Categorias";
+            this.Categorias.Width = 82;
+            // 
+            // labelSeleccionandoNivel
+            // 
+            this.labelSeleccionandoNivel.AutoSize = true;
+            this.labelSeleccionandoNivel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.labelSeleccionandoNivel.Location = new System.Drawing.Point(259, 236);
+            this.labelSeleccionandoNivel.Name = "labelSeleccionandoNivel";
+            this.labelSeleccionandoNivel.Size = new System.Drawing.Size(114, 13);
+            this.labelSeleccionandoNivel.TabIndex = 20;
+            this.labelSeleccionandoNivel.Text = "Seleccionando Nivel...";
+            this.labelSeleccionandoNivel.Visible = false;
+            // 
+            // labelCalculandoNiveles
+            // 
+            this.labelCalculandoNiveles.AutoSize = true;
+            this.labelCalculandoNiveles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.labelCalculandoNiveles.Location = new System.Drawing.Point(259, 171);
+            this.labelCalculandoNiveles.Name = "labelCalculandoNiveles";
+            this.labelCalculandoNiveles.Size = new System.Drawing.Size(107, 13);
+            this.labelCalculandoNiveles.TabIndex = 19;
+            this.labelCalculandoNiveles.Text = "Calculando Niveles...";
+            this.labelCalculandoNiveles.Visible = false;
+            // 
             // labelNivelesCalculados
             // 
             this.labelNivelesCalculados.AutoSize = true;
@@ -279,6 +326,7 @@
             // 
             // buttonCalcularNiveles
             // 
+            this.buttonCalcularNiveles.Enabled = false;
             this.buttonCalcularNiveles.Location = new System.Drawing.Point(259, 143);
             this.buttonCalcularNiveles.Name = "buttonCalcularNiveles";
             this.buttonCalcularNiveles.Size = new System.Drawing.Size(101, 23);
@@ -298,7 +346,8 @@
             // 
             // buttonCrearCategorias
             // 
-            this.buttonCrearCategorias.Location = new System.Drawing.Point(542, 203);
+            this.buttonCrearCategorias.Enabled = false;
+            this.buttonCrearCategorias.Location = new System.Drawing.Point(542, 143);
             this.buttonCrearCategorias.Name = "buttonCrearCategorias";
             this.buttonCrearCategorias.Size = new System.Drawing.Size(101, 23);
             this.buttonCrearCategorias.TabIndex = 13;
@@ -309,7 +358,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(373, 125);
+            this.label17.Location = new System.Drawing.Point(373, 112);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(180, 13);
             this.label17.TabIndex = 12;
@@ -336,7 +385,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(655, 125);
+            this.label14.Location = new System.Drawing.Point(655, 112);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(98, 13);
             this.label14.TabIndex = 9;
@@ -345,13 +394,14 @@
             // listBoxCategoriasNivel
             // 
             this.listBoxCategoriasNivel.FormattingEnabled = true;
-            this.listBoxCategoriasNivel.Location = new System.Drawing.Point(376, 148);
+            this.listBoxCategoriasNivel.Location = new System.Drawing.Point(376, 136);
             this.listBoxCategoriasNivel.Name = "listBoxCategoriasNivel";
             this.listBoxCategoriasNivel.Size = new System.Drawing.Size(143, 147);
             this.listBoxCategoriasNivel.TabIndex = 8;
             // 
             // buttonSeleccionarNivel
             // 
+            this.buttonSeleccionarNivel.Enabled = false;
             this.buttonSeleccionarNivel.Location = new System.Drawing.Point(259, 201);
             this.buttonSeleccionarNivel.Name = "buttonSeleccionarNivel";
             this.buttonSeleccionarNivel.Size = new System.Drawing.Size(101, 23);
@@ -362,6 +412,7 @@
             // 
             // textBoxSeleccionarNivel
             // 
+            this.textBoxSeleccionarNivel.Enabled = false;
             this.textBoxSeleccionarNivel.Location = new System.Drawing.Point(206, 203);
             this.textBoxSeleccionarNivel.Name = "textBoxSeleccionarNivel";
             this.textBoxSeleccionarNivel.Size = new System.Drawing.Size(36, 20);
@@ -568,50 +619,16 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "Aplicacion y Resultado";
             // 
-            // labelCalculandoNiveles
+            // buttonActualizarTweets
             // 
-            this.labelCalculandoNiveles.AutoSize = true;
-            this.labelCalculandoNiveles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelCalculandoNiveles.Location = new System.Drawing.Point(259, 171);
-            this.labelCalculandoNiveles.Name = "labelCalculandoNiveles";
-            this.labelCalculandoNiveles.Size = new System.Drawing.Size(107, 13);
-            this.labelCalculandoNiveles.TabIndex = 19;
-            this.labelCalculandoNiveles.Text = "Calculando Niveles...";
-            this.labelCalculandoNiveles.Visible = false;
-            // 
-            // labelSeleccionandoNivel
-            // 
-            this.labelSeleccionandoNivel.AutoSize = true;
-            this.labelSeleccionandoNivel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelSeleccionandoNivel.Location = new System.Drawing.Point(259, 236);
-            this.labelSeleccionandoNivel.Name = "labelSeleccionandoNivel";
-            this.labelSeleccionandoNivel.Size = new System.Drawing.Size(114, 13);
-            this.labelSeleccionandoNivel.TabIndex = 20;
-            this.labelSeleccionandoNivel.Text = "Seleccionando Nivel...";
-            this.labelSeleccionandoNivel.Visible = false;
-            // 
-            // dataGridViewCategoriasCreadas
-            // 
-            this.dataGridViewCategoriasCreadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCategoriasCreadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdC,
-            this.Categorias});
-            this.dataGridViewCategoriasCreadas.Location = new System.Drawing.Point(658, 148);
-            this.dataGridViewCategoriasCreadas.Name = "dataGridViewCategoriasCreadas";
-            this.dataGridViewCategoriasCreadas.Size = new System.Drawing.Size(174, 147);
-            this.dataGridViewCategoriasCreadas.TabIndex = 21;
-            // 
-            // IdC
-            // 
-            this.IdC.HeaderText = "Id";
-            this.IdC.Name = "IdC";
-            this.IdC.Width = 30;
-            // 
-            // Categorias
-            // 
-            this.Categorias.HeaderText = "Categorias";
-            this.Categorias.Name = "Categorias";
-            this.Categorias.Width = 82;
+            this.buttonActualizarTweets.Enabled = false;
+            this.buttonActualizarTweets.Location = new System.Drawing.Point(542, 201);
+            this.buttonActualizarTweets.Name = "buttonActualizarTweets";
+            this.buttonActualizarTweets.Size = new System.Drawing.Size(101, 23);
+            this.buttonActualizarTweets.TabIndex = 22;
+            this.buttonActualizarTweets.Text = "Actualizar Tweets";
+            this.buttonActualizarTweets.UseVisualStyleBackColor = true;
+            this.buttonActualizarTweets.Click += new System.EventHandler(this.buttonActualizarTweets_Click);
             // 
             // App
             // 
@@ -696,6 +713,7 @@
         private System.Windows.Forms.DataGridView dataGridViewCategoriasCreadas;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdC;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categorias;
+        private System.Windows.Forms.Button buttonActualizarTweets;
     }
 }
 

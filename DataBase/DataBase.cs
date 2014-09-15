@@ -48,7 +48,7 @@ namespace DataBaseSQL
             return false;
         }
 
-        public List<Tweet> Search(int cantTuplas)
+        public List<Tweet> SearchTweets(int cantTuplas)
         {
             List<Tweet> list = new List<Tweet>();
             queryString = string.Format(@"SELECT TOP {0} * FROM [Tweets].[dbo].[Tweet]", cantTuplas);
@@ -78,7 +78,7 @@ namespace DataBaseSQL
             return list;
         }
 
-        public List<string> Categories(int cantTuplas)
+        public List<string> CategoriesTableTweet(int cantTuplas)
         {
             List<string> list = new List<string>();
             queryString = string.Format(@"SELECT TOP {0} [Category] FROM [Tweets].[dbo].[Tweet]", cantTuplas);
@@ -101,7 +101,7 @@ namespace DataBaseSQL
             return list;
         }
 
-        public List<string> Texts(int cantTuplas)
+        public List<string> TextsTableTweet(int cantTuplas)
         {
             List<string> list = new List<string>();
             queryString = string.Format(@"SELECT TOP {0} [Text] FROM [Tweets].[dbo].[Tweet]", cantTuplas);
@@ -124,7 +124,7 @@ namespace DataBaseSQL
             return list;
         }
 
-        public List<string> AllCategories()
+        public List<string> CategoriesTableTweet()
         {
             List<string> list = new List<string>();
             queryString = string.Format(@"SELECT [Category] FROM [Tweets].[dbo].[Tweet]");
@@ -147,11 +147,11 @@ namespace DataBaseSQL
             return list;
         }
 
-        public int GetAmountNiveles()
+        public int GetAmountNivelesTableTweet()
         {
             int result = -1;
             int resultCategoria = 0;
-            List<string> list = AllCategories();
+            List<string> list = CategoriesTableTweet();
             foreach (string c in list)
             {
                 string[] parts = c.Split('/');
@@ -162,9 +162,9 @@ namespace DataBaseSQL
             return result;
         }
 
-        public List<string> CategoriesSelected(int nivel)
+        public List<string> CategoriesSelectedTableTweet(int nivel)
         {
-            List<string> list = AllCategories();
+            List<string> list = CategoriesTableTweet();
             List<string> categories = new List<string>();
             foreach (string c in list)
             {
@@ -178,7 +178,7 @@ namespace DataBaseSQL
             return categories;
         }
 
-        public void CreateCategories(List<string> newCategories)
+        public void CreateCategoriesTableCategory(List<string> newCategories)
         {
             int id = 1;
             connection.Open();
@@ -193,7 +193,7 @@ namespace DataBaseSQL
             connection.Close();
         }
 
-        public void ClearTableCategories()
+        public void ClearTableCategory()
         {
             connection.Open();
             queryString = string.Format(@"DELETE FROM [dbo].[Category]");
@@ -203,10 +203,10 @@ namespace DataBaseSQL
             connection.Close();
         }
 
-        public List<string> AllNewCategories()
+        public List<Category> CategoriesTableCategory()
         {
-            List<string> list = new List<string>();
-            queryString = string.Format(@"SELECT [Name] FROM [dbo].[Category]");
+            List<Category> list = new List<Category>();
+            queryString = string.Format(@"SELECT [Id],[Name] FROM [dbo].[Category]");
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -214,7 +214,10 @@ namespace DataBaseSQL
             {
                 while (reader.Read())
                 {
-                    list.Add(reader.GetValue(0).ToString());
+                    Category dato = new Category();
+                    dato.Id = reader.GetValue(0).ToString();
+                    dato.Name = reader.GetValue(1).ToString();
+                    list.Add(dato);
                 }
             }
             finally
@@ -226,6 +229,84 @@ namespace DataBaseSQL
             return list;
         }
 
+        public List<string> GetIdAndCategoryTableTweet()
+        {
+            List<string> list = new List<string>();
+            queryString = string.Format(@"SELECT [Id],[Category] FROM [dbo].[Tweet]");
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader[0].ToString());
+                    list.Add(reader[1].ToString());
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
+            return list;
+        }
+
+        protected string GetIdCorresponding(List<Category> categoriesC, string category)
+        {
+            foreach (Category c in categoriesC)
+            {
+                string[] parts = category.Split('/');
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    if (parts[i].Equals(c.Name))
+                        return c.Id;
+                }
+            }
+            return "NULL";
+        }
+
+        public void ClearIdCategoryTableTweet()
+        {
+            connection.Open();
+            queryString = string.Format(@"UPDATE [dbo].[Tweet] SET [Id_Category] = NULL");
+            command = new SqlCommand(queryString, connection);
+            command.ExecuteReader();
+            command.Dispose();
+            connection.Close();
+        }
+
+        public void AddIdCategoriesTableTweets()
+        {
+            List<Category> categoriesC = CategoriesTableCategory();
+            List<string> idAndCategoriesT = GetIdAndCategoryTableTweet();
+            int querysInString = 0;
+            for (int i = 0; i < idAndCategoriesT.Count; i = i + 2)
+            {
+                if (querysInString < 10000)
+                {
+                    queryString += string.Format(@"UPDATE [dbo].[Tweet] SET [Id_Category] = {0} WHERE [Id] = {1}; ", GetIdCorresponding(categoriesC, idAndCategoriesT.ElementAt(i + 1)), idAndCategoriesT.ElementAt(i));
+                    querysInString++;
+                }
+                else
+                {
+                    connection.Open();
+                    command = new SqlCommand(queryString, connection);
+                    command.ExecuteReader();
+                    command.Dispose();
+                    connection.Close();
+                    queryString = string.Format(@"UPDATE [dbo].[Tweet] SET [Id_Category] = {0} WHERE [Id] = {1}; ", GetIdCorresponding(categoriesC, idAndCategoriesT.ElementAt(i + 1)), idAndCategoriesT.ElementAt(i));
+                    querysInString = 1;
+                }
+            }
+            connection.Open();
+            command = new SqlCommand(queryString, connection);
+            command.ExecuteReader();
+            command.Dispose();
+            connection.Close();
+        }
+        
         void CuantitativeAnalysis()
         {
             List<string> list = new List<string>();

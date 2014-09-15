@@ -34,6 +34,8 @@ namespace AppPrincipal
             buttonMostrarTuplas.Enabled = true;
             buttonMostrarCategorias.Enabled = true;
             buttonMostrarTextos.Enabled = true;
+            buttonCalcularNiveles.Enabled = true;
+            
             cleanGrid();
         }
 
@@ -50,8 +52,10 @@ namespace AppPrincipal
         private void cleanGrid()
         {
             dataGridViewTuplas.Rows.Clear();
+            dataGridViewCategoriasCreadas.Rows.Clear();
             dataGridViewDatos.Rows.Clear();
             dataGridViewDatos.Columns.Clear();
+            listBoxCategoriasNivel.Items.Clear();
         }
 
         private void cleanPanels()
@@ -63,7 +67,7 @@ namespace AppPrincipal
         {
             if (SelectCantTuplas.Text!= "" && int.Parse(SelectCantTuplas.Text) > 0 && int.Parse(SelectCantTuplas.Text) < 10001)
             {
-                List<Tweet> tuplas = db.Search(int.Parse(SelectCantTuplas.Text));
+                List<Tweet> tuplas = db.SearchTweets(int.Parse(SelectCantTuplas.Text));
                 dataGridViewTuplas.Rows.Clear();
                 foreach (Tweet t in tuplas)
                     dataGridViewTuplas.Rows.Add(t.Id, t.Tweet_Id, t.Author, t.Entity_Id, t.Category, t.Text, t.Id_Category);
@@ -74,7 +78,7 @@ namespace AppPrincipal
         {
             if (SelectCantDatos.Text!= "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 10001)
             {
-                List<string> categorias = db.Categories(int.Parse(SelectCantDatos.Text));
+                List<string> categorias = db.CategoriesTableTweet(int.Parse(SelectCantDatos.Text));
                 dataGridViewDatos.Rows.Clear();
                 dataGridViewDatos.Columns.Clear();
                 DataGridViewColumn columnaId = new DataGridViewTextBoxColumn();
@@ -95,7 +99,7 @@ namespace AppPrincipal
         {
             if (SelectCantDatos.Text != "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 10001)
             {
-                List<string> textos = db.Texts(int.Parse(SelectCantDatos.Text));
+                List<string> textos = db.TextsTableTweet(int.Parse(SelectCantDatos.Text));
                 dataGridViewDatos.Rows.Clear();
                 dataGridViewDatos.Columns.Clear();
                 DataGridViewColumn columnaId = new DataGridViewTextBoxColumn();
@@ -161,7 +165,12 @@ namespace AppPrincipal
         {
             labelCalculandoNiveles.Visible = true;
             labelNivelesCalculados.Visible = false;
-            labelCantidadNiveles.Text = db.GetAmountNiveles().ToString();
+            labelCantidadNiveles.Text = db.GetAmountNivelesTableTweet().ToString();
+            if (!labelCantidadNiveles.Text.Equals("0"))
+            {
+                buttonSeleccionarNivel.Enabled = true;
+                textBoxSeleccionarNivel.Enabled = true;
+            }
             labelCalculandoNiveles.Visible = false;
             labelNivelesCalculados.Visible = true;
         }
@@ -171,12 +180,13 @@ namespace AppPrincipal
             if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text))
             {
                 labelSeleccionandoNivel.Visible = true;
-                List<string> categorias = db.CategoriesSelected(int.Parse(textBoxSeleccionarNivel.Text));
+                List<string> categorias = db.CategoriesSelectedTableTweet(int.Parse(textBoxSeleccionarNivel.Text));
                 listBoxCategoriasNivel.Items.Clear();
                 foreach (string c in categorias)
                 {
                     listBoxCategoriasNivel.Items.Add(c);
                 }
+                buttonCrearCategorias.Enabled = true;
                 labelSeleccionandoNivel.Visible = false;
             }
         }
@@ -188,16 +198,22 @@ namespace AppPrincipal
                 List<string> newCategorias = new List<string>();
                 for (int i = 0; i < listBoxCategoriasNivel.Items.Count; i++)
                     newCategorias.Add(listBoxCategoriasNivel.Items[i].ToString());
-                db.ClearTableCategories();
-                db.CreateCategories(newCategorias);
-                List<string> categoriasDB = db.AllNewCategories();
+                db.ClearTableCategory();
+                db.CreateCategoriesTableCategory(newCategorias);
+                List<Category> categoriasDB = db.CategoriesTableCategory();
                 dataGridViewCategoriasCreadas.Rows.Clear();
-                int id = 1;
-                foreach (string c in categoriasDB)
+                foreach (Category c in categoriasDB)
                 {
-                    dataGridViewCategoriasCreadas.Rows.Add(id++, c);
+                    dataGridViewCategoriasCreadas.Rows.Add(c.Id, c.Name);
                 }
+                buttonActualizarTweets.Enabled = true;
             }
+        }
+
+        private void buttonActualizarTweets_Click(object sender, System.EventArgs e)
+        {
+            db.ClearIdCategoryTableTweet();
+            db.AddIdCategoriesTableTweets();
         }
 
 
