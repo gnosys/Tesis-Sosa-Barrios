@@ -23,8 +23,7 @@ namespace AppPrincipal
 
         private void cleanLabels()
         {
-            labelConeccionEstablecida.Visible = false;
-            labelConeccionFallida.Visible = false;
+            labelConeccion.Visible = false;
         }
 
         private void enableForms()
@@ -35,7 +34,8 @@ namespace AppPrincipal
             buttonMostrarCategorias.Enabled = true;
             buttonMostrarTextos.Enabled = true;
             buttonCalcularNiveles.Enabled = true;
-            
+            buttonMostrarTuplasActualizadas.Enabled = true;
+            buttonMostrarTablaCategorias.Enabled = true;
             cleanGrid();
         }
 
@@ -46,6 +46,8 @@ namespace AppPrincipal
             buttonMostrarTuplas.Enabled = false;
             buttonMostrarCategorias.Enabled = false;
             buttonMostrarTextos.Enabled = false;
+            buttonMostrarTuplasActualizadas.Enabled = false;
+            buttonMostrarTablaCategorias.Enabled = false;
             cleanGrid();
         }
 
@@ -60,7 +62,7 @@ namespace AppPrincipal
 
         private void cleanPanels()
         {
-            panelDataBase.Visible = false;
+            panelTratamientoDeDatos.Visible = false;
         }
 
         private void buttonMostrarTuplas_Click(object sender, System.EventArgs e)
@@ -69,8 +71,9 @@ namespace AppPrincipal
             {
                 List<Tweet> tuplas = db.SearchTweets(int.Parse(SelectCantTuplas.Text));
                 dataGridViewTuplas.Rows.Clear();
+                int indice = 1;
                 foreach (Tweet t in tuplas)
-                    dataGridViewTuplas.Rows.Add(t.Id, t.Tweet_Id, t.Author, t.Entity_Id, t.Category, t.Text, t.Id_Category);
+                    dataGridViewTuplas.Rows.Add(indice++, t.Id, t.Tweet_Id, t.Author, t.Entity_Id, t.Category, t.Text, t.Id_Category);
             }
         }
 
@@ -119,7 +122,7 @@ namespace AppPrincipal
         private void buttonDataBase_Click(object sender, System.EventArgs e)
         {
             cleanPanels();
-            panelDataBase.Visible = true;
+            panelTratamientoDeDatos.Visible = true;
             panelSeleccionarCategoria.Visible = false;
         }
 
@@ -133,14 +136,17 @@ namespace AppPrincipal
                 db = new DataBase(textBoxConeccionSQL.Text);
                 if (db.CheckConnection())
                 {
-                    labelConeccionEstablecida.Visible = true;
+                    labelConeccion.ForeColor = Color.Green;
+                    labelConeccion.Text = "Coneccion Establecida";
                     enableForms();
                 }
                 else
                 {
-                    labelConeccionFallida.Visible = true;
+                    labelConeccion.ForeColor = Color.Red;
+                    labelConeccion.Text = "Coneccion Fallida";
                     disableForms();
                 }
+                labelConeccion.Visible = true;
             }
         }
 
@@ -157,13 +163,12 @@ namespace AppPrincipal
         private void buttonSeleccionarCategoria_Click(object sender, System.EventArgs e)
         {
             cleanPanels();
-            panelDataBase.Visible = true;
+            panelTratamientoDeDatos.Visible = true;
             panelSeleccionarCategoria.Visible = true;
         }
 
         private void buttonCalcularNiveles_Click(object sender, System.EventArgs e)
         {
-            labelCalculandoNiveles.Visible = true;
             labelNivelesCalculados.Visible = false;
             labelCantidadNiveles.Text = db.GetAmountNivelesTableTweet().ToString();
             if (!labelCantidadNiveles.Text.Equals("0"))
@@ -171,28 +176,39 @@ namespace AppPrincipal
                 buttonSeleccionarNivel.Enabled = true;
                 textBoxSeleccionarNivel.Enabled = true;
             }
-            labelCalculandoNiveles.Visible = false;
             labelNivelesCalculados.Visible = true;
+            labelCantidadNiveles.ForeColor = Color.Green;
         }
 
         private void buttonSeleccionarNivel_Click(object sender, System.EventArgs e)
         {
             if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text))
             {
-                labelSeleccionandoNivel.Visible = true;
-                List<string> categorias = db.CategoriesSelectedTableTweet(int.Parse(textBoxSeleccionarNivel.Text));
+                labelNivelSeleccionado.Visible = false;
+                int amountTweetWithNivels = 0;
+                int amountTweets = 0;
+                List<string> categorias = db.CategoriesSelectedTableTweet(int.Parse(textBoxSeleccionarNivel.Text), ref amountTweets, ref amountTweetWithNivels);
+                labelCantidadTweetProfundidadNivel.Text = amountTweetWithNivels.ToString();
+                labelCantidadTweetProfundidadNivel.ForeColor = Color.Green;
+                labelProfundidadNivelSeleccionado.Text = textBoxSeleccionarNivel.Text;
+                labelProfundidadNivelSeleccionado.ForeColor = Color.Green;
+                labelTotalCantidadDeTwwets.Text = amountTweets.ToString();
+                labelTotalCantidadDeTwwets.ForeColor = Color.Green;
+                labelCantidadDeCategoriasACrear.Text = categorias.Count.ToString();
+                labelCantidadDeCategoriasACrear.ForeColor = Color.Green;
                 listBoxCategoriasNivel.Items.Clear();
                 foreach (string c in categorias)
                 {
                     listBoxCategoriasNivel.Items.Add(c);
                 }
                 buttonCrearCategorias.Enabled = true;
-                labelSeleccionandoNivel.Visible = false;
+                labelNivelSeleccionado.Visible = true;
             }
         }
 
         private void buttonCrearCategorias_Click(object sender, System.EventArgs e)
         {
+            labelCategoriasCreadas.Visible = false;
             if (listBoxCategoriasNivel.Items.Count != 0)
             {
                 List<string> newCategorias = new List<string>();
@@ -200,20 +216,39 @@ namespace AppPrincipal
                     newCategorias.Add(listBoxCategoriasNivel.Items[i].ToString());
                 db.ClearTableCategory();
                 db.CreateCategoriesTableCategory(newCategorias);
-                List<Category> categoriasDB = db.CategoriesTableCategory();
-                dataGridViewCategoriasCreadas.Rows.Clear();
-                foreach (Category c in categoriasDB)
-                {
-                    dataGridViewCategoriasCreadas.Rows.Add(c.Id, c.Name);
-                }
                 buttonActualizarTweets.Enabled = true;
             }
+            labelCategoriasCreadas.Visible = true;
         }
 
         private void buttonActualizarTweets_Click(object sender, System.EventArgs e)
         {
+            labelTweetsActualizados.Visible = false;
             db.ClearIdCategoryTableTweet();
-            db.AddIdCategoriesTableTweets();
+            db.AddIdCategoriesTableTweets(int.Parse(labelProfundidadNivelSeleccionado.Text));
+            labelTweetsActualizados.Visible = true;
+        }
+
+        private void buttonMostrarTuplasActualizadas_Click(object sender, System.EventArgs e)
+        {
+            if (SelectCantTuplas.Text != "" && int.Parse(SelectCantTuplas.Text) > 0 && int.Parse(SelectCantTuplas.Text) < 10001)
+            {
+                List<Tweet> tuplas = db.SearchTweetsUpdates(int.Parse(SelectCantTuplas.Text));
+                dataGridViewTuplas.Rows.Clear();
+                int indice = 1;
+                foreach (Tweet t in tuplas)
+                    dataGridViewTuplas.Rows.Add(indice++, t.Id, t.Tweet_Id, t.Author, t.Entity_Id, t.Category, t.Text, t.Id_Category);
+            }
+        }
+
+        private void buttonMostrarCategoriasMostradas_Click(object sender, System.EventArgs e)
+        {
+            List<Category> categoriasDB = db.CategoriesTableCategory();
+            dataGridViewCategoriasCreadas.Rows.Clear();
+            foreach (Category c in categoriasDB)
+            {
+                dataGridViewCategoriasCreadas.Rows.Add(c.Id, c.Name);
+            }
         }
 
 

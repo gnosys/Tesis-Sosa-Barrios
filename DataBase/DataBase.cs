@@ -23,7 +23,6 @@ namespace DataBaseSQL
             {
                 connection = new SqlConnection(connectionString);
                 this.connectionString = connectionString;
-            	CuantitativeAnalysis();
             }
             catch
             {
@@ -66,6 +65,37 @@ namespace DataBaseSQL
                     dato.Entity_Id = reader.GetValue(3).ToString();
                     dato.Category = reader.GetValue(4).ToString();
                     dato.Text = reader.GetValue(5).ToString();
+                    list.Add(dato);
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
+            return list;
+        }
+
+        public List<Tweet> SearchTweetsUpdates(int cantTuplas)
+        {
+            List<Tweet> list = new List<Tweet>();
+            queryString = string.Format(@"SELECT TOP {0} * FROM [Tweets].[dbo].[Tweet] WHERE [Id_Category] is not null", cantTuplas);
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    Tweet dato = new Tweet();
+                    dato.Id = reader.GetValue(0).ToString();
+                    dato.Tweet_Id = reader.GetValue(1).ToString();
+                    dato.Author = reader.GetValue(2).ToString();
+                    dato.Entity_Id = reader.GetValue(3).ToString();
+                    dato.Category = reader.GetValue(4).ToString();
+                    dato.Text = reader.GetValue(5).ToString();
+                    dato.Id_Category = reader.GetValue(6).ToString();
                     list.Add(dato);
                 }
             }
@@ -152,25 +182,28 @@ namespace DataBaseSQL
             int result = -1;
             int resultCategoria = 0;
             List<string> list = CategoriesTableTweet();
+            string[] parts;
             foreach (string c in list)
             {
-                string[] parts = c.Split('/');
+                parts = c.Split('/');
                 resultCategoria = parts.Length;
-                if (result < 0 || resultCategoria < result)
+                if (result < 0 || resultCategoria > result)
                     result = resultCategoria;
             }
             return result;
         }
 
-        public List<string> CategoriesSelectedTableTweet(int nivel)
+        public List<string> CategoriesSelectedTableTweet(int nivel, ref int amountTweets, ref int amountTweetWithNivels)
         {
             List<string> list = CategoriesTableTweet();
+            amountTweets = list.Count;
             List<string> categories = new List<string>();
             foreach (string c in list)
             {
                 string[] parts = c.Split('/');
                 if (parts.Length >= nivel)
                 {
+                    amountTweetWithNivels++;
                     if (!categories.Contains(parts[nivel - 1]))
                         categories.Add(parts[nivel - 1]);
                 }
@@ -229,19 +262,25 @@ namespace DataBaseSQL
             return list;
         }
 
-        public List<string> GetIdAndCategoryTableTweet()
+        public List<string> GetIdAndCategoryTableTweet(int nivel)
         {
             List<string> list = new List<string>();
             queryString = string.Format(@"SELECT [Id],[Category] FROM [dbo].[Tweet]");
             command = new SqlCommand(queryString, connection);
             connection.Open();
+            string[] parts;
             reader = command.ExecuteReader();
             try
             {
                 while (reader.Read())
                 {
-                    list.Add(reader[0].ToString());
-                    list.Add(reader[1].ToString());
+                    parts = reader[1].ToString().Split('/');
+                    if (parts.Length >= nivel)
+                    {
+                        list.Add(reader[0].ToString());
+                        list.Add(reader[1].ToString());
+                    }
+                    
                 }
             }
             finally
@@ -255,9 +294,9 @@ namespace DataBaseSQL
 
         protected string GetIdCorresponding(List<Category> categoriesC, string category)
         {
+            string[] parts = category.Split('/');
             foreach (Category c in categoriesC)
             {
-                string[] parts = category.Split('/');
                 for (int i = 0; i < parts.Length; i++)
                 {
                     if (parts[i].Equals(c.Name))
@@ -277,10 +316,10 @@ namespace DataBaseSQL
             connection.Close();
         }
 
-        public void AddIdCategoriesTableTweets()
+        public void AddIdCategoriesTableTweets(int nivel)
         {
             List<Category> categoriesC = CategoriesTableCategory();
-            List<string> idAndCategoriesT = GetIdAndCategoryTableTweet();
+            List<string> idAndCategoriesT = GetIdAndCategoryTableTweet(nivel);
             int querysInString = 0;
             for (int i = 0; i < idAndCategoriesT.Count; i = i + 2)
             {
