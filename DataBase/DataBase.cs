@@ -80,7 +80,7 @@ namespace DataBaseSQL
         public List<Tweet> SearchTweetsUpdates(int cantTuplas)
         {
             List<Tweet> list = new List<Tweet>();
-            queryString = string.Format(@"SELECT TOP {0} * FROM [Tweets].[dbo].[Tweet] WHERE [Id_Category] is not null", cantTuplas);
+            queryString = string.Format(@"SELECT {0} {1} * FROM [Tweets].[dbo].[Tweet] WHERE [Id_Category] is not null", cantTuplas == 0 ? String.Empty : "TOP", cantTuplas == 0 ? String.Empty : cantTuplas.ToString());
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();

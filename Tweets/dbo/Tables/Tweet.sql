@@ -1,10 +1,15 @@
 ﻿CREATE TABLE [dbo].[Tweet] (
-    [Id]        INT            NOT NULL,
-    [Tweet_Id]  NVARCHAR (50)  NULL,
-    [Author]    NVARCHAR (50)  NULL,
-    [Entity_Id] NVARCHAR (50)  NULL,
-    [Category]  NVARCHAR (MAX) NULL,
-    [Text]      NVARCHAR (MAX) NULL,
-    CONSTRAINT [PK_Tweet] PRIMARY KEY CLUSTERED ([Id] ASC)
+	Id int NOT NULL,
+	Tweet_Id nvarchar(50) NULL,
+	Author nvarchar(50) NULL,
+	Entity_Id nvarchar(50) NULL,
+	Category nvarchar(MAX) NULL,
+	Text nvarchar(MAX) NULL,
+	Id_Category int NULL,
+    CONSTRAINT [PK_Tweet] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT FK_Tweet_Category FOREIGN KEY (Id_Category) 
+    REFERENCES Category (Id) 
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 

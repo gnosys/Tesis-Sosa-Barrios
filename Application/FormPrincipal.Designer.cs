@@ -83,6 +83,8 @@
             this.textBoxConeccionSQL = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewCategoriasCreadas = new System.Windows.Forms.DataGridView();
+            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonMostrarTuplasActualizadas = new System.Windows.Forms.Button();
             this.buttonDataBase = new System.Windows.Forms.Button();
             this.buttonStopWords = new System.Windows.Forms.Button();
@@ -91,8 +93,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonPreprocesamiento = new System.Windows.Forms.Button();
+            this.buttonRepresentacion = new System.Windows.Forms.Button();
+            this.buttonDescubrimientoConocimiento = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTuplas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).BeginInit();
             this.panelTratamientoDeDatos.SuspendLayout();
@@ -236,7 +239,6 @@
             this.panelTratamientoDeDatos.Controls.Add(this.label3);
             this.panelTratamientoDeDatos.Controls.Add(this.label1);
             this.panelTratamientoDeDatos.Controls.Add(this.dataGridViewCategoriasCreadas);
-            this.panelTratamientoDeDatos.Controls.Add(this.dataGridViewDatos);
             this.panelTratamientoDeDatos.Controls.Add(this.SelectCantDatos);
             this.panelTratamientoDeDatos.Controls.Add(this.buttonMostrarCategorias);
             this.panelTratamientoDeDatos.Controls.Add(this.SelectCantTuplas);
@@ -244,6 +246,7 @@
             this.panelTratamientoDeDatos.Controls.Add(this.buttonMostrarTuplas);
             this.panelTratamientoDeDatos.Controls.Add(this.dataGridViewTuplas);
             this.panelTratamientoDeDatos.Controls.Add(this.buttonMostrarTuplasActualizadas);
+            this.panelTratamientoDeDatos.Controls.Add(this.dataGridViewDatos);
             this.panelTratamientoDeDatos.Location = new System.Drawing.Point(162, 5);
             this.panelTratamientoDeDatos.Name = "panelTratamientoDeDatos";
             this.panelTratamientoDeDatos.Size = new System.Drawing.Size(836, 552);
@@ -534,7 +537,7 @@
             this.label12.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label12.Location = new System.Drawing.Point(71, 63);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(343, 13);
+            this.label12.Size = new System.Drawing.Size(406, 13);
             this.label12.TabIndex = 2;
             this.label12.Text = "↑         ↑            ↑              ↑                        ↑                 " +
     "            ↑                 ↑";
@@ -648,6 +651,18 @@
             this.dataGridViewCategoriasCreadas.Size = new System.Drawing.Size(197, 204);
             this.dataGridViewCategoriasCreadas.TabIndex = 21;
             // 
+            // IdC
+            // 
+            this.IdC.HeaderText = "Id";
+            this.IdC.Name = "IdC";
+            this.IdC.Width = 30;
+            // 
+            // Categorias
+            // 
+            this.Categorias.HeaderText = "Categorias";
+            this.Categorias.Name = "Categorias";
+            this.Categorias.Width = 120;
+            // 
             // buttonMostrarTuplasActualizadas
             // 
             this.buttonMostrarTuplasActualizadas.Enabled = false;
@@ -725,27 +740,46 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(14, 276);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(137, 13);
+            this.label9.Size = new System.Drawing.Size(116, 13);
             this.label9.TabIndex = 15;
-            this.label9.Text = "Aplicacion y Resultado";
+            this.label9.Text = "Aplicacion del Pipe";
             // 
-            // IdC
+            // buttonPreprocesamiento
             // 
-            this.IdC.HeaderText = "Id";
-            this.IdC.Name = "IdC";
-            this.IdC.Width = 30;
+            this.buttonPreprocesamiento.Location = new System.Drawing.Point(14, 304);
+            this.buttonPreprocesamiento.Name = "buttonPreprocesamiento";
+            this.buttonPreprocesamiento.Size = new System.Drawing.Size(130, 23);
+            this.buttonPreprocesamiento.TabIndex = 16;
+            this.buttonPreprocesamiento.Text = "Preprocesamiento";
+            this.buttonPreprocesamiento.UseVisualStyleBackColor = true;
+            this.buttonPreprocesamiento.Click += new System.EventHandler(this.buttonPreprocesamiento_Click);
             // 
-            // Categorias
+            // buttonRepresentacion
             // 
-            this.Categorias.HeaderText = "Categorias";
-            this.Categorias.Name = "Categorias";
-            this.Categorias.Width = 120;
+            this.buttonRepresentacion.Location = new System.Drawing.Point(14, 338);
+            this.buttonRepresentacion.Name = "buttonRepresentacion";
+            this.buttonRepresentacion.Size = new System.Drawing.Size(129, 23);
+            this.buttonRepresentacion.TabIndex = 17;
+            this.buttonRepresentacion.Text = "Representación";
+            this.buttonRepresentacion.UseVisualStyleBackColor = true;
+            // 
+            // buttonDescubrimientoConocimiento
+            // 
+            this.buttonDescubrimientoConocimiento.Location = new System.Drawing.Point(16, 374);
+            this.buttonDescubrimientoConocimiento.Name = "buttonDescubrimientoConocimiento";
+            this.buttonDescubrimientoConocimiento.Size = new System.Drawing.Size(126, 39);
+            this.buttonDescubrimientoConocimiento.TabIndex = 18;
+            this.buttonDescubrimientoConocimiento.Text = "Descubrimiento del Conocimiento";
+            this.buttonDescubrimientoConocimiento.UseVisualStyleBackColor = true;
             // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1010, 564);
+            this.Controls.Add(this.buttonDescubrimientoConocimiento);
+            this.Controls.Add(this.buttonRepresentacion);
+            this.Controls.Add(this.buttonPreprocesamiento);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -835,6 +869,9 @@
         private System.Windows.Forms.Button buttonMostrarTablaCategorias;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdC;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categorias;
+        private System.Windows.Forms.Button buttonPreprocesamiento;
+        private System.Windows.Forms.Button buttonRepresentacion;
+        private System.Windows.Forms.Button buttonDescubrimientoConocimiento;
     }
 }
 
