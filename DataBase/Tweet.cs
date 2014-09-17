@@ -33,6 +33,7 @@ namespace DataBaseSQL
                 this.id = value;
             }
         }
+
         public string Tweet_Id
         {
             get
