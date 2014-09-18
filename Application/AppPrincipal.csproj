@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormDataBaseYSeleccionarCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataBaseYSeleccionarCategoria.Designer.cs">
+      <DependentUpon>FormDataBaseYSeleccionarCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPreprocesamiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormDataBaseYSeleccionarCategoria.resx">
+      <DependentUpon>FormDataBaseYSeleccionarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPreprocesamiento.resx">
       <DependentUpon>FormPreprocesamiento.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,14 +102,6 @@
     <ProjectReference Include="..\DataBase\DataBaseSQL.csproj">
       <Project>{f89fc198-cfdc-45ac-9aad-8a653bd40a08}</Project>
       <Name>DataBaseSQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TFIDFWeighting\TFIDFWeighting.csproj">
-      <Project>{6cf0f965-88b4-4c02-a291-3c76306116df}</Project>
-      <Name>TFIDFWeighting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tonkenizer\Tonkenizer.csproj">
-      <Project>{b1e416e7-930c-4328-9606-ba92a8b7adcb}</Project>
-      <Name>Tonkenizer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
