@@ -28,33 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.buttonPreprocesar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // buttonPreprocesar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(110, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Incrichi";
+            this.buttonPreprocesar.Location = new System.Drawing.Point(821, 412);
+            this.buttonPreprocesar.Name = "buttonPreprocesar";
+            this.buttonPreprocesar.Size = new System.Drawing.Size(116, 23);
+            this.buttonPreprocesar.TabIndex = 0;
+            this.buttonPreprocesar.Text = "Preprocesar";
+            this.buttonPreprocesar.UseVisualStyleBackColor = true;
+            this.buttonPreprocesar.Click += new System.EventHandler(this.buttonPreprocesar_Click);
             // 
             // FormPreprocesamiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 589);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.buttonPreprocesar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPreprocesamiento";
             this.Text = "FormPreprocesamiento";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonPreprocesar;
+
     }
 }
