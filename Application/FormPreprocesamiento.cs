@@ -41,5 +41,57 @@ namespace AppPrincipal
             //CreateBOWFile(bow);
             //CreateVSMFile(tfdif.TermWeight, TFIDFInput.Count);
         }
+
+        private void buttonSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (listViewPreprocesamientos.SelectedItems.Count > 0)
+            {
+                ListViewItem seleccion = listViewPreprocesamientos.SelectedItems[0];
+                listViewPreprocesamientos.SelectedItems[0].Remove();
+                listViewOdenPreprocesos.Items.Add(seleccion);
+                listViewOdenPreprocesos.Focus();
+            }
+        }
+
+        private void buttonQuitar_Click(object sender, EventArgs e)
+        {
+            if (listViewOdenPreprocesos.SelectedItems.Count > 0)
+            {
+                ListViewItem seleccion = listViewOdenPreprocesos.SelectedItems[0];
+                listViewOdenPreprocesos.SelectedItems[0].Remove();
+                listViewPreprocesamientos.Items.Add(seleccion);
+                listViewPreprocesamientos.Focus();
+            }
+        }
+
+        private void buttonSubir_Click(object sender, EventArgs e)
+        {
+            if (listViewOdenPreprocesos.SelectedItems.Count > 0)
+            {
+                ListViewItem seleccion = listViewOdenPreprocesos.SelectedItems[0];
+                if (seleccion.Index > 0)
+                {
+                    int pos = seleccion.Index - 1;
+                    listViewOdenPreprocesos.Items.RemoveAt(seleccion.Index);
+                    listViewOdenPreprocesos.Items.Insert(pos, seleccion);
+                }
+            }
+            listViewOdenPreprocesos.Focus();
+        }
+
+        private void buttonBajar_Click(object sender, EventArgs e)
+        {
+            if (listViewOdenPreprocesos.SelectedItems.Count > 0)
+            {
+                ListViewItem seleccion = listViewOdenPreprocesos.SelectedItems[0];
+                if (seleccion.Index < (listViewOdenPreprocesos.Items.Count - 1))
+                {
+                    int pos = seleccion.Index + 1;
+                    listViewOdenPreprocesos.Items.RemoveAt(seleccion.Index);
+                    listViewOdenPreprocesos.Items.Insert(pos, seleccion);
+                }
+            }
+            listViewOdenPreprocesos.Focus();
+        }
     }
 }
