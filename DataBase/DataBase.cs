@@ -375,5 +375,11 @@ namespace DataBaseSQL
                 var numerotoaldetweetsConHipervinculos = list.Where(x => reg.IsMatch(x)).Count();
             }
         }
+
+        public List<string[]> GetCurrentTokens()
+        {
+            throw new NotImplementedException();
+        }
+    
     }
 }

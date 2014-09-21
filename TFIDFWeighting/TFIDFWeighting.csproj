@@ -44,9 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepresentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Representation.cs" />
+    <Compile Include="StringUtils.cs" />
     <Compile Include="TDFIFMeasure\TermVector.cs" />
     <Compile Include="TDFIFMeasure\TFIDFMeasure.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataBase\DataBaseSQL.csproj">
+      <Project>{f89fc198-cfdc-45ac-9aad-8a653bd40a08}</Project>
+      <Name>DataBaseSQL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
