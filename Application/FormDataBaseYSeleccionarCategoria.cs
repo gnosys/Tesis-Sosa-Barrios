@@ -224,12 +224,12 @@ namespace AppPrincipal
 
         public void mostrarPanelSeleccionarCategoria()
         {
-            panelSeleccionarCategoria.Visible = true;
+            panelSeleccionarCategoria.Show();
         }
 
         public void ocultarPanelSeleccionarCategoria()
         {
-            panelSeleccionarCategoria.Visible = false;
+            panelSeleccionarCategoria.Hide();
         }
 
     }

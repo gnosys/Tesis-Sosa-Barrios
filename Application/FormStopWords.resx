@@ -117,8 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Imagenes\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="labelDescripcionStopWords.Text" xml:space="preserve">
+    <value>Stop Words es el nombre que reciben las palabras sin significado como artículos, pronombres, preposiciones, etc. que son filtradas antes o después del 
+procesamiento de datos en lenguaje natural (texto). A Hans Peter Luhn, uno de los pioneros en recuperación de información, se le atribuye la acuñación de la 
+locución inglesa stop words y el uso del concepto en su diseño. Está controlada por introducción humana y no automática. No hay una lista definitiva de 
+palabras vacías que todas las herramientas de procesamiento de lenguajes naturales incorporen. No todas las herramientas de PLN usan una lista de palabras vacías. 
+Algunas herramientas evitan usarlo específicamente para soportar búsquedas por frase. El uso de un algoritmo de stemming puede reducir parte de la base 
+lógica o dependencia de una lista de palabras vacías a filtrar.
+
+
+
+EN ESTE TRABAJO UTILIZAMOS BLA BLA BLA INCRICHIIII</value>
   </data>
 </root>

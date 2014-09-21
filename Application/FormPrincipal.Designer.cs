@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(App));
             this.buttonDataBase = new System.Windows.Forms.Button();
             this.buttonStopWords = new System.Windows.Forms.Button();
             this.buttonStemmer = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@
             this.buttonRepresentacion = new System.Windows.Forms.Button();
             this.buttonDescubrimientoConocimiento = new System.Windows.Forms.Button();
             this.panelBotonera = new System.Windows.Forms.Panel();
+            this.buttonTokenization = new System.Windows.Forms.Button();
             this.panelBotonera.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,21 +56,23 @@
             // 
             // buttonStopWords
             // 
-            this.buttonStopWords.Location = new System.Drawing.Point(16, 137);
+            this.buttonStopWords.Location = new System.Drawing.Point(16, 165);
             this.buttonStopWords.Name = "buttonStopWords";
             this.buttonStopWords.Size = new System.Drawing.Size(130, 23);
             this.buttonStopWords.TabIndex = 10;
             this.buttonStopWords.Text = "Stop Words";
             this.buttonStopWords.UseVisualStyleBackColor = true;
+            this.buttonStopWords.Click += new System.EventHandler(this.buttonStopWords_Click);
             // 
             // buttonStemmer
             // 
-            this.buttonStemmer.Location = new System.Drawing.Point(16, 166);
+            this.buttonStemmer.Location = new System.Drawing.Point(16, 194);
             this.buttonStemmer.Name = "buttonStemmer";
             this.buttonStemmer.Size = new System.Drawing.Size(130, 23);
             this.buttonStemmer.TabIndex = 11;
             this.buttonStemmer.Text = "Stemmer";
             this.buttonStemmer.UseVisualStyleBackColor = true;
+            this.buttonStemmer.Click += new System.EventHandler(this.buttonStemmer_Click);
             // 
             // buttonSeleccionarCategoria
             // 
@@ -140,6 +144,7 @@
             // 
             // panelBotonera
             // 
+            this.panelBotonera.Controls.Add(this.buttonTokenization);
             this.panelBotonera.Controls.Add(this.buttonDescubrimientoConocimiento);
             this.panelBotonera.Controls.Add(this.buttonDataBase);
             this.panelBotonera.Controls.Add(this.buttonRepresentacion);
@@ -155,12 +160,28 @@
             this.panelBotonera.Size = new System.Drawing.Size(164, 569);
             this.panelBotonera.TabIndex = 19;
             // 
+            // buttonTokenization
+            // 
+            this.buttonTokenization.Location = new System.Drawing.Point(16, 136);
+            this.buttonTokenization.Name = "buttonTokenization";
+            this.buttonTokenization.Size = new System.Drawing.Size(129, 23);
+            this.buttonTokenization.TabIndex = 19;
+            this.buttonTokenization.Text = "Tokenization";
+            this.buttonTokenization.UseVisualStyleBackColor = true;
+            this.buttonTokenization.Click += new System.EventHandler(this.buttonTokenization_Click);
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::AppPrincipal.Properties.Resources.logo;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1007, 572);
             this.Controls.Add(this.panelBotonera);
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "App";
             this.Text = "Preprocesamiento de Tweets";
             this.panelBotonera.ResumeLayout(false);
@@ -182,6 +203,7 @@
         private System.Windows.Forms.Button buttonRepresentacion;
         private System.Windows.Forms.Button buttonDescubrimientoConocimiento;
         private System.Windows.Forms.Panel panelBotonera;
+        private System.Windows.Forms.Button buttonTokenization;
     }
 }
 

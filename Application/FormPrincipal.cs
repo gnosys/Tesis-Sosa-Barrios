@@ -15,6 +15,11 @@ namespace AppPrincipal
     {
 
         FormDataBaseYSeleccionarCategoria formDataBaseYSeleccionarCategoria;
+        FormTokenization formTokenization;
+        FormStopWords formStopWords;
+        FormStemmer formStemmer;
+        FormPreprocesamiento formPreprocesamiento;
+
         public App()
         {
             crearFormularios();
@@ -29,37 +34,22 @@ namespace AppPrincipal
             // Formulario de los botones "Data Base" y "Seleccionar Categoria"
             formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria();
             formDataBaseYSeleccionarCategoria.MdiParent = this;
-        }
 
-        private void buttonPreprocesamiento_Click(object sender, System.EventArgs e)
-        {
-            FormPreprocesamiento formPreprocesamiento = new FormPreprocesamiento();
-            formPreprocesamiento.TopLevel = false;
-           this.Controls.Add(formPreprocesamiento);
-           formPreprocesamiento.Show();
+            // Formulario del boton "Tokenization"
+            formTokenization = new FormTokenization();
+            formTokenization.MdiParent = this;
 
-            //List<Tweet> tweets = db.SearchTweetsUpdates(0);
+            // Formulario del boton "Stop Words"
+            formStopWords = new FormStopWords();
+            formStopWords.MdiParent = this;
 
-            //List<string> docs = tweets.Select(x => x.Text).ToList();
+            // Formulario del boton "Stemmer"
+            formStemmer = new FormStemmer();
+            formStemmer.MdiParent = this;
 
-
-            ////tokenizer delimiter
-            //Regex delimiter = new Regex("([ \\t{}():;. \n])");
-
-            ////chain of responsability: docs and words transformations
-            //PreFilter preFilter = new EmptyPreFilter(null);
-            //AroundFilter aroundFilter = new StopWordFilter(new StemmingFilter(null));
-
-            ////preprocessing
-            //ITokenizer tokenizer = new Tokenizer(delimiter, preFilter, aroundFilter);
-            //var TFIDFInput = tokenizer.Tokenize(docs).ToList();
-
-            ////representation
-            //TFIDFMeasure tfdif = new TFIDFMeasure(TFIDFInput);
-            //var bow = StringUtils.ArrayListToArray(tfdif.Terms);
-            //CreateBOWFile(bow);
-            //CreateVSMFile(tfdif.TermWeight, TFIDFInput.Count);
-
+            // formulario del boton "Preprocesamiento"
+            formPreprocesamiento = new FormPreprocesamiento();
+            formPreprocesamiento.MdiParent = this;
         }
 
         private static void CreateVSMFile(float[][] weights, int docs)
@@ -92,16 +82,57 @@ namespace AppPrincipal
             }
         }
 
+        // Oculta todos los formularios.
+        private void ocultarFormularios()
+        {
+            foreach (Form form in this.MdiChildren)
+            {
+                form.Hide();
+            }
+        }
+
         private void buttonDataBase_Click(object sender, System.EventArgs e)
         {
+            ocultarFormularios();
+            formDataBaseYSeleccionarCategoria.Dock = DockStyle.Fill;
             formDataBaseYSeleccionarCategoria.ocultarPanelSeleccionarCategoria();
             formDataBaseYSeleccionarCategoria.Show();
         }
 
         private void buttonSeleccionarCategoria_Click(object sender, System.EventArgs e)
         {
+            ocultarFormularios();
+            formDataBaseYSeleccionarCategoria.Dock = DockStyle.Fill;
             formDataBaseYSeleccionarCategoria.mostrarPanelSeleccionarCategoria();
             formDataBaseYSeleccionarCategoria.Show();
+        }
+
+        private void buttonTokenization_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formTokenization.Dock = DockStyle.Fill;
+            formTokenization.Show();
+        }
+
+        private void buttonStopWords_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formStopWords.Dock = DockStyle.Fill;
+            formStopWords.Show();
+        }
+
+        private void buttonStemmer_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formStemmer.Dock = DockStyle.Fill;
+            formStemmer.Show();
+        }
+
+        private void buttonPreprocesamiento_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formPreprocesamiento.Dock = DockStyle.Fill;
+            formPreprocesamiento.Show();
         }
 
     }

@@ -62,6 +62,24 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStemmer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStemmer.Designer.cs">
+      <DependentUpon>FormStemmer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStopWords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStopWords.Designer.cs">
+      <DependentUpon>FormStopWords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTokenization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTokenization.Designer.cs">
+      <DependentUpon>FormTokenization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormDataBaseYSeleccionarCategoria.resx">
@@ -72,6 +90,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStemmer.resx">
+      <DependentUpon>FormStemmer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStopWords.resx">
+      <DependentUpon>FormStopWords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTokenization.resx">
+      <DependentUpon>FormTokenization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +130,11 @@
       <Project>{f89fc198-cfdc-45ac-9aad-8a653bd40a08}</Project>
       <Name>DataBaseSQL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Imagenes\logo.ico" />
+    <Content Include="Imagenes\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
