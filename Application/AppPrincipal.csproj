@@ -44,16 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormDataBaseYSeleccionarCategoria.cs">
+    <Compile Include="FormsTratamientoDeDatos\FormDataBaseYSeleccionarCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDataBaseYSeleccionarCategoria.Designer.cs">
+    <Compile Include="FormsTratamientoDeDatos\FormDataBaseYSeleccionarCategoria.Designer.cs">
       <DependentUpon>FormDataBaseYSeleccionarCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPreprocesamiento.cs">
+    <Compile Include="FormsAplicacionDePipe\FormPreprocesamiento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPreprocesamiento.Designer.cs">
+    <Compile Include="FormsAplicacionDePipe\FormPreprocesamiento.Designer.cs">
       <DependentUpon>FormPreprocesamiento.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPrincipal.cs">
@@ -62,42 +62,42 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStemmer.cs">
+    <Compile Include="FormsPreprocesamientos\FormStemmer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStemmer.Designer.cs">
+    <Compile Include="FormsPreprocesamientos\FormStemmer.Designer.cs">
       <DependentUpon>FormStemmer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStopWords.cs">
+    <Compile Include="FormsPreprocesamientos\FormStopWords.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStopWords.Designer.cs">
+    <Compile Include="FormsPreprocesamientos\FormStopWords.Designer.cs">
       <DependentUpon>FormStopWords.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTokenization.cs">
+    <Compile Include="FormsPreprocesamientos\FormTokenization.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTokenization.Designer.cs">
+    <Compile Include="FormsPreprocesamientos\FormTokenization.Designer.cs">
       <DependentUpon>FormTokenization.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormDataBaseYSeleccionarCategoria.resx">
+    <EmbeddedResource Include="FormsTratamientoDeDatos\FormDataBaseYSeleccionarCategoria.resx">
       <DependentUpon>FormDataBaseYSeleccionarCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPreprocesamiento.resx">
+    <EmbeddedResource Include="FormsAplicacionDePipe\FormPreprocesamiento.resx">
       <DependentUpon>FormPreprocesamiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStemmer.resx">
+    <EmbeddedResource Include="FormsPreprocesamientos\FormStemmer.resx">
       <DependentUpon>FormStemmer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStopWords.resx">
+    <EmbeddedResource Include="FormsPreprocesamientos\FormStopWords.resx">
       <DependentUpon>FormStopWords.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTokenization.resx">
+    <EmbeddedResource Include="FormsPreprocesamientos\FormTokenization.resx">
       <DependentUpon>FormTokenization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
