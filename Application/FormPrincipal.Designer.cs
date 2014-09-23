@@ -41,7 +41,12 @@
             this.buttonDescubrimientoConocimiento = new System.Windows.Forms.Button();
             this.panelBotonera = new System.Windows.Forms.Panel();
             this.buttonTokenization = new System.Windows.Forms.Button();
+            this.menuStripSolapas = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItemInicio = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarPipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBotonera.SuspendLayout();
+            this.menuStripSolapas.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDataBase
@@ -155,7 +160,7 @@
             this.panelBotonera.Controls.Add(this.buttonSeleccionarCategoria);
             this.panelBotonera.Controls.Add(this.label8);
             this.panelBotonera.Controls.Add(this.label7);
-            this.panelBotonera.Location = new System.Drawing.Point(1, 2);
+            this.panelBotonera.Location = new System.Drawing.Point(1, 26);
             this.panelBotonera.Name = "panelBotonera";
             this.panelBotonera.Size = new System.Drawing.Size(164, 569);
             this.panelBotonera.TabIndex = 19;
@@ -170,6 +175,39 @@
             this.buttonTokenization.UseVisualStyleBackColor = true;
             this.buttonTokenization.Click += new System.EventHandler(this.buttonTokenization_Click);
             // 
+            // menuStripSolapas
+            // 
+            this.menuStripSolapas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemInicio});
+            this.menuStripSolapas.Location = new System.Drawing.Point(0, 0);
+            this.menuStripSolapas.Name = "menuStripSolapas";
+            this.menuStripSolapas.Size = new System.Drawing.Size(1007, 24);
+            this.menuStripSolapas.TabIndex = 20;
+            this.menuStripSolapas.Text = "Solapas";
+            // 
+            // toolStripMenuItemInicio
+            // 
+            this.toolStripMenuItemInicio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cargarPipeToolStripMenuItem,
+            this.cerrarToolStripMenuItem});
+            this.toolStripMenuItemInicio.Name = "toolStripMenuItemInicio";
+            this.toolStripMenuItemInicio.Size = new System.Drawing.Size(48, 20);
+            this.toolStripMenuItemInicio.Text = "&Inicio";
+            // 
+            // cargarPipeToolStripMenuItem
+            // 
+            this.cargarPipeToolStripMenuItem.Name = "cargarPipeToolStripMenuItem";
+            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cargarPipeToolStripMenuItem.Text = "Cargar Pipe";
+            this.cargarPipeToolStripMenuItem.Click += new System.EventHandler(this.cargarPipeToolStripMenuItem_Click);
+            // 
+            // cerrarToolStripMenuItem
+            // 
+            this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cerrarToolStripMenuItem.Text = "Cerrar";
+            this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,8 +215,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AppPrincipal.Properties.Resources.logo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1007, 572);
+            this.ClientSize = new System.Drawing.Size(1007, 597);
             this.Controls.Add(this.panelBotonera);
+            this.Controls.Add(this.menuStripSolapas);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -186,7 +225,10 @@
             this.Text = "Preprocesamiento de Tweets";
             this.panelBotonera.ResumeLayout(false);
             this.panelBotonera.PerformLayout();
+            this.menuStripSolapas.ResumeLayout(false);
+            this.menuStripSolapas.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -204,6 +246,10 @@
         private System.Windows.Forms.Button buttonDescubrimientoConocimiento;
         private System.Windows.Forms.Panel panelBotonera;
         private System.Windows.Forms.Button buttonTokenization;
+        private System.Windows.Forms.MenuStrip menuStripSolapas;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInicio;
+        private System.Windows.Forms.ToolStripMenuItem cargarPipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
     }
 }
 

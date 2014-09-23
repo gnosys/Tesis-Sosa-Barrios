@@ -107,5 +107,16 @@ namespace AppPrincipal
             formPreprocesamiento.Show();
         }
 
+        private void cerrarToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cargarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            OpenFileDialog buscarArchivo = new OpenFileDialog();
+            buscarArchivo.ShowDialog();
+        }
+
     }
 }
