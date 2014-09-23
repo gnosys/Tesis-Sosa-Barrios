@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFIDFWeighting", "TFIDFWeighting\TFIDFWeighting.csproj", "{6CF0F965-88B4-4C02-A291-3C76306116DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tonkenizer", "Tonkenizer\Tonkenizer.csproj", "{B1E416E7-930C-4328-9606-BA92A8B7ADCB}"
@@ -12,6 +14,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseSQL", "DataBase\DataBaseSQL.csproj", "{F89FC198-CFDC-45AC-9AAD-8A653BD40A08}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Tweets", "Tweets\Tweets.sqlproj", "{9F8987DA-E65A-4CD1-BD50-63B899AE7719}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archivo de Stop Words", "Archivo de Stop Words", "{FCB6F866-787C-47E6-8AD1-00C4FFEE2AFE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Users\Mati\Desktop\Tesis\Entrega\Parte-4-Stop Words\StopWords_England_String.txt = ..\..\Users\Mati\Desktop\Tesis\Entrega\Parte-4-Stop Words\StopWords_England_String.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
