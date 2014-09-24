@@ -121,7 +121,8 @@
     <value>Stop Words es el nombre que reciben las palabras sin significado como artículos, pronombres, preposiciones, etc. que son filtradas antes o después del 
 procesamiento de datos en lenguaje natural (texto). A Hans Peter Luhn, uno de los pioneros en recuperación de información, se le atribuye la acuñación de la 
 locución inglesa stop words y el uso del concepto en su diseño. Está controlada por introducción humana y no automática. No hay una lista definitiva de 
-palabras vacías que todas las herramientas de procesamiento de lenguajes naturales incorporen. No todas las herramientas de PLN usan una lista de palabras vacías. 
+palabras vacías que todas las herramientas de procesamiento de lenguajes naturales incorporen. No todas las herramientas de PLN (Procesamiento de lenguajes
+naturales) usan una lista de palabras vacías. 
 Algunas herramientas evitan usarlo específicamente para soportar búsquedas por frase. El uso de un algoritmo de stemming puede reducir parte de la base 
 lógica o dependencia de una lista de palabras vacías a filtrar.
 

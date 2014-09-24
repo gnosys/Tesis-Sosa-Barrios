@@ -123,9 +123,7 @@ recuperación de información. Stemming aumenta el recall que es una medida sobr
 Por ejemplo una consulta sobre "bibliotecas" también encuentra documentos en los que solo aparezca "bibliotecario" porque el stem de las dos palabras es el 
 mismo ("bibliotec"). De esta manera se amplía el espectro de buscada que realiza el buscador; que también busque por palabras raíces, y derivadas del lexema 
 original. Con eso se mejora la búsqueda porque también busca las palabras en plural/singular, masculino/femenino, en diferentes tiempos verbales, gerundio, etc. 
-Desde hace poco tiempo Google utiliza stemming al igual que MSN search (donde tiene que activarse explícitamente). En general, los buscadores comerciales no 
-dan muchas explicaciones sobre los algoritmos utilizados.
-
+Desde hace poco tiempo Google utiliza stemming al igual que MSN search (donde tiene que activarse explícitamente).
 
 
 EN ESTE TRABAJO UTILIZAMOS BLA BLA BLA INCRICHIIII</value>

@@ -40,14 +40,14 @@
             this.labelTituloTokenization.Name = "labelTituloTokenization";
             this.labelTituloTokenization.Size = new System.Drawing.Size(87, 13);
             this.labelTituloTokenization.TabIndex = 0;
-            this.labelTituloTokenization.Text = "TOKENIZATION";
+            this.labelTituloTokenization.Text = "TOKENIZACION";
             // 
             // labelDescripcionTokenization
             // 
             this.labelDescripcionTokenization.AutoSize = true;
             this.labelDescripcionTokenization.Location = new System.Drawing.Point(193, 70);
             this.labelDescripcionTokenization.Name = "labelDescripcionTokenization";
-            this.labelDescripcionTokenization.Size = new System.Drawing.Size(782, 286);
+            this.labelDescripcionTokenization.Size = new System.Drawing.Size(776, 286);
             this.labelDescripcionTokenization.TabIndex = 1;
             this.labelDescripcionTokenization.Text = resources.GetString("labelDescripcionTokenization.Text");
             // 

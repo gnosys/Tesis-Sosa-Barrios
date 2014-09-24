@@ -38,7 +38,7 @@
             this.labelDescripcionStopWords.AutoSize = true;
             this.labelDescripcionStopWords.Location = new System.Drawing.Point(193, 70);
             this.labelDescripcionStopWords.Name = "labelDescripcionStopWords";
-            this.labelDescripcionStopWords.Size = new System.Drawing.Size(796, 130);
+            this.labelDescripcionStopWords.Size = new System.Drawing.Size(767, 143);
             this.labelDescripcionStopWords.TabIndex = 3;
             this.labelDescripcionStopWords.Text = resources.GetString("labelDescripcionStopWords.Text");
             // 
