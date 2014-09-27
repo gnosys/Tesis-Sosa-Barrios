@@ -45,6 +45,7 @@
             this.toolStripMenuItemInicio = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarPipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonEnriquecimiento = new System.Windows.Forms.Button();
             this.panelBotonera.SuspendLayout();
             this.menuStripSolapas.SuspendLayout();
             this.SuspendLayout();
@@ -123,7 +124,7 @@
             // 
             this.buttonPreprocesamiento.Location = new System.Drawing.Point(16, 300);
             this.buttonPreprocesamiento.Name = "buttonPreprocesamiento";
-            this.buttonPreprocesamiento.Size = new System.Drawing.Size(130, 23);
+            this.buttonPreprocesamiento.Size = new System.Drawing.Size(129, 23);
             this.buttonPreprocesamiento.TabIndex = 16;
             this.buttonPreprocesamiento.Text = "Preprocesamiento";
             this.buttonPreprocesamiento.UseVisualStyleBackColor = true;
@@ -149,6 +150,7 @@
             // 
             // panelBotonera
             // 
+            this.panelBotonera.Controls.Add(this.buttonEnriquecimiento);
             this.panelBotonera.Controls.Add(this.buttonTokenization);
             this.panelBotonera.Controls.Add(this.buttonDescubrimientoConocimiento);
             this.panelBotonera.Controls.Add(this.buttonDataBase);
@@ -197,16 +199,26 @@
             // cargarPipeToolStripMenuItem
             // 
             this.cargarPipeToolStripMenuItem.Name = "cargarPipeToolStripMenuItem";
-            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.cargarPipeToolStripMenuItem.Text = "Cargar Pipe";
             this.cargarPipeToolStripMenuItem.Click += new System.EventHandler(this.cargarPipeToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
+            // 
+            // buttonEnriquecimiento
+            // 
+            this.buttonEnriquecimiento.Location = new System.Drawing.Point(16, 224);
+            this.buttonEnriquecimiento.Name = "buttonEnriquecimiento";
+            this.buttonEnriquecimiento.Size = new System.Drawing.Size(129, 23);
+            this.buttonEnriquecimiento.TabIndex = 20;
+            this.buttonEnriquecimiento.Text = "Enriquecimiento";
+            this.buttonEnriquecimiento.UseVisualStyleBackColor = true;
+            this.buttonEnriquecimiento.Click += new System.EventHandler(this.buttonEnriquecimiento_Click);
             // 
             // App
             // 
@@ -250,6 +262,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInicio;
         private System.Windows.Forms.ToolStripMenuItem cargarPipeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
+        private System.Windows.Forms.Button buttonEnriquecimiento;
     }
 }
 

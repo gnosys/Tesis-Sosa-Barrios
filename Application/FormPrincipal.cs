@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using AppPrincipal.FormsPreprocesamientos;
 
 namespace AppPrincipal
 {
@@ -19,6 +20,7 @@ namespace AppPrincipal
         FormStopWords formStopWords;
         FormStemmer formStemmer;
         FormPreprocesamiento formPreprocesamiento;
+        FormEnriquecimiento formEnriquecimiento;
 
         public App()
         {
@@ -47,7 +49,11 @@ namespace AppPrincipal
             formStemmer = new FormStemmer();
             formStemmer.MdiParent = this;
 
-            // formulario del boton "Preprocesamiento"
+            // Formulario del boton "Enriquecimiento"
+            formEnriquecimiento = new FormEnriquecimiento();
+            formEnriquecimiento.MdiParent = this;
+
+            // Formulario del boton "Preprocesamiento"
             formPreprocesamiento = new FormPreprocesamiento();
             formPreprocesamiento.MdiParent = this;
         }
@@ -116,6 +122,13 @@ namespace AppPrincipal
         {
             OpenFileDialog buscarArchivo = new OpenFileDialog();
             buscarArchivo.ShowDialog();
+        }
+
+        private void buttonEnriquecimiento_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formEnriquecimiento.Dock = DockStyle.Fill;
+            formEnriquecimiento.Show();
         }
 
     }

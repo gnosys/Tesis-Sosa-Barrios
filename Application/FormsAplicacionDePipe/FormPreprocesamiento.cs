@@ -116,6 +116,10 @@ namespace AppPrincipal
                 {
                     tabControlConfiguraciones.SelectTab(2);
                 }
+                else if (seleccion.Text.Equals("Enriquecimiento"))
+                {
+                    tabControlConfiguraciones.SelectTab(3);
+                }
                 tabControlConfiguraciones.Show();
             }
             cambiarTabs = false;

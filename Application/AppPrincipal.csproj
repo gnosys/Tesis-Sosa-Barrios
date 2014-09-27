@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormsPreprocesamientos\FormEnriquecimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPreprocesamientos\FormEnriquecimiento.Designer.cs">
+      <DependentUpon>FormEnriquecimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsTratamientoDeDatos\FormDataBaseYSeleccionarCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormsPreprocesamientos\FormEnriquecimiento.resx">
+      <DependentUpon>FormEnriquecimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsTratamientoDeDatos\FormDataBaseYSeleccionarCategoria.resx">
       <DependentUpon>FormDataBaseYSeleccionarCategoria.cs</DependentUpon>
     </EmbeddedResource>
