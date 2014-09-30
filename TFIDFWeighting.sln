@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFIDFWeighting", "TFIDFWeighting\TFIDFWeighting.csproj", "{6CF0F965-88B4-4C02-A291-3C76306116DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tonkenizer", "Tonkenizer\Tonkenizer.csproj", "{B1E416E7-930C-4328-9606-BA92A8B7ADCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preprocesamientos", "Tonkenizer\Preprocesamientos.csproj", "{B1E416E7-930C-4328-9606-BA92A8B7ADCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{4680B8D5-71D5-4CAC-BD3E-C73B5427E14C}"
 EndProject

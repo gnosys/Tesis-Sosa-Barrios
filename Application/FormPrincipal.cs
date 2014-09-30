@@ -14,13 +14,13 @@ namespace AppPrincipal
 {
     public partial class App : Form
     {
-
         FormDataBaseYSeleccionarCategoria formDataBaseYSeleccionarCategoria;
         FormTokenization formTokenization;
         FormStopWords formStopWords;
         FormStemmer formStemmer;
         FormPreprocesamiento formPreprocesamiento;
         FormEnriquecimiento formEnriquecimiento;
+        DataBase db = null;
 
         public App()
         {
@@ -34,7 +34,7 @@ namespace AppPrincipal
             this.IsMdiContainer = true;
 
             // Formulario de los botones "Data Base" y "Seleccionar Categoria"
-            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria();
+            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria(ref db);
             formDataBaseYSeleccionarCategoria.MdiParent = this;
 
             // Formulario del boton "Tokenization"
@@ -54,7 +54,7 @@ namespace AppPrincipal
             formEnriquecimiento.MdiParent = this;
 
             // Formulario del boton "Preprocesamiento"
-            formPreprocesamiento = new FormPreprocesamiento();
+            formPreprocesamiento = new FormPreprocesamiento(db);
             formPreprocesamiento.MdiParent = this;
         }
 
@@ -122,6 +122,19 @@ namespace AppPrincipal
         {
             OpenFileDialog buscarArchivo = new OpenFileDialog();
             buscarArchivo.ShowDialog();
+            string directorio = buscarArchivo.FileName;
+
+            if (directorio.EndsWith(".pip"))
+            {
+                //cargar las configuraciones y resultados parciales.
+            }
+            else
+            {
+                string message = "El archivo no tiene un formato valido .pip";
+                string caption = "Archivo invalido";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result = MessageBox.Show(message, caption, buttons);
+            }
         }
 
         private void buttonEnriquecimiento_Click(object sender, System.EventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBaseSQL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,9 +22,10 @@ namespace AppPrincipal
 
         private void buttonPreprocesar_Click(object sender, EventArgs e)
         {
-            //List<Tweet> tweets = db.SearchTweetsUpdates(0);
 
-            //List<string> docs = tweets.Select(x => x.Text).ToList();
+            List<Tweet> tweets = db.SearchTweetsUpdates(0);
+
+            List<string> docs = tweets.Select(x => x.Text).ToList();
 
 
             ////tokenizer delimiter

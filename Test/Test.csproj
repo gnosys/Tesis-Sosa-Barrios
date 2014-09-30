@@ -52,9 +52,9 @@
       <Project>{6cf0f965-88b4-4c02-a291-3c76306116df}</Project>
       <Name>TFIDFWeighting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tonkenizer\Tonkenizer.csproj">
+    <ProjectReference Include="..\Tonkenizer\Preprocesamientos.csproj">
       <Project>{b1e416e7-930c-4328-9606-ba92a8b7adcb}</Project>
-      <Name>Tonkenizer</Name>
+      <Name>Preprocesamientos</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -40,12 +40,12 @@
             this.buttonRepresentacion = new System.Windows.Forms.Button();
             this.buttonDescubrimientoConocimiento = new System.Windows.Forms.Button();
             this.panelBotonera = new System.Windows.Forms.Panel();
+            this.buttonEnriquecimiento = new System.Windows.Forms.Button();
             this.buttonTokenization = new System.Windows.Forms.Button();
             this.menuStripSolapas = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemInicio = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarPipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonEnriquecimiento = new System.Windows.Forms.Button();
             this.panelBotonera.SuspendLayout();
             this.menuStripSolapas.SuspendLayout();
             this.SuspendLayout();
@@ -141,9 +141,9 @@
             // 
             // buttonDescubrimientoConocimiento
             // 
-            this.buttonDescubrimientoConocimiento.Location = new System.Drawing.Point(18, 370);
+            this.buttonDescubrimientoConocimiento.Location = new System.Drawing.Point(16, 372);
             this.buttonDescubrimientoConocimiento.Name = "buttonDescubrimientoConocimiento";
-            this.buttonDescubrimientoConocimiento.Size = new System.Drawing.Size(126, 39);
+            this.buttonDescubrimientoConocimiento.Size = new System.Drawing.Size(129, 39);
             this.buttonDescubrimientoConocimiento.TabIndex = 18;
             this.buttonDescubrimientoConocimiento.Text = "Descubrimiento del Conocimiento";
             this.buttonDescubrimientoConocimiento.UseVisualStyleBackColor = true;
@@ -166,6 +166,16 @@
             this.panelBotonera.Name = "panelBotonera";
             this.panelBotonera.Size = new System.Drawing.Size(164, 569);
             this.panelBotonera.TabIndex = 19;
+            // 
+            // buttonEnriquecimiento
+            // 
+            this.buttonEnriquecimiento.Location = new System.Drawing.Point(16, 224);
+            this.buttonEnriquecimiento.Name = "buttonEnriquecimiento";
+            this.buttonEnriquecimiento.Size = new System.Drawing.Size(129, 23);
+            this.buttonEnriquecimiento.TabIndex = 20;
+            this.buttonEnriquecimiento.Text = "Enriquecimiento";
+            this.buttonEnriquecimiento.UseVisualStyleBackColor = true;
+            this.buttonEnriquecimiento.Click += new System.EventHandler(this.buttonEnriquecimiento_Click);
             // 
             // buttonTokenization
             // 
@@ -209,16 +219,6 @@
             this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
-            // 
-            // buttonEnriquecimiento
-            // 
-            this.buttonEnriquecimiento.Location = new System.Drawing.Point(16, 224);
-            this.buttonEnriquecimiento.Name = "buttonEnriquecimiento";
-            this.buttonEnriquecimiento.Size = new System.Drawing.Size(129, 23);
-            this.buttonEnriquecimiento.TabIndex = 20;
-            this.buttonEnriquecimiento.Text = "Enriquecimiento";
-            this.buttonEnriquecimiento.UseVisualStyleBackColor = true;
-            this.buttonEnriquecimiento.Click += new System.EventHandler(this.buttonEnriquecimiento_Click);
             // 
             // App
             // 
