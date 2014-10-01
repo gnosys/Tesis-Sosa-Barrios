@@ -11,18 +11,28 @@ namespace DataBaseSQL
 {
     public class DataBase : IDisposable
     {
-        public string connectionString;
+        public static string connectionString;
         protected string queryString;
         protected SqlConnection connection = null;
         protected SqlCommand command = null;
         protected SqlDataReader reader = null;
 
-        public DataBase(string connectionString)
+        public static DataBase Instance 
+        {
+            get {
+                if (_instance == null)
+                    _instance = new DataBase(connectionString);
+                return _instance;
+            }
+        }
+
+        private static DataBase _instance = null;
+
+        private DataBase(string connectionString)
         {
             try
             {
                 connection = new SqlConnection(connectionString);
-                this.connectionString = connectionString;
             }
             catch
             {

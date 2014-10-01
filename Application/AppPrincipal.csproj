@@ -50,6 +50,12 @@
     <Compile Include="FormsPreprocesamientos\FormEnriquecimiento.Designer.cs">
       <DependentUpon>FormEnriquecimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsPreprocesamientos\FormTratamientoEnTexto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsPreprocesamientos\FormTratamientoEnTexto.Designer.cs">
+      <DependentUpon>FormTratamientoEnTexto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsTratamientoDeDatos\FormDataBaseYSeleccionarCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormsPreprocesamientos\FormEnriquecimiento.resx">
       <DependentUpon>FormEnriquecimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsPreprocesamientos\FormTratamientoEnTexto.resx">
+      <DependentUpon>FormTratamientoEnTexto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsTratamientoDeDatos\FormDataBaseYSeleccionarCategoria.resx">
       <DependentUpon>FormDataBaseYSeleccionarCategoria.cs</DependentUpon>

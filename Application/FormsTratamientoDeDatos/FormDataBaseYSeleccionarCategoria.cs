@@ -121,7 +121,8 @@ namespace AppPrincipal
             {
                 if (db != null)
                     db.Dispose();
-                db = new DataBase(textBoxConeccionSQL.Text);
+                DataBase.connectionString = textBoxConeccionSQL.Text;
+                db = DataBase.Instance;
                 if (db.CheckConnection())
                 {
                     labelConeccion.ForeColor = Color.Green;

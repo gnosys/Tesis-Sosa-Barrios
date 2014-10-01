@@ -20,7 +20,7 @@ namespace AppPrincipal
         FormStemmer formStemmer;
         FormPreprocesamiento formPreprocesamiento;
         FormEnriquecimiento formEnriquecimiento;
-        DataBase db = null;
+        FormTratamientoEnTexto formTratamientoEnTexto;
 
         public App()
         {
@@ -34,7 +34,7 @@ namespace AppPrincipal
             this.IsMdiContainer = true;
 
             // Formulario de los botones "Data Base" y "Seleccionar Categoria"
-            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria(ref db);
+            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria();
             formDataBaseYSeleccionarCategoria.MdiParent = this;
 
             // Formulario del boton "Tokenization"
@@ -54,8 +54,12 @@ namespace AppPrincipal
             formEnriquecimiento.MdiParent = this;
 
             // Formulario del boton "Preprocesamiento"
-            formPreprocesamiento = new FormPreprocesamiento(db);
+            formPreprocesamiento = new FormPreprocesamiento();
             formPreprocesamiento.MdiParent = this;
+
+            // Formulario del boton "Tratamiento en Texto"
+            formTratamientoEnTexto = new FormTratamientoEnTexto();
+            formTratamientoEnTexto.MdiParent = this;
         }
 
         
@@ -142,6 +146,18 @@ namespace AppPrincipal
             ocultarFormularios();
             formEnriquecimiento.Dock = DockStyle.Fill;
             formEnriquecimiento.Show();
+        }
+
+        private void buttonTratamientoEnTexto_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formTratamientoEnTexto.Dock = DockStyle.Fill;
+            formTratamientoEnTexto.Show();
+        }
+
+        private void buttonRepresentacion_Click(object sender, System.EventArgs e)
+        {
+
         }
 
     }

@@ -28,8 +28,9 @@ namespace Test
             Regex delimiter = new Regex("([ \\t{}():;. \n])");
 
             //chain of responsability: docs and words transformations
-            PreFilter preFilter = new AddLinkContextPreFilter(null);
-            AroundFilter aroundFilter = new StopWordFilter(new StemmingFilter(null));
+            PreFilter preFilter = new EmptyPreFilter(null);
+            AroundFilter aroundFilter = new StemmingFilter(null);
+            //AroundFilter aroundFilter = new StemmingFilter(new StopWordFilter(null));
 
             //preprocessing
             ITokenizer tokenizer = new Tokenizer(delimiter, preFilter, aroundFilter);

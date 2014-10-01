@@ -23,7 +23,7 @@ namespace AppPrincipal
         private void buttonPreprocesar_Click(object sender, EventArgs e)
         {
 
-            List<Tweet> tweets = db.SearchTweetsUpdates(0);
+            List<Tweet> tweets = DataBase.Instance.SearchTweetsUpdates(0);
 
             List<string> docs = tweets.Select(x => x.Text).ToList();
 
@@ -122,6 +122,10 @@ namespace AppPrincipal
                 {
                     tabControlConfiguraciones.SelectTab(3);
                 }
+                else if (seleccion.Text.Equals("Tratamiento en Texto"))
+                {
+                    tabControlConfiguraciones.SelectTab(4);
+                }
                 tabControlConfiguraciones.Show();
             }
             cambiarTabs = false;
@@ -167,12 +171,65 @@ namespace AppPrincipal
 
             if (directorio.EndsWith(".txt"))
             {
-                labelArchivosTxt.ForeColor = Color.Gray;
+                labelArchivosTxtStopWords.ForeColor = Color.Gray;
                 //guardar en la base de datos y agregar.
             }
             else
             {
-                labelArchivosTxt.ForeColor = Color.Red;
+                labelArchivosTxtStopWords.ForeColor = Color.Red;
+            }
+        }
+
+        private void checkBoxReemplazarAbreviatura_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxReemplazarAbreviatura.Checked)
+            {
+                checkBoxListaAbreviaturasDefecto.Enabled = true;
+                buttonBuscarListaAbreviatura.Enabled = true;
+                textBoxDireccionAbreviaturas.Enabled = true;
+            }
+            else
+            {
+                checkBoxListaAbreviaturasDefecto.Enabled = false;
+                buttonBuscarListaAbreviatura.Enabled = false;
+                textBoxDireccionAbreviaturas.Enabled = false;
+            }
+            if (checkBoxListaAbreviaturasDefecto.Checked)
+            {
+                buttonBuscarListaAbreviatura.Enabled = false;
+                textBoxDireccionAbreviaturas.Enabled = false;
+            }
+        }
+
+        private void checkBoxListaAbreviaturasDefecto_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxListaAbreviaturasDefecto.Checked)
+            {
+                buttonBuscarListaAbreviatura.Enabled = false;
+                textBoxDireccionAbreviaturas.Enabled = false;
+            }
+            else
+            {
+                buttonBuscarListaAbreviatura.Enabled = true;
+                textBoxDireccionAbreviaturas.Enabled = true;
+            }
+        }
+
+        private void buttonBuscarListaAbreviatura_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog buscarArchivo = new OpenFileDialog();
+            buscarArchivo.ShowDialog();
+            string directorio = buscarArchivo.FileName;
+            textBoxDireccionAbreviaturas.Text = directorio;
+
+            if (directorio.EndsWith(".txt"))
+            {
+                labelArchivosTxtTratamiento.ForeColor = Color.Gray;
+                //guardar en la base de datos y agregar.
+            }
+            else
+            {
+                labelArchivosTxtTratamiento.ForeColor = Color.Red;
             }
         }
     }
