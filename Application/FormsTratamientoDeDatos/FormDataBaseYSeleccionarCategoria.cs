@@ -205,7 +205,8 @@ namespace AppPrincipal
         {
             if (SelectCantTuplas.Text != "" && int.Parse(SelectCantTuplas.Text) > 0 && int.Parse(SelectCantTuplas.Text) < 10001)
             {
-                List<Tweet> tuplas = db.SearchTweetsUpdates(int.Parse(SelectCantTuplas.Text));
+                //List<Tweet> tuplas = db.SearchTweetsUpdates(int.Parse(SelectCantTuplas.Text));
+                IEnumerable<Tweet> tuplas = db.GetTweetsForClassify(1);
                 dataGridViewTuplas.Rows.Clear();
                 int indice = 1;
                 foreach (Tweet t in tuplas)

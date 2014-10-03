@@ -69,7 +69,7 @@ namespace DataBaseSQL
                 while (reader.Read())
                 {
                     Tweet dato = new Tweet();
-                    dato.Id = reader.GetValue(0).ToString();
+                    //dato.Id = reader.GetValue(0).ToString();
                     dato.Tweet_Id = reader.GetValue(1).ToString();
                     dato.Author = reader.GetValue(2).ToString();
                     dato.Entity_Id = reader.GetValue(3).ToString();
@@ -99,7 +99,7 @@ namespace DataBaseSQL
                 while (reader.Read())
                 {
                     Tweet dato = new Tweet();
-                    dato.Id = reader.GetValue(0).ToString();
+                    //dato.Id = reader.GetValue(0).ToString();
                     dato.Tweet_Id = reader.GetValue(1).ToString();
                     dato.Author = reader.GetValue(2).ToString();
                     dato.Entity_Id = reader.GetValue(3).ToString();
@@ -258,7 +258,7 @@ namespace DataBaseSQL
                 while (reader.Read())
                 {
                     Category dato = new Category();
-                    dato.Id = reader.GetValue(0).ToString();
+                    //dato.Id = reader.GetValue(0).ToString();
                     dato.Name = reader.GetValue(1).ToString();
                     list.Add(dato);
                 }
@@ -302,19 +302,7 @@ namespace DataBaseSQL
             return list;
         }
 
-        protected string GetIdCorresponding(List<Category> categoriesC, string category)
-        {
-            string[] parts = category.Split('/');
-            foreach (Category c in categoriesC)
-            {
-                for (int i = 0; i < parts.Length; i++)
-                {
-                    if (parts[i].Equals(c.Name))
-                        return c.Id;
-                }
-            }
-            return "NULL";
-        }
+        
 
         public void ClearIdCategoryTableTweet()
         {
@@ -391,5 +379,171 @@ namespace DataBaseSQL
             throw new NotImplementedException();
         }
     
+
+        ////////////////////////////////////
+        public List<Tweet> GetTweetsForClassify(int level)
+        {
+            RePopulateCategories();
+            List<Tweet> ret = new List<Tweet>();
+            queryString = string.Format(@"SELECT t.Id,t.[Text],tc.IdCategory FROM
+                                            (SELECT Id,[text] FROM [Tweets].[dbo].[Tweet]) t
+                                            JOIN
+                                            (SELECT [IdCategory],[IdTweet] FROM [Tweets].[dbo].[TweetLevelCategory]) tc
+                                            ON t.Id = tc.IdTweet
+                                            JOIN
+                                            (SELECT ID FROM Tweets.dbo.Category WHERE [Level] = {0}) c
+                                            ON c.Id = tc.IdCategory", level);
+
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    ret.Add(new Tweet()
+                    {
+                        Id = reader.GetInt32(0),
+                        Text = reader.GetValue(1).ToString(),
+                        Id_Category = reader.GetValue(2).ToString()
+                    });
+                }
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+                command.Dispose();
+            }
+            return ret;
+        }
+
+
+        public void RePopulateCategories()
+        {
+            var d1 = DateTime.Now;
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            try
+            {
+               
+
+                //repopulate categories
+                queryString = @"SELECT Id,Category FROM [Tweets].[dbo].[Tweet]";
+                command = new SqlCommand(queryString, connection);
+                reader = command.ExecuteReader();
+                List<Tweet> tweets = new List<Tweet>();
+                while (reader.Read())
+                {
+                    tweets.Add(new Tweet()
+                    {
+                        Id = reader.GetInt32(0),
+                        Category = reader.GetString(1)
+                    });
+                }
+                reader.Close();
+
+                int countCategories = 0;
+                List<Category> categories = new List<Category>();
+                List<TweetLevelCategory> tweetLevelCategories = new List<TweetLevelCategory>();
+                foreach (var tweet in tweets)
+                {
+                    int level = 1;
+                    string[] splittedCategories = tweet.Category.Split('/');
+                    foreach (string category in splittedCategories)
+                    {
+                        Category cat = categories.FirstOrDefault(c => c.Name == category && c.Level == level);
+                        if (cat == null)
+                        {
+                            countCategories++;
+                            cat = new Category()
+                            {
+                                Id = countCategories,
+                                Name = category,
+                                Level = level
+                            };
+                            categories.Add(cat);
+                        }
+                        tweetLevelCategories.Add(new TweetLevelCategory()
+                        {
+                            IdTweet = tweet.Id,
+                            IdCategory=cat.Id
+                        });
+                        level++;
+                    }
+                }
+
+                //delete previous data
+                queryString = @"DELETE FROM [Tweets].[dbo].[TweetLevelCategory]";
+                command = new SqlCommand(queryString, connection);
+                command.ExecuteNonQuery();
+                queryString = @"DELETE FROM [Tweets].[dbo].[Category]";
+                command = new SqlCommand(queryString, connection);
+                command.ExecuteNonQuery();
+
+
+                int mod = 0;
+                StringBuilder queryBuilder = new StringBuilder();
+                foreach (var category in categories)
+                {
+                    queryBuilder.AppendLine(String.Format(@"INSERT INTO [Tweets].[dbo].[Category] ([Id],[Name],[Level]) VALUES ({0},'{1}',{2})", category.Id, category.Name, category.Level));
+                    mod++;
+                    if (mod == 100)
+                    {
+                        mod = ExecuteBatch(mod, queryBuilder);
+                    }
+                }
+
+                mod = ExecuteBatch(mod, queryBuilder);
+
+                int i = 1;
+                foreach (var tweetLevelCategory in tweetLevelCategories)
+                {
+                    queryBuilder.AppendLine(String.Format(@"INSERT INTO [Tweets].[dbo].[TweetLevelCategory] ([Id], [IdTweet],[IdCategory]) VALUES ({0},{1},{2})", i, tweetLevelCategory.IdTweet, tweetLevelCategory.IdCategory));
+                    i++;
+                    mod++;
+                    if (mod == 2000)
+                    {
+                        mod = ExecuteBatch(mod, queryBuilder);
+                    }
+                    
+                }
+
+                mod = ExecuteBatch(mod, queryBuilder);
+
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+                command.Dispose();
+            }
+
+        }
+
+        private int ExecuteBatch(int mod, StringBuilder queryBuilder)
+        {
+            command = new SqlCommand(queryBuilder.ToString(), connection);
+            command.ExecuteNonQuery();
+            mod = 0;
+            queryBuilder.Clear();
+            return mod;
+        }
+
+
+        protected string GetIdCorresponding(List<Category> categoriesC, string category)
+        {
+            string[] parts = category.Split('/');
+            foreach (Category c in categoriesC)
+            {
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    if (parts[i].Equals(c.Name))
+                        return c.Id.ToString();
+                }
+            }
+            return "NULL";
+        }
+
     }
 }

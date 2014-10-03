@@ -8,15 +8,16 @@ namespace DataBaseSQL
 {
     public class Category
     {
-        string id;
+        int id;
         string name;
+        int level;
 
         public Category()
         {
-            this.id = this.name = string.Empty;
+            this.name = string.Empty;
         }
 
-        public string Id
+        public int Id
         {
             get
             {
@@ -37,6 +38,18 @@ namespace DataBaseSQL
             set
             {
                 this.name = value;
+            }
+        }
+
+        public int Level
+        {
+            get
+            {
+                return this.level;
+            }
+            set
+            {
+                this.level = value;
             }
         }
     }

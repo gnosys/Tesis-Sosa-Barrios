@@ -9,7 +9,7 @@ namespace DataBaseSQL
 {
     public class Tweet
     {
-        string id;
+        int id;
         string tweet_id;
         string author;
         string entity_id;
@@ -19,10 +19,10 @@ namespace DataBaseSQL
 
         public Tweet()
         {
-            this.id = this.author = this.category = this.text = this.entity_id = this.tweet_id = this.id_category = string.Empty;
+            this.author = this.category = this.text = this.entity_id = this.tweet_id = this.id_category = string.Empty;
         }
 
-        public string Id
+        public int Id
         {
             get
             {
