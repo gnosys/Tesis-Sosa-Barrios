@@ -8,17 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using AppPrincipal.FormsPreprocesamientos;
 
 namespace AppPrincipal
 {
     public partial class App : Form
     {
-
         FormDataBaseYSeleccionarCategoria formDataBaseYSeleccionarCategoria;
         FormTokenization formTokenization;
         FormStopWords formStopWords;
         FormStemmer formStemmer;
         FormPreprocesamiento formPreprocesamiento;
+        FormEnriquecimiento formEnriquecimiento;
+        FormTratamientoEnTexto formTratamientoEnTexto;
 
         public App()
         {
@@ -47,9 +49,17 @@ namespace AppPrincipal
             formStemmer = new FormStemmer();
             formStemmer.MdiParent = this;
 
-            // formulario del boton "Preprocesamiento"
+            // Formulario del boton "Enriquecimiento"
+            formEnriquecimiento = new FormEnriquecimiento();
+            formEnriquecimiento.MdiParent = this;
+
+            // Formulario del boton "Preprocesamiento"
             formPreprocesamiento = new FormPreprocesamiento();
             formPreprocesamiento.MdiParent = this;
+
+            // Formulario del boton "Tratamiento en Texto"
+            formTratamientoEnTexto = new FormTratamientoEnTexto();
+            formTratamientoEnTexto.MdiParent = this;
         }
 
         
@@ -105,6 +115,49 @@ namespace AppPrincipal
             ocultarFormularios();
             formPreprocesamiento.Dock = DockStyle.Fill;
             formPreprocesamiento.Show();
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cargarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            OpenFileDialog buscarArchivo = new OpenFileDialog();
+            buscarArchivo.ShowDialog();
+            string directorio = buscarArchivo.FileName;
+
+            if (directorio.EndsWith(".pip"))
+            {
+                //cargar las configuraciones y resultados parciales.
+            }
+            else
+            {
+                string message = "El archivo no tiene un formato valido .pip";
+                string caption = "Archivo invalido";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result = MessageBox.Show(message, caption, buttons);
+            }
+        }
+
+        private void buttonEnriquecimiento_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formEnriquecimiento.Dock = DockStyle.Fill;
+            formEnriquecimiento.Show();
+        }
+
+        private void buttonTratamientoEnTexto_Click(object sender, System.EventArgs e)
+        {
+            ocultarFormularios();
+            formTratamientoEnTexto.Dock = DockStyle.Fill;
+            formTratamientoEnTexto.Show();
+        }
+
+        private void buttonRepresentacion_Click(object sender, System.EventArgs e)
+        {
+
         }
 
     }

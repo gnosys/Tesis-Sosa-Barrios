@@ -44,6 +44,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tweet.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Data_0.sql" />
+    <Content Include="Scripts\Data_1.sql" />
+    <Content Include="Scripts\Data_2.sql" />
+    <Content Include="Scripts\Data_3.sql" />
+    <Content Include="Scripts\Data_4.sql" />
+    <Content Include="Scripts\SQLQueryCreateDatabase.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
