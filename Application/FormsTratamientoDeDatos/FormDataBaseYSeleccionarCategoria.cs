@@ -186,8 +186,6 @@ namespace AppPrincipal
                 List<string> newCategorias = new List<string>();
                 for (int i = 0; i < listBoxCategoriasNivel.Items.Count; i++)
                     newCategorias.Add(listBoxCategoriasNivel.Items[i].ToString());
-                db.ClearTableCategory();
-                db.CreateCategoriesTableCategory(newCategorias);
                 buttonActualizarTweets.Enabled = true;
             }
             labelCategoriasCreadas.Visible = true;
@@ -196,8 +194,7 @@ namespace AppPrincipal
         private void buttonActualizarTweets_Click(object sender, System.EventArgs e)
         {
             labelTweetsActualizados.Visible = false;
-            db.ClearIdCategoryTableTweet();
-            db.AddIdCategoriesTableTweets(int.Parse(labelProfundidadNivelSeleccionado.Text));
+            db.RePopulateCategories();
             labelTweetsActualizados.Visible = true;
         }
 

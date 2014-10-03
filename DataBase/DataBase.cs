@@ -69,7 +69,7 @@ namespace DataBaseSQL
                 while (reader.Read())
                 {
                     Tweet dato = new Tweet();
-                    //dato.Id = reader.GetValue(0).ToString();
+                    dato.Id = reader.GetInt32(0);
                     dato.Tweet_Id = reader.GetValue(1).ToString();
                     dato.Author = reader.GetValue(2).ToString();
                     dato.Entity_Id = reader.GetValue(3).ToString();
@@ -90,7 +90,7 @@ namespace DataBaseSQL
         public List<Tweet> SearchTweetsUpdates(int cantTuplas)
         {
             List<Tweet> list = new List<Tweet>();
-            queryString = string.Format(@"SELECT {0} {1} * FROM [Tweets].[dbo].[Tweet] WHERE [Id_Category] is not null", cantTuplas == 0 ? String.Empty : "TOP", cantTuplas == 0 ? String.Empty : cantTuplas.ToString());
+            queryString = string.Format(@"SELECT {0} {1} * FROM [Tweets].[dbo].[Tweet]", cantTuplas == 0 ? String.Empty : "TOP", cantTuplas == 0 ? String.Empty : cantTuplas.ToString());
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -221,31 +221,6 @@ namespace DataBaseSQL
             return categories;
         }
 
-        public void CreateCategoriesTableCategory(List<string> newCategories)
-        {
-            int id = 1;
-            connection.Open();
-            queryString = "";
-            foreach (string nc in newCategories)
-            {
-                queryString += string.Format(@"INSERT INTO [dbo].[Category]([Id],[Name]) VALUES ({0}, '{1}'); ", id++, nc);
-            }
-            command = new SqlCommand(queryString, connection);
-            command.ExecuteReader();
-            command.Dispose();
-            connection.Close();
-        }
-
-        public void ClearTableCategory()
-        {
-            connection.Open();
-            queryString = string.Format(@"DELETE FROM [dbo].[Category]");
-            command = new SqlCommand(queryString, connection);
-            command.ExecuteReader();
-            command.Dispose();
-            connection.Close();
-        }
-
         public List<Category> CategoriesTableCategory()
         {
             List<Category> list = new List<Category>();
@@ -258,7 +233,7 @@ namespace DataBaseSQL
                 while (reader.Read())
                 {
                     Category dato = new Category();
-                    //dato.Id = reader.GetValue(0).ToString();
+                    dato.Id = reader.GetInt32(0);
                     dato.Name = reader.GetValue(1).ToString();
                     list.Add(dato);
                 }
@@ -275,7 +250,7 @@ namespace DataBaseSQL
         public List<string> GetIdAndCategoryTableTweet(int nivel)
         {
             List<string> list = new List<string>();
-            queryString = string.Format(@"SELECT [Id],[Category] FROM [dbo].[Tweet]");
+            queryString = @"SELECT [Id],[Category] FROM [dbo].[Tweet]";
             command = new SqlCommand(queryString, connection);
             connection.Open();
             string[] parts;
@@ -302,48 +277,6 @@ namespace DataBaseSQL
             return list;
         }
 
-        
-
-        public void ClearIdCategoryTableTweet()
-        {
-            connection.Open();
-            queryString = string.Format(@"UPDATE [dbo].[Tweet] SET [Id_Category] = NULL");
-            command = new SqlCommand(queryString, connection);
-            command.ExecuteReader();
-            command.Dispose();
-            connection.Close();
-        }
-
-        public void AddIdCategoriesTableTweets(int nivel)
-        {
-            List<Category> categoriesC = CategoriesTableCategory();
-            List<string> idAndCategoriesT = GetIdAndCategoryTableTweet(nivel);
-            int querysInString = 0;
-            for (int i = 0; i < idAndCategoriesT.Count; i = i + 2)
-            {
-                if (querysInString < 10000)
-                {
-                    queryString += string.Format(@"UPDATE [dbo].[Tweet] SET [Id_Category] = {0} WHERE [Id] = {1}; ", GetIdCorresponding(categoriesC, idAndCategoriesT.ElementAt(i + 1)), idAndCategoriesT.ElementAt(i));
-                    querysInString++;
-                }
-                else
-                {
-                    connection.Open();
-                    command = new SqlCommand(queryString, connection);
-                    command.ExecuteReader();
-                    command.Dispose();
-                    connection.Close();
-                    queryString = string.Format(@"UPDATE [dbo].[Tweet] SET [Id_Category] = {0} WHERE [Id] = {1}; ", GetIdCorresponding(categoriesC, idAndCategoriesT.ElementAt(i + 1)), idAndCategoriesT.ElementAt(i));
-                    querysInString = 1;
-                }
-            }
-            connection.Open();
-            command = new SqlCommand(queryString, connection);
-            command.ExecuteReader();
-            command.Dispose();
-            connection.Close();
-        }
-        
         void CuantitativeAnalysis()
         {
             List<string> list = new List<string>();
@@ -383,15 +316,14 @@ namespace DataBaseSQL
         ////////////////////////////////////
         public List<Tweet> GetTweetsForClassify(int level)
         {
-            RePopulateCategories();
             List<Tweet> ret = new List<Tweet>();
             queryString = string.Format(@"SELECT t.Id,t.[Text],tc.IdCategory FROM
-                                            (SELECT Id,[text] FROM [Tweets].[dbo].[Tweet]) t
+                                            (SELECT Id,[text] FROM [dbo].[Tweet]) t
                                             JOIN
-                                            (SELECT [IdCategory],[IdTweet] FROM [Tweets].[dbo].[TweetLevelCategory]) tc
+                                            (SELECT [IdCategory],[IdTweet] FROM .[dbo].[TweetLevelCategory]) tc
                                             ON t.Id = tc.IdTweet
                                             JOIN
-                                            (SELECT ID FROM Tweets.dbo.Category WHERE [Level] = {0}) c
+                                            (SELECT ID FROM [dbo].[Category] WHERE [Level] = {0}) c
                                             ON c.Id = tc.IdCategory", level);
 
             command = new SqlCommand(queryString, connection);
@@ -426,10 +358,8 @@ namespace DataBaseSQL
             connection.Open();
             try
             {
-               
-
                 //repopulate categories
-                queryString = @"SELECT Id,Category FROM [Tweets].[dbo].[Tweet]";
+                queryString = @"SELECT Id,Category FROM [dbo].[Tweet]";
                 command = new SqlCommand(queryString, connection);
                 reader = command.ExecuteReader();
                 List<Tweet> tweets = new List<Tweet>();
@@ -474,14 +404,14 @@ namespace DataBaseSQL
                 }
 
                 //delete previous data
-                queryString = @"DELETE FROM [Tweets].[dbo].[TweetLevelCategory]";
+                queryString = @"DELETE FROM [dbo].[TweetLevelCategory]";
                 command = new SqlCommand(queryString, connection);
                 command.ExecuteNonQuery();
-                queryString = @"DELETE FROM [Tweets].[dbo].[Category]";
+                queryString = @"DELETE FROM [dbo].[Category]";
                 command = new SqlCommand(queryString, connection);
                 command.ExecuteNonQuery();
 
-
+                //insert new data
                 int mod = 0;
                 StringBuilder queryBuilder = new StringBuilder();
                 foreach (var category in categories)
@@ -508,9 +438,7 @@ namespace DataBaseSQL
                     }
                     
                 }
-
                 mod = ExecuteBatch(mod, queryBuilder);
-
             }
             finally
             {
