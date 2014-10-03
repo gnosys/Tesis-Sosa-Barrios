@@ -99,7 +99,7 @@ namespace DataBaseSQL
                 while (reader.Read())
                 {
                     Tweet dato = new Tweet();
-                    //dato.Id = reader.GetValue(0).ToString();
+                    dato.Id = reader.GetInt32(0);
                     dato.Tweet_Id = reader.GetValue(1).ToString();
                     dato.Author = reader.GetValue(2).ToString();
                     dato.Entity_Id = reader.GetValue(3).ToString();
@@ -189,42 +189,72 @@ namespace DataBaseSQL
 
         public int GetAmountNivelesTableTweet()
         {
-            int result = -1;
-            int resultCategoria = 0;
-            List<string> list = CategoriesTableTweet();
-            string[] parts;
-            foreach (string c in list)
+            queryString = string.Format(@"SELECT Max([Level]) FROM [dbo].[Category]");
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            int ret = 0;
+            try
             {
-                parts = c.Split('/');
-                resultCategoria = parts.Length;
-                if (result < 0 || resultCategoria > result)
-                    result = resultCategoria;
+                reader.Read();
+                ret = reader.GetInt16(0);
             }
-            return result;
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
+            return ret;
         }
 
         public List<string> CategoriesSelectedTableTweet(int nivel, ref int amountTweets, ref int amountTweetWithNivels)
         {
-            List<string> list = CategoriesTableTweet();
-            amountTweets = list.Count;
-            List<string> categories = new List<string>();
-            foreach (string c in list)
+            List<string> ret = new List<string>();
+            queryString = string.Format(@"SELECT COUNT(t.Id) FROM
+                                            (SELECT Id FROM [dbo].[Tweet]) t
+                                            JOIN
+                                            (SELECT [IdCategory],[IdTweet] FROM .[dbo].[TweetLevelCategory]) tc
+                                            ON t.Id = tc.IdTweet
+                                            JOIN
+                                            (SELECT ID FROM [dbo].[Category] WHERE [Level] = {0}) c
+                                            ON c.Id = tc.IdCategory", nivel);
+
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            
+            try
             {
-                string[] parts = c.Split('/');
-                if (parts.Length >= nivel)
+
+
+
+                amountTweetWithNivels = int.Parse(command.ExecuteScalar().ToString());
+                queryString = @"SELECT COUNT(Id) FROM [dbo].[Tweet]";
+                command = new SqlCommand(queryString, connection);
+                amountTweets = int.Parse(command.ExecuteScalar().ToString());
+                queryString = String.Format(@"SELECT Name from [dbo].[Category] WHERE [Level] = {0}", nivel);
+                command = new SqlCommand(queryString, connection);
+                
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    amountTweetWithNivels++;
-                    if (!categories.Contains(parts[nivel - 1]))
-                        categories.Add(parts[nivel - 1]);
+                    ret.Add(reader.GetString(0));
                 }
             }
-            return categories;
+            finally
+            {
+                reader.Close();
+                connection.Close();
+                command.Dispose();
+            }
+            return ret;
         }
 
         public List<Category> CategoriesTableCategory()
         {
             List<Category> list = new List<Category>();
-            queryString = string.Format(@"SELECT [Id],[Name] FROM [dbo].[Category]");
+            queryString = @"SELECT [Id],[Name] FROM [dbo].[Category]";
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
