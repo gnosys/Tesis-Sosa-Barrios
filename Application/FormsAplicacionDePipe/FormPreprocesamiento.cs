@@ -8,15 +8,84 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using Tonkenizer.Filters;
+using Tonkenizer.Filters.AroundFilters;
 
 namespace AppPrincipal
 {
     public partial class FormPreprocesamiento : Form
     {
+
+        private static string jsonConf =
+@"
+{
+	""database"": {
+		""connectionString"": ""Data Source=MATI-PC\\SQLEXPRESS;Initial Catalog=Tweets;Integrated Security=True"",
+		""categoryLevel"": 2
+	},
+	""preprocessing"": [{
+		""_type"": ""tokenizing"",
+		""regexp"": ""([ \\\\t{}():;. \\n])""
+	},
+	{
+		""_type"": ""stopWords"",
+		""filename"": ""C:\\temp\\stopwordlists\\stp1.txt""
+	},
+	{
+		""_type"": ""stemming""
+	},
+	{
+		""_type"": ""contextRichment"",
+		""scopes"": [""webAnalytics"",
+		""metatags"",
+		""shareTags""]
+	}],
+	""representation"": {
+		""minWeight"": 0,
+		""discardEquals"": false
+	},
+	""preprocessingGuid"" : 9,
+}
+";
+
         bool cambiarTabs = false;
+        dynamic configuration;
+
+
+        private AroundFilter GetConfiguredAroundFilters(JToken config)
+        {
+            switch ((string)config["_type"])
+            {
+                case "stopWords": return new StopWordFilter(null);
+                case "stemming": return new StemmingFilter(null);
+            }
+            return null;
+        }
+
+        private AroundFilter GetAroundFilter(JArray configurations)
+        {
+            AroundFilter ret = null;
+            AroundFilter current = null;
+            foreach (var config in configurations)
+            {
+                current = GetConfiguredAroundFilters(config);
+                current = current.Next;
+                if (ret == null)
+                {
+                    ret = current;
+                }
+            }
+            return ret;
+        }
+
+
+
 
         public FormPreprocesamiento()
         {
+            configuration = JObject.Parse(jsonConf);
+            dynamic tokenizingConfiguration = ((JArray)configuration.preprocessing).First(x => (string)x["_type"] == "tokenizing" );
             InitializeComponent();
         }
 

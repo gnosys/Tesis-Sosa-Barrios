@@ -10,6 +10,17 @@ namespace Tonkenizer.Filters
     {
         private AroundFilter _next;
 
+        public AroundFilter Next {
+            get
+            {
+                return _next;
+            }
+            set
+            {
+                _next = value;
+            }
+        }
+
         public AroundFilter(AroundFilter next)
         {
             _next = next;
