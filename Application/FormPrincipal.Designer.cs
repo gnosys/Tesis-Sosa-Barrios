@@ -40,15 +40,16 @@
             this.buttonRepresentacion = new System.Windows.Forms.Button();
             this.buttonEjecutarSVMLigth = new System.Windows.Forms.Button();
             this.panelBotonera = new System.Windows.Forms.Panel();
+            this.buttonCompararResultados = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonTratamientoEnTexto = new System.Windows.Forms.Button();
             this.buttonEnriquecimiento = new System.Windows.Forms.Button();
             this.buttonTokenization = new System.Windows.Forms.Button();
             this.menuStripSolapas = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemInicio = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarPipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarPipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonCompararResultados = new System.Windows.Forms.Button();
             this.panelBotonera.SuspendLayout();
             this.menuStripSolapas.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +60,7 @@
             this.buttonDataBase.Name = "buttonDataBase";
             this.buttonDataBase.Size = new System.Drawing.Size(130, 23);
             this.buttonDataBase.TabIndex = 9;
-            this.buttonDataBase.Text = "DataBase";
+            this.buttonDataBase.Text = "Base de Datos";
             this.buttonDataBase.UseVisualStyleBackColor = true;
             this.buttonDataBase.Click += new System.EventHandler(this.buttonDataBase_Click);
             // 
@@ -174,6 +175,25 @@
             this.panelBotonera.Size = new System.Drawing.Size(164, 569);
             this.panelBotonera.TabIndex = 19;
             // 
+            // buttonCompararResultados
+            // 
+            this.buttonCompararResultados.Location = new System.Drawing.Point(16, 455);
+            this.buttonCompararResultados.Name = "buttonCompararResultados";
+            this.buttonCompararResultados.Size = new System.Drawing.Size(130, 23);
+            this.buttonCompararResultados.TabIndex = 23;
+            this.buttonCompararResultados.Text = "Comparar Resultados";
+            this.buttonCompararResultados.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(16, 428);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Resultados";
+            // 
             // buttonTratamientoEnTexto
             // 
             this.buttonTratamientoEnTexto.Location = new System.Drawing.Point(16, 253);
@@ -218,6 +238,7 @@
             // 
             this.toolStripMenuItemInicio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cargarPipeToolStripMenuItem,
+            this.guardarPipeToolStripMenuItem,
             this.cerrarToolStripMenuItem});
             this.toolStripMenuItemInicio.Name = "toolStripMenuItemInicio";
             this.toolStripMenuItemInicio.Size = new System.Drawing.Size(48, 20);
@@ -226,35 +247,23 @@
             // cargarPipeToolStripMenuItem
             // 
             this.cargarPipeToolStripMenuItem.Name = "cargarPipeToolStripMenuItem";
-            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.cargarPipeToolStripMenuItem.Text = "Cargar Pipe";
             this.cargarPipeToolStripMenuItem.Click += new System.EventHandler(this.cargarPipeToolStripMenuItem_Click);
+            // 
+            // guardarPipeToolStripMenuItem
+            // 
+            this.guardarPipeToolStripMenuItem.Name = "guardarPipeToolStripMenuItem";
+            this.guardarPipeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.guardarPipeToolStripMenuItem.Text = "Guardar Pipe";
+            this.guardarPipeToolStripMenuItem.Click += new System.EventHandler(this.guardarPipeToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 428);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Resultados";
-            // 
-            // buttonCompararResultados
-            // 
-            this.buttonCompararResultados.Location = new System.Drawing.Point(16, 455);
-            this.buttonCompararResultados.Name = "buttonCompararResultados";
-            this.buttonCompararResultados.Size = new System.Drawing.Size(130, 23);
-            this.buttonCompararResultados.TabIndex = 23;
-            this.buttonCompararResultados.Text = "Comparar Resultados";
-            this.buttonCompararResultados.UseVisualStyleBackColor = true;
             // 
             // App
             // 
@@ -302,6 +311,7 @@
         private System.Windows.Forms.Button buttonTratamientoEnTexto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCompararResultados;
+        private System.Windows.Forms.ToolStripMenuItem guardarPipeToolStripMenuItem;
     }
 }
 

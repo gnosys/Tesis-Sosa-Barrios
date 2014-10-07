@@ -125,6 +125,13 @@ namespace AppPrincipal
                     labelConeccion.ForeColor = Color.Green;
                     labelConeccion.Text = "Coneccion Establecida";
                     enableForms();
+                    if (db.ExistDataTableCategory())
+                    {
+                        labelCategoriasCreadas.Show();
+                        buttonSeleccionarNivel.Enabled = true;
+                        textBoxSeleccionarNivel.Enabled = true;
+                        labelCantidadNiveles.Text = db.GetAmountNivelesTableTweet().ToString();
+                    }
                 }
                 else
                 {
@@ -165,7 +172,8 @@ namespace AppPrincipal
         private void buttonCrearCategorias_Click(object sender, System.EventArgs e)
         {
             labelCategoriasCreadas.Visible = false;
-            //db.RePopulateCategories();
+            db.RePopulateCategories();
+            labelCantidadNiveles.Text = db.GetAmountNivelesTableTweet().ToString();
             buttonSeleccionarNivel.Enabled = true;
             textBoxSeleccionarNivel.Enabled = true;
             labelCategoriasCreadas.Visible = true;
@@ -173,11 +181,13 @@ namespace AppPrincipal
 
         private void buttonMostrarTablaCategorias_Click(object sender, EventArgs e)
         {
-            List<Category> categoriasDB = db.CategoriesTableCategory();
+            List<Category> categoriasDB = db.CategoriesTableCategory(textBoxSeleccionarNivel.Text);
             dataGridViewCategoriasCreadas.Rows.Clear();
+            int idColumna = 1;
             foreach (Category c in categoriasDB)
             {
-                dataGridViewCategoriasCreadas.Rows.Add(c.Id, c.Name);
+                dataGridViewCategoriasCreadas.Rows.Add(idColumna, c.Id, c.Name);
+                idColumna++;
             }
         }
 

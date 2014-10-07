@@ -67,8 +67,6 @@
             this.buttonMostrarCategorias = new System.Windows.Forms.Button();
             this.SelectCantDatos = new System.Windows.Forms.TextBox();
             this.dataGridViewCategoriasCreadas = new System.Windows.Forms.DataGridView();
-            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxConeccionSQL = new System.Windows.Forms.TextBox();
@@ -79,6 +77,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonMostrarTablaCategorias = new System.Windows.Forms.Button();
+            this.IdColumna = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelSeleccionarCategoria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTuplas)).BeginInit();
@@ -340,7 +341,7 @@
             // 
             this.dataGridViewDatos.Location = new System.Drawing.Point(173, 344);
             this.dataGridViewDatos.Name = "dataGridViewDatos";
-            this.dataGridViewDatos.Size = new System.Drawing.Size(586, 204);
+            this.dataGridViewDatos.Size = new System.Drawing.Size(538, 204);
             this.dataGridViewDatos.TabIndex = 5;
             // 
             // dataGridViewTuplas
@@ -418,9 +419,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(170, 318);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(222, 13);
+            this.label2.Size = new System.Drawing.Size(176, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Ingrese cantidad de datos en tuplas a mostrar";
+            this.label2.Text = "Ingrese cantidad de datos a mostrar";
             // 
             // SelectCantTuplas
             // 
@@ -433,7 +434,7 @@
             // buttonMostrarCategorias
             // 
             this.buttonMostrarCategorias.Enabled = false;
-            this.buttonMostrarCategorias.Location = new System.Drawing.Point(513, 313);
+            this.buttonMostrarCategorias.Location = new System.Drawing.Point(465, 313);
             this.buttonMostrarCategorias.Name = "buttonMostrarCategorias";
             this.buttonMostrarCategorias.Size = new System.Drawing.Size(137, 23);
             this.buttonMostrarCategorias.TabIndex = 4;
@@ -444,7 +445,7 @@
             // SelectCantDatos
             // 
             this.SelectCantDatos.Enabled = false;
-            this.SelectCantDatos.Location = new System.Drawing.Point(400, 315);
+            this.SelectCantDatos.Location = new System.Drawing.Point(352, 315);
             this.SelectCantDatos.Name = "SelectCantDatos";
             this.SelectCantDatos.Size = new System.Drawing.Size(36, 20);
             this.SelectCantDatos.TabIndex = 7;
@@ -453,24 +454,13 @@
             // 
             this.dataGridViewCategoriasCreadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCategoriasCreadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdColumna,
             this.IdC,
             this.Categorias});
-            this.dataGridViewCategoriasCreadas.Location = new System.Drawing.Point(776, 344);
+            this.dataGridViewCategoriasCreadas.Location = new System.Drawing.Point(720, 344);
             this.dataGridViewCategoriasCreadas.Name = "dataGridViewCategoriasCreadas";
-            this.dataGridViewCategoriasCreadas.Size = new System.Drawing.Size(213, 204);
+            this.dataGridViewCategoriasCreadas.Size = new System.Drawing.Size(269, 204);
             this.dataGridViewCategoriasCreadas.TabIndex = 21;
-            // 
-            // IdC
-            // 
-            this.IdC.HeaderText = "Id";
-            this.IdC.Name = "IdC";
-            this.IdC.Width = 30;
-            // 
-            // Categorias
-            // 
-            this.Categorias.HeaderText = "Categorias";
-            this.Categorias.Name = "Categorias";
-            this.Categorias.Width = 120;
             // 
             // label1
             // 
@@ -532,7 +522,7 @@
             // buttonMostrarTextos
             // 
             this.buttonMostrarTextos.Enabled = false;
-            this.buttonMostrarTextos.Location = new System.Drawing.Point(656, 313);
+            this.buttonMostrarTextos.Location = new System.Drawing.Point(608, 313);
             this.buttonMostrarTextos.Name = "buttonMostrarTextos";
             this.buttonMostrarTextos.Size = new System.Drawing.Size(103, 23);
             this.buttonMostrarTextos.TabIndex = 14;
@@ -552,7 +542,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(442, 318);
+            this.label6.Location = new System.Drawing.Point(394, 318);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 13);
             this.label6.TabIndex = 16;
@@ -561,13 +551,31 @@
             // buttonMostrarTablaCategorias
             // 
             this.buttonMostrarTablaCategorias.Enabled = false;
-            this.buttonMostrarTablaCategorias.Location = new System.Drawing.Point(775, 313);
+            this.buttonMostrarTablaCategorias.Location = new System.Drawing.Point(720, 313);
             this.buttonMostrarTablaCategorias.Name = "buttonMostrarTablaCategorias";
-            this.buttonMostrarTablaCategorias.Size = new System.Drawing.Size(214, 23);
+            this.buttonMostrarTablaCategorias.Size = new System.Drawing.Size(269, 23);
             this.buttonMostrarTablaCategorias.TabIndex = 34;
             this.buttonMostrarTablaCategorias.Text = "Mostrar Categorias";
             this.buttonMostrarTablaCategorias.UseVisualStyleBackColor = true;
             this.buttonMostrarTablaCategorias.Click += new System.EventHandler(this.buttonMostrarTablaCategorias_Click);
+            // 
+            // IdColumna
+            // 
+            this.IdColumna.HeaderText = "";
+            this.IdColumna.Name = "IdColumna";
+            this.IdColumna.Width = 30;
+            // 
+            // IdC
+            // 
+            this.IdC.HeaderText = "Id";
+            this.IdC.Name = "IdC";
+            this.IdC.Width = 30;
+            // 
+            // Categorias
+            // 
+            this.Categorias.HeaderText = "Categorias";
+            this.Categorias.Name = "Categorias";
+            this.Categorias.Width = 160;
             // 
             // FormDataBaseYSeleccionarCategoria
             // 
@@ -645,8 +653,6 @@
         private System.Windows.Forms.Button buttonMostrarCategorias;
         private System.Windows.Forms.TextBox SelectCantDatos;
         private System.Windows.Forms.DataGridView dataGridViewCategoriasCreadas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categorias;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxConeccionSQL;
@@ -665,5 +671,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Texto;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumna;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Categorias;
     }
 }
