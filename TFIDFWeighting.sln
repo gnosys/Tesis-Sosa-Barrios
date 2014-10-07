@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFIDFWeighting", "TFIDFWeighting\TFIDFWeighting.csproj", "{6CF0F965-88B4-4C02-A291-3C76306116DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preprocesamientos", "Tonkenizer\Preprocesamientos.csproj", "{B1E416E7-930C-4328-9606-BA92A8B7ADCB}"
@@ -15,9 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseSQL", "DataBase\Dat
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Tweets", "Tweets\Tweets.sqlproj", "{9F8987DA-E65A-4CD1-BD50-63B899AE7719}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archivo de Stop Words", "Archivo de Stop Words", "{FCB6F866-787C-47E6-8AD1-00C4FFEE2AFE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recursos", "Recursos", "{FCB6F866-787C-47E6-8AD1-00C4FFEE2AFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StopWords", "StopWords", "{EE5DC23F-9F32-4BF7-B6AB-5AAC54E8749A}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\Users\Mati\Desktop\Tesis\Entrega\Parte-4-Stop Words\StopWords_England_String.txt = ..\..\Users\Mati\Desktop\Tesis\Entrega\Parte-4-Stop Words\StopWords_England_String.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipes", "Pipes", "{14996090-AC1A-4479-A13F-2A84C354BB53}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Pablo\Desktop\pipe-conf.pip = C:\Users\Pablo\Desktop\pipe-conf.pip
 	EndProjectSection
 EndProject
 Global
@@ -55,5 +60,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE5DC23F-9F32-4BF7-B6AB-5AAC54E8749A} = {FCB6F866-787C-47E6-8AD1-00C4FFEE2AFE}
+		{14996090-AC1A-4479-A13F-2A84C354BB53} = {FCB6F866-787C-47E6-8AD1-00C4FFEE2AFE}
 	EndGlobalSection
 EndGlobal
