@@ -1,0 +1,28 @@
+{
+	"database": {
+		"connectionString": "Data Source=MATI-PC\\SQLEXPRESS;Initial Catalog=Tweets;Integrated Security=True"
+	},
+	"preprocessing": [{
+		"_type": "tokenizing",
+		"regexp": "([ \\\\t{}():;. \\n])"
+	},
+	{
+		"_type": "stopWords",
+		"filename": "C:\\temp\\stopwordlists\\stp1.txt"
+	},
+	{
+		"_type": "stemming"
+	},
+	{
+		"_type": "contextRichment",
+		"scopes": ["webAnalytics",
+		"metatags",
+		"shareTags"]
+	}],
+	"representation": {
+		"minWeight": 0,
+		"discardEquals": false
+	},
+	"preprocessingGuid" : 9,
+	"categoryLevel": 13
+}

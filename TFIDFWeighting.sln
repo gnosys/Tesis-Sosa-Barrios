@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StopWords", "StopWords", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipes", "Pipes", "{14996090-AC1A-4479-A13F-2A84C354BB53}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\Pablo\Desktop\pipe-conf.pip = C:\Users\Pablo\Desktop\pipe-conf.pip
+		pipe-conf.pip = pipe-conf.pip
 	EndProjectSection
 EndProject
 Global
