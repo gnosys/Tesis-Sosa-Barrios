@@ -524,5 +524,24 @@ namespace DataBaseSQL
             return "NULL";
         }
 
+
+        public string SavePreprocessingTokens(List<Tweet> tweets, List<string[]> TFIDFInput)
+        {
+            string guid = Guid.NewGuid().ToString();
+            StringBuilder builder = new StringBuilder();
+            int mod = 0;
+            int tweetIndex = 0;
+            foreach (var tweet in tweets)
+            {
+                foreach(string token in TFIDFInput.ElementAt(tweetIndex))
+                {
+
+                    ++mod;
+                }
+                ++tweetIndex;
+            }
+
+            return guid;
+        }
     }
 }

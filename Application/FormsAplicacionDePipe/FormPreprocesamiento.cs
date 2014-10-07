@@ -12,6 +12,8 @@ using Newtonsoft.Json.Linq;
 using Tonkenizer.Filters;
 using Tonkenizer.Filters.AroundFilters;
 using System.Text.RegularExpressions;
+using Tonkenizer.Filters.PreFilters;
+using Tonkenizer.Core;
 
 namespace AppPrincipal
 {
@@ -19,7 +21,6 @@ namespace AppPrincipal
     {
 
         bool cambiarTabs = false;
-        dynamic configuration;
 
 
         private AroundFilter GetConfiguredAroundFilters(JToken config)
@@ -58,10 +59,10 @@ namespace AppPrincipal
         private void buttonPreprocesar_Click(object sender, EventArgs e)
         {
 
-            JArray preprocessingConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing;
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
 
             //tokenizer delimiter
-            dynamic tokenizingConfiguration = ((JArray)preprocessingConfiguration).First(x => (string)x["_type"] == "tokenizing");
+            dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
             Regex delimiter = new Regex((string)tokenizingConfiguration.regexp);
 
 
@@ -71,20 +72,18 @@ namespace AppPrincipal
             List<string> docs = tweets.Select(x => x.Text).ToList();
 
 
-
-            ////chain of responsability: docs and words transformations
-            //PreFilter preFilter = new EmptyPreFilter(null);
-            //AroundFilter aroundFilter = new StopWordFilter(new StemmingFilter(null));
+            //chain of responsability: docs and words transformations
+            //TODO: configure filters from PIPECONFIGURATION
+            PreFilter preFilter = new EmptyPreFilter(null);
+            AroundFilter aroundFilter = new StopWordFilter(new StemmingFilter(null));
 
             ////preprocessing
-            //ITokenizer tokenizer = new Tokenizer(delimiter, preFilter, aroundFilter);
-            //var TFIDFInput = tokenizer.Tokenize(docs).ToList();
+            ITokenizer tokenizer = new Tokenizer(delimiter, preFilter, aroundFilter);
+            List<string[]> TFIDFInput = tokenizer.Tokenize(docs).ToList();
 
-            ////representation
-            //TFIDFMeasure tfdif = new TFIDFMeasure(TFIDFInput);
-            //var bow = StringUtils.ArrayListToArray(tfdif.Terms);
-            //CreateBOWFile(bow);
-            //CreateVSMFile(tfdif.TermWeight, TFIDFInput.Count);
+            string preprocessingGuid = DataBase.Instance.SavePreprocessingTokens(tweets, TFIDFInput);
+            ((App)this.MdiParent).PipeConfiguration.preprocessing.guid = preprocessingGuid;
+            
         }
 
         private void buttonSeleccionar_Click(object sender, EventArgs e)

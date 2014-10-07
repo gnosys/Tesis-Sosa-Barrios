@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Token]
 (
-	Id int NOT NULL,
+	Id int IDENTITY(1,1) NOT NULL,
 	[Text] nvarchar(MAX) NULL,
 	idPipe varchar(max) not null,
 	idTweet int not null,
