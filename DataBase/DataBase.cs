@@ -225,9 +225,6 @@ namespace DataBaseSQL
             
             try
             {
-
-
-
                 amountTweetWithNivels = int.Parse(command.ExecuteScalar().ToString());
                 queryString = @"SELECT COUNT(Id) FROM [dbo].[Tweet]";
                 command = new SqlCommand(queryString, connection);
