@@ -167,5 +167,10 @@ namespace AppPrincipal
 
         }
 
+        private void guardarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
     }
 }

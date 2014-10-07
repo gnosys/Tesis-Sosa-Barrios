@@ -57,6 +57,30 @@ namespace DataBaseSQL
             return false;
         }
 
+        public bool ExistDataTableCategory()
+        {
+            queryString = string.Format(@"SELECT count(Id) FROM [Tweets].[dbo].[Category]");
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            bool result = false;
+            try
+            {
+                while (reader.Read())
+                {
+                    if (reader.GetInt32(0) > 0)
+                        result = true;
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
+            return result;
+        }
+
         public List<Tweet> SearchTweets(int cantTuplas)
         {
             List<Tweet> list = new List<Tweet>();
@@ -248,10 +272,10 @@ namespace DataBaseSQL
             return ret;
         }
 
-        public List<Category> CategoriesTableCategory()
+        public List<Category> CategoriesTableCategory(string nivel)
         {
             List<Category> list = new List<Category>();
-            queryString = @"SELECT [Id],[Name] FROM [dbo].[Category]";
+            queryString = @"SELECT [Id],[Name] FROM [dbo].[Category] WHERE [Level] = " + nivel;
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();

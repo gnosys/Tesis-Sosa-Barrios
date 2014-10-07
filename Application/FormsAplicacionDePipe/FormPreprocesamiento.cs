@@ -39,7 +39,7 @@ namespace AppPrincipal
             foreach (var config in configurations)
             {
                 current = GetConfiguredAroundFilters(config);
-                current = current.Next;
+                //current = current.Next;
                 if (ret == null)
                 {
                     ret = current;
