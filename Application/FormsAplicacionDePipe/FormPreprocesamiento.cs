@@ -85,8 +85,8 @@ namespace AppPrincipal
         public FormPreprocesamiento()
         {
             configuration = JObject.Parse(jsonConf);
-            dynamic tokenizingConfiguration = ((JArray)configuration.preprocessing).First(x => (string)x["_type"] == "tokenizing" );
-            InitializeComponent();
+            //dynamic tokenizingConfiguration = ((JArray)configuration.preprocessing).First(x => (string)x["_type"] == "tokenizing" );
+            //InitializeComponent();
         }
 
         private void buttonPreprocesar_Click(object sender, EventArgs e)

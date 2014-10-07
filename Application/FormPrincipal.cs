@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using AppPrincipal.FormsPreprocesamientos;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace AppPrincipal
 {
@@ -21,6 +23,10 @@ namespace AppPrincipal
         FormPreprocesamiento formPreprocesamiento;
         FormEnriquecimiento formEnriquecimiento;
         FormTratamientoEnTexto formTratamientoEnTexto;
+
+
+        //from file.pip
+        public dynamic PipeConfiguration { get; set; }
 
         public App()
         {
@@ -126,11 +132,12 @@ namespace AppPrincipal
         {
             OpenFileDialog buscarArchivo = new OpenFileDialog();
             buscarArchivo.ShowDialog();
-            string directorio = buscarArchivo.FileName;
+            string path = buscarArchivo.FileName;
 
-            if (directorio.EndsWith(".pip"))
+            if (path.EndsWith(".pip"))
             {
-                //cargar las configuraciones y resultados parciales.
+                string readText = File.ReadAllText(path);
+                PipeConfiguration = JObject.Parse(readText);
             }
             else
             {
