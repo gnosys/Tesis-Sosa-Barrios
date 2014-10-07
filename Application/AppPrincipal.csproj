@@ -152,6 +152,10 @@
       <Project>{f89fc198-cfdc-45ac-9aad-8a653bd40a08}</Project>
       <Name>DataBaseSQL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tonkenizer\Preprocesamientos.csproj">
+      <Project>{b1e416e7-930c-4328-9606-ba92a8b7adcb}</Project>
+      <Name>Preprocesamientos</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
