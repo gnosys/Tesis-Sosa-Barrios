@@ -65,13 +65,12 @@ namespace AppPrincipal
             Regex delimiter = new Regex((string)tokenizingConfiguration.regexp);
 
 
-            //List<Tweet> tweets = DataBase.Instance.SearchTweetsUpdates(0);
+            //get tweets
+            int categoryLevel = (int)((App)this.MdiParent).PipeConfiguration.categoryLevel;
+            List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify(categoryLevel);
+            List<string> docs = tweets.Select(x => x.Text).ToList();
 
-            //List<string> docs = tweets.Select(x => x.Text).ToList();
 
-
-            //tokenizer delimiter
-            //Regex delimiter = new Regex("([ \\t{}():;. \n])");
 
             ////chain of responsability: docs and words transformations
             //PreFilter preFilter = new EmptyPreFilter(null);
