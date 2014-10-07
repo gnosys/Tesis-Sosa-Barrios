@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelSeleccionarCategoria = new System.Windows.Forms.Panel();
-            this.labelTweetsActualizados = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.labelCategoriasCreadas = new System.Windows.Forms.Label();
             this.labelCantidadDeCategoriasACrear = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -39,16 +39,12 @@
             this.labelProfundidadNivelSeleccionado = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.buttonActualizarTweets = new System.Windows.Forms.Button();
             this.labelNivelSeleccionado = new System.Windows.Forms.Label();
-            this.labelNivelesCalculados = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.buttonCalcularNiveles = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.buttonCrearCategorias = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.labelCantidadNiveles = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.listBoxCategoriasNivel = new System.Windows.Forms.ListBox();
             this.buttonSeleccionarNivel = new System.Windows.Forms.Button();
             this.textBoxSeleccionarNivel = new System.Windows.Forms.TextBox();
@@ -57,24 +53,22 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dataGridViewDatos = new System.Windows.Forms.DataGridView();
-            this.buttonMostrarTuplasActualizadas = new System.Windows.Forms.Button();
             this.dataGridViewTuplas = new System.Windows.Forms.DataGridView();
-            this.Id_Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Texto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Entity_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tweet_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tweet_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Entity_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Texto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonMostrarTuplas = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SelectCantTuplas = new System.Windows.Forms.TextBox();
             this.buttonMostrarCategorias = new System.Windows.Forms.Button();
             this.SelectCantDatos = new System.Windows.Forms.TextBox();
             this.dataGridViewCategoriasCreadas = new System.Windows.Forms.DataGridView();
-            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxConeccionSQL = new System.Windows.Forms.TextBox();
@@ -93,7 +87,7 @@
             // 
             // panelSeleccionarCategoria
             // 
-            this.panelSeleccionarCategoria.Controls.Add(this.labelTweetsActualizados);
+            this.panelSeleccionarCategoria.Controls.Add(this.label7);
             this.panelSeleccionarCategoria.Controls.Add(this.labelCategoriasCreadas);
             this.panelSeleccionarCategoria.Controls.Add(this.labelCantidadDeCategoriasACrear);
             this.panelSeleccionarCategoria.Controls.Add(this.label22);
@@ -103,16 +97,12 @@
             this.panelSeleccionarCategoria.Controls.Add(this.labelProfundidadNivelSeleccionado);
             this.panelSeleccionarCategoria.Controls.Add(this.label20);
             this.panelSeleccionarCategoria.Controls.Add(this.label19);
-            this.panelSeleccionarCategoria.Controls.Add(this.buttonActualizarTweets);
             this.panelSeleccionarCategoria.Controls.Add(this.labelNivelSeleccionado);
-            this.panelSeleccionarCategoria.Controls.Add(this.labelNivelesCalculados);
             this.panelSeleccionarCategoria.Controls.Add(this.label16);
-            this.panelSeleccionarCategoria.Controls.Add(this.buttonCalcularNiveles);
             this.panelSeleccionarCategoria.Controls.Add(this.label18);
             this.panelSeleccionarCategoria.Controls.Add(this.buttonCrearCategorias);
             this.panelSeleccionarCategoria.Controls.Add(this.label17);
             this.panelSeleccionarCategoria.Controls.Add(this.labelCantidadNiveles);
-            this.panelSeleccionarCategoria.Controls.Add(this.label15);
             this.panelSeleccionarCategoria.Controls.Add(this.listBoxCategoriasNivel);
             this.panelSeleccionarCategoria.Controls.Add(this.buttonSeleccionarNivel);
             this.panelSeleccionarCategoria.Controls.Add(this.textBoxSeleccionarNivel);
@@ -120,28 +110,26 @@
             this.panelSeleccionarCategoria.Controls.Add(this.label12);
             this.panelSeleccionarCategoria.Controls.Add(this.label11);
             this.panelSeleccionarCategoria.Controls.Add(this.label10);
-            this.panelSeleccionarCategoria.Location = new System.Drawing.Point(157, 2);
+            this.panelSeleccionarCategoria.Location = new System.Drawing.Point(155, 2);
             this.panelSeleccionarCategoria.Name = "panelSeleccionarCategoria";
             this.panelSeleccionarCategoria.Size = new System.Drawing.Size(834, 305);
             this.panelSeleccionarCategoria.TabIndex = 17;
             this.panelSeleccionarCategoria.Visible = false;
             // 
-            // labelTweetsActualizados
+            // label7
             // 
-            this.labelTweetsActualizados.AutoSize = true;
-            this.labelTweetsActualizados.ForeColor = System.Drawing.Color.Green;
-            this.labelTweetsActualizados.Location = new System.Drawing.Point(698, 229);
-            this.labelTweetsActualizados.Name = "labelTweetsActualizados";
-            this.labelTweetsActualizados.Size = new System.Drawing.Size(105, 13);
-            this.labelTweetsActualizados.TabIndex = 32;
-            this.labelTweetsActualizados.Text = "Tweets Actualizados";
-            this.labelTweetsActualizados.Visible = false;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 128);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(288, 13);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Crear categorias de acuerdo a los tweets en Base de Datos";
             // 
             // labelCategoriasCreadas
             // 
             this.labelCategoriasCreadas.AutoSize = true;
             this.labelCategoriasCreadas.ForeColor = System.Drawing.Color.Green;
-            this.labelCategoriasCreadas.Location = new System.Drawing.Point(700, 170);
+            this.labelCategoriasCreadas.Location = new System.Drawing.Point(413, 128);
             this.labelCategoriasCreadas.Name = "labelCategoriasCreadas";
             this.labelCategoriasCreadas.Size = new System.Drawing.Size(99, 13);
             this.labelCategoriasCreadas.TabIndex = 31;
@@ -151,7 +139,7 @@
             // labelCantidadDeCategoriasACrear
             // 
             this.labelCantidadDeCategoriasACrear.AutoSize = true;
-            this.labelCantidadDeCategoriasACrear.Location = new System.Drawing.Point(541, 288);
+            this.labelCantidadDeCategoriasACrear.Location = new System.Drawing.Point(719, 282);
             this.labelCantidadDeCategoriasACrear.Name = "labelCantidadDeCategoriasACrear";
             this.labelCantidadDeCategoriasACrear.Size = new System.Drawing.Size(13, 13);
             this.labelCantidadDeCategoriasACrear.TabIndex = 30;
@@ -160,7 +148,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(384, 288);
+            this.label22.Location = new System.Drawing.Point(562, 282);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(159, 13);
             this.label22.TabIndex = 29;
@@ -169,7 +157,7 @@
             // labelTotalCantidadDeTwwets
             // 
             this.labelTotalCantidadDeTwwets.AutoSize = true;
-            this.labelTotalCantidadDeTwwets.Location = new System.Drawing.Point(135, 270);
+            this.labelTotalCantidadDeTwwets.Location = new System.Drawing.Point(141, 244);
             this.labelTotalCantidadDeTwwets.Name = "labelTotalCantidadDeTwwets";
             this.labelTotalCantidadDeTwwets.Size = new System.Drawing.Size(13, 13);
             this.labelTotalCantidadDeTwwets.TabIndex = 28;
@@ -178,7 +166,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(14, 270);
+            this.label21.Location = new System.Drawing.Point(20, 244);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(126, 13);
             this.label21.TabIndex = 27;
@@ -187,7 +175,7 @@
             // labelCantidadTweetProfundidadNivel
             // 
             this.labelCantidadTweetProfundidadNivel.AutoSize = true;
-            this.labelCantidadTweetProfundidadNivel.Location = new System.Drawing.Point(241, 251);
+            this.labelCantidadTweetProfundidadNivel.Location = new System.Drawing.Point(247, 225);
             this.labelCantidadTweetProfundidadNivel.Name = "labelCantidadTweetProfundidadNivel";
             this.labelCantidadTweetProfundidadNivel.Size = new System.Drawing.Size(13, 13);
             this.labelCantidadTweetProfundidadNivel.TabIndex = 26;
@@ -196,7 +184,7 @@
             // labelProfundidadNivelSeleccionado
             // 
             this.labelProfundidadNivelSeleccionado.AutoSize = true;
-            this.labelProfundidadNivelSeleccionado.Location = new System.Drawing.Point(149, 251);
+            this.labelProfundidadNivelSeleccionado.Location = new System.Drawing.Point(155, 225);
             this.labelProfundidadNivelSeleccionado.Name = "labelProfundidadNivelSeleccionado";
             this.labelProfundidadNivelSeleccionado.Size = new System.Drawing.Size(13, 13);
             this.labelProfundidadNivelSeleccionado.TabIndex = 25;
@@ -205,7 +193,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(14, 288);
+            this.label20.Location = new System.Drawing.Point(20, 262);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(321, 13);
             this.label20.TabIndex = 24;
@@ -214,69 +202,36 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(14, 251);
+            this.label19.Location = new System.Drawing.Point(20, 225);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(229, 13);
             this.label19.TabIndex = 23;
             this.label19.Text = "La cantidad de Tweets con        niveles son de";
             // 
-            // buttonActualizarTweets
-            // 
-            this.buttonActualizarTweets.Enabled = false;
-            this.buttonActualizarTweets.Location = new System.Drawing.Point(698, 201);
-            this.buttonActualizarTweets.Name = "buttonActualizarTweets";
-            this.buttonActualizarTweets.Size = new System.Drawing.Size(101, 23);
-            this.buttonActualizarTweets.TabIndex = 22;
-            this.buttonActualizarTweets.Text = "Actualizar Tweets";
-            this.buttonActualizarTweets.UseVisualStyleBackColor = true;
-            this.buttonActualizarTweets.Click += new System.EventHandler(this.buttonActualizarTweets_Click);
-            // 
             // labelNivelSeleccionado
             // 
             this.labelNivelSeleccionado.AutoSize = true;
             this.labelNivelSeleccionado.ForeColor = System.Drawing.Color.Green;
-            this.labelNivelSeleccionado.Location = new System.Drawing.Point(261, 229);
+            this.labelNivelSeleccionado.Location = new System.Drawing.Point(356, 186);
             this.labelNivelSeleccionado.Name = "labelNivelSeleccionado";
             this.labelNivelSeleccionado.Size = new System.Drawing.Size(99, 13);
             this.labelNivelSeleccionado.TabIndex = 20;
             this.labelNivelSeleccionado.Text = "Nivel Seleccionado";
             this.labelNivelSeleccionado.Visible = false;
             // 
-            // labelNivelesCalculados
-            // 
-            this.labelNivelesCalculados.AutoSize = true;
-            this.labelNivelesCalculados.ForeColor = System.Drawing.Color.Green;
-            this.labelNivelesCalculados.Location = new System.Drawing.Point(261, 171);
-            this.labelNivelesCalculados.Name = "labelNivelesCalculados";
-            this.labelNivelesCalculados.Size = new System.Drawing.Size(97, 13);
-            this.labelNivelesCalculados.TabIndex = 18;
-            this.labelNivelesCalculados.Text = "Niveles Calculados";
-            this.labelNivelesCalculados.Visible = false;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(14, 171);
+            this.label16.Location = new System.Drawing.Point(17, 164);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(128, 13);
             this.label16.TabIndex = 17;
             this.label16.Text = "La cantidad de niveles es";
             // 
-            // buttonCalcularNiveles
-            // 
-            this.buttonCalcularNiveles.Enabled = false;
-            this.buttonCalcularNiveles.Location = new System.Drawing.Point(259, 143);
-            this.buttonCalcularNiveles.Name = "buttonCalcularNiveles";
-            this.buttonCalcularNiveles.Size = new System.Drawing.Size(101, 23);
-            this.buttonCalcularNiveles.TabIndex = 16;
-            this.buttonCalcularNiveles.Text = "Calcular Niveles";
-            this.buttonCalcularNiveles.UseVisualStyleBackColor = true;
-            this.buttonCalcularNiveles.Click += new System.EventHandler(this.buttonCalcularNiveles_Click);
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(14, 206);
+            this.label18.Location = new System.Drawing.Point(17, 186);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(186, 13);
             this.label18.TabIndex = 15;
@@ -285,7 +240,7 @@
             // buttonCrearCategorias
             // 
             this.buttonCrearCategorias.Enabled = false;
-            this.buttonCrearCategorias.Location = new System.Drawing.Point(698, 143);
+            this.buttonCrearCategorias.Location = new System.Drawing.Point(308, 123);
             this.buttonCrearCategorias.Name = "buttonCrearCategorias";
             this.buttonCrearCategorias.Size = new System.Drawing.Size(101, 23);
             this.buttonCrearCategorias.TabIndex = 13;
@@ -296,7 +251,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(384, 114);
+            this.label17.Location = new System.Drawing.Point(562, 103);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(180, 13);
             this.label17.TabIndex = 12;
@@ -305,25 +260,16 @@
             // labelCantidadNiveles
             // 
             this.labelCantidadNiveles.AutoSize = true;
-            this.labelCantidadNiveles.Location = new System.Drawing.Point(140, 171);
+            this.labelCantidadNiveles.Location = new System.Drawing.Point(143, 164);
             this.labelCantidadNiveles.Name = "labelCantidadNiveles";
             this.labelCantidadNiveles.Size = new System.Drawing.Size(13, 13);
             this.labelCantidadNiveles.TabIndex = 11;
             this.labelCantidadNiveles.Text = "0";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(14, 148);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(241, 13);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "Calcular la cantidad de Niveles en Base de Datos";
-            // 
             // listBoxCategoriasNivel
             // 
             this.listBoxCategoriasNivel.FormattingEnabled = true;
-            this.listBoxCategoriasNivel.Location = new System.Drawing.Point(387, 136);
+            this.listBoxCategoriasNivel.Location = new System.Drawing.Point(516, 128);
             this.listBoxCategoriasNivel.Name = "listBoxCategoriasNivel";
             this.listBoxCategoriasNivel.Size = new System.Drawing.Size(288, 147);
             this.listBoxCategoriasNivel.TabIndex = 8;
@@ -331,7 +277,7 @@
             // buttonSeleccionarNivel
             // 
             this.buttonSeleccionarNivel.Enabled = false;
-            this.buttonSeleccionarNivel.Location = new System.Drawing.Point(259, 201);
+            this.buttonSeleccionarNivel.Location = new System.Drawing.Point(251, 181);
             this.buttonSeleccionarNivel.Name = "buttonSeleccionarNivel";
             this.buttonSeleccionarNivel.Size = new System.Drawing.Size(101, 23);
             this.buttonSeleccionarNivel.TabIndex = 7;
@@ -342,7 +288,7 @@
             // textBoxSeleccionarNivel
             // 
             this.textBoxSeleccionarNivel.Enabled = false;
-            this.textBoxSeleccionarNivel.Location = new System.Drawing.Point(206, 203);
+            this.textBoxSeleccionarNivel.Location = new System.Drawing.Point(207, 183);
             this.textBoxSeleccionarNivel.Name = "textBoxSeleccionarNivel";
             this.textBoxSeleccionarNivel.Size = new System.Drawing.Size(36, 20);
             this.textBoxSeleccionarNivel.TabIndex = 4;
@@ -397,17 +343,6 @@
             this.dataGridViewDatos.Size = new System.Drawing.Size(586, 204);
             this.dataGridViewDatos.TabIndex = 5;
             // 
-            // buttonMostrarTuplasActualizadas
-            // 
-            this.buttonMostrarTuplasActualizadas.Enabled = false;
-            this.buttonMostrarTuplasActualizadas.Location = new System.Drawing.Point(632, 62);
-            this.buttonMostrarTuplasActualizadas.Name = "buttonMostrarTuplasActualizadas";
-            this.buttonMostrarTuplasActualizadas.Size = new System.Drawing.Size(161, 23);
-            this.buttonMostrarTuplasActualizadas.TabIndex = 18;
-            this.buttonMostrarTuplasActualizadas.Text = "Mostrar tuplas actualizadas";
-            this.buttonMostrarTuplasActualizadas.UseVisualStyleBackColor = true;
-            this.buttonMostrarTuplasActualizadas.Click += new System.EventHandler(this.buttonMostrarTuplasActualizadas_Click);
-            // 
             // dataGridViewTuplas
             // 
             this.dataGridViewTuplas.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip;
@@ -419,53 +354,53 @@
             this.Author,
             this.Entity_Id,
             this.Category,
-            this.Texto,
-            this.Id_Category});
+            this.Texto});
             this.dataGridViewTuplas.Location = new System.Drawing.Point(173, 93);
             this.dataGridViewTuplas.Name = "dataGridViewTuplas";
             this.dataGridViewTuplas.Size = new System.Drawing.Size(816, 204);
             this.dataGridViewTuplas.TabIndex = 0;
-            // 
-            // Id_Category
-            // 
-            this.Id_Category.HeaderText = "Id_Category";
-            this.Id_Category.Name = "Id_Category";
-            // 
-            // Texto
-            // 
-            this.Texto.HeaderText = "Text";
-            this.Texto.Name = "Texto";
-            // 
-            // Category
-            // 
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            // 
-            // Entity_Id
-            // 
-            this.Entity_Id.HeaderText = "Entity_Id";
-            this.Entity_Id.Name = "Entity_Id";
-            // 
-            // Author
-            // 
-            this.Author.HeaderText = "Author";
-            this.Author.Name = "Author";
-            // 
-            // Tweet_Id
-            // 
-            this.Tweet_Id.HeaderText = "Tweet_Id";
-            this.Tweet_Id.Name = "Tweet_Id";
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
             // 
             // indice
             // 
             this.indice.HeaderText = "";
             this.indice.Name = "indice";
             this.indice.Width = 50;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 120;
+            // 
+            // Tweet_Id
+            // 
+            this.Tweet_Id.HeaderText = "Tweet_Id";
+            this.Tweet_Id.Name = "Tweet_Id";
+            this.Tweet_Id.Width = 120;
+            // 
+            // Author
+            // 
+            this.Author.HeaderText = "Author";
+            this.Author.Name = "Author";
+            this.Author.Width = 120;
+            // 
+            // Entity_Id
+            // 
+            this.Entity_Id.HeaderText = "Entity_Id";
+            this.Entity_Id.Name = "Entity_Id";
+            this.Entity_Id.Width = 120;
+            // 
+            // Category
+            // 
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.Width = 120;
+            // 
+            // Texto
+            // 
+            this.Texto.HeaderText = "Text";
+            this.Texto.Name = "Texto";
+            this.Texto.Width = 120;
             // 
             // buttonMostrarTuplas
             // 
@@ -525,17 +460,17 @@
             this.dataGridViewCategoriasCreadas.Size = new System.Drawing.Size(213, 204);
             this.dataGridViewCategoriasCreadas.TabIndex = 21;
             // 
-            // Categorias
-            // 
-            this.Categorias.HeaderText = "Categorias";
-            this.Categorias.Name = "Categorias";
-            this.Categorias.Width = 120;
-            // 
             // IdC
             // 
             this.IdC.HeaderText = "Id";
             this.IdC.Name = "IdC";
             this.IdC.Width = 30;
+            // 
+            // Categorias
+            // 
+            this.Categorias.HeaderText = "Categorias";
+            this.Categorias.Name = "Categorias";
+            this.Categorias.Width = 120;
             // 
             // label1
             // 
@@ -648,7 +583,6 @@
             this.Controls.Add(this.dataGridViewCategoriasCreadas);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.SelectCantDatos);
-            this.Controls.Add(this.buttonMostrarTuplasActualizadas);
             this.Controls.Add(this.buttonMostrarCategorias);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -681,7 +615,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelSeleccionarCategoria;
-        private System.Windows.Forms.Label labelTweetsActualizados;
         private System.Windows.Forms.Label labelCategoriasCreadas;
         private System.Windows.Forms.Label labelCantidadDeCategoriasACrear;
         private System.Windows.Forms.Label label22;
@@ -691,16 +624,12 @@
         private System.Windows.Forms.Label labelProfundidadNivelSeleccionado;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Button buttonActualizarTweets;
         private System.Windows.Forms.Label labelNivelSeleccionado;
-        private System.Windows.Forms.Label labelNivelesCalculados;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button buttonCalcularNiveles;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button buttonCrearCategorias;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label labelCantidadNiveles;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ListBox listBoxCategoriasNivel;
         private System.Windows.Forms.Button buttonSeleccionarNivel;
         private System.Windows.Forms.TextBox textBoxSeleccionarNivel;
@@ -709,16 +638,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dataGridViewDatos;
-        private System.Windows.Forms.Button buttonMostrarTuplasActualizadas;
         private System.Windows.Forms.DataGridView dataGridViewTuplas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn indice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tweet_Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Entity_Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Texto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Category;
         private System.Windows.Forms.Button buttonMostrarTuplas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox SelectCantTuplas;
@@ -737,5 +657,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonMostrarTablaCategorias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tweet_Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Entity_Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Texto;
+        private System.Windows.Forms.Label label7;
     }
 }

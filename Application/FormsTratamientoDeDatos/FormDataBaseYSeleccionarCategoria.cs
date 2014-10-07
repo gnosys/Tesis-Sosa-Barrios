@@ -33,9 +33,7 @@ namespace AppPrincipal
             buttonMostrarTuplas.Enabled = true;
             buttonMostrarCategorias.Enabled = true;
             buttonMostrarTextos.Enabled = true;
-            buttonCalcularNiveles.Enabled = true;
-            buttonMostrarTuplasActualizadas.Enabled = true;
-            buttonMostrarTablaCategorias.Enabled = true;
+            buttonCrearCategorias.Enabled = true;
             cleanGrid();
         }
 
@@ -46,8 +44,7 @@ namespace AppPrincipal
             buttonMostrarTuplas.Enabled = false;
             buttonMostrarCategorias.Enabled = false;
             buttonMostrarTextos.Enabled = false;
-            buttonMostrarTuplasActualizadas.Enabled = false;
-            buttonMostrarTablaCategorias.Enabled = false;
+            buttonCrearCategorias.Enabled = false;
             cleanGrid();
         }
 
@@ -139,19 +136,6 @@ namespace AppPrincipal
             }
         }
 
-        private void buttonCalcularNiveles_Click(object sender, System.EventArgs e)
-        {
-            labelNivelesCalculados.Visible = false;
-            labelCantidadNiveles.Text = db.GetAmountNivelesTableTweet().ToString();
-            if (!labelCantidadNiveles.Text.Equals("0"))
-            {
-                buttonSeleccionarNivel.Enabled = true;
-                textBoxSeleccionarNivel.Enabled = true;
-            }
-            labelNivelesCalculados.Visible = true;
-            labelCantidadNiveles.ForeColor = Color.Green;
-        }
-
         private void buttonSeleccionarNivel_Click(object sender, System.EventArgs e)
         {
             if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text))
@@ -173,42 +157,18 @@ namespace AppPrincipal
                 {
                     listBoxCategoriasNivel.Items.Add(c);
                 }
-                buttonCrearCategorias.Enabled = true;
                 labelNivelSeleccionado.Visible = true;
+                buttonMostrarTablaCategorias.Enabled = true;
             }
         }
 
         private void buttonCrearCategorias_Click(object sender, System.EventArgs e)
         {
             labelCategoriasCreadas.Visible = false;
-            if (listBoxCategoriasNivel.Items.Count != 0)
-            {
-                List<string> newCategorias = new List<string>();
-                for (int i = 0; i < listBoxCategoriasNivel.Items.Count; i++)
-                    newCategorias.Add(listBoxCategoriasNivel.Items[i].ToString());
-                buttonActualizarTweets.Enabled = true;
-            }
+            //db.RePopulateCategories();
+            buttonSeleccionarNivel.Enabled = true;
+            textBoxSeleccionarNivel.Enabled = true;
             labelCategoriasCreadas.Visible = true;
-        }
-
-        private void buttonActualizarTweets_Click(object sender, System.EventArgs e)
-        {
-            labelTweetsActualizados.Visible = false;
-            db.RePopulateCategories();
-            labelTweetsActualizados.Visible = true;
-        }
-
-        private void buttonMostrarTuplasActualizadas_Click(object sender, System.EventArgs e)
-        {
-            if (SelectCantTuplas.Text != "" && int.Parse(SelectCantTuplas.Text) > 0 && int.Parse(SelectCantTuplas.Text) < 10001)
-            {
-                //List<Tweet> tuplas = db.SearchTweetsUpdates(int.Parse(SelectCantTuplas.Text));
-                IEnumerable<Tweet> tuplas = db.GetTweetsForClassify(1);
-                dataGridViewTuplas.Rows.Clear();
-                int indice = 1;
-                foreach (Tweet t in tuplas)
-                    dataGridViewTuplas.Rows.Add(indice++, t.Id, t.Tweet_Id, t.Author, t.Entity_Id, t.Category, t.Text, t.Id_Category);
-            }
         }
 
         private void buttonMostrarTablaCategorias_Click(object sender, EventArgs e)
