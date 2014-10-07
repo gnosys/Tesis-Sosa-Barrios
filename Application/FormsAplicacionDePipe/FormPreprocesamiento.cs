@@ -11,43 +11,12 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using Tonkenizer.Filters;
 using Tonkenizer.Filters.AroundFilters;
+using System.Text.RegularExpressions;
 
 namespace AppPrincipal
 {
     public partial class FormPreprocesamiento : Form
     {
-
-        private static string jsonConf =
-@"
-{
-	""database"": {
-		""connectionString"": ""Data Source=MATI-PC\\SQLEXPRESS;Initial Catalog=Tweets;Integrated Security=True"",
-		""categoryLevel"": 2
-	},
-	""preprocessing"": [{
-		""_type"": ""tokenizing"",
-		""regexp"": ""([ \\\\t{}():;. \\n])""
-	},
-	{
-		""_type"": ""stopWords"",
-		""filename"": ""C:\\temp\\stopwordlists\\stp1.txt""
-	},
-	{
-		""_type"": ""stemming""
-	},
-	{
-		""_type"": ""contextRichment"",
-		""scopes"": [""webAnalytics"",
-		""metatags"",
-		""shareTags""]
-	}],
-	""representation"": {
-		""minWeight"": 0,
-		""discardEquals"": false
-	},
-	""preprocessingGuid"" : 9,
-}
-";
 
         bool cambiarTabs = false;
         dynamic configuration;
@@ -79,25 +48,29 @@ namespace AppPrincipal
             return ret;
         }
 
-
-
-
         public FormPreprocesamiento()
         {
-            configuration = JObject.Parse(jsonConf);
+            //configuration = JObject.Parse(jsonConf);
             //dynamic tokenizingConfiguration = ((JArray)configuration.preprocessing).First(x => (string)x["_type"] == "tokenizing" );
-            //InitializeComponent();
+            InitializeComponent();
         }
 
         private void buttonPreprocesar_Click(object sender, EventArgs e)
         {
 
-            List<Tweet> tweets = DataBase.Instance.SearchTweetsUpdates(0);
+            JArray preprocessingConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing;
 
-            List<string> docs = tweets.Select(x => x.Text).ToList();
+            //tokenizer delimiter
+            dynamic tokenizingConfiguration = ((JArray)preprocessingConfiguration).First(x => (string)x["_type"] == "tokenizing");
+            Regex delimiter = new Regex((string)tokenizingConfiguration.regexp);
 
 
-            ////tokenizer delimiter
+            //List<Tweet> tweets = DataBase.Instance.SearchTweetsUpdates(0);
+
+            //List<string> docs = tweets.Select(x => x.Text).ToList();
+
+
+            //tokenizer delimiter
             //Regex delimiter = new Regex("([ \\t{}():;. \n])");
 
             ////chain of responsability: docs and words transformations
