@@ -527,21 +527,35 @@ namespace DataBaseSQL
 
         public string SavePreprocessingTokens(List<Tweet> tweets, List<string[]> TFIDFInput)
         {
-            string guid = Guid.NewGuid().ToString();
-            StringBuilder builder = new StringBuilder();
-            int mod = 0;
-            int tweetIndex = 0;
-            foreach (var tweet in tweets)
+            try
             {
-                foreach(string token in TFIDFInput.ElementAt(tweetIndex))
+                connection.Open();
+                string guid = Guid.NewGuid().ToString();
+                StringBuilder builder = new StringBuilder();
+                int mod = 0;
+                int tweetIndex = 0;
+                foreach (var tweet in tweets)
                 {
-
-                    ++mod;
+                    foreach (string token in TFIDFInput.ElementAt(tweetIndex))
+                    {
+                        builder.AppendLine(String.Format(@"INSERT INTO [dbo].[Token]([Text],[idPipe],[idTweet]) VALUES ('{0}','{1}','{2}')", token, guid, tweet.Id));
+                        ++mod;
+                        if (mod == 2000)
+                        {
+                            mod = ExecuteBatch(mod, builder);
+                        }
+                    }
+                    ++tweetIndex;
                 }
-                ++tweetIndex;
+                mod = ExecuteBatch(mod, builder);
+                return guid;
             }
-
-            return guid;
+            finally
+            {
+                connection.Close();
+                command.Dispose();
+            }
+            
         }
     }
 }
