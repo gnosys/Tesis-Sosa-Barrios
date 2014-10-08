@@ -67,6 +67,9 @@
             this.buttonMostrarCategorias = new System.Windows.Forms.Button();
             this.SelectCantDatos = new System.Windows.Forms.TextBox();
             this.dataGridViewCategoriasCreadas = new System.Windows.Forms.DataGridView();
+            this.IdColumna = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxConeccionSQL = new System.Windows.Forms.TextBox();
@@ -77,9 +80,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonMostrarTablaCategorias = new System.Windows.Forms.Button();
-            this.IdColumna = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelSeleccionarCategoria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTuplas)).BeginInit();
@@ -462,6 +462,24 @@
             this.dataGridViewCategoriasCreadas.Size = new System.Drawing.Size(269, 204);
             this.dataGridViewCategoriasCreadas.TabIndex = 21;
             // 
+            // IdColumna
+            // 
+            this.IdColumna.HeaderText = "";
+            this.IdColumna.Name = "IdColumna";
+            this.IdColumna.Width = 30;
+            // 
+            // IdC
+            // 
+            this.IdC.HeaderText = "Id";
+            this.IdC.Name = "IdC";
+            this.IdC.Width = 30;
+            // 
+            // Categorias
+            // 
+            this.Categorias.HeaderText = "Categorias";
+            this.Categorias.Name = "Categorias";
+            this.Categorias.Width = 160;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -558,24 +576,6 @@
             this.buttonMostrarTablaCategorias.Text = "Mostrar Categorias";
             this.buttonMostrarTablaCategorias.UseVisualStyleBackColor = true;
             this.buttonMostrarTablaCategorias.Click += new System.EventHandler(this.buttonMostrarTablaCategorias_Click);
-            // 
-            // IdColumna
-            // 
-            this.IdColumna.HeaderText = "";
-            this.IdColumna.Name = "IdColumna";
-            this.IdColumna.Width = 30;
-            // 
-            // IdC
-            // 
-            this.IdC.HeaderText = "Id";
-            this.IdC.Name = "IdC";
-            this.IdC.Width = 30;
-            // 
-            // Categorias
-            // 
-            this.Categorias.HeaderText = "Categorias";
-            this.Categorias.Name = "Categorias";
-            this.Categorias.Width = 160;
             // 
             // FormDataBaseYSeleccionarCategoria
             // 

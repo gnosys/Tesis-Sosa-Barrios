@@ -132,6 +132,7 @@ namespace AppPrincipal
                         textBoxSeleccionarNivel.Enabled = true;
                         labelCantidadNiveles.Text = db.GetAmountNivelesTableTweet().ToString();
                     }
+                    ((App)this.MdiParent).PipeConfiguration.database.connectionString = textBoxConeccionSQL.Text;
                 }
                 else
                 {
@@ -166,6 +167,7 @@ namespace AppPrincipal
                 }
                 labelNivelSeleccionado.Visible = true;
                 buttonMostrarTablaCategorias.Enabled = true;
+                ((App)this.MdiParent).PipeConfiguration.categoryLevel = textBoxSeleccionarNivel.Text;
             }
         }
 

@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using AppPrincipal.FormsPreprocesamientos;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace AppPrincipal
 {
@@ -138,13 +139,20 @@ namespace AppPrincipal
             {
                 string readText = File.ReadAllText(path);
                 PipeConfiguration = JObject.Parse(readText);
+                string message = "Su configuracion fue cargada exitosamente";
+                string caption = "Carga Completa";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result = MessageBox.Show(message, caption, buttons);
             }
             else
             {
-                string message = "El archivo no tiene un formato valido .pip";
-                string caption = "Archivo invalido";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result = MessageBox.Show(message, caption, buttons);
+                if (!path.Equals(""))
+                {
+                    string message = "El archivo no tiene un formato valido .pip";
+                    string caption = "Archivo Invalido";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result = MessageBox.Show(message, caption, buttons);
+                }
             }
         }
 
@@ -169,7 +177,26 @@ namespace AppPrincipal
 
         private void guardarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
+            string json = JsonConvert.SerializeObject(PipeConfiguration);
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Pipe|*.pip";
+            saveFileDialog.Title = "Guardar configuracion en un archivo";
+            saveFileDialog.ShowDialog();
 
+            // If the file name is not an empty string open it for saving.
+            if (saveFileDialog.FileName != "")
+            {
+                // Saves the Image via a FileStream created by the OpenFile method.
+                System.IO.FileStream fs =
+                   (System.IO.FileStream)saveFileDialog.OpenFile();
+                byte[] bytes = Encoding.UTF8.GetBytes(json.ToString());
+                foreach (byte b in bytes)
+                {
+                    fs.WriteByte(b);
+                }
+                fs.Flush();
+                fs.Close();
+            }
         }
 
     }
