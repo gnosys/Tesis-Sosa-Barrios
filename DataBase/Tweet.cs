@@ -15,11 +15,11 @@ namespace DataBaseSQL
         string entity_id;
         string category;
         string text;
-        string id_category;
+        int id_category;
 
         public Tweet()
         {
-            this.author = this.category = this.text = this.entity_id = this.tweet_id = this.id_category = string.Empty;
+            this.author = this.category = this.text = this.entity_id = this.tweet_id = string.Empty;
         }
 
         public int Id
@@ -94,7 +94,7 @@ namespace DataBaseSQL
             }
         }
 
-        public string Id_Category
+        public int Id_Category
         {
             get
             {

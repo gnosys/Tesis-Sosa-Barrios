@@ -12,22 +12,20 @@ namespace TFIDFWeighting
     {
         private DataBase db = null;
 
-        public void CreateRepresentationFiles()
+        public void CreateRepresentationFile(List<string[]> tokens, int docs, int[] categories, string filePath)
         {
-            List<string[]> TFIDFInput = db.GetCurrentTokens();
-            TFIDFMeasure tfdif = new TFIDFMeasure(TFIDFInput);
-            var bow = StringUtils.ArrayListToArray(tfdif.Terms);
-            CreateBOWFile(bow);
-            CreateVSMFile(tfdif.TermWeight, TFIDFInput.Count);
+            TFIDFMeasure tfdif = new TFIDFMeasure(tokens);
+            CreateVSMFile(tfdif.TermWeight, docs,categories,filePath);
         }
 
-        private static void CreateVSMFile(float[][] weights, int docs)
+        private static void CreateVSMFile(float[][] weights, int docs, int[] categories, string filePath)
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"VSM.txt"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath))
             {
+                StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < docs; i++)
                 {
-                    StringBuilder builder = new StringBuilder();
+                    builder.AppendFormat("{0} ", categories[i]);
                     for (int j = 0; j < weights.Length; j++)
                     {
                         if (weights[j][i] > 0)
@@ -36,6 +34,7 @@ namespace TFIDFWeighting
                         }
                     }
                     file.WriteLine(builder.ToString());
+                    builder.Clear();
                 }
             }
         }

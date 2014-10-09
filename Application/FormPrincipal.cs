@@ -12,6 +12,7 @@ using AppPrincipal.FormsPreprocesamientos;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using TFIDFWeighting;
 
 namespace AppPrincipal
 {
@@ -172,6 +173,10 @@ namespace AppPrincipal
 
         private void buttonRepresentacion_Click(object sender, System.EventArgs e)
         {
+            IRepresentation representation = new Representation();
+            List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify((int)PipeConfiguration.categoryLevel);
+            List<string[]> tokens = DataBase.Instance.GetTokens((string)PipeConfiguration.preprocessing.guid);
+            representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"VSM.txt");
 
         }
 

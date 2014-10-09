@@ -40,6 +40,44 @@ namespace DataBaseSQL
             
         }
 
+
+        public List<string[]> GetTokens(string guid)
+        {
+            queryString = string.Format(@"SELECT [IdTweet],[Text] FROM [Tweets].[dbo].[Token] WHERE [idPipe] = '{0}'",guid);
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            List<string[]> result = new List<string[]>();
+            int currentTweet = 0;
+            List<string> currentTweetTokens = new List<string>();
+            try
+            {
+                while (reader.Read())
+                {
+                    int processingTweet = reader.GetInt32(0);
+                    if (currentTweet == 0)
+                    {
+                        currentTweet = processingTweet;
+                    }
+                    if(processingTweet != currentTweet)
+                    {
+                        result.Add(currentTweetTokens.ToArray());
+                        currentTweetTokens.Clear();
+                        currentTweet = processingTweet;
+                    }
+                    currentTweetTokens.Add(reader.GetString(1));
+                }
+                result.Add(currentTweetTokens.ToArray());
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+                command.Dispose();
+            }
+            return result;
+        }
+
         public void Dispose()
         {
             if (connection != null)
@@ -129,7 +167,7 @@ namespace DataBaseSQL
                     dato.Entity_Id = reader.GetValue(3).ToString();
                     dato.Category = reader.GetValue(4).ToString();
                     dato.Text = reader.GetValue(5).ToString();
-                    dato.Id_Category = reader.GetValue(6).ToString();
+                    dato.Id_Category = reader.GetInt32(6);
                     list.Add(dato);
                 }
             }
@@ -388,7 +426,7 @@ namespace DataBaseSQL
                     {
                         Id = reader.GetInt32(0),
                         Text = reader.GetValue(1).ToString(),
-                        Id_Category = reader.GetValue(2).ToString()
+                        Id_Category = reader.GetInt32(2)
                     });
                 }
             }

@@ -3,7 +3,7 @@
 		"connectionString": "Data Source=MATI-PC\\SQLEXPRESS;Initial Catalog=Tweets;Integrated Security=True"
 	},
 	"preprocessing": {
-		"guid": null,
+		"guid": "65460317-2ac0-47be-b447-3cc303a9934c",
 		"filters": [{
 			"_type": "tokenizing",
 			"regexp": "([ \\\\t{}():;. \\n])"
