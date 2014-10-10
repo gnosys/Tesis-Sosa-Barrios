@@ -44,10 +44,10 @@
     <Compile Include="SVMMulticlass.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\svm_multiclass_classify.exe">
+    <Content Include="svm_bin\svm_multiclass_classify.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\svm_multiclass_learn.exe">
+    <Content Include="svm_bin\svm_multiclass_learn.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

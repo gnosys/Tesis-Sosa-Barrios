@@ -14,7 +14,7 @@ namespace SVM_Multiclass_Interface
             // Start the child process.
             Process p = new Process();
             // Redirect the output stream of the child process.
-            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo("bin/svm_multiclass_learn.exe", String.Format("-c 1.0 {0} {1}", example_file, model_file));
+            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo("svm_bin/svm_multiclass_learn.exe", String.Format("-c 1.0 {0} {1}", example_file, model_file));
             myProcessStartInfo.UseShellExecute = false;
             myProcessStartInfo.RedirectStandardOutput = true;
             p.StartInfo = myProcessStartInfo;
