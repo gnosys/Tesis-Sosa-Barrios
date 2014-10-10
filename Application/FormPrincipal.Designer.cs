@@ -152,6 +152,7 @@
             this.buttonEjecutarSVMLigth.TabIndex = 18;
             this.buttonEjecutarSVMLigth.Text = "Ejecutar SVM-Ligth";
             this.buttonEjecutarSVMLigth.UseVisualStyleBackColor = true;
+            this.buttonEjecutarSVMLigth.Click += new System.EventHandler(this.buttonEjecutarSVMLigth_Click);
             // 
             // panelBotonera
             // 
@@ -183,6 +184,7 @@
             this.buttonCompararResultados.TabIndex = 23;
             this.buttonCompararResultados.Text = "Comparar Resultados";
             this.buttonCompararResultados.UseVisualStyleBackColor = true;
+            this.buttonCompararResultados.Click += new System.EventHandler(this.buttonCompararResultados_Click);
             // 
             // label1
             // 

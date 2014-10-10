@@ -152,6 +152,10 @@
       <Project>{f89fc198-cfdc-45ac-9aad-8a653bd40a08}</Project>
       <Name>DataBaseSQL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SVM-Multiclass-Interface\SVM-Multiclass-Interface.csproj">
+      <Project>{9ea9a8e3-97a8-4e1d-8f8a-66a1967c808b}</Project>
+      <Name>SVM-Multiclass-Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TFIDFWeighting\TFIDFWeighting.csproj">
       <Project>{6cf0f965-88b4-4c02-a291-3c76306116df}</Project>
       <Name>TFIDFWeighting</Name>

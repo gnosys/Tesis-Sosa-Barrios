@@ -13,6 +13,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using TFIDFWeighting;
+using SVM_Multiclass_Interface;
 
 namespace AppPrincipal
 {
@@ -202,6 +203,16 @@ namespace AppPrincipal
                 fs.Flush();
                 fs.Close();
             }
+        }
+
+        private void buttonCompararResultados_Click(object sender, System.EventArgs e)
+        {
+        }
+
+        private void buttonEjecutarSVMLigth_Click(object sender, System.EventArgs e)
+        {
+            ISVMMulticlass svm = new SVMMulticlass();
+            svm.Learn("VSM.txt", "model");
         }
 
     }
