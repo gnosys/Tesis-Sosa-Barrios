@@ -1,0 +1,14 @@
+{
+	"database": {
+		"connectionString": null
+	},
+	"preprocessing": {
+		"guid": null,
+		"filters": []
+	},
+	"representation": {
+		"minWeight": 0,
+		"discardEquals": false
+	},
+	"categoryLevel": null
+}

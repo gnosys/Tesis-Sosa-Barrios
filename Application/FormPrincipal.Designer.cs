@@ -150,7 +150,7 @@
             this.buttonEjecutarSVMLigth.Name = "buttonEjecutarSVMLigth";
             this.buttonEjecutarSVMLigth.Size = new System.Drawing.Size(130, 23);
             this.buttonEjecutarSVMLigth.TabIndex = 18;
-            this.buttonEjecutarSVMLigth.Text = "Ejecutar SVM-Ligth";
+            this.buttonEjecutarSVMLigth.Text = "SVM-Ligth";
             this.buttonEjecutarSVMLigth.UseVisualStyleBackColor = true;
             this.buttonEjecutarSVMLigth.Click += new System.EventHandler(this.buttonEjecutarSVMLigth_Click);
             // 

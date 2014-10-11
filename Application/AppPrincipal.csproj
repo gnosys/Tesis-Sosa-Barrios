@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormsAplicacionDePipe\FormRepresentacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAplicacionDePipe\FormRepresentacion.Designer.cs">
+      <DependentUpon>FormRepresentacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsAplicacionDePipe\FormSVMLigth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAplicacionDePipe\FormSVMLigth.Designer.cs">
+      <DependentUpon>FormSVMLigth.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsPreprocesamientos\FormEnriquecimiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +109,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormsAplicacionDePipe\FormRepresentacion.resx">
+      <DependentUpon>FormRepresentacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsAplicacionDePipe\FormSVMLigth.resx">
+      <DependentUpon>FormSVMLigth.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsPreprocesamientos\FormEnriquecimiento.resx">
       <DependentUpon>FormEnriquecimiento.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +159,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Recursos\Pipes\pipe-conf.pip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recursos\Pipes\pipe-default.pip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -169,6 +193,9 @@
   <ItemGroup>
     <Content Include="Imagenes\logo.ico" />
     <Content Include="Imagenes\logo.png" />
+    <Content Include="Recursos\StopWords\StopWords_England_String.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
