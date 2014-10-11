@@ -14,6 +14,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using TFIDFWeighting;
 using SVM_Multiclass_Interface;
+using AppPrincipal.FormsAplicacionDePipe;
 
 namespace AppPrincipal
 {
@@ -26,7 +27,8 @@ namespace AppPrincipal
         FormPreprocesamiento formPreprocesamiento;
         FormEnriquecimiento formEnriquecimiento;
         FormTratamientoEnTexto formTratamientoEnTexto;
-
+        FormRepresentacion formRepresentacion;
+        FormSVMLigth formSVMLigth;
 
         //from file.pip
         public dynamic PipeConfiguration { get; set; }
@@ -34,6 +36,8 @@ namespace AppPrincipal
         public App()
         {
             crearFormularios();
+            /* AGREGAR REFERENCIA UNIVERSAL */
+            PipeConfiguration = JObject.Parse(File.ReadAllText(@"C:\GitRepoTesis\Tesis-Sosa-Barrios\Application\Recursos\Pipes\pipe-default.pip"));
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
@@ -69,9 +73,15 @@ namespace AppPrincipal
             // Formulario del boton "Tratamiento en Texto"
             formTratamientoEnTexto = new FormTratamientoEnTexto();
             formTratamientoEnTexto.MdiParent = this;
-        }
 
-        
+            // Formulario del boton "Representacion"
+            formRepresentacion = new FormRepresentacion();
+            formRepresentacion.MdiParent = this;
+
+            // Formulario del boton "SVM-Ligth"
+            formSVMLigth = new FormSVMLigth();
+            formSVMLigth.MdiParent = this;
+        }
 
         // Oculta todos los formularios.
         private void ocultarFormularios()
@@ -141,19 +151,13 @@ namespace AppPrincipal
             {
                 string readText = File.ReadAllText(path);
                 PipeConfiguration = JObject.Parse(readText);
-                string message = "Su configuracion fue cargada exitosamente";
-                string caption = "Carga Completa";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result = MessageBox.Show(message, caption, buttons);
+                DialogResult result = MessageBox.Show("Su configuracion fue cargada exitosamente", "Carga Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 if (!path.Equals(""))
                 {
-                    string message = "El archivo no tiene un formato valido .pip";
-                    string caption = "Archivo Invalido";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result = MessageBox.Show(message, caption, buttons);
+                    DialogResult result = MessageBox.Show("El archivo no tiene un formato valido .pip", "Archivo Invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -174,11 +178,9 @@ namespace AppPrincipal
 
         private void buttonRepresentacion_Click(object sender, System.EventArgs e)
         {
-            IRepresentation representation = new Representation();
-            List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify((int)PipeConfiguration.categoryLevel);
-            List<string[]> tokens = DataBase.Instance.GetTokens((string)PipeConfiguration.preprocessing.guid);
-            representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"VSM.txt");
-
+            ocultarFormularios();
+            formRepresentacion.Dock = DockStyle.Fill;
+            formRepresentacion.Show();
         }
 
         private void guardarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -211,8 +213,9 @@ namespace AppPrincipal
 
         private void buttonEjecutarSVMLigth_Click(object sender, System.EventArgs e)
         {
-            ISVMMulticlass svm = new SVMMulticlass();
-            svm.Learn("VSM.txt", "model");
+            ocultarFormularios();
+            formSVMLigth.Dock = DockStyle.Fill;
+            formSVMLigth.Show();
         }
 
     }

@@ -90,9 +90,28 @@ namespace DataBaseSQL
 
         public bool CheckConnection()
         {
-            if (connection != null)
-                return true;
-            return false;
+            try
+            {
+                if (connection != null)
+                {
+                    if (String.IsNullOrEmpty(connection.ConnectionString))
+                    {
+                        connection.Dispose();
+                        connection = new SqlConnection(connectionString);
+                    }
+                    connection.Open();
+                    if (connection.State.Equals(ConnectionState.Open))
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool ExistDataTableCategory()
