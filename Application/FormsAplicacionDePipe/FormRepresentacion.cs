@@ -17,7 +17,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
     {
         private string nombreArchivo = "svm.dat";
         private string carpetaDestino = string.Empty;
-        private string texto = string.Empty;
+        private StringBuilder texto = new StringBuilder();
 
         public FormRepresentacion()
         {
@@ -30,10 +30,11 @@ namespace AppPrincipal.FormsAplicacionDePipe
             if (!textBoxCarpetaDestino.Text.Equals(nombreArchivo))
             {
                 richTextBoxTextoArchivo.Enabled = false;
-                //IRepresentation representation = new Representation();
-                //List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify((int)(((App)this.MdiParent).PipeConfiguration.categoryLevel));
-                //List<string[]> tokens = DataBase.Instance.GetTokens((string)(((App)this.MdiParent).PipeConfiguration.preprocessing.guid));
-                //representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @""+nombreArchivo);
+                richTextBoxTextoArchivo.Text = string.Empty;
+                IRepresentation representation = new Representation();
+                List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify((int)(((App)this.MdiParent).PipeConfiguration.categoryLevel));
+                List<string[]> tokens = DataBase.Instance.GetTokens((string)(((App)this.MdiParent).PipeConfiguration.preprocessing.guid));
+                representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text);
                 labelRepresentacionObtenida.Show();
                 buttonVisualizarRepresentacion.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;
@@ -58,21 +59,24 @@ namespace AppPrincipal.FormsAplicacionDePipe
 
         private void buttonAbrirCarpetaContenedora_Click(object sender, EventArgs e)
         {
+            labelRepresentacionObtenida.Hide();
             Process.Start("explorer.exe", carpetaDestino);
         }
 
         private void buttonVisualizarRepresentacion_Click(object sender, EventArgs e)
         {
+            labelRepresentacionObtenida.Hide();
             string line;
-            texto = string.Empty;
+            texto.Clear();
             try
             {
                 System.IO.StreamReader file = new System.IO.StreamReader(@"" + textBoxCarpetaDestino.Text);
                 while ((line = file.ReadLine()) != null)
                 {
-                    texto += line + "\r\n";
+                    texto.Append(line);
+                    texto.AppendLine();
                 }
-                richTextBoxTextoArchivo.Text = texto;
+                richTextBoxTextoArchivo.Text = texto.ToString();
                 richTextBoxTextoArchivo.Enabled = true;
             }
             catch

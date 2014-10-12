@@ -203,5 +203,14 @@ namespace AppPrincipal
             panelSeleccionarCategoria.Hide();
         }
 
+        public void setTextBoxConeccionSQL(string coneccion)
+        {
+            textBoxConeccionSQL.Text = coneccion;
+        }
+
+        public void setTextBoxSeleccionarNivel(string nivel)
+        {
+            textBoxSeleccionarNivel.Text = nivel;
+        }
     }
 }

@@ -102,9 +102,9 @@
             // 
             // textBoxCarpetaDestino
             // 
-            this.textBoxCarpetaDestino.Enabled = false;
             this.textBoxCarpetaDestino.Location = new System.Drawing.Point(192, 294);
             this.textBoxCarpetaDestino.Name = "textBoxCarpetaDestino";
+            this.textBoxCarpetaDestino.ReadOnly = true;
             this.textBoxCarpetaDestino.Size = new System.Drawing.Size(403, 20);
             this.textBoxCarpetaDestino.TabIndex = 6;
             // 
@@ -136,7 +136,7 @@
             this.buttonVisualizarRepresentacion.Name = "buttonVisualizarRepresentacion";
             this.buttonVisualizarRepresentacion.Size = new System.Drawing.Size(146, 23);
             this.buttonVisualizarRepresentacion.TabIndex = 9;
-            this.buttonVisualizarRepresentacion.Text = "Visualizar Reprentación";
+            this.buttonVisualizarRepresentacion.Text = "Visualizar Representación";
             this.buttonVisualizarRepresentacion.UseVisualStyleBackColor = true;
             this.buttonVisualizarRepresentacion.Click += new System.EventHandler(this.buttonVisualizarRepresentacion_Click);
             // 
@@ -167,9 +167,11 @@
             this.richTextBoxTextoArchivo.Enabled = false;
             this.richTextBoxTextoArchivo.Location = new System.Drawing.Point(358, 336);
             this.richTextBoxTextoArchivo.Name = "richTextBoxTextoArchivo";
+            this.richTextBoxTextoArchivo.ReadOnly = true;
             this.richTextBoxTextoArchivo.Size = new System.Drawing.Size(614, 204);
             this.richTextBoxTextoArchivo.TabIndex = 13;
             this.richTextBoxTextoArchivo.Text = "";
+            this.richTextBoxTextoArchivo.WordWrap = false;
             // 
             // FormRepresentacion
             // 
