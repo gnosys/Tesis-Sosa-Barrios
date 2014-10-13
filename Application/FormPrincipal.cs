@@ -225,5 +225,10 @@ namespace AppPrincipal
             formSVMLigth.Show();
         }
 
+        private void acercaPreprocesadorToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(" Software desarrollado por:\n\n Barrios, Pablo Jesus\n Sosa, Matias Sebastian", "Acerca de Preprocesado", MessageBoxButtons.OK);
+        }
+
     }
 }
