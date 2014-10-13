@@ -50,6 +50,8 @@
             this.cargarPipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarPipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaPreprocesadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBotonera.SuspendLayout();
             this.menuStripSolapas.SuspendLayout();
             this.SuspendLayout();
@@ -229,7 +231,8 @@
             // menuStripSolapas
             // 
             this.menuStripSolapas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemInicio});
+            this.toolStripMenuItemInicio,
+            this.ayudaToolStripMenuItem});
             this.menuStripSolapas.Location = new System.Drawing.Point(0, 0);
             this.menuStripSolapas.Name = "menuStripSolapas";
             this.menuStripSolapas.Size = new System.Drawing.Size(1007, 24);
@@ -249,23 +252,39 @@
             // cargarPipeToolStripMenuItem
             // 
             this.cargarPipeToolStripMenuItem.Name = "cargarPipeToolStripMenuItem";
-            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cargarPipeToolStripMenuItem.Text = "Cargar Pipe";
             this.cargarPipeToolStripMenuItem.Click += new System.EventHandler(this.cargarPipeToolStripMenuItem_Click);
             // 
             // guardarPipeToolStripMenuItem
             // 
             this.guardarPipeToolStripMenuItem.Name = "guardarPipeToolStripMenuItem";
-            this.guardarPipeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.guardarPipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.guardarPipeToolStripMenuItem.Text = "Guardar Pipe";
             this.guardarPipeToolStripMenuItem.Click += new System.EventHandler(this.guardarPipeToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.acercaPreprocesadorToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Text = "&Ayuda";
+            // 
+            // acercaPreprocesadorToolStripMenuItem
+            // 
+            this.acercaPreprocesadorToolStripMenuItem.Enabled = false;
+            this.acercaPreprocesadorToolStripMenuItem.Name = "acercaPreprocesadorToolStripMenuItem";
+            this.acercaPreprocesadorToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.acercaPreprocesadorToolStripMenuItem.Text = "Acerca Preprocesador";
+            this.acercaPreprocesadorToolStripMenuItem.Click += new System.EventHandler(this.acercaPreprocesadorToolStripMenuItem_Click);
             // 
             // App
             // 
@@ -314,6 +333,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCompararResultados;
         private System.Windows.Forms.ToolStripMenuItem guardarPipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acercaPreprocesadorToolStripMenuItem;
     }
 }
 

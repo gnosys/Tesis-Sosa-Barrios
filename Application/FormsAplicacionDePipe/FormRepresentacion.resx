@@ -117,4 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Tf-idf (del inglés Term frequency – Inverse document frequency), frecuencia de término – frecuencia inversa de documento (o sea, la frecuencia de
+ocurrencia del término en la colección de documentos), es una medida numérica que expresa cuán relevante es una palabra para un documento en una
+colección. Esta medida se utiliza a menudo como un factor de ponderación en la recuperación de información y la minería de texto. El valor tf-idf
+aumenta proporcionalmente al número de veces que una palabra aparece en el documento, pero es compensada por la frecuencia de la palabra en la
+colección de documentos, lo que permite manejar el hecho de que algunas palabras son generalmente más comunes que otras.
+Variaciones del esquema de peso tf-idf son empleadas frecuentemente por los motores de búsqueda como herramienta fundamental para medir la
+relevancia de un documento dada una consulta del usuario, estableciendo así una ordenación o ranking de los mismos. Tf-idf puede utilizarse exitosamente
+para el filtrado de las denominadas stop-words (palabras que suelen usarse en casi todos los documentos), en diferentes campos como la clasificación y
+resumen de texto.
+Una de las funciones de ranking más sencillas se calcula como la suma de los valores tf-idf de cada término de la consulta. Muchas funciones de ranking más
+complejas constituyen variaciones de este simple modelo.</value>
+  </data>
 </root>

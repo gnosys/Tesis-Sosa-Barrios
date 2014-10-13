@@ -141,6 +141,12 @@ namespace AppPrincipal
             this.Close();
         }
 
+        private void cargarDatosDePipeEnFormularios()
+        {
+            formDataBaseYSeleccionarCategoria.setTextBoxConeccionSQL((string)PipeConfiguration.database.connectionString ?? "");
+            formDataBaseYSeleccionarCategoria.setTextBoxSeleccionarNivel((string)PipeConfiguration.categoryLevel ?? "");
+        }
+
         private void cargarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog buscarArchivo = new OpenFileDialog();
@@ -151,6 +157,7 @@ namespace AppPrincipal
             {
                 string readText = File.ReadAllText(path);
                 PipeConfiguration = JObject.Parse(readText);
+                cargarDatosDePipeEnFormularios();
                 DialogResult result = MessageBox.Show("Su configuracion fue cargada exitosamente", "Carga Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -216,6 +223,11 @@ namespace AppPrincipal
             ocultarFormularios();
             formSVMLigth.Dock = DockStyle.Fill;
             formSVMLigth.Show();
+        }
+
+        private void acercaPreprocesadorToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(" Software desarrollado por:\n\n Barrios, Pablo Jesus\n Sosa, Matias Sebastian", "Acerca de Preprocesado", MessageBoxButtons.OK);
         }
 
     }

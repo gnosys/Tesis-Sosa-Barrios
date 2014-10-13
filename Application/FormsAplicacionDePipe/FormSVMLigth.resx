@@ -117,4 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Las SVM (o Máquinas de Vectores de Soporte) son un tipo de Máquinas de Aprendizaje. En particular son de esas que necesitan primero entrenarse con situaciones 
+en las que se les dice la respuesta correcta sobre muchos ejemplos, y una vez ella se ha entrenado, entra en fase de "uso", y simplemente se convierte en una caja 
+que devuelve la respuesta ante un nuevo caso (en pocas palabras, es un método de aprendizaje supervisado).</value>
+  </data>
 </root>
