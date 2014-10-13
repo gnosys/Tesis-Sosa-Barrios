@@ -34,7 +34,9 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 IRepresentation representation = new Representation();
                 List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify((int)(((App)this.MdiParent).PipeConfiguration.categoryLevel));
                 List<string[]> tokens = DataBase.Instance.GetTokens((string)(((App)this.MdiParent).PipeConfiguration.preprocessing.guid));
-                representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text);
+                float parsedMinWheight = 0;
+                float.TryParse(textBoxMinWeight.Text, out parsedMinWheight);
+                representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text, parsedMinWheight);
                 labelRepresentacionObtenida.Show();
                 buttonVisualizarRepresentacion.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;

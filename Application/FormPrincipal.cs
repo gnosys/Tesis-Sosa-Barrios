@@ -35,9 +35,9 @@ namespace AppPrincipal
 
         public App()
         {
-            crearFormularios();
             /* AGREGAR REFERENCIA UNIVERSAL */
-            PipeConfiguration = JObject.Parse(File.ReadAllText(@"C:\GitRepoTesis\Tesis-Sosa-Barrios\Application\Recursos\Pipes\pipe-default.pip"));
+            PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
+            crearFormularios();
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
@@ -47,7 +47,7 @@ namespace AppPrincipal
             this.IsMdiContainer = true;
 
             // Formulario de los botones "Data Base" y "Seleccionar Categoria"
-            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria();
+            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria(PipeConfiguration);
             formDataBaseYSeleccionarCategoria.MdiParent = this;
 
             // Formulario del boton "Tokenization"

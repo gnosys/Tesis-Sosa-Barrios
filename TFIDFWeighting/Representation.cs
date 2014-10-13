@@ -10,15 +10,14 @@ namespace TFIDFWeighting
 {
     public class Representation : IRepresentation
     {
-        private DataBase db = null;
 
-        public void CreateRepresentationFile(List<string[]> tokens, int docs, int[] categories, string filePath)
+        public void CreateRepresentationFile(List<string[]> tokens, int docs, int[] categories, string filePath, float minWeight)
         {
             TFIDFMeasure tfdif = new TFIDFMeasure(tokens);
-            CreateVSMFile(tfdif.TermWeight, docs,categories,filePath);
+            CreateVSMFile(tfdif.TermWeight, docs,categories,filePath, minWeight);
         }
 
-        private static void CreateVSMFile(float[][] weights, int docs, int[] categories, string filePath)
+        private static void CreateVSMFile(float[][] weights, int docs, int[] categories, string filePath, float minWeight)
         {
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath))
             {
@@ -28,7 +27,7 @@ namespace TFIDFWeighting
                     builder.AppendFormat("{0} ", categories[i]);
                     for (int j = 0; j < weights.Length; j++)
                     {
-                        if (weights[j][i] > 0)
+                        if (weights[j][i] > minWeight)
                         {
                             builder.AppendFormat("{0}:{1} ", j + 1, weights[j][i]);
                         }

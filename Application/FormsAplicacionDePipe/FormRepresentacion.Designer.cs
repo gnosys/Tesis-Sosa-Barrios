@@ -33,7 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxMinWeight = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxCarpetaDestino = new System.Windows.Forms.TextBox();
             this.buttonSeleccionarCarpeta = new System.Windows.Forms.Button();
@@ -82,14 +82,14 @@
             this.label3.Text = "Se desea limitar el peso aceptado para la representación, agregue un valor en un " +
     "rango de entre 0  y 1:";
             // 
-            // textBox1
+            // textBoxMinWeight
             // 
-            this.textBox1.Location = new System.Drawing.Point(683, 234);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(31, 20);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxMinWeight.Location = new System.Drawing.Point(683, 234);
+            this.textBoxMinWeight.Name = "textBoxMinWeight";
+            this.textBoxMinWeight.Size = new System.Drawing.Size(31, 20);
+            this.textBoxMinWeight.TabIndex = 4;
+            this.textBoxMinWeight.Text = "0";
+            this.textBoxMinWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -186,7 +186,7 @@
             this.Controls.Add(this.buttonSeleccionarCarpeta);
             this.Controls.Add(this.textBoxCarpetaDestino);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxMinWeight);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -205,7 +205,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxMinWeight;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxCarpetaDestino;
         private System.Windows.Forms.Button buttonSeleccionarCarpeta;

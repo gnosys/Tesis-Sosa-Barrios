@@ -16,9 +16,10 @@ namespace AppPrincipal
         DataBase db = null;
         int indexs;
 
-        public FormDataBaseYSeleccionarCategoria()
+        public FormDataBaseYSeleccionarCategoria(dynamic pipeConfiguration)
         {
             InitializeComponent();
+            textBoxConeccionSQL.Text = (string)pipeConfiguration.database.connectionString;
         }
 
         private void cleanLabels()
