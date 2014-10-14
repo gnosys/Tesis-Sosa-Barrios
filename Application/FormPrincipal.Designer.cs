@@ -128,6 +128,7 @@
             // 
             // buttonPreprocesamiento
             // 
+            this.buttonPreprocesamiento.Enabled = false;
             this.buttonPreprocesamiento.Location = new System.Drawing.Point(16, 326);
             this.buttonPreprocesamiento.Name = "buttonPreprocesamiento";
             this.buttonPreprocesamiento.Size = new System.Drawing.Size(130, 23);
@@ -138,6 +139,7 @@
             // 
             // buttonRepresentacion
             // 
+            this.buttonRepresentacion.Enabled = false;
             this.buttonRepresentacion.Location = new System.Drawing.Point(16, 355);
             this.buttonRepresentacion.Name = "buttonRepresentacion";
             this.buttonRepresentacion.Size = new System.Drawing.Size(130, 23);
@@ -252,21 +254,21 @@
             // cargarPipeToolStripMenuItem
             // 
             this.cargarPipeToolStripMenuItem.Name = "cargarPipeToolStripMenuItem";
-            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cargarPipeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.cargarPipeToolStripMenuItem.Text = "Cargar Pipe";
             this.cargarPipeToolStripMenuItem.Click += new System.EventHandler(this.cargarPipeToolStripMenuItem_Click);
             // 
             // guardarPipeToolStripMenuItem
             // 
             this.guardarPipeToolStripMenuItem.Name = "guardarPipeToolStripMenuItem";
-            this.guardarPipeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guardarPipeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.guardarPipeToolStripMenuItem.Text = "Guardar Pipe";
             this.guardarPipeToolStripMenuItem.Click += new System.EventHandler(this.guardarPipeToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 

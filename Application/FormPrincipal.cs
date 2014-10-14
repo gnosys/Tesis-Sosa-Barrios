@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using TFIDFWeighting;
 using SVM_Multiclass_Interface;
 using AppPrincipal.FormsAplicacionDePipe;
+using System;
 
 namespace AppPrincipal
 {
@@ -35,11 +36,11 @@ namespace AppPrincipal
 
         public App()
         {
-            /* AGREGAR REFERENCIA UNIVERSAL */
+            // AGREGAR REFERENCIA UNIVERSAL
             PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
-            crearFormularios();
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            crearFormularios();
         }
 
         private void crearFormularios()
@@ -47,8 +48,7 @@ namespace AppPrincipal
             this.IsMdiContainer = true;
 
             // Formulario de los botones "Data Base" y "Seleccionar Categoria"
-            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria(PipeConfiguration);
-            formDataBaseYSeleccionarCategoria.MdiParent = this;
+            formDataBaseYSeleccionarCategoria = new FormDataBaseYSeleccionarCategoria(this);
 
             // Formulario del boton "Tokenization"
             formTokenization = new FormTokenization();
@@ -75,12 +75,21 @@ namespace AppPrincipal
             formTratamientoEnTexto.MdiParent = this;
 
             // Formulario del boton "Representacion"
-            formRepresentacion = new FormRepresentacion();
-            formRepresentacion.MdiParent = this;
+            formRepresentacion = new FormRepresentacion(this);
 
             // Formulario del boton "SVM-Ligth"
             formSVMLigth = new FormSVMLigth();
             formSVMLigth.MdiParent = this;
+
+            ValidateConfiguration();
+        }
+
+        public void ValidateConfiguration()
+        {
+            
+            this.buttonPreprocesamiento.Enabled = formDataBaseYSeleccionarCategoria.IsValidConfiguration();
+            this.buttonRepresentacion.Enabled = buttonPreprocesamiento.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.preprocessing.guid) && DataBase.Instance.ExistTokens((string)PipeConfiguration.preprocessing.guid);
+            this.buttonEjecutarSVMLigth.Enabled = buttonRepresentacion.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.representation.filename) && File.Exists((string)PipeConfiguration.representation.filename);
         }
 
         // Oculta todos los formularios.
@@ -145,6 +154,7 @@ namespace AppPrincipal
         {
             formDataBaseYSeleccionarCategoria.setTextBoxConeccionSQL((string)PipeConfiguration.database.connectionString ?? "");
             formDataBaseYSeleccionarCategoria.setTextBoxSeleccionarNivel((string)PipeConfiguration.categoryLevel ?? "");
+            formRepresentacion.Init();
         }
 
         private void cargarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -155,10 +165,18 @@ namespace AppPrincipal
 
             if (path.EndsWith(".pip"))
             {
-                string readText = File.ReadAllText(path);
-                PipeConfiguration = JObject.Parse(readText);
-                cargarDatosDePipeEnFormularios();
-                DialogResult result = MessageBox.Show("Su configuracion fue cargada exitosamente", "Carga Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    string readText = File.ReadAllText(path);
+                    PipeConfiguration = JObject.Parse(readText);
+                    cargarDatosDePipeEnFormularios();
+                    DialogResult result = MessageBox.Show("Su configuracion fue cargada exitosamente", "Carga Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ValidateConfiguration();
+                }
+                catch
+                {
+                    DialogResult result = MessageBox.Show("El archivo se encuentra dañado o no es JSON válido", "Archivo Invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

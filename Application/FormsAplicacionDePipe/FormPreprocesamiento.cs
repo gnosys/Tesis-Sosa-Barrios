@@ -83,6 +83,7 @@ namespace AppPrincipal
 
             string preprocessingGuid = DataBase.Instance.SavePreprocessingTokens(tweets, TFIDFInput);
             ((App)this.MdiParent).PipeConfiguration.preprocessing.guid = preprocessingGuid;
+            ((App)this.MdiParent).ValidateConfiguration();
             
         }
 

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TFIDFWeighting;
+using System.IO;
 
 namespace AppPrincipal.FormsAplicacionDePipe
 {
@@ -19,10 +20,11 @@ namespace AppPrincipal.FormsAplicacionDePipe
         private string carpetaDestino = string.Empty;
         private StringBuilder texto = new StringBuilder();
 
-        public FormRepresentacion()
+        public FormRepresentacion(Form mdiParent)
         {
             InitializeComponent();
-            textBoxCarpetaDestino.Text = nombreArchivo;
+            this.MdiParent = mdiParent;
+            
         }
 
         private void buttonObtenerRepresentacion_Click(object sender, EventArgs e)
@@ -37,6 +39,8 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 float parsedMinWheight = 0;
                 float.TryParse(textBoxMinWeight.Text, out parsedMinWheight);
                 representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text, parsedMinWheight);
+                ((App)MdiParent).PipeConfiguration.representation.filename = textBoxCarpetaDestino.Text;
+                ((App)MdiParent).ValidateConfiguration();
                 labelRepresentacionObtenida.Show();
                 buttonVisualizarRepresentacion.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;
@@ -84,6 +88,18 @@ namespace AppPrincipal.FormsAplicacionDePipe
             catch
             {
                 DialogResult result = MessageBox.Show("El archivo no existe", "Archivo Inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        internal void Init()
+        {
+            string filename = (string)((App)MdiParent).PipeConfiguration.representation.filename;
+            textBoxCarpetaDestino.Text = filename ?? nombreArchivo;
+            if (!String.IsNullOrWhiteSpace(filename) && File.Exists(filename))
+            {
+                carpetaDestino = filename.Substring(0, filename.Length - 7);
+                buttonVisualizarRepresentacion.Enabled = true;
+                buttonAbrirCarpetaContenedora.Enabled = true;
             }
         }
     }

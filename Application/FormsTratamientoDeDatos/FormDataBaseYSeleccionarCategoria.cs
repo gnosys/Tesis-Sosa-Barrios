@@ -15,11 +15,19 @@ namespace AppPrincipal
     {
         DataBase db = null;
         int indexs;
+        
+        public bool IsValidConfiguration()
+        {
+            DataBase.connectionString = textBoxConeccionSQL.Text;
+            db = DataBase.Instance;
+            return db.CheckConnection();
+        }
 
-        public FormDataBaseYSeleccionarCategoria(dynamic pipeConfiguration)
+        public FormDataBaseYSeleccionarCategoria(Form parent)
         {
             InitializeComponent();
-            textBoxConeccionSQL.Text = (string)pipeConfiguration.database.connectionString;
+            this.MdiParent = parent;
+            textBoxConeccionSQL.Text = (string)(((App)parent).PipeConfiguration).database.connectionString;
         }
 
         private void cleanLabels()

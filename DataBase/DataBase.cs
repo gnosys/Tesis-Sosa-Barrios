@@ -94,11 +94,9 @@ namespace DataBaseSQL
             {
                 if (connection != null)
                 {
-                    if (String.IsNullOrEmpty(connection.ConnectionString))
-                    {
-                        connection.Dispose();
-                        connection = new SqlConnection(connectionString);
-                    }
+
+                    connection.Dispose();
+                    connection = new SqlConnection(connectionString);
                     connection.Open();
                     if (connection.State.Equals(ConnectionState.Open))
                     {
@@ -613,6 +611,27 @@ namespace DataBaseSQL
                 command.Dispose();
             }
             
+        }
+
+        public bool ExistTokens(string guid)
+        {
+            queryString = string.Format(@"SELECT Count(Id) FROM [dbo].[Token] WHERE IdPipe = '{0}'", guid);
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            int count = 0;
+            try
+            {
+                reader.Read();
+                count = reader.GetInt32(0);
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
+            return count > 0;
         }
     }
 }
