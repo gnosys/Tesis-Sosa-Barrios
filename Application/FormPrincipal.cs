@@ -16,6 +16,7 @@ using TFIDFWeighting;
 using SVM_Multiclass_Interface;
 using AppPrincipal.FormsAplicacionDePipe;
 using System;
+using AppPrincipal.FormsCompararResultados;
 
 namespace AppPrincipal
 {
@@ -30,13 +31,13 @@ namespace AppPrincipal
         FormTratamientoEnTexto formTratamientoEnTexto;
         FormRepresentacion formRepresentacion;
         FormSVMLigth formSVMLigth;
+        FormCompararResultados formCompararResultados;
 
         //from file.pip
         public dynamic PipeConfiguration { get; set; }
 
         public App()
         {
-            // AGREGAR REFERENCIA UNIVERSAL
             PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
@@ -81,12 +82,15 @@ namespace AppPrincipal
             formSVMLigth = new FormSVMLigth();
             formSVMLigth.MdiParent = this;
 
+            // Formulario del boton "Comparar resultados"
+            formCompararResultados = new FormCompararResultados();
+            formCompararResultados.MdiParent = this;
+
             ValidateConfiguration();
         }
 
         public void ValidateConfiguration()
         {
-            
             this.buttonPreprocesamiento.Enabled = formDataBaseYSeleccionarCategoria.IsValidConfiguration();
             this.buttonRepresentacion.Enabled = buttonPreprocesamiento.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.preprocessing.guid) && DataBase.Instance.ExistTokens((string)PipeConfiguration.preprocessing.guid);
             this.buttonEjecutarSVMLigth.Enabled = buttonRepresentacion.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.representation.filename) && File.Exists((string)PipeConfiguration.representation.filename);
@@ -234,6 +238,9 @@ namespace AppPrincipal
 
         private void buttonCompararResultados_Click(object sender, System.EventArgs e)
         {
+            ocultarFormularios();
+            formCompararResultados.Dock = DockStyle.Fill;
+            formCompararResultados.Show();
         }
 
         private void buttonEjecutarSVMLigth_Click(object sender, System.EventArgs e)
