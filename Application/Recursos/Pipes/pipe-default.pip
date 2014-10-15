@@ -14,5 +14,8 @@
 		"discardEquals": false,
 		"filename": "C:\\Users\\Pablo\\Desktop\\svm.dat"
 	},
+	"svm": {
+		modelFilename: null
+	},
 	"categoryLevel": 13
 }

@@ -21,10 +21,19 @@ namespace AppPrincipal.FormsAplicacionDePipe
         private string carpetaDestinoPrediccion = string.Empty;
         private StringBuilder textoPrediccion = new StringBuilder();
 
-        public FormSVMLigth()
+
+        public FormSVMLigth(Form parent)
         {
             InitializeComponent();
-            textBoxCarpetaDestinoModelo.Text = nombreArchivoModelo;
+            this.MdiParent = parent;
+            Init();            
+        }
+
+        public void Init()
+        {
+            string modelFilename = (string)(((App)MdiParent).PipeConfiguration).svm.modelFilename;
+            textBoxCarpetaDestinoModelo.Text = String.IsNullOrWhiteSpace(modelFilename) ? nombreArchivoModelo : modelFilename;
+            carpetaDestinoModelo = String.IsNullOrWhiteSpace(modelFilename) ? String.Empty : modelFilename.Substring(0, modelFilename.Length - 7);
             textBoxCarpetaDestinoPrediccion.Text = nombreArchivoPrediccion;
         }
 
@@ -68,10 +77,15 @@ namespace AppPrincipal.FormsAplicacionDePipe
         {
             if (!textBoxCarpetaDestinoModelo.Text.Equals(nombreArchivoModelo))
             {
+
+                labelErrorCarpetaModelo.Hide();
+                labelModeloGenerado.Hide();
                 richTextBoxTextoModelo.Enabled = false;
                 richTextBoxTextoModelo.Text = string.Empty;
                 ISVMMulticlass svm = new SVMMulticlass();
-                svm.Learn("VSM.txt", "model");
+                string vsmFileName = (string)(((App)MdiParent).PipeConfiguration).representation.filename;
+                svm.Learn(vsmFileName, textBoxCarpetaDestinoModelo.Text);
+                (((App)MdiParent).PipeConfiguration).svm.modelFilename = textBoxCarpetaDestinoModelo.Text;
                 labelModeloGenerado.Show();
                 buttonVisualizarModelo.Enabled = true;
                 buttonAbrirCarpetaContenedoraModelo.Enabled = true;
@@ -109,6 +123,8 @@ namespace AppPrincipal.FormsAplicacionDePipe
         {
             if (!textBoxCarpetaDestinoPrediccion.Text.Equals(nombreArchivoPrediccion))
             {
+                labelErrorCarpetaPrediccion.Hide();
+                labelPrediccionesGeneradas.Hide();
                 richTextBoxTextoPrediccion.Enabled = false;
                 richTextBoxTextoPrediccion.Text = string.Empty;
                 //ACA VA EL CODIGO PARA EJECUTAR SVM

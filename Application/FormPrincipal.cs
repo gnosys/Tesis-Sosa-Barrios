@@ -79,8 +79,7 @@ namespace AppPrincipal
             formRepresentacion = new FormRepresentacion(this);
 
             // Formulario del boton "SVM-Ligth"
-            formSVMLigth = new FormSVMLigth();
-            formSVMLigth.MdiParent = this;
+            formSVMLigth = new FormSVMLigth(this);
 
             // Formulario del boton "Comparar resultados"
             formCompararResultados = new FormCompararResultados();
@@ -159,6 +158,7 @@ namespace AppPrincipal
             formDataBaseYSeleccionarCategoria.setTextBoxConeccionSQL((string)PipeConfiguration.database.connectionString ?? "");
             formDataBaseYSeleccionarCategoria.setTextBoxSeleccionarNivel((string)PipeConfiguration.categoryLevel ?? "");
             formRepresentacion.Init();
+            formSVMLigth.Init();
         }
 
         private void cargarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
