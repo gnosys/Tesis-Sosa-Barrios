@@ -282,7 +282,6 @@
             // 
             // acercaPreprocesadorToolStripMenuItem
             // 
-            this.acercaPreprocesadorToolStripMenuItem.Enabled = false;
             this.acercaPreprocesadorToolStripMenuItem.Name = "acercaPreprocesadorToolStripMenuItem";
             this.acercaPreprocesadorToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.acercaPreprocesadorToolStripMenuItem.Text = "Acerca Preprocesador";

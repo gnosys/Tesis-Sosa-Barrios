@@ -45,9 +45,17 @@ namespace AppPrincipal.FormsCompararResultados
         private void buttonSeleccionarPipe_Click(object sender, EventArgs e)
         {
             //CODIGO QUE CARGA LOS DATOS EN EL GRAFICO
+            string[] pipeSeleccionado = textBoxArchivoSeleccionado.Text.Split('\\');
+            listBoxPipes.Items.Add(pipeSeleccionado[pipeSeleccionado.Length - 1].Replace(".pip",""));
             labelPipeCargado.Show();
             buttonSeleccionarPipe.Enabled = false;
             textBoxArchivoSeleccionado.Clear();
+        }
+
+        private void buttonEliminarPipe_Click(object sender, EventArgs e)
+        {
+            listBoxPipes.Items.RemoveAt(listBoxPipes.SelectedIndex);
+            //CODIGO QUE BORRA LOS DATOS EN EL GRAFICO
         }
 
     }
