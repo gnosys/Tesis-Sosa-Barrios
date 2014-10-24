@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Stemmer");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Stop Words");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Tokenizacion");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Stemmer");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Stop Words");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Tokenizacion");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
             this.buttonPreprocesar = new System.Windows.Forms.Button();
             this.listViewPreprocesamientos = new System.Windows.Forms.ListView();
             this.columnHeaderListaSeleccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,22 +65,12 @@
             this.checkBoxOrden = new System.Windows.Forms.CheckBox();
             this.checkBoxCursiva = new System.Windows.Forms.CheckBox();
             this.checkBoxNegrita = new System.Windows.Forms.CheckBox();
-            this.checkBoxFamiliaHs = new System.Windows.Forms.CheckBox();
-            this.checkBoxMicroformats = new System.Windows.Forms.CheckBox();
-            this.checkBoxAreaLabels = new System.Windows.Forms.CheckBox();
-            this.checkBoxSiteMaps = new System.Windows.Forms.CheckBox();
-            this.checkBoxMetaTagsOpenGraph = new System.Windows.Forms.CheckBox();
             this.checkBoxMetaTagsComunes = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.checkBoxSoloSustantivos = new System.Windows.Forms.CheckBox();
@@ -98,6 +88,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.checkBoxTitulo = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControlConfiguraciones.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -122,11 +114,11 @@
             this.columnHeaderListaSeleccion});
             this.listViewPreprocesamientos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewPreprocesamientos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5});
             this.listViewPreprocesamientos.Location = new System.Drawing.Point(432, 91);
             this.listViewPreprocesamientos.MultiSelect = false;
             this.listViewPreprocesamientos.Name = "listViewPreprocesamientos";
@@ -390,21 +382,13 @@
             this.tabPage4.Controls.Add(this.checkBoxOrden);
             this.tabPage4.Controls.Add(this.checkBoxCursiva);
             this.tabPage4.Controls.Add(this.checkBoxNegrita);
-            this.tabPage4.Controls.Add(this.checkBoxFamiliaHs);
-            this.tabPage4.Controls.Add(this.checkBoxMicroformats);
-            this.tabPage4.Controls.Add(this.checkBoxAreaLabels);
-            this.tabPage4.Controls.Add(this.checkBoxSiteMaps);
-            this.tabPage4.Controls.Add(this.checkBoxMetaTagsOpenGraph);
+            this.tabPage4.Controls.Add(this.checkBoxTitulo);
             this.tabPage4.Controls.Add(this.checkBoxMetaTagsComunes);
             this.tabPage4.Controls.Add(this.label18);
             this.tabPage4.Controls.Add(this.label17);
             this.tabPage4.Controls.Add(this.label16);
-            this.tabPage4.Controls.Add(this.label15);
             this.tabPage4.Controls.Add(this.label14);
             this.tabPage4.Controls.Add(this.label13);
-            this.tabPage4.Controls.Add(this.label12);
-            this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.label10);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -425,7 +409,7 @@
             // checkBoxOrden
             // 
             this.checkBoxOrden.AutoSize = true;
-            this.checkBoxOrden.Location = new System.Drawing.Point(505, 68);
+            this.checkBoxOrden.Location = new System.Drawing.Point(220, 127);
             this.checkBoxOrden.Name = "checkBoxOrden";
             this.checkBoxOrden.Size = new System.Drawing.Size(15, 14);
             this.checkBoxOrden.TabIndex = 19;
@@ -434,7 +418,7 @@
             // checkBoxCursiva
             // 
             this.checkBoxCursiva.AutoSize = true;
-            this.checkBoxCursiva.Location = new System.Drawing.Point(505, 52);
+            this.checkBoxCursiva.Location = new System.Drawing.Point(220, 111);
             this.checkBoxCursiva.Name = "checkBoxCursiva";
             this.checkBoxCursiva.Size = new System.Drawing.Size(15, 14);
             this.checkBoxCursiva.TabIndex = 18;
@@ -443,56 +427,11 @@
             // checkBoxNegrita
             // 
             this.checkBoxNegrita.AutoSize = true;
-            this.checkBoxNegrita.Location = new System.Drawing.Point(505, 36);
+            this.checkBoxNegrita.Location = new System.Drawing.Point(220, 95);
             this.checkBoxNegrita.Name = "checkBoxNegrita";
             this.checkBoxNegrita.Size = new System.Drawing.Size(15, 14);
             this.checkBoxNegrita.TabIndex = 17;
             this.checkBoxNegrita.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxFamiliaHs
-            // 
-            this.checkBoxFamiliaHs.AutoSize = true;
-            this.checkBoxFamiliaHs.Location = new System.Drawing.Point(220, 116);
-            this.checkBoxFamiliaHs.Name = "checkBoxFamiliaHs";
-            this.checkBoxFamiliaHs.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxFamiliaHs.TabIndex = 16;
-            this.checkBoxFamiliaHs.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMicroformats
-            // 
-            this.checkBoxMicroformats.AutoSize = true;
-            this.checkBoxMicroformats.Location = new System.Drawing.Point(220, 100);
-            this.checkBoxMicroformats.Name = "checkBoxMicroformats";
-            this.checkBoxMicroformats.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMicroformats.TabIndex = 15;
-            this.checkBoxMicroformats.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAreaLabels
-            // 
-            this.checkBoxAreaLabels.AutoSize = true;
-            this.checkBoxAreaLabels.Location = new System.Drawing.Point(220, 84);
-            this.checkBoxAreaLabels.Name = "checkBoxAreaLabels";
-            this.checkBoxAreaLabels.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAreaLabels.TabIndex = 14;
-            this.checkBoxAreaLabels.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxSiteMaps
-            // 
-            this.checkBoxSiteMaps.AutoSize = true;
-            this.checkBoxSiteMaps.Location = new System.Drawing.Point(220, 68);
-            this.checkBoxSiteMaps.Name = "checkBoxSiteMaps";
-            this.checkBoxSiteMaps.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSiteMaps.TabIndex = 13;
-            this.checkBoxSiteMaps.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMetaTagsOpenGraph
-            // 
-            this.checkBoxMetaTagsOpenGraph.AutoSize = true;
-            this.checkBoxMetaTagsOpenGraph.Location = new System.Drawing.Point(220, 52);
-            this.checkBoxMetaTagsOpenGraph.Name = "checkBoxMetaTagsOpenGraph";
-            this.checkBoxMetaTagsOpenGraph.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMetaTagsOpenGraph.TabIndex = 12;
-            this.checkBoxMetaTagsOpenGraph.UseVisualStyleBackColor = true;
             // 
             // checkBoxMetaTagsComunes
             // 
@@ -506,7 +445,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(394, 68);
+            this.label18.Location = new System.Drawing.Point(81, 127);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(98, 13);
             this.label18.TabIndex = 10;
@@ -515,7 +454,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(333, 23);
+            this.label17.Location = new System.Drawing.Point(20, 82);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(63, 13);
             this.label17.TabIndex = 9;
@@ -530,19 +469,10 @@
             this.label16.TabIndex = 8;
             this.label16.Text = "META-TAGS comunes";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(65, 116);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(129, 13);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "Familia de H\'s (H1-H2-H3)";
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(394, 52);
+            this.label14.Location = new System.Drawing.Point(81, 111);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(101, 13);
             this.label14.TabIndex = 6;
@@ -551,47 +481,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(394, 36);
+            this.label13.Location = new System.Drawing.Point(81, 95);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(100, 13);
             this.label13.TabIndex = 5;
             this.label13.Text = "Palabras en Negrita";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(65, 100);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 13);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "MICROFORMATS";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(65, 84);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(79, 13);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "AREA LABELS";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(65, 68);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 13);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "SITE MAPS";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(65, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "META-TAGS OPEN GRAPH";
             // 
             // label8
             // 
@@ -766,6 +660,24 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Eliminar links";
             // 
+            // checkBoxTitulo
+            // 
+            this.checkBoxTitulo.AutoSize = true;
+            this.checkBoxTitulo.Location = new System.Drawing.Point(220, 52);
+            this.checkBoxTitulo.Name = "checkBoxTitulo";
+            this.checkBoxTitulo.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxTitulo.TabIndex = 12;
+            this.checkBoxTitulo.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(65, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Titulo";
+            // 
             // FormPreprocesamiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -831,25 +743,15 @@
         private System.Windows.Forms.Button buttonAplicarListaStopWords;
         private System.Windows.Forms.Button buttonAplicarExpresionRegular;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBoxOrden;
         private System.Windows.Forms.CheckBox checkBoxCursiva;
         private System.Windows.Forms.CheckBox checkBoxNegrita;
-        private System.Windows.Forms.CheckBox checkBoxFamiliaHs;
-        private System.Windows.Forms.CheckBox checkBoxMicroformats;
-        private System.Windows.Forms.CheckBox checkBoxAreaLabels;
-        private System.Windows.Forms.CheckBox checkBoxSiteMaps;
-        private System.Windows.Forms.CheckBox checkBoxMetaTagsOpenGraph;
         private System.Windows.Forms.CheckBox checkBoxMetaTagsComunes;
         private System.Windows.Forms.Button buttonAplicarEnriquecimiento;
         private System.Windows.Forms.TabPage tabPage5;
@@ -868,6 +770,8 @@
         private System.Windows.Forms.CheckBox checkBoxSoloSustantivos;
         private System.Windows.Forms.CheckBox checkBoxMayusYMinus;
         private System.Windows.Forms.CheckBox checkBoxEliminarLinks;
+        private System.Windows.Forms.CheckBox checkBoxTitulo;
+        private System.Windows.Forms.Label label9;
 
     }
 }
