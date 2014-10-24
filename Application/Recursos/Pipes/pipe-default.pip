@@ -1,6 +1,6 @@
 {
 	"database": {
-		"connectionString": "Data Source=np:\\\\.\\pipe\\LOCALDB#27376EE1\\tsql\\query;Initial Catalog=Tweets;Integrated Security=True"
+		"connectionString": "Data Source=np:\\\\.\\pipe\\LOCALDB#39790044\\tsql\\query;Initial Catalog=Tweets;Integrated Security=True"
 	},
 	"preprocessing": {
 		"guid": "65460317-2ac0-47be-b447-3cc303a9934c",
@@ -15,7 +15,9 @@
 		"filename": "C:\\Users\\Pablo\\Desktop\\svm.dat"
 	},
 	"svm": {
-		modelFilename: null
+		"trainingPercentage": 75,
+		"c": 100,
+		"modelFilename": null
 	},
 	"categoryLevel": 13
 }

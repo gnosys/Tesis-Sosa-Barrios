@@ -84,7 +84,8 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 richTextBoxTextoModelo.Text = string.Empty;
                 ISVMMulticlass svm = new SVMMulticlass();
                 string vsmFileName = (string)(((App)MdiParent).PipeConfiguration).representation.filename;
-                svm.Learn(vsmFileName, textBoxCarpetaDestinoModelo.Text);
+                int trainingPercentage = (int)(((App)MdiParent).PipeConfiguration).svm.trainingPercentage;
+                svm.Learn(vsmFileName, textBoxCarpetaDestinoModelo.Text, trainingPercentage);
                 (((App)MdiParent).PipeConfiguration).svm.modelFilename = textBoxCarpetaDestinoModelo.Text;
                 labelModeloGenerado.Show();
                 buttonVisualizarModelo.Enabled = true;
@@ -127,6 +128,13 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 labelPrediccionesGeneradas.Hide();
                 richTextBoxTextoPrediccion.Enabled = false;
                 richTextBoxTextoPrediccion.Text = string.Empty;
+
+                ISVMMulticlass svm = new SVMMulticlass();
+                string modelFilename = (string)(((App)MdiParent).PipeConfiguration).svm.modelFilename;
+                int trainingPercentage = (int)(((App)MdiParent).PipeConfiguration).svm.trainingPercentage;
+                string vsmFileName = (string)(((App)MdiParent).PipeConfiguration).representation.filename;
+                svm.Classify(vsmFileName, modelFilename, textBoxCarpetaDestinoPrediccion.Text, trainingPercentage);
+                (((App)MdiParent).PipeConfiguration).svm.predictionsFilename = textBoxCarpetaDestinoPrediccion.Text;
                 //ACA VA EL CODIGO PARA EJECUTAR SVM
                 labelPrediccionesGeneradas.Show();
                 buttonVisualizarPrediccion.Enabled = true;
