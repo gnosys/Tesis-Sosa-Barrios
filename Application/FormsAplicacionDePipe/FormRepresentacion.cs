@@ -26,7 +26,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
         {
             InitializeComponent();
             this.MdiParent = mdiParent;
-            
         }
 
         private void buttonObtenerRepresentacion_Click(object sender, EventArgs e)
