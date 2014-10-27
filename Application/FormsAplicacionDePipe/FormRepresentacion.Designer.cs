@@ -107,6 +107,7 @@
             this.textBoxCarpetaDestino.ReadOnly = true;
             this.textBoxCarpetaDestino.Size = new System.Drawing.Size(403, 20);
             this.textBoxCarpetaDestino.TabIndex = 6;
+            this.textBoxCarpetaDestino.Text = "svm.dat";
             // 
             // buttonSeleccionarCarpeta
             // 

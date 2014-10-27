@@ -69,6 +69,12 @@
     <Compile Include="FormsCompararResultados\FormCompararResultados.Designer.cs">
       <DependentUpon>FormCompararResultados.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsCompararResultados\FormMatrizDeConfusion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsCompararResultados\FormMatrizDeConfusion.Designer.cs">
+      <DependentUpon>FormMatrizDeConfusion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsPreprocesamientos\FormEnriquecimiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     <EmbeddedResource Include="FormsCompararResultados\FormCompararResultados.resx">
       <DependentUpon>FormCompararResultados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsCompararResultados\FormMatrizDeConfusion.resx">
+      <DependentUpon>FormMatrizDeConfusion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsPreprocesamientos\FormEnriquecimiento.resx">
       <DependentUpon>FormEnriquecimiento.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,19 +163,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -204,11 +213,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Imagenes\logo.ico" />
-    <Content Include="Imagenes\logo.png" />
+    <Content Include="Recursos\Imagenes\logo.ico" />
+    <Content Include="Recursos\Imagenes\logo.png" />
     <Content Include="Recursos\StopWords\StopWords_England_String.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Recursos\Imagenes\scale.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

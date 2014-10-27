@@ -40,6 +40,7 @@
             this.buttonRepresentacion = new System.Windows.Forms.Button();
             this.buttonEjecutarSVMLigth = new System.Windows.Forms.Button();
             this.panelBotonera = new System.Windows.Forms.Panel();
+            this.buttonMatrizConfusion = new System.Windows.Forms.Button();
             this.buttonCompararResultados = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonTratamientoEnTexto = new System.Windows.Forms.Button();
@@ -160,6 +161,7 @@
             // 
             // panelBotonera
             // 
+            this.panelBotonera.Controls.Add(this.buttonMatrizConfusion);
             this.panelBotonera.Controls.Add(this.buttonCompararResultados);
             this.panelBotonera.Controls.Add(this.label1);
             this.panelBotonera.Controls.Add(this.buttonTratamientoEnTexto);
@@ -180,9 +182,19 @@
             this.panelBotonera.Size = new System.Drawing.Size(164, 569);
             this.panelBotonera.TabIndex = 19;
             // 
+            // buttonMatrizConfusion
+            // 
+            this.buttonMatrizConfusion.Location = new System.Drawing.Point(16, 455);
+            this.buttonMatrizConfusion.Name = "buttonMatrizConfusion";
+            this.buttonMatrizConfusion.Size = new System.Drawing.Size(130, 23);
+            this.buttonMatrizConfusion.TabIndex = 21;
+            this.buttonMatrizConfusion.Text = "Matriz de Confusión";
+            this.buttonMatrizConfusion.UseVisualStyleBackColor = true;
+            this.buttonMatrizConfusion.Click += new System.EventHandler(this.buttonMatrizConfusion_Click);
+            // 
             // buttonCompararResultados
             // 
-            this.buttonCompararResultados.Location = new System.Drawing.Point(16, 455);
+            this.buttonCompararResultados.Location = new System.Drawing.Point(16, 484);
             this.buttonCompararResultados.Name = "buttonCompararResultados";
             this.buttonCompararResultados.Size = new System.Drawing.Size(130, 23);
             this.buttonCompararResultados.TabIndex = 23;
@@ -336,6 +348,7 @@
         private System.Windows.Forms.ToolStripMenuItem guardarPipeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaPreprocesadorToolStripMenuItem;
+        private System.Windows.Forms.Button buttonMatrizConfusion;
     }
 }
 
