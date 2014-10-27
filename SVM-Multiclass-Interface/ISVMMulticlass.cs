@@ -8,8 +8,8 @@ namespace SVM_Multiclass_Interface
 {
     public interface ISVMMulticlass
     {
-        string Learn(string example_file, string model_file, int trainingPercentage);
+        string Learn(string example_file, string model_file);
 
-        string Classify(string example_file, string model_file, string predictions_file, int trainingPercentage);
+        string Classify(string example_file, string model_file, string predictions_file);
     }
 }

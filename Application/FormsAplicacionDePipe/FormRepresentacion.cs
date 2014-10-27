@@ -16,7 +16,9 @@ namespace AppPrincipal.FormsAplicacionDePipe
 {
     public partial class FormRepresentacion : Form
     {
-        private string nombreArchivo = "svm.dat";
+
+        private string nombreArchivoLearn = "svm-learn.dat";
+        private string nombreArchivoClassify = "svm-classify.dat";
         private string carpetaDestino = string.Empty;
         private StringBuilder texto = new StringBuilder();
 
@@ -29,17 +31,18 @@ namespace AppPrincipal.FormsAplicacionDePipe
 
         private void buttonObtenerRepresentacion_Click(object sender, EventArgs e)
         {
-            if (!textBoxCarpetaDestino.Text.Equals(nombreArchivo))
+            if (!String.IsNullOrWhiteSpace(textBoxCarpetaDestino.Text))
             {
                 richTextBoxTextoArchivo.Enabled = false;
                 richTextBoxTextoArchivo.Text = string.Empty;
                 IRepresentation representation = new Representation();
                 List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify((int)(((App)this.MdiParent).PipeConfiguration.categoryLevel));
                 List<string[]> tokens = DataBase.Instance.GetTokens((string)(((App)this.MdiParent).PipeConfiguration.preprocessing.guid));
+                int trainingPercentage = (int)((App)this.MdiParent).PipeConfiguration.representation.trainingPercentage;
                 float parsedMinWheight = 0;
                 float.TryParse(textBoxMinWeight.Text, out parsedMinWheight);
-                representation.CreateRepresentationFile(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text, parsedMinWheight);
-                ((App)MdiParent).PipeConfiguration.representation.filename = textBoxCarpetaDestino.Text;
+                representation.CreateRepresentationFiles(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text, parsedMinWheight, trainingPercentage);
+                ((App)MdiParent).PipeConfiguration.representation.directoryFilePath = textBoxCarpetaDestino.Text;
                 ((App)MdiParent).ValidateConfiguration();
                 labelRepresentacionObtenida.Show();
                 buttonVisualizarRepresentacion.Enabled = true;
@@ -59,7 +62,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 carpetaDestino = folderBrowserDialog.SelectedPath;
-                textBoxCarpetaDestino.Text = carpetaDestino + "\\" + nombreArchivo;
+                textBoxCarpetaDestino.Text = carpetaDestino;
             }
         }
 
@@ -76,7 +79,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
             texto.Clear();
             try
             {
-                System.IO.StreamReader file = new System.IO.StreamReader(@"" + textBoxCarpetaDestino.Text);
+                System.IO.StreamReader file = new System.IO.StreamReader(String.Format(@"{0}\{1}", textBoxCarpetaDestino.Text, nombreArchivoLearn));
                 while ((line = file.ReadLine()) != null)
                 {
                     texto.Append(line);
@@ -93,11 +96,13 @@ namespace AppPrincipal.FormsAplicacionDePipe
 
         internal void Init()
         {
-            string filename = (string)((App)MdiParent).PipeConfiguration.representation.filename;
-            textBoxCarpetaDestino.Text = filename ?? nombreArchivo;
-            if (!String.IsNullOrWhiteSpace(filename) && File.Exists(filename))
+            string directoryFilePath = (string)((App)MdiParent).PipeConfiguration.representation.directoryFilePath;
+            if (!String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify)))
             {
-                carpetaDestino = filename.Substring(0, filename.Length - 7);
+                int lastSlash = directoryFilePath.LastIndexOf('/');
+                directoryFilePath = (lastSlash > -1) ? directoryFilePath.Substring(0, lastSlash) : directoryFilePath;
+                textBoxCarpetaDestino.Text = directoryFilePath ?? String.Empty;
+                carpetaDestino = directoryFilePath;
                 buttonVisualizarRepresentacion.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;
             }

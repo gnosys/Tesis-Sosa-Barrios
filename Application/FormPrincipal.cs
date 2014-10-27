@@ -90,9 +90,13 @@ namespace AppPrincipal
 
         public void ValidateConfiguration()
         {
+            string nombreArchivoLearn = "svm-learn.dat";
+            string nombreArchivoClassify = "svm-classify.dat";
+            string directoryFilePath = (string)PipeConfiguration.representation.directoryFilePath;
+
             this.buttonPreprocesamiento.Enabled = formDataBaseYSeleccionarCategoria.IsValidConfiguration();
             this.buttonRepresentacion.Enabled = buttonPreprocesamiento.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.preprocessing.guid) && DataBase.Instance.ExistTokens((string)PipeConfiguration.preprocessing.guid);
-            this.buttonEjecutarSVMLigth.Enabled = buttonRepresentacion.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.representation.filename) && File.Exists((string)PipeConfiguration.representation.filename);
+            this.buttonEjecutarSVMLigth.Enabled = buttonRepresentacion.Enabled && !String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify));
         }
 
         // Oculta todos los formularios.

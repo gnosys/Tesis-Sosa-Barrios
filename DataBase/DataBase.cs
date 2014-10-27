@@ -430,7 +430,7 @@ namespace DataBaseSQL
                                             ON t.Id = tc.IdTweet
                                             JOIN
                                             (SELECT ID FROM [dbo].[Category] WHERE [Level] = {0}) c
-                                            ON c.Id = tc.IdCategory", level);
+                                            ON c.Id = tc.IdCategory ORDER BY IdCategory", level);
 
             command = new SqlCommand(queryString, connection);
             connection.Open();

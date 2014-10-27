@@ -8,6 +8,6 @@ namespace TFIDFWeighting
 {
     public interface IRepresentation
     {
-        void CreateRepresentationFile(List<string[]> tokens, int docs, int[] categories, string filePath, float minWeight);
+        void CreateRepresentationFiles(List<string[]> tokens, int docs, int[] categories, string directoryFilePath, float minWeight, int trainingPercentage);
     }
 }

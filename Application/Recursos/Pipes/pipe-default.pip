@@ -3,19 +3,19 @@
 		"connectionString": "Data Source=np:\\\\.\\pipe\\LOCALDB#39790044\\tsql\\query;Initial Catalog=Tweets;Integrated Security=True"
 	},
 	"preprocessing": {
-		"guid": "65460317-2ac0-47be-b447-3cc303a9934c",
+		"guid": null,
 		"filters": [{
 			"_type": "tokenizing",
 			"regexp": "([ \\\\t{}():;. \\n])"
 		}]
 	},
 	"representation": {
+		"trainingPercentage": 75,
 		"minWeight": 0,
 		"discardEquals": false,
-		"filename": "C:\\Users\\Pablo\\Desktop\\svm.dat"
+		"directoryPath": null
 	},
 	"svm": {
-		"trainingPercentage": 75,
 		"c": 100,
 		"modelFilename": null
 	},
