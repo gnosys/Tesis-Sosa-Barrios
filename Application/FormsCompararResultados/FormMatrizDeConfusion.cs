@@ -14,9 +14,21 @@ namespace AppPrincipal.FormsCompararResultados
 {
     public partial class FormMatrizDeConfusion : Form
     {
-        public FormMatrizDeConfusion()
+        private string _vsmActualPredictionsFile;
+        private string _predictionsFile;
+
+        public FormMatrizDeConfusion(Form parent)
         {
             InitializeComponent();
+            this.MdiParent = parent;
+            Init();
+        }
+
+
+        public void Init()
+        {
+            _vsmActualPredictionsFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "/svm-classify.dat";
+            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
         }
 
         private int[][] BuildConfusionMatrix(int[] actualCategories, int[] predictedCategories, List<int> categoryLabels, out int minValue, out int maxValue)
@@ -56,11 +68,9 @@ namespace AppPrincipal.FormsCompararResultados
 
         private void buttonObtenerMatriz_Click(object sender, EventArgs e)
         {
-            string file1Path = @"C:\Users\Mati\Desktop\test.dat";
-            string file2Path = @"C:\Users\Mati\Desktop\test2";
 
-            string[] linesActualCategories = File.ReadAllLines(file1Path); //TODO: (100 - trainingPercentage) % restantes
-            string[] linesPredictedCategories = File.ReadAllLines(file2Path);
+            string[] linesActualCategories = File.ReadAllLines(_vsmActualPredictionsFile); //TODO: (100 - trainingPercentage) % restantes
+            string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
 
             int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
             int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();

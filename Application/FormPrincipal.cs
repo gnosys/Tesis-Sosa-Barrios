@@ -87,8 +87,8 @@ namespace AppPrincipal
             formCompararResultados.MdiParent = this;
 
             // Formulario del boton "Matriz de Confusion"
-            formMatrizDeConfusion = new FormMatrizDeConfusion();
-            formMatrizDeConfusion.MdiParent = this;
+            formMatrizDeConfusion = new FormMatrizDeConfusion(this);
+            
 
             ValidateConfiguration();
         }
@@ -102,6 +102,7 @@ namespace AppPrincipal
             this.buttonPreprocesamiento.Enabled = formDataBaseYSeleccionarCategoria.IsValidConfiguration();
             this.buttonRepresentacion.Enabled = buttonPreprocesamiento.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.preprocessing.guid) && DataBase.Instance.ExistTokens((string)PipeConfiguration.preprocessing.guid);
             this.buttonEjecutarSVMLigth.Enabled = buttonRepresentacion.Enabled && !String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify));
+            this.buttonMatrizConfusion.Enabled = File.Exists((string)PipeConfiguration.svm.predictionsFilename);
         }
 
         // Oculta todos los formularios.
@@ -168,6 +169,7 @@ namespace AppPrincipal
             formDataBaseYSeleccionarCategoria.setTextBoxSeleccionarNivel((string)PipeConfiguration.categoryLevel ?? "");
             formRepresentacion.Init();
             formSVMLigth.Init();
+            formMatrizDeConfusion.Init();
         }
 
         private void cargarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)

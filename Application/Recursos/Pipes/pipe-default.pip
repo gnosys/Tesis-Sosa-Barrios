@@ -13,10 +13,10 @@
 		"trainingPercentage": 75,
 		"minWeight": 0,
 		"discardEquals": false,
-		"directoryPath": null
+		"directoryFilePath": null
 	},
 	"svm": {
-		"c": 100,
+		"c": "100",
 		"modelFilename": null
 	},
 	"categoryLevel": 13

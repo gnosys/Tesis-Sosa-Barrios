@@ -20,7 +20,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
         private string nombreArchivoPrediccion = "predicciones";
         private string carpetaDestinoPrediccion = string.Empty;
         private StringBuilder textoPrediccion = new StringBuilder();
-
+        private string c;
 
         public FormSVMLigth(Form parent)
         {
@@ -31,9 +31,25 @@ namespace AppPrincipal.FormsAplicacionDePipe
 
         public void Init()
         {
+            this.c = (string)(((App)MdiParent).PipeConfiguration).svm.c;
+
             string modelFilename = (string)(((App)MdiParent).PipeConfiguration).svm.modelFilename;
             textBoxCarpetaDestinoModelo.Text = String.IsNullOrWhiteSpace(modelFilename) ? nombreArchivoModelo : modelFilename;
             carpetaDestinoModelo = String.IsNullOrWhiteSpace(modelFilename) ? String.Empty : modelFilename.Substring(0, modelFilename.Length - 7);
+            
+            this.buttonAbrirCarpetaContenedoraModelo.Enabled = 
+            this.buttonVisualizarModelo.Enabled =
+            this.buttonGenerarPrediccion.Enabled = !String.IsNullOrWhiteSpace(modelFilename);
+
+            string predictionsFilename = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+            textBoxCarpetaDestinoPrediccion.Text = String.IsNullOrWhiteSpace(predictionsFilename) ? nombreArchivoPrediccion : predictionsFilename;
+            carpetaDestinoPrediccion = String.IsNullOrWhiteSpace(predictionsFilename) ? String.Empty : predictionsFilename.Substring(0, predictionsFilename.Length - 13);
+            textBoxCarpetaDestinoPrediccion.Text = nombreArchivoPrediccion;
+
+
+            this.buttonAbrirCarpetaContenedoraPrediccion.Enabled =
+            this.buttonVisualizarPrediccion.Enabled = !String.IsNullOrWhiteSpace(predictionsFilename);
+
             textBoxCarpetaDestinoPrediccion.Text = nombreArchivoPrediccion;
         }
 
@@ -85,11 +101,12 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 ISVMMulticlass svm = new SVMMulticlass();
                 string directoryFilePath = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath;
                 string vsmFileName = String.Format(@"{0}\svm-learn.dat", directoryFilePath);
-                svm.Learn(vsmFileName, textBoxCarpetaDestinoModelo.Text);
+                svm.Learn(vsmFileName, textBoxCarpetaDestinoModelo.Text, c);
                 (((App)MdiParent).PipeConfiguration).svm.modelFilename = textBoxCarpetaDestinoModelo.Text;
                 labelModeloGenerado.Show();
                 buttonVisualizarModelo.Enabled = true;
                 buttonAbrirCarpetaContenedoraModelo.Enabled = true;
+                buttonGenerarPrediccion.Enabled = true;
             }
             else
             {
@@ -138,10 +155,11 @@ namespace AppPrincipal.FormsAplicacionDePipe
 
                 svm.Classify(vsmFileName, modelFilename, textBoxCarpetaDestinoPrediccion.Text);
                 (((App)MdiParent).PipeConfiguration).svm.predictionsFilename = textBoxCarpetaDestinoPrediccion.Text;
-                //ACA VA EL CODIGO PARA EJECUTAR SVM
                 labelPrediccionesGeneradas.Show();
                 buttonVisualizarPrediccion.Enabled = true;
                 buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
+
+                ((App)this.MdiParent).ValidateConfiguration();
             }
             else
             {
