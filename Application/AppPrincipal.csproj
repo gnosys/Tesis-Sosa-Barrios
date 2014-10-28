@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsAplicacionDePipe\FormRepresentacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsAplicacionDePipe\FormRepresentacion.resx">
       <DependentUpon>FormRepresentacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +222,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\Photos.png" />
     <Content Include="Recursos\Imagenes\logo.ico" />
     <Content Include="Recursos\Imagenes\logo.png" />
     <Content Include="Recursos\StopWords\StopWords_England_String.txt">

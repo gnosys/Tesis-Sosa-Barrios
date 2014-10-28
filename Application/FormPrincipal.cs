@@ -33,6 +33,7 @@ namespace AppPrincipal
         FormSVMLigth formSVMLigth;
         FormCompararResultados formCompararResultados;
         public FormMatrizDeConfusion formMatrizDeConfusion;
+        AboutBox1 aboutBox;
 
         //from file.pip
         public dynamic PipeConfiguration { get; set; }
@@ -88,7 +89,8 @@ namespace AppPrincipal
 
             // Formulario del boton "Matriz de Confusion"
             formMatrizDeConfusion = new FormMatrizDeConfusion(this);
-            
+
+            aboutBox = new AboutBox1();
 
             ValidateConfiguration();
         }
@@ -263,7 +265,9 @@ namespace AppPrincipal
 
         private void acercaPreprocesadorToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            DialogResult result = MessageBox.Show(" Software desarrollado por:\n\n Barrios, Pablo Jesus\n Sosa, Matias Sebastian", "Acerca de Preprocesado", MessageBoxButtons.OK);
+            //DialogResult result = MessageBox.Show(" Software desarrollado por:\n\n Barrios, Pablo Jesus\n Sosa, Matias Sebastian", "Acerca de Preprocesado", MessageBoxButtons.OK);
+
+            aboutBox.Show();
         }
 
         private void buttonMatrizConfusion_Click(object sender, EventArgs e)
