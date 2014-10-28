@@ -32,7 +32,7 @@ namespace AppPrincipal
         FormRepresentacion formRepresentacion;
         FormSVMLigth formSVMLigth;
         FormCompararResultados formCompararResultados;
-        FormMatrizDeConfusion formMatrizDeConfusion;
+        public FormMatrizDeConfusion formMatrizDeConfusion;
 
         //from file.pip
         public dynamic PipeConfiguration { get; set; }

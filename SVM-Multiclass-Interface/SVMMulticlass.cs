@@ -16,9 +16,10 @@ namespace SVM_Multiclass_Interface
             Process p = new Process();
             // Redirect the output stream of the child process.
             string[] lines = File.ReadAllLines(example_file);
-            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo("svm_bin/svm_multiclass_learn.exe", String.Format("-c {0} {1} {2}", c, example_file, model_file));
+            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo("svm_bin/svm_multiclass_learn.exe", String.Format("-c {0} \"{1}\" \"{2}\"", c, example_file, model_file));
             myProcessStartInfo.UseShellExecute = false;
             myProcessStartInfo.RedirectStandardOutput = true;
+            myProcessStartInfo.RedirectStandardError = true;
             p.StartInfo = myProcessStartInfo;
             p.Start();
             // Do not wait for the child process to exit before
@@ -26,6 +27,7 @@ namespace SVM_Multiclass_Interface
             // p.WaitForExit();
             // Read the output stream first and then wait.
             string output = p.StandardOutput.ReadToEnd();
+            string error = p.StandardError.ReadToEnd();
             p.WaitForExit();
             p.Close();
             return output;
@@ -37,7 +39,7 @@ namespace SVM_Multiclass_Interface
             Process p = new Process();
             // Redirect the output stream of the child process.
             string[] lines = File.ReadAllLines(example_file);
-            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo("svm_bin/svm_multiclass_classify.exe", String.Format("{0} {1} {2}", example_file, model_file, predictions_file));
+            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo("svm_bin/svm_multiclass_classify.exe", String.Format("\"{0}\" \"{1}\" \"{2}\"", example_file, model_file, predictions_file));
             myProcessStartInfo.UseShellExecute = false;
             myProcessStartInfo.RedirectStandardOutput = true;
             p.StartInfo = myProcessStartInfo;

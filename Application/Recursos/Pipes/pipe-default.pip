@@ -16,7 +16,7 @@
 		"directoryFilePath": null
 	},
 	"svm": {
-		"c": "100",
+		"c": "1",
 		"modelFilename": null
 	},
 	"categoryLevel": 13

@@ -43,6 +43,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 representation.CreateRepresentationFiles(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text, parsedMinWheight, trainingPercentage);
                 ((App)MdiParent).PipeConfiguration.representation.directoryFilePath = textBoxCarpetaDestino.Text;
                 ((App)MdiParent).ValidateConfiguration();
+                ((App)MdiParent).formMatrizDeConfusion.Init();
                 labelRepresentacionObtenida.Show();
                 buttonVisualizarRepresentacion.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;

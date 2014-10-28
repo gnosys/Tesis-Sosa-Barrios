@@ -14,7 +14,7 @@ namespace AppPrincipal.FormsCompararResultados
 {
     public partial class FormMatrizDeConfusion : Form
     {
-        private string _vsmActualPredictionsFile;
+        private string _vsmClassificationFile;
         private string _predictionsFile;
 
         public FormMatrizDeConfusion(Form parent)
@@ -27,16 +27,14 @@ namespace AppPrincipal.FormsCompararResultados
 
         public void Init()
         {
-            _vsmActualPredictionsFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "/svm-classify.dat";
+            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
             _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
         }
 
-        private int[][] BuildConfusionMatrix(int[] actualCategories, int[] predictedCategories, List<int> categoryLabels, out int minValue, out int maxValue)
+        private int[][] BuildConfusionMatrix(int[] actualCategories, int[] predictedCategories, List<int> categoryLabels)
         {
             int length = categoryLabels.Count;
             int[][] confusionMatrix = new int[length][];
-            minValue = int.MaxValue;
-            maxValue = 0;
 
             for (int i = 0; i < length; i++)
             {
@@ -49,39 +47,22 @@ namespace AppPrincipal.FormsCompararResultados
                 confusionMatrix[actualCategory][predictedCategory]++;
 
             }
-            for (int i = 0; i < length; i++)
-            {
-                for (int j = 0; j < length; j++)
-                {
-                    if (confusionMatrix[i][j] > maxValue)
-                    {
-                        maxValue = confusionMatrix[i][j];
-                    }
-                    if (confusionMatrix[i][j] < minValue)
-                    {
-                        minValue = confusionMatrix[i][j];
-                    }
-                }
-            }
             return confusionMatrix;
         }
 
         private void buttonObtenerMatriz_Click(object sender, EventArgs e)
         {
 
-            string[] linesActualCategories = File.ReadAllLines(_vsmActualPredictionsFile); //TODO: (100 - trainingPercentage) % restantes
+            string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
             string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
 
             int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
             int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
             List<int> categoryLabels = actualCategories.Distinct().ToList();
 
-            int minValue = 0;
-            int maxValue = 0;
+            int[][] confusionMatrix = BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
 
-            int[][] confusionMatrix = BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels, out minValue, out maxValue);
-
-            DrawConfusionMatrix(confusionMatrix, minValue, maxValue);
+            DrawConfusionMatrix(confusionMatrix);
         }
 
         private string GetConfusionMatrixText(int[][] confusionMatrix)
@@ -98,28 +79,21 @@ namespace AppPrincipal.FormsCompararResultados
             return builder.ToString();
         }
 
-        public int sumarColumna(int[][] confusionMatrix, int fila)
-        {
-            int r = 0;
-            for (int i = 0; i < confusionMatrix.Length; i++)
-                r += confusionMatrix[fila][i];
-            return r;
-        }
-
-        private void DrawConfusionMatrix(int[][] confusionMatrix, int minValue, int maxValue)
+        private void DrawConfusionMatrix(int[][] confusionMatrix)
         {
             int length = confusionMatrix.Length;
             Bitmap bitmap = new Bitmap(480, 480);
             int n = 480 / length;
             for (int i = 0; i < length; i++)
             {
-                maxValue = sumarColumna(confusionMatrix, i);
+                int maxValue = confusionMatrix[i].Sum();
+                int minValue = confusionMatrix[i].Min();
                 for (int j = 0; j < length; j++)
                 {
                     DrawConfusionMatrixSquare(bitmap, i, j, confusionMatrix[i][j], n, minValue, maxValue);
                 }
             }
-            bitmap.Save(@"C:\Users\Mati\Desktop\mc.png", ImageFormat.Png);
+            //bitmap.Save(@"C:\Users\Mati\Desktop\mc.png", ImageFormat.Png);
             panelMatriz.BackgroundImage = bitmap;
             labelObtenerMatriz.Show();
         }
@@ -137,7 +111,8 @@ namespace AppPrincipal.FormsCompararResultados
             {
                 for (int x = minX; x <= maxX; x++)
                 {
-                    Color squareColor = GetColor(weight, minValue, maxValue);
+                    Color squareColor = (y == maxY || x == maxX || y == minY || x == minX) && (i == j)
+                        ? Color.Black : GetColor(weight, minValue, maxValue);
                     fontColor = Color.FromArgb(255 - squareColor.R, 255 - squareColor.G, 255 - squareColor.B);
                     bitmap.SetPixel(x, y, squareColor);
                 }
