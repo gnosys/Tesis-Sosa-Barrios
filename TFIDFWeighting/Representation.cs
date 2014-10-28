@@ -39,9 +39,20 @@ namespace TFIDFWeighting
                 builder.Clear();
             }
 
-            int learnLimit = docs * trainingPercentage / 100;
-            File.WriteAllLines(String.Format(@"{0}\svm-learn.dat", directoryFilePath), lines.Take(learnLimit));
-            File.WriteAllLines(String.Format(@"{0}\svm-classify.dat", directoryFilePath), lines.Skip(learnLimit));
+            var groups = lines.GroupBy(l => l.Split(' ')[0]);
+            List<string> linesLearn = new List<string>();
+            List<string> linesClassify = new List<string>();
+
+            foreach (var group in groups)
+            {
+                int total = group.Count();
+                int learnLimit = (int)Math.Ceiling(total * trainingPercentage / 100M);
+                linesLearn.AddRange(group.Take(learnLimit));
+                linesClassify.AddRange(group.Skip(learnLimit));
+            }
+
+            File.WriteAllLines(String.Format(@"{0}\svm-learn.dat", directoryFilePath), linesLearn);
+            File.WriteAllLines(String.Format(@"{0}\svm-classify.dat", directoryFilePath), linesClassify);
         }
 
         private static void CreateBOWFile(string[] words)

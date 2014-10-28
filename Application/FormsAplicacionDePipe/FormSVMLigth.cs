@@ -158,7 +158,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 labelPrediccionesGeneradas.Show();
                 buttonVisualizarPrediccion.Enabled = true;
                 buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
-
+                ((App)MdiParent).formMatrizDeConfusion.Init();
                 ((App)this.MdiParent).ValidateConfiguration();
             }
             else

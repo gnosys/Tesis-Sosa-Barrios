@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -58,7 +59,8 @@ namespace AppPrincipal.FormsCompararResultados
 
             int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
             int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-            List<int> categoryLabels = actualCategories.Distinct().ToList();
+            var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
+            List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
 
             int[][] confusionMatrix = BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
 
@@ -79,11 +81,15 @@ namespace AppPrincipal.FormsCompararResultados
             return builder.ToString();
         }
 
+        private int _bitmapLength;
+
         private void DrawConfusionMatrix(int[][] confusionMatrix)
         {
             int length = confusionMatrix.Length;
-            Bitmap bitmap = new Bitmap(480, 480);
-            int n = 480 / length;
+            _bitmapLength = length * 10;
+
+            Bitmap bitmap = new Bitmap(_bitmapLength, _bitmapLength);
+            int n = _bitmapLength / length;
             for (int i = 0; i < length; i++)
             {
                 int maxValue = confusionMatrix[i].Sum();
@@ -93,35 +99,28 @@ namespace AppPrincipal.FormsCompararResultados
                     DrawConfusionMatrixSquare(bitmap, i, j, confusionMatrix[i][j], n, minValue, maxValue);
                 }
             }
-            //bitmap.Save(@"C:\Users\Mati\Desktop\mc.png", ImageFormat.Png);
+            bitmap.Save(@"C:\Users\Pablo\Desktop\mc.png", ImageFormat.Png);
             panelMatriz.BackgroundImage = bitmap;
             labelObtenerMatriz.Show();
         }
+
+        
 
         private void DrawConfusionMatrixSquare(Bitmap bitmap, int i, int j, int weight, int n, int minValue, int maxValue)
         {
             int minY = i * n;
             int minX = j * n;
-            int maxY = Math.Min(479, minY + n);
-            int maxX = Math.Min(479, minX + n);
-            Color fontColor = Color.Black;
-
-
-            for (int y = minY; y <= maxY; y++)
+            Color squareColor = GetColor(weight, minValue, maxValue);
+            Color fontColor = Color.FromArgb(255 - squareColor.R, 255 - squareColor.G, 255 - squareColor.B);
+            using(Graphics g = Graphics.FromImage(bitmap))
             {
-                for (int x = minX; x <= maxX; x++)
-                {
-                    Color squareColor = (y == maxY || x == maxX || y == minY || x == minX) && (i == j)
-                        ? Color.Black : GetColor(weight, minValue, maxValue);
-                    fontColor = Color.FromArgb(255 - squareColor.R, 255 - squareColor.G, 255 - squareColor.B);
-                    bitmap.SetPixel(x, y, squareColor);
-                }
+                g.FillRectangle(new SolidBrush(squareColor), new Rectangle(minX, minY, 10, 10));
+                //TextRenderer.DrawText(g, String.Format("{2}", i, j, weight), Font, new Point(j * n + n / 2, i * n + n / 2), fontColor);
             }
 
-            Graphics g = Graphics.FromImage(bitmap);
-
-            TextRenderer.DrawText(g, String.Format("{2}", i, j, weight), Font, new Point(j * n + n / 2, i * n + n / 2), fontColor);
         }
+
+
 
         private static Bitmap SCALE = AppPrincipal.Properties.Resources.scale;
 
@@ -130,7 +129,7 @@ namespace AppPrincipal.FormsCompararResultados
             int indiceNorm = weight - minValue;
             int maxNorm = maxValue - minValue;
 
-            int i = indiceNorm * 100 / maxNorm;
+            int i = maxNorm != 0 ? indiceNorm * 100 / maxNorm : 0;
             if (i < 0)
                 i = 1;
             if (i > SCALE.Width - 1)

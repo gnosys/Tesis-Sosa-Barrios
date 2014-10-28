@@ -40,7 +40,8 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 int trainingPercentage = (int)((App)this.MdiParent).PipeConfiguration.representation.trainingPercentage;
                 float parsedMinWheight = 0;
                 float.TryParse(textBoxMinWeight.Text, out parsedMinWheight);
-                representation.CreateRepresentationFiles(tokens, tokens.Count, tweets.Select(t => t.Id_Category).ToArray(), @"" + textBoxCarpetaDestino.Text, parsedMinWheight, trainingPercentage);
+                var categories = tweets.Select(t => t.Id_Category).ToArray();
+                representation.CreateRepresentationFiles(tokens, tokens.Count, categories, @"" + textBoxCarpetaDestino.Text, parsedMinWheight, trainingPercentage);
                 ((App)MdiParent).PipeConfiguration.representation.directoryFilePath = textBoxCarpetaDestino.Text;
                 ((App)MdiParent).ValidateConfiguration();
                 ((App)MdiParent).formMatrizDeConfusion.Init();
