@@ -91,6 +91,7 @@ namespace AppPrincipal
             formMatrizDeConfusion = new FormMatrizDeConfusion(this);
 
             aboutBox = new AboutBox1();
+            aboutBox.StartPosition = FormStartPosition.CenterScreen;
 
             ValidateConfiguration();
         }
