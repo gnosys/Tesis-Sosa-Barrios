@@ -633,5 +633,37 @@ namespace DataBaseSQL
             command.Dispose();
             return count > 0;
         }
+
+        public List<string> GetCategoryLabels(List<int> categoryLabels)
+        {
+            List<string> list = new List<string>();
+
+            queryString = "SELECT [Name] FROM [dbo].[Category] WHERE ";
+            
+            foreach(var id in categoryLabels)
+            {
+                queryString += "[Id] = " + id + " OR ";
+            }
+
+            queryString = queryString.Substring(0, queryString.Length - 4);
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader.GetValue(0).ToString());
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
+
+            return list;
+        }
     }
 }

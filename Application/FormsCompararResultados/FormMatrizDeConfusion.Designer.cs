@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMatrizDeConfusion));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonObtenerMatriz = new System.Windows.Forms.Button();
@@ -49,7 +50,11 @@
             this.buttonCalcularMetricas = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.labelPresicion = new System.Windows.Forms.Label();
-            this.panelMatriz = new System.Windows.Forms.Panel();
+            this.dataGridViewMatrizConfusion = new System.Windows.Forms.DataGridView();
+            this.labelMetricasCalculadas = new System.Windows.Forms.Label();
+            this.buttonExportarAExcel = new System.Windows.Forms.Button();
+            this.labelMatrizExportada = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMatrizConfusion)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -94,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(189, 203);
+            this.label3.Location = new System.Drawing.Point(188, 446);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 5;
@@ -103,16 +108,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(189, 225);
+            this.label4.Location = new System.Drawing.Point(188, 468);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(320, 13);
+            this.label4.Size = new System.Drawing.Size(199, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Es la cantidad de predicciones correctas que realizó el clasificador";
+            this.label4.Text = "Es la cantidad de predicciones correctas";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(189, 248);
+            this.label6.Location = new System.Drawing.Point(188, 491);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 9;
@@ -122,7 +127,7 @@
             // 
             this.labelExactitud.AutoSize = true;
             this.labelExactitud.ForeColor = System.Drawing.Color.Green;
-            this.labelExactitud.Location = new System.Drawing.Point(283, 248);
+            this.labelExactitud.Location = new System.Drawing.Point(282, 491);
             this.labelExactitud.Name = "labelExactitud";
             this.labelExactitud.Size = new System.Drawing.Size(0, 13);
             this.labelExactitud.TabIndex = 10;
@@ -130,16 +135,16 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(189, 300);
+            this.label7.Location = new System.Drawing.Point(436, 468);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(328, 13);
+            this.label7.Size = new System.Drawing.Size(207, 13);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Es la cantidad de predicciones incorrectas que realizó el clasificador";
+            this.label7.Text = "Es la cantidad de predicciones incorrectas";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(189, 278);
+            this.label8.Location = new System.Drawing.Point(436, 446);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 11;
@@ -148,7 +153,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(189, 322);
+            this.label5.Location = new System.Drawing.Point(436, 490);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 13);
             this.label5.TabIndex = 13;
@@ -157,7 +162,7 @@
             // labelError
             // 
             this.labelError.AutoSize = true;
-            this.labelError.Location = new System.Drawing.Point(258, 322);
+            this.labelError.Location = new System.Drawing.Point(505, 490);
             this.labelError.Name = "labelError";
             this.labelError.Size = new System.Drawing.Size(0, 13);
             this.labelError.TabIndex = 14;
@@ -165,7 +170,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(189, 421);
+            this.label9.Location = new System.Drawing.Point(688, 518);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(171, 13);
             this.label9.TabIndex = 17;
@@ -174,16 +179,16 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(189, 376);
+            this.label10.Location = new System.Drawing.Point(688, 468);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(366, 13);
+            this.label10.Size = new System.Drawing.Size(266, 13);
             this.label10.TabIndex = 16;
-            this.label10.Text = "Es la cantidad de predicciones correctas por categoría realizó el clasificador";
+            this.label10.Text = "Es la cantidad de predicciones correctas por categoría";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(189, 354);
+            this.label11.Location = new System.Drawing.Point(688, 446);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(156, 13);
             this.label11.TabIndex = 15;
@@ -192,7 +197,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(189, 398);
+            this.label12.Location = new System.Drawing.Point(688, 493);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(113, 13);
             this.label12.TabIndex = 18;
@@ -202,7 +207,7 @@
             // 
             this.comboBoxCategorias.Enabled = false;
             this.comboBoxCategorias.FormattingEnabled = true;
-            this.comboBoxCategorias.Location = new System.Drawing.Point(305, 393);
+            this.comboBoxCategorias.Location = new System.Drawing.Point(807, 490);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(129, 21);
             this.comboBoxCategorias.TabIndex = 19;
@@ -210,18 +215,19 @@
             // buttonCalcularMetricas
             // 
             this.buttonCalcularMetricas.Enabled = false;
-            this.buttonCalcularMetricas.Location = new System.Drawing.Point(305, 472);
+            this.buttonCalcularMetricas.Location = new System.Drawing.Point(192, 527);
             this.buttonCalcularMetricas.Name = "buttonCalcularMetricas";
             this.buttonCalcularMetricas.Size = new System.Drawing.Size(129, 23);
             this.buttonCalcularMetricas.TabIndex = 20;
             this.buttonCalcularMetricas.Text = "Calcular Métricas";
             this.buttonCalcularMetricas.UseVisualStyleBackColor = true;
+            this.buttonCalcularMetricas.Click += new System.EventHandler(this.buttonCalcularMetricas_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(190, 174);
+            this.label13.Location = new System.Drawing.Point(189, 417);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(62, 13);
             this.label13.TabIndex = 21;
@@ -230,24 +236,69 @@
             // labelPresicion
             // 
             this.labelPresicion.AutoSize = true;
-            this.labelPresicion.Location = new System.Drawing.Point(357, 421);
+            this.labelPresicion.Location = new System.Drawing.Point(856, 518);
             this.labelPresicion.Name = "labelPresicion";
             this.labelPresicion.Size = new System.Drawing.Size(0, 13);
             this.labelPresicion.TabIndex = 22;
             // 
-            // panelMatriz
+            // dataGridViewMatrizConfusion
             // 
-            this.panelMatriz.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelMatriz.Location = new System.Drawing.Point(561, 124);
-            this.panelMatriz.Name = "panelMatriz";
-            this.panelMatriz.Size = new System.Drawing.Size(430, 430);
-            this.panelMatriz.TabIndex = 3;
+            this.dataGridViewMatrizConfusion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewMatrizConfusion.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewMatrizConfusion.Location = new System.Drawing.Point(192, 161);
+            this.dataGridViewMatrizConfusion.Name = "dataGridViewMatrizConfusion";
+            this.dataGridViewMatrizConfusion.RowTemplate.Height = 20;
+            this.dataGridViewMatrizConfusion.Size = new System.Drawing.Size(787, 240);
+            this.dataGridViewMatrizConfusion.TabIndex = 0;
+            // 
+            // labelMetricasCalculadas
+            // 
+            this.labelMetricasCalculadas.AutoSize = true;
+            this.labelMetricasCalculadas.ForeColor = System.Drawing.Color.Green;
+            this.labelMetricasCalculadas.Location = new System.Drawing.Point(327, 532);
+            this.labelMetricasCalculadas.Name = "labelMetricasCalculadas";
+            this.labelMetricasCalculadas.Size = new System.Drawing.Size(102, 13);
+            this.labelMetricasCalculadas.TabIndex = 23;
+            this.labelMetricasCalculadas.Text = "Métricas Calculadas";
+            this.labelMetricasCalculadas.Visible = false;
+            // 
+            // buttonExportarAExcel
+            // 
+            this.buttonExportarAExcel.Location = new System.Drawing.Point(682, 124);
+            this.buttonExportarAExcel.Name = "buttonExportarAExcel";
+            this.buttonExportarAExcel.Size = new System.Drawing.Size(129, 23);
+            this.buttonExportarAExcel.TabIndex = 24;
+            this.buttonExportarAExcel.Text = "Exportar Matriz a Excel";
+            this.buttonExportarAExcel.UseVisualStyleBackColor = true;
+            this.buttonExportarAExcel.Click += new System.EventHandler(this.buttonExportarAExcel_Click);
+            // 
+            // labelMatrizExportada
+            // 
+            this.labelMatrizExportada.AutoSize = true;
+            this.labelMatrizExportada.ForeColor = System.Drawing.Color.Green;
+            this.labelMatrizExportada.Location = new System.Drawing.Point(817, 129);
+            this.labelMatrizExportada.Name = "labelMatrizExportada";
+            this.labelMatrizExportada.Size = new System.Drawing.Size(139, 13);
+            this.labelMatrizExportada.TabIndex = 25;
+            this.labelMatrizExportada.Text = "Matriz Exportada a un Excel";
+            this.labelMatrizExportada.Visible = false;
             // 
             // FormMatrizDeConfusion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.labelMatrizExportada);
+            this.Controls.Add(this.buttonExportarAExcel);
+            this.Controls.Add(this.dataGridViewMatrizConfusion);
+            this.Controls.Add(this.labelMetricasCalculadas);
             this.Controls.Add(this.labelPresicion);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.buttonCalcularMetricas);
@@ -265,13 +316,13 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelObtenerMatriz);
-            this.Controls.Add(this.panelMatriz);
             this.Controls.Add(this.buttonObtenerMatriz);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMatrizDeConfusion";
             this.Text = "FormMatrizDeConfusion";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMatrizConfusion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +333,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonObtenerMatriz;
-        private System.Windows.Forms.Panel panelMatriz;
         private System.Windows.Forms.Label labelObtenerMatriz;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -300,5 +350,9 @@
         private System.Windows.Forms.Button buttonCalcularMetricas;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label labelPresicion;
+        private System.Windows.Forms.DataGridView dataGridViewMatrizConfusion;
+        private System.Windows.Forms.Label labelMetricasCalculadas;
+        private System.Windows.Forms.Button buttonExportarAExcel;
+        private System.Windows.Forms.Label labelMatrizExportada;
     }
 }
