@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMatrizDeConfusion));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonObtenerMatriz = new System.Windows.Forms.Button();
@@ -117,17 +117,17 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(188, 491);
+            this.label6.Location = new System.Drawing.Point(189, 490);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 13);
+            this.label6.Size = new System.Drawing.Size(135, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = "La exactitud es de:";
+            this.label6.Text = "La tasa de exactitud es de:";
             // 
             // labelExactitud
             // 
             this.labelExactitud.AutoSize = true;
             this.labelExactitud.ForeColor = System.Drawing.Color.Green;
-            this.labelExactitud.Location = new System.Drawing.Point(282, 491);
+            this.labelExactitud.Location = new System.Drawing.Point(321, 490);
             this.labelExactitud.Name = "labelExactitud";
             this.labelExactitud.Size = new System.Drawing.Size(0, 13);
             this.labelExactitud.TabIndex = 10;
@@ -155,14 +155,15 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(436, 490);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.Size = new System.Drawing.Size(113, 13);
             this.label5.TabIndex = 13;
-            this.label5.Text = "El error es de:";
+            this.label5.Text = "La tasa de error es de:";
             // 
             // labelError
             // 
             this.labelError.AutoSize = true;
-            this.labelError.Location = new System.Drawing.Point(505, 490);
+            this.labelError.ForeColor = System.Drawing.Color.Green;
+            this.labelError.Location = new System.Drawing.Point(546, 490);
             this.labelError.Name = "labelError";
             this.labelError.Size = new System.Drawing.Size(0, 13);
             this.labelError.TabIndex = 14;
@@ -172,9 +173,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(688, 518);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(171, 13);
+            this.label9.Size = new System.Drawing.Size(209, 13);
             this.label9.TabIndex = 17;
-            this.label9.Text = "La presición de la categoría es de:";
+            this.label9.Text = "La tasa de presición de la categoría es de:";
             // 
             // label10
             // 
@@ -211,6 +212,7 @@
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(129, 21);
             this.comboBoxCategorias.TabIndex = 19;
+            this.comboBoxCategorias.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategorias_SelectedIndexChanged);
             // 
             // buttonCalcularMetricas
             // 
@@ -236,7 +238,8 @@
             // labelPresicion
             // 
             this.labelPresicion.AutoSize = true;
-            this.labelPresicion.Location = new System.Drawing.Point(856, 518);
+            this.labelPresicion.ForeColor = System.Drawing.Color.Green;
+            this.labelPresicion.Location = new System.Drawing.Point(894, 518);
             this.labelPresicion.Name = "labelPresicion";
             this.labelPresicion.Size = new System.Drawing.Size(0, 13);
             this.labelPresicion.TabIndex = 22;
@@ -244,14 +247,14 @@
             // dataGridViewMatrizConfusion
             // 
             this.dataGridViewMatrizConfusion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewMatrizConfusion.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewMatrizConfusion.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewMatrizConfusion.Location = new System.Drawing.Point(192, 161);
             this.dataGridViewMatrizConfusion.Name = "dataGridViewMatrizConfusion";
             this.dataGridViewMatrizConfusion.RowTemplate.Height = 20;

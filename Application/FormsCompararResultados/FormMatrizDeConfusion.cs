@@ -20,6 +20,8 @@ namespace AppPrincipal.FormsCompararResultados
     {
         private string _vsmClassificationFile;
         private string _predictionsFile;
+        private int cantCorrectos = 0;
+        private int[][] confusionMatrix;
 
         public FormMatrizDeConfusion(Form parent)
         {
@@ -48,8 +50,8 @@ namespace AppPrincipal.FormsCompararResultados
                 int actualCategory = categoryLabels.IndexOf(actualCategories[i]);
                 int predictedCategory = categoryLabels.IndexOf(predictedCategories[i]);
                 confusionMatrix[actualCategory][predictedCategory]++;
-
             }
+
             return confusionMatrix;
         }
 
@@ -63,7 +65,7 @@ namespace AppPrincipal.FormsCompararResultados
             var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
             List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
 
-            int[][] confusionMatrix = BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
+            confusionMatrix = BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
 
             dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length;
             dataGridViewMatrizConfusion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -83,10 +85,15 @@ namespace AppPrincipal.FormsCompararResultados
 
                 dataGridViewMatrizConfusion.Rows[i].SetValues(fila);
             }
-
+             
             DrawConfusionMatrix(confusionMatrix);
-            comboBoxCategorias.Enabled = true;
+            foreach (string categoria in labels)
+            {
+                comboBoxCategorias.Items.Add(categoria);
+            }
+
             buttonCalcularMetricas.Enabled = true;
+            labelObtenerMatriz.Show();
         }
 
         private int _bitmapLength;
@@ -109,7 +116,7 @@ namespace AppPrincipal.FormsCompararResultados
             }
 
             dataGridViewMatrizConfusion.AutoResizeColumns();
-            labelObtenerMatriz.Show();
+            dataGridViewMatrizConfusion.Rows[0].Selected = false;
         }
 
         private void DrawConfusionMatrixSquare(Bitmap bitmap, int i, int j, int weight, int n, int minValue, int maxValue)
@@ -117,7 +124,7 @@ namespace AppPrincipal.FormsCompararResultados
             int minY = i * n;
             int minX = j * n;
             Color squareColor = GetColor(weight, minValue, maxValue);
-            dataGridViewMatrizConfusion[i, j].Style.BackColor = squareColor;
+            dataGridViewMatrizConfusion[j, i].Style.BackColor = squareColor;
             Color fontColor = Color.FromArgb(255 - squareColor.R, 255 - squareColor.G, 255 - squareColor.B);
             using(Graphics g = Graphics.FromImage(bitmap))
             {
@@ -140,8 +147,57 @@ namespace AppPrincipal.FormsCompararResultados
             return SCALE.GetPixel(i, 10);
         }
 
+        private float CalcularTasaDeExactitud()
+        {
+            float total = 0;
+            float correctos = 0;
+            for(int i =0; i < confusionMatrix.Length; i++)
+            {
+                for (int j = 0; j < confusionMatrix.Length; j++)
+                {
+                    total += confusionMatrix[i][j];
+                    if (i == j)
+                        correctos += confusionMatrix[i][j];
+                }
+            }
+            return (correctos / total);
+        }
+
+        private float CalcularTasaDeError()
+        {
+            float total = 0;
+            float incorrectos = 0;
+            for (int i = 0; i < confusionMatrix.Length; i++)
+            {
+                for (int j = 0; j < confusionMatrix.Length; j++)
+                {
+                    total += confusionMatrix[i][j];
+                    if (i != j)
+                        incorrectos += confusionMatrix[i][j];
+                }
+            }
+            return (incorrectos / total);
+        }
+
+        private float CalcularPresicion()
+        {
+            float totalPrediccionCategoria = 0;
+            float correctosPrediccion = 0;
+            int fila = comboBoxCategorias.SelectedIndex;
+            for (int j = 0; j < confusionMatrix.Length; j++)
+            {
+                totalPrediccionCategoria += confusionMatrix[fila][j];
+                if (fila == j)
+                    correctosPrediccion += confusionMatrix[fila][j];
+            }
+            return (correctosPrediccion / totalPrediccionCategoria);
+        }
+
         private void buttonCalcularMetricas_Click(object sender, EventArgs e)
         {
+            labelExactitud.Text = CalcularTasaDeExactitud().ToString("0.000");
+            labelError.Text = CalcularTasaDeError().ToString("0.000");
+            comboBoxCategorias.Enabled = true;
             labelMetricasCalculadas.Show();
         }
 
@@ -233,6 +289,11 @@ namespace AppPrincipal.FormsCompararResultados
         {
             exportarAExcel(dataGridViewMatrizConfusion);
             labelMatrizExportada.Show();
+        }
+
+        private void comboBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelPresicion.Text = CalcularPresicion().ToString("0.000");
         }
     }
 }

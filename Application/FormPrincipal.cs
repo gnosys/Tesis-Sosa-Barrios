@@ -84,7 +84,7 @@ namespace AppPrincipal
             formSVMLigth = new FormSVMLigth(this);
 
             // Formulario del boton "Comparar resultados"
-            formCompararResultados = new FormCompararResultados();
+            formCompararResultados = new FormCompararResultados(this);
             formCompararResultados.MdiParent = this;
 
             // Formulario del boton "Matriz de Confusion"
