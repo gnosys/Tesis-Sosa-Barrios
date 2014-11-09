@@ -20,7 +20,6 @@ namespace AppPrincipal.FormsCompararResultados
     {
         private string _vsmClassificationFile;
         private string _predictionsFile;
-        private int cantCorrectos = 0;
         private int[][] confusionMatrix;
 
         public FormMatrizDeConfusion(Form parent)
@@ -36,25 +35,6 @@ namespace AppPrincipal.FormsCompararResultados
             _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
         }
 
-        private int[][] BuildConfusionMatrix(int[] actualCategories, int[] predictedCategories, List<int> categoryLabels)
-        {
-            int length = categoryLabels.Count;
-            int[][] confusionMatrix = new int[length][];
-
-            for (int i = 0; i < length; i++)
-            {
-                confusionMatrix[i] = new int[length];
-            }
-            for (int i = 0; i < actualCategories.Length; i++)
-            {
-                int actualCategory = categoryLabels.IndexOf(actualCategories[i]);
-                int predictedCategory = categoryLabels.IndexOf(predictedCategories[i]);
-                confusionMatrix[actualCategory][predictedCategory]++;
-            }
-
-            return confusionMatrix;
-        }
-
         private void buttonObtenerMatriz_Click(object sender, EventArgs e)
         {
             string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
@@ -65,7 +45,7 @@ namespace AppPrincipal.FormsCompararResultados
             var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
             List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
 
-            confusionMatrix = BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
+            confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
 
             dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length;
             dataGridViewMatrizConfusion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -147,56 +127,10 @@ namespace AppPrincipal.FormsCompararResultados
             return SCALE.GetPixel(i, 10);
         }
 
-        private float CalcularTasaDeExactitud()
-        {
-            float total = 0;
-            float correctos = 0;
-            for(int i =0; i < confusionMatrix.Length; i++)
-            {
-                for (int j = 0; j < confusionMatrix.Length; j++)
-                {
-                    total += confusionMatrix[i][j];
-                    if (i == j)
-                        correctos += confusionMatrix[i][j];
-                }
-            }
-            return (correctos / total);
-        }
-
-        private float CalcularTasaDeError()
-        {
-            float total = 0;
-            float incorrectos = 0;
-            for (int i = 0; i < confusionMatrix.Length; i++)
-            {
-                for (int j = 0; j < confusionMatrix.Length; j++)
-                {
-                    total += confusionMatrix[i][j];
-                    if (i != j)
-                        incorrectos += confusionMatrix[i][j];
-                }
-            }
-            return (incorrectos / total);
-        }
-
-        private float CalcularPresicion()
-        {
-            float totalPrediccionCategoria = 0;
-            float correctosPrediccion = 0;
-            int fila = comboBoxCategorias.SelectedIndex;
-            for (int j = 0; j < confusionMatrix.Length; j++)
-            {
-                totalPrediccionCategoria += confusionMatrix[fila][j];
-                if (fila == j)
-                    correctosPrediccion += confusionMatrix[fila][j];
-            }
-            return (correctosPrediccion / totalPrediccionCategoria);
-        }
-
         private void buttonCalcularMetricas_Click(object sender, EventArgs e)
         {
-            labelExactitud.Text = CalcularTasaDeExactitud().ToString("0.000");
-            labelError.Text = CalcularTasaDeError().ToString("0.000");
+            labelExactitud.Text = ((App)MdiParent).CalcularTasaDeExactitud(confusionMatrix).ToString("0.000");
+            labelError.Text = ((App)MdiParent).CalcularTasaDeError(confusionMatrix).ToString("0.000");
             comboBoxCategorias.Enabled = true;
             labelMetricasCalculadas.Show();
         }
@@ -293,7 +227,7 @@ namespace AppPrincipal.FormsCompararResultados
 
         private void comboBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            labelPresicion.Text = CalcularPresicion().ToString("0.000");
+            labelPresicion.Text = ((App)MdiParent).CalcularPresicion(confusionMatrix, comboBoxCategorias.SelectedIndex).ToString("0.000");
         }
     }
 }

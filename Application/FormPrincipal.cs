@@ -278,5 +278,68 @@ namespace AppPrincipal
             formMatrizDeConfusion.Show();
         }
 
+        public int[][] BuildConfusionMatrix(int[] actualCategories, int[] predictedCategories, List<int> categoryLabels)
+        {
+            int length = categoryLabels.Count;
+            int[][] confusionMatrix = new int[length][];
+
+            for (int i = 0; i < length; i++)
+            {
+                confusionMatrix[i] = new int[length];
+            }
+            for (int i = 0; i < actualCategories.Length; i++)
+            {
+                int actualCategory = categoryLabels.IndexOf(actualCategories[i]);
+                int predictedCategory = categoryLabels.IndexOf(predictedCategories[i]);
+                confusionMatrix[actualCategory][predictedCategory]++;
+            }
+
+            return confusionMatrix;
+        }
+
+        public float CalcularTasaDeExactitud(int[][] confusionMatrix)
+        {
+            float total = 0;
+            float correctos = 0;
+            for (int i = 0; i < confusionMatrix.Length; i++)
+            {
+                for (int j = 0; j < confusionMatrix.Length; j++)
+                {
+                    total += confusionMatrix[i][j];
+                    if (i == j)
+                        correctos += confusionMatrix[i][j];
+                }
+            }
+            return (correctos / total);
+        }
+
+        public float CalcularTasaDeError(int[][] confusionMatrix)
+        {
+            float total = 0;
+            float incorrectos = 0;
+            for (int i = 0; i < confusionMatrix.Length; i++)
+            {
+                for (int j = 0; j < confusionMatrix.Length; j++)
+                {
+                    total += confusionMatrix[i][j];
+                    if (i != j)
+                        incorrectos += confusionMatrix[i][j];
+                }
+            }
+            return (incorrectos / total);
+        }
+
+        public float CalcularPresicion(int[][] confusionMatrix, int indexFila)
+        {
+            float totalPrediccionCategoria = 0;
+            float correctosPrediccion = 0;
+            for (int j = 0; j < confusionMatrix.Length; j++)
+            {
+                totalPrediccionCategoria += confusionMatrix[indexFila][j];
+                if (indexFila == j)
+                    correctosPrediccion += confusionMatrix[indexFila][j];
+            }
+            return (correctosPrediccion / totalPrediccionCategoria);
+        }
     }
 }
