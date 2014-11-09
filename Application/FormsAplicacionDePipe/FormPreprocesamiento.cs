@@ -22,7 +22,6 @@ namespace AppPrincipal
 
         bool cambiarTabs = false;
 
-
         private AroundFilter GetConfiguredAroundFilters(JToken config)
         {
             switch ((string)config["_type"])
@@ -49,11 +48,18 @@ namespace AppPrincipal
             return ret;
         }
 
-        public FormPreprocesamiento()
+        public FormPreprocesamiento(Form parent)
         {
             //configuration = JObject.Parse(jsonConf);
             //dynamic tokenizingConfiguration = ((JArray)configuration.preprocessing).First(x => (string)x["_type"] == "tokenizing" );
             InitializeComponent();
+            this.MdiParent = parent;
+            Init();
+        }
+
+        public void Init()
+        {
+
         }
 
         private void buttonPreprocesar_Click(object sender, EventArgs e)
@@ -180,7 +186,9 @@ namespace AppPrincipal
 
         private void checkBoxListaStopWordsDefecto_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxListaStopWordsDefecto.Checked)
+            labelListaAplicadaStopWords.Hide();
+
+            if (checkBoxListaStopWordsPorDefecto.Checked)
             {
                 textBoxDireccionStopWords.Enabled = false;
                 buttonBuscarListStopWords.Enabled = false;
@@ -205,19 +213,16 @@ namespace AppPrincipal
 
         private void buttonBuscarListStopWords_Click(object sender, EventArgs e)
         {
+            labelListaAplicadaStopWords.Hide();
             OpenFileDialog buscarArchivo = new OpenFileDialog();
             buscarArchivo.ShowDialog();
             string directorio = buscarArchivo.FileName;
             textBoxDireccionStopWords.Text = directorio;
 
-            if (directorio.EndsWith(".txt"))
+            if (!directorio.EndsWith(".txt"))
             {
-                labelArchivosTxtStopWords.ForeColor = Color.Gray;
-                //guardar en la base de datos y agregar.
-            }
-            else
-            {
-                labelArchivosTxtStopWords.ForeColor = Color.Red;
+                textBoxDireccionStopWords.Clear();
+                DialogResult result = MessageBox.Show("El archivo no tiene un formato valido .txt", "Archivo Invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -225,17 +230,17 @@ namespace AppPrincipal
         {
             if (checkBoxReemplazarAbreviatura.Checked)
             {
-                checkBoxListaAbreviaturasDefecto.Enabled = true;
+                checkBoxListaAbreviaturasPorDefecto.Enabled = true;
                 buttonBuscarListaAbreviatura.Enabled = true;
                 textBoxDireccionAbreviaturas.Enabled = true;
             }
             else
             {
-                checkBoxListaAbreviaturasDefecto.Enabled = false;
+                checkBoxListaAbreviaturasPorDefecto.Enabled = false;
                 buttonBuscarListaAbreviatura.Enabled = false;
                 textBoxDireccionAbreviaturas.Enabled = false;
             }
-            if (checkBoxListaAbreviaturasDefecto.Checked)
+            if (checkBoxListaAbreviaturasPorDefecto.Checked)
             {
                 buttonBuscarListaAbreviatura.Enabled = false;
                 textBoxDireccionAbreviaturas.Enabled = false;
@@ -244,7 +249,7 @@ namespace AppPrincipal
 
         private void checkBoxListaAbreviaturasDefecto_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxListaAbreviaturasDefecto.Checked)
+            if (checkBoxListaAbreviaturasPorDefecto.Checked)
             {
                 buttonBuscarListaAbreviatura.Enabled = false;
                 textBoxDireccionAbreviaturas.Enabled = false;
@@ -263,15 +268,72 @@ namespace AppPrincipal
             string directorio = buscarArchivo.FileName;
             textBoxDireccionAbreviaturas.Text = directorio;
 
-            if (directorio.EndsWith(".txt"))
+            if (!directorio.EndsWith(".txt"))
             {
-                labelArchivosTxtTratamiento.ForeColor = Color.Gray;
-                //guardar en la base de datos y agregar.
-            }
-            else
-            {
-                labelArchivosTxtTratamiento.ForeColor = Color.Red;
+                textBoxDireccionAbreviaturas.Clear();
+                DialogResult result = MessageBox.Show("El archivo no tiene un formato valido .txt", "Archivo Invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void buttonAplicarListaStopWords_Click(object sender, EventArgs e)
+        {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            dynamic stopWordsConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stopWords");
+
+            stopWordsConfiguration.byDefault = checkBoxListaStopWordsPorDefecto.Checked;
+            if (!checkBoxListaStopWordsPorDefecto.Checked)
+                stopWordsConfiguration.filename = textBoxDireccionStopWords.Text;
+
+            labelListaAplicadaStopWords.Show();
+        }
+
+        private void buttonAplicarExpresionRegular_Click(object sender, EventArgs e)
+        {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
+
+            tokenizingConfiguration.regexp = textBoxExpresionRegular.Text;
+
+            labelExpresionRegularAplicada.Show();
+        }
+
+        private void buttonAplicarEnriquecimiento_Click(object sender, EventArgs e)
+        {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            dynamic richmentConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment");
+
+            richmentConfiguration.metatags = checkBoxMetaTags.Checked;
+            richmentConfiguration.title = checkBoxTitulo.Checked;
+            richmentConfiguration.bold = checkBoxNegrita.Checked;
+            richmentConfiguration.italic = checkBoxCursiva.Checked;
+            richmentConfiguration.order = checkBoxOrden.Checked;
+
+            labelEnriquecimientoAplicado.Show();
+        }
+
+        private void buttonAplicarTratamiento_Click(object sender, EventArgs e)
+        {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            dynamic wordsConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words");
+
+            if (checkBoxReemplazarAbreviatura.Checked)
+            {
+                wordsConfiguration.replaceAbbreviations = checkBoxReemplazarAbreviatura.Checked;
+                wordsConfiguration.byDefault = checkBoxListaAbreviaturasPorDefecto.Checked;
+                if (!checkBoxListaAbreviaturasPorDefecto.Checked)
+                    wordsConfiguration.filename = textBoxDireccionAbreviaturas.Text;
+            }
+            wordsConfiguration.removeLinks = checkBoxEliminarLinks.Checked;
+            wordsConfiguration.caseSensitive = checkBoxMayusYMinus.Checked;
+            wordsConfiguration.substantive = checkBoxSoloSustantivos.Checked;
+
+            labelTratamientoAplicado.Show();
+        }
+
+        private void textBoxExpresionRegular_TextChanged(object sender, EventArgs e)
+        {
+            labelExpresionRegularAplicada.Hide();
+        }
+
     }
 }

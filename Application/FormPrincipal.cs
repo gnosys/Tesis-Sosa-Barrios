@@ -70,7 +70,7 @@ namespace AppPrincipal
             formEnriquecimiento.MdiParent = this;
 
             // Formulario del boton "Preprocesamiento"
-            formPreprocesamiento = new FormPreprocesamiento();
+            formPreprocesamiento = new FormPreprocesamiento(this);
             formPreprocesamiento.MdiParent = this;
 
             // Formulario del boton "Tratamiento en Texto"

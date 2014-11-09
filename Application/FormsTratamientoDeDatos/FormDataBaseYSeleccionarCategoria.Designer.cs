@@ -332,10 +332,10 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(17, 18);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(436, 13);
+            this.label10.Size = new System.Drawing.Size(649, 13);
             this.label10.TabIndex = 0;
             this.label10.Text = "Seleccionar nivel de categorias de acuerdo a la informacion de las tuplas en base" +
-    " de datos";
+    " de datos segun el formato de categorias de los tweets";
             // 
             // dataGridViewDatos
             // 
