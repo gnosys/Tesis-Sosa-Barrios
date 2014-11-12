@@ -250,6 +250,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Recursos\Abreviaturas\abbreviations.txt" />
     <Content Include="Resources\Photos.png" />
     <Content Include="Recursos\Imagenes\logo.ico" />
     <Content Include="Recursos\Imagenes\logo.png" />

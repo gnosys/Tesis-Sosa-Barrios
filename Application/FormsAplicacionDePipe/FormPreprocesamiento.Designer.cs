@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Stemmer");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Stop Words");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Tokenizacion");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Stemmer");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Stop Words");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Tokenizacion");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
             this.buttonPreprocesar = new System.Windows.Forms.Button();
             this.listViewPreprocesamientos = new System.Windows.Forms.ListView();
             this.columnHeaderListaSeleccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,22 +65,13 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.labelEnriquecimientoAplicado = new System.Windows.Forms.Label();
             this.buttonAplicarEnriquecimiento = new System.Windows.Forms.Button();
-            this.checkBoxOrden = new System.Windows.Forms.CheckBox();
-            this.checkBoxCursiva = new System.Windows.Forms.CheckBox();
-            this.checkBoxNegrita = new System.Windows.Forms.CheckBox();
             this.checkBoxTitulo = new System.Windows.Forms.CheckBox();
             this.checkBoxMetaTags = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.labelTratamientoAplicado = new System.Windows.Forms.Label();
-            this.checkBoxSoloSustantivos = new System.Windows.Forms.CheckBox();
-            this.checkBoxMayusYMinus = new System.Windows.Forms.CheckBox();
             this.checkBoxEliminarLinks = new System.Windows.Forms.CheckBox();
             this.checkBoxListaAbreviaturasPorDefecto = new System.Windows.Forms.CheckBox();
             this.checkBoxReemplazarAbreviatura = new System.Windows.Forms.CheckBox();
@@ -90,8 +81,6 @@
             this.labelArchivosTxtTratamiento = new System.Windows.Forms.Label();
             this.buttonBuscarListaAbreviatura = new System.Windows.Forms.Button();
             this.textBoxDireccionAbreviaturas = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -119,11 +108,11 @@
             this.columnHeaderListaSeleccion});
             this.listViewPreprocesamientos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewPreprocesamientos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5});
             this.listViewPreprocesamientos.Location = new System.Drawing.Point(365, 91);
             this.listViewPreprocesamientos.MultiSelect = false;
             this.listViewPreprocesamientos.Name = "listViewPreprocesamientos";
@@ -413,16 +402,9 @@
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage4.Controls.Add(this.labelEnriquecimientoAplicado);
             this.tabPage4.Controls.Add(this.buttonAplicarEnriquecimiento);
-            this.tabPage4.Controls.Add(this.checkBoxOrden);
-            this.tabPage4.Controls.Add(this.checkBoxCursiva);
-            this.tabPage4.Controls.Add(this.checkBoxNegrita);
             this.tabPage4.Controls.Add(this.checkBoxTitulo);
             this.tabPage4.Controls.Add(this.checkBoxMetaTags);
-            this.tabPage4.Controls.Add(this.label18);
-            this.tabPage4.Controls.Add(this.label17);
             this.tabPage4.Controls.Add(this.label16);
-            this.tabPage4.Controls.Add(this.label14);
-            this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -452,37 +434,10 @@
             this.buttonAplicarEnriquecimiento.UseVisualStyleBackColor = true;
             this.buttonAplicarEnriquecimiento.Click += new System.EventHandler(this.buttonAplicarEnriquecimiento_Click);
             // 
-            // checkBoxOrden
-            // 
-            this.checkBoxOrden.AutoSize = true;
-            this.checkBoxOrden.Location = new System.Drawing.Point(220, 127);
-            this.checkBoxOrden.Name = "checkBoxOrden";
-            this.checkBoxOrden.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxOrden.TabIndex = 19;
-            this.checkBoxOrden.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxCursiva
-            // 
-            this.checkBoxCursiva.AutoSize = true;
-            this.checkBoxCursiva.Location = new System.Drawing.Point(220, 111);
-            this.checkBoxCursiva.Name = "checkBoxCursiva";
-            this.checkBoxCursiva.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxCursiva.TabIndex = 18;
-            this.checkBoxCursiva.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxNegrita
-            // 
-            this.checkBoxNegrita.AutoSize = true;
-            this.checkBoxNegrita.Location = new System.Drawing.Point(220, 95);
-            this.checkBoxNegrita.Name = "checkBoxNegrita";
-            this.checkBoxNegrita.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxNegrita.TabIndex = 17;
-            this.checkBoxNegrita.UseVisualStyleBackColor = true;
-            // 
             // checkBoxTitulo
             // 
             this.checkBoxTitulo.AutoSize = true;
-            this.checkBoxTitulo.Location = new System.Drawing.Point(220, 52);
+            this.checkBoxTitulo.Location = new System.Drawing.Point(140, 52);
             this.checkBoxTitulo.Name = "checkBoxTitulo";
             this.checkBoxTitulo.Size = new System.Drawing.Size(15, 14);
             this.checkBoxTitulo.TabIndex = 12;
@@ -491,29 +446,11 @@
             // checkBoxMetaTags
             // 
             this.checkBoxMetaTags.AutoSize = true;
-            this.checkBoxMetaTags.Location = new System.Drawing.Point(220, 36);
+            this.checkBoxMetaTags.Location = new System.Drawing.Point(140, 36);
             this.checkBoxMetaTags.Name = "checkBoxMetaTags";
             this.checkBoxMetaTags.Size = new System.Drawing.Size(15, 14);
             this.checkBoxMetaTags.TabIndex = 11;
             this.checkBoxMetaTags.UseVisualStyleBackColor = true;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(81, 127);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(98, 13);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "Orden de Aparición";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(20, 82);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 13);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Contemplar:";
             // 
             // label16
             // 
@@ -523,24 +460,6 @@
             this.label16.Size = new System.Drawing.Size(69, 13);
             this.label16.TabIndex = 8;
             this.label16.Text = "META-TAGS";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(81, 111);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(101, 13);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "Palabras en Cursiva";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(81, 95);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(100, 13);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Palabras en Negrita";
             // 
             // label9
             // 
@@ -564,8 +483,6 @@
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage5.Controls.Add(this.labelTratamientoAplicado);
-            this.tabPage5.Controls.Add(this.checkBoxSoloSustantivos);
-            this.tabPage5.Controls.Add(this.checkBoxMayusYMinus);
             this.tabPage5.Controls.Add(this.checkBoxEliminarLinks);
             this.tabPage5.Controls.Add(this.checkBoxListaAbreviaturasPorDefecto);
             this.tabPage5.Controls.Add(this.checkBoxReemplazarAbreviatura);
@@ -575,8 +492,6 @@
             this.tabPage5.Controls.Add(this.labelArchivosTxtTratamiento);
             this.tabPage5.Controls.Add(this.buttonBuscarListaAbreviatura);
             this.tabPage5.Controls.Add(this.textBoxDireccionAbreviaturas);
-            this.tabPage5.Controls.Add(this.label22);
-            this.tabPage5.Controls.Add(this.label21);
             this.tabPage5.Controls.Add(this.label20);
             this.tabPage5.Controls.Add(this.label19);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
@@ -596,28 +511,10 @@
             this.labelTratamientoAplicado.Text = "Tratamiento Aplicado";
             this.labelTratamientoAplicado.Visible = false;
             // 
-            // checkBoxSoloSustantivos
-            // 
-            this.checkBoxSoloSustantivos.AutoSize = true;
-            this.checkBoxSoloSustantivos.Location = new System.Drawing.Point(231, 160);
-            this.checkBoxSoloSustantivos.Name = "checkBoxSoloSustantivos";
-            this.checkBoxSoloSustantivos.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSoloSustantivos.TabIndex = 14;
-            this.checkBoxSoloSustantivos.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMayusYMinus
-            // 
-            this.checkBoxMayusYMinus.AutoSize = true;
-            this.checkBoxMayusYMinus.Location = new System.Drawing.Point(231, 138);
-            this.checkBoxMayusYMinus.Name = "checkBoxMayusYMinus";
-            this.checkBoxMayusYMinus.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMayusYMinus.TabIndex = 13;
-            this.checkBoxMayusYMinus.UseVisualStyleBackColor = true;
-            // 
             // checkBoxEliminarLinks
             // 
             this.checkBoxEliminarLinks.AutoSize = true;
-            this.checkBoxEliminarLinks.Location = new System.Drawing.Point(231, 115);
+            this.checkBoxEliminarLinks.Location = new System.Drawing.Point(149, 115);
             this.checkBoxEliminarLinks.Name = "checkBoxEliminarLinks";
             this.checkBoxEliminarLinks.Size = new System.Drawing.Size(15, 14);
             this.checkBoxEliminarLinks.TabIndex = 12;
@@ -700,24 +597,6 @@
             this.textBoxDireccionAbreviaturas.Name = "textBoxDireccionAbreviaturas";
             this.textBoxDireccionAbreviaturas.Size = new System.Drawing.Size(315, 20);
             this.textBoxDireccionAbreviaturas.TabIndex = 4;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(19, 160);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(141, 13);
-            this.label22.TabIndex = 3;
-            this.label22.Text = "Seleccionar solo sustantivos";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(19, 138);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(206, 13);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "Diferenciar entre mayúsculas y minúsculas";
             // 
             // label20
             // 
@@ -813,19 +692,10 @@
         private System.Windows.Forms.Button buttonAplicarExpresionRegular;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.CheckBox checkBoxOrden;
-        private System.Windows.Forms.CheckBox checkBoxCursiva;
-        private System.Windows.Forms.CheckBox checkBoxNegrita;
         private System.Windows.Forms.CheckBox checkBoxMetaTags;
         private System.Windows.Forms.Button buttonAplicarEnriquecimiento;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button buttonBuscarListaAbreviatura;
@@ -836,8 +706,6 @@
         private System.Windows.Forms.CheckBox checkBoxReemplazarAbreviatura;
         private System.Windows.Forms.Button buttonAplicarTratamiento;
         private System.Windows.Forms.CheckBox checkBoxListaAbreviaturasPorDefecto;
-        private System.Windows.Forms.CheckBox checkBoxSoloSustantivos;
-        private System.Windows.Forms.CheckBox checkBoxMayusYMinus;
         private System.Windows.Forms.CheckBox checkBoxEliminarLinks;
         private System.Windows.Forms.CheckBox checkBoxTitulo;
         private System.Windows.Forms.Label label9;

@@ -106,6 +106,7 @@ namespace AppPrincipal
             this.buttonRepresentacion.Enabled = buttonPreprocesamiento.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.preprocessing.guid) && DataBase.Instance.ExistTokens((string)PipeConfiguration.preprocessing.guid);
             this.buttonEjecutarSVMLigth.Enabled = buttonRepresentacion.Enabled && !String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify));
             this.buttonMatrizConfusion.Enabled = File.Exists((string)PipeConfiguration.svm.predictionsFilename);
+            this.buttonCompararResultados.Enabled = this.buttonMatrizConfusion.Enabled && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify));
         }
 
         // Oculta todos los formularios.

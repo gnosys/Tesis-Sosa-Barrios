@@ -93,7 +93,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
         {
             if (!textBoxCarpetaDestinoModelo.Text.Equals(nombreArchivoModelo))
             {
-
                 labelErrorCarpetaModelo.Hide();
                 labelModeloGenerado.Hide();
                 richTextBoxTextoModelo.Enabled = false;
@@ -112,7 +111,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
             {
                 labelErrorCarpetaModelo.Show();
             }
-            
         }
 
         private void buttonVisualizarModelo_Click(object sender, EventArgs e)

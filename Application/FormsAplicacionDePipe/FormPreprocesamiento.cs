@@ -304,9 +304,6 @@ namespace AppPrincipal
 
             richmentConfiguration.metatags = checkBoxMetaTags.Checked;
             richmentConfiguration.title = checkBoxTitulo.Checked;
-            richmentConfiguration.bold = checkBoxNegrita.Checked;
-            richmentConfiguration.italic = checkBoxCursiva.Checked;
-            richmentConfiguration.order = checkBoxOrden.Checked;
 
             labelEnriquecimientoAplicado.Show();
         }
@@ -324,8 +321,6 @@ namespace AppPrincipal
                     wordsConfiguration.filename = textBoxDireccionAbreviaturas.Text;
             }
             wordsConfiguration.removeLinks = checkBoxEliminarLinks.Checked;
-            wordsConfiguration.caseSensitive = checkBoxMayusYMinus.Checked;
-            wordsConfiguration.substantive = checkBoxSoloSustantivos.Checked;
 
             labelTratamientoAplicado.Show();
         }

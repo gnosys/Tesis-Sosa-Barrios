@@ -19,19 +19,14 @@
         {
 			"_type": "richment",
 			"metatags": false,
-            "title": false,
-            "bold": false,
-            "italic": false,
-            "order": false
+            "title": false
 		},
         {
 			"_type": "words",
 			"replaceAbbreviations": false,
             "filename": null,
             "byDefault":  false,
-            "removeLinks": false,
-            "caseSensitive": false,
-            "substantive": false
+            "removeLinks": false
 		}]
 	},
 	"representation": {

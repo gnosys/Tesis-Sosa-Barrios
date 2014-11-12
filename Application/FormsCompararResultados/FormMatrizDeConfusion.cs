@@ -20,6 +20,8 @@ namespace AppPrincipal.FormsCompararResultados
     {
         private string _vsmClassificationFile;
         private string _predictionsFile;
+        private string carpetaDestinoModelo = string.Empty;
+        private string nombreArchivoExcel = "Matriz_De_Confusion.xlsx";
         private int[][] confusionMatrix;
 
         public FormMatrizDeConfusion(Form parent)
@@ -73,6 +75,7 @@ namespace AppPrincipal.FormsCompararResultados
             }
 
             buttonCalcularMetricas.Enabled = true;
+            buttonSeleccionarCarpetaExcel.Enabled = true;
             labelObtenerMatriz.Show();
         }
 
@@ -181,7 +184,7 @@ namespace AppPrincipal.FormsCompararResultados
                 }
 
                 libro.Saved = true;
-                libro.SaveAs(@"C:\Users\Mati\Desktop\Matriz_De_Confusion.xlsx");
+                libro.SaveAs(carpetaDestinoModelo);
 
                 libro.Close();
                 releaseObject(libro);
@@ -228,6 +231,18 @@ namespace AppPrincipal.FormsCompararResultados
         private void comboBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelPresicion.Text = ((App)MdiParent).CalcularPresicion(confusionMatrix, comboBoxCategorias.SelectedIndex).ToString("0.000");
+        }
+
+        private void buttonSeleccionarCarpetaExcel_Click(object sender, EventArgs e)
+        {
+            labelObtenerMatriz.Hide();
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                carpetaDestinoModelo = folderBrowserDialog.SelectedPath + "\\" + nombreArchivoExcel;
+                textBoxCarpetaDestinoExcel.Text = carpetaDestinoModelo;
+                buttonExportarAExcel.Enabled = true;
+            }
         }
     }
 }
