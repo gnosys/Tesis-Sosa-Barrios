@@ -46,13 +46,13 @@
             this.buttonVisualizarPrediccion = new System.Windows.Forms.Button();
             this.buttonGenerarPrediccion = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.richTextBoxTextoModelo = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxTextoPrediccion = new System.Windows.Forms.RichTextBox();
-            this.labelErrorCarpetaModelo = new System.Windows.Forms.Label();
-            this.labelErrorCarpetaPrediccion = new System.Windows.Forms.Label();
             this.labelModeloGenerado = new System.Windows.Forms.Label();
+            this.labelErrorCarpetaModelo = new System.Windows.Forms.Label();
+            this.richTextBoxTextoModelo = new System.Windows.Forms.RichTextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.labelPrediccionesGeneradas = new System.Windows.Forms.Label();
+            this.labelErrorCarpetaPrediccion = new System.Windows.Forms.Label();
+            this.richTextBoxTextoPrediccion = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -229,6 +229,39 @@
             this.panel1.Size = new System.Drawing.Size(407, 434);
             this.panel1.TabIndex = 20;
             // 
+            // labelModeloGenerado
+            // 
+            this.labelModeloGenerado.AutoSize = true;
+            this.labelModeloGenerado.ForeColor = System.Drawing.Color.Green;
+            this.labelModeloGenerado.Location = new System.Drawing.Point(307, 13);
+            this.labelModeloGenerado.Name = "labelModeloGenerado";
+            this.labelModeloGenerado.Size = new System.Drawing.Size(92, 13);
+            this.labelModeloGenerado.TabIndex = 19;
+            this.labelModeloGenerado.Text = "Modelo Generado";
+            this.labelModeloGenerado.Visible = false;
+            // 
+            // labelErrorCarpetaModelo
+            // 
+            this.labelErrorCarpetaModelo.AutoSize = true;
+            this.labelErrorCarpetaModelo.ForeColor = System.Drawing.Color.Red;
+            this.labelErrorCarpetaModelo.Location = new System.Drawing.Point(249, 13);
+            this.labelErrorCarpetaModelo.Name = "labelErrorCarpetaModelo";
+            this.labelErrorCarpetaModelo.Size = new System.Drawing.Size(150, 13);
+            this.labelErrorCarpetaModelo.TabIndex = 18;
+            this.labelErrorCarpetaModelo.Text = "Debe seleccionar una carpeta";
+            this.labelErrorCarpetaModelo.Visible = false;
+            // 
+            // richTextBoxTextoModelo
+            // 
+            this.richTextBoxTextoModelo.Enabled = false;
+            this.richTextBoxTextoModelo.Location = new System.Drawing.Point(9, 128);
+            this.richTextBoxTextoModelo.Name = "richTextBoxTextoModelo";
+            this.richTextBoxTextoModelo.ReadOnly = true;
+            this.richTextBoxTextoModelo.Size = new System.Drawing.Size(390, 295);
+            this.richTextBoxTextoModelo.TabIndex = 17;
+            this.richTextBoxTextoModelo.Text = "";
+            this.richTextBoxTextoModelo.WordWrap = false;
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -247,38 +280,16 @@
             this.panel2.Size = new System.Drawing.Size(407, 434);
             this.panel2.TabIndex = 21;
             // 
-            // richTextBoxTextoModelo
+            // labelPrediccionesGeneradas
             // 
-            this.richTextBoxTextoModelo.Enabled = false;
-            this.richTextBoxTextoModelo.Location = new System.Drawing.Point(9, 128);
-            this.richTextBoxTextoModelo.Name = "richTextBoxTextoModelo";
-            this.richTextBoxTextoModelo.ReadOnly = true;
-            this.richTextBoxTextoModelo.Size = new System.Drawing.Size(390, 295);
-            this.richTextBoxTextoModelo.TabIndex = 17;
-            this.richTextBoxTextoModelo.Text = "";
-            this.richTextBoxTextoModelo.WordWrap = false;
-            // 
-            // richTextBoxTextoPrediccion
-            // 
-            this.richTextBoxTextoPrediccion.Enabled = false;
-            this.richTextBoxTextoPrediccion.Location = new System.Drawing.Point(9, 128);
-            this.richTextBoxTextoPrediccion.Name = "richTextBoxTextoPrediccion";
-            this.richTextBoxTextoPrediccion.ReadOnly = true;
-            this.richTextBoxTextoPrediccion.Size = new System.Drawing.Size(390, 295);
-            this.richTextBoxTextoPrediccion.TabIndex = 18;
-            this.richTextBoxTextoPrediccion.Text = "";
-            this.richTextBoxTextoPrediccion.WordWrap = false;
-            // 
-            // labelErrorCarpetaModelo
-            // 
-            this.labelErrorCarpetaModelo.AutoSize = true;
-            this.labelErrorCarpetaModelo.ForeColor = System.Drawing.Color.Red;
-            this.labelErrorCarpetaModelo.Location = new System.Drawing.Point(249, 13);
-            this.labelErrorCarpetaModelo.Name = "labelErrorCarpetaModelo";
-            this.labelErrorCarpetaModelo.Size = new System.Drawing.Size(150, 13);
-            this.labelErrorCarpetaModelo.TabIndex = 18;
-            this.labelErrorCarpetaModelo.Text = "Debe seleccionar una carpeta";
-            this.labelErrorCarpetaModelo.Visible = false;
+            this.labelPrediccionesGeneradas.AutoSize = true;
+            this.labelPrediccionesGeneradas.ForeColor = System.Drawing.Color.Green;
+            this.labelPrediccionesGeneradas.Location = new System.Drawing.Point(276, 13);
+            this.labelPrediccionesGeneradas.Name = "labelPrediccionesGeneradas";
+            this.labelPrediccionesGeneradas.Size = new System.Drawing.Size(123, 13);
+            this.labelPrediccionesGeneradas.TabIndex = 20;
+            this.labelPrediccionesGeneradas.Text = "Predicciones Generadas";
+            this.labelPrediccionesGeneradas.Visible = false;
             // 
             // labelErrorCarpetaPrediccion
             // 
@@ -291,27 +302,16 @@
             this.labelErrorCarpetaPrediccion.Text = "Debe seleccionar una carpeta";
             this.labelErrorCarpetaPrediccion.Visible = false;
             // 
-            // labelModeloGenerado
+            // richTextBoxTextoPrediccion
             // 
-            this.labelModeloGenerado.AutoSize = true;
-            this.labelModeloGenerado.ForeColor = System.Drawing.Color.Green;
-            this.labelModeloGenerado.Location = new System.Drawing.Point(307, 13);
-            this.labelModeloGenerado.Name = "labelModeloGenerado";
-            this.labelModeloGenerado.Size = new System.Drawing.Size(92, 13);
-            this.labelModeloGenerado.TabIndex = 19;
-            this.labelModeloGenerado.Text = "Modelo Generado";
-            this.labelModeloGenerado.Visible = false;
-            // 
-            // labelPrediccionesGeneradas
-            // 
-            this.labelPrediccionesGeneradas.AutoSize = true;
-            this.labelPrediccionesGeneradas.ForeColor = System.Drawing.Color.Green;
-            this.labelPrediccionesGeneradas.Location = new System.Drawing.Point(276, 13);
-            this.labelPrediccionesGeneradas.Name = "labelPrediccionesGeneradas";
-            this.labelPrediccionesGeneradas.Size = new System.Drawing.Size(123, 13);
-            this.labelPrediccionesGeneradas.TabIndex = 20;
-            this.labelPrediccionesGeneradas.Text = "Predicciones Generadas";
-            this.labelPrediccionesGeneradas.Visible = false;
+            this.richTextBoxTextoPrediccion.Enabled = false;
+            this.richTextBoxTextoPrediccion.Location = new System.Drawing.Point(9, 128);
+            this.richTextBoxTextoPrediccion.Name = "richTextBoxTextoPrediccion";
+            this.richTextBoxTextoPrediccion.ReadOnly = true;
+            this.richTextBoxTextoPrediccion.Size = new System.Drawing.Size(390, 295);
+            this.richTextBoxTextoPrediccion.TabIndex = 18;
+            this.richTextBoxTextoPrediccion.Text = "";
+            this.richTextBoxTextoPrediccion.WordWrap = false;
             // 
             // FormSVMLigth
             // 

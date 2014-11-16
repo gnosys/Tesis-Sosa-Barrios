@@ -151,6 +151,7 @@
             // 
             // buttonEjecutarSVMLigth
             // 
+            this.buttonEjecutarSVMLigth.Enabled = false;
             this.buttonEjecutarSVMLigth.Location = new System.Drawing.Point(16, 384);
             this.buttonEjecutarSVMLigth.Name = "buttonEjecutarSVMLigth";
             this.buttonEjecutarSVMLigth.Size = new System.Drawing.Size(130, 23);
@@ -184,6 +185,7 @@
             // 
             // buttonMatrizConfusion
             // 
+            this.buttonMatrizConfusion.Enabled = false;
             this.buttonMatrizConfusion.Location = new System.Drawing.Point(16, 455);
             this.buttonMatrizConfusion.Name = "buttonMatrizConfusion";
             this.buttonMatrizConfusion.Size = new System.Drawing.Size(130, 23);
@@ -194,6 +196,7 @@
             // 
             // buttonCompararResultados
             // 
+            this.buttonCompararResultados.Enabled = false;
             this.buttonCompararResultados.Location = new System.Drawing.Point(16, 484);
             this.buttonCompararResultados.Name = "buttonCompararResultados";
             this.buttonCompararResultados.Size = new System.Drawing.Size(130, 23);

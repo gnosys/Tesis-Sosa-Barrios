@@ -5,8 +5,28 @@
 	"preprocessing": {
 		"guid": null,
 		"filters": [{
+			"_type": "stemming"
+		},
+        {
+			"_type": "stopWords",
+			"filename": null,
+            "byDefault":  false
+		},
+        {
 			"_type": "tokenizing",
 			"regexp": "([ \\\\t{}():;. \\n])"
+		},
+        {
+			"_type": "richment",
+			"metatags": false,
+            "title": false
+		},
+        {
+			"_type": "words",
+			"replaceAbbreviations": false,
+            "filename": null,
+            "byDefault":  false,
+            "removeLinks": false
 		}]
 	},
 	"representation": {
@@ -17,7 +37,8 @@
 	},
 	"svm": {
 		"c": "1",
-		"modelFilename": null
+		"modelFilename": null,
+        "predictionsFilename": "C:\\Users\\Pablo\\Desktop\\predictions"
 	},
 	"categoryLevel": 13
 }

@@ -47,36 +47,33 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonBuscarListStopWords = new System.Windows.Forms.Button();
             this.textBoxDireccionStopWords = new System.Windows.Forms.TextBox();
-            this.checkBoxListaStopWordsDefecto = new System.Windows.Forms.CheckBox();
+            this.checkBoxListaStopWordsPorDefecto = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabControlConfiguraciones = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.labelListaAplicadaStopWords = new System.Windows.Forms.Label();
             this.buttonAplicarListaStopWords = new System.Windows.Forms.Button();
             this.labelArchivosTxtStopWords = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.labelExpresionRegularAplicada = new System.Windows.Forms.Label();
             this.buttonAplicarExpresionRegular = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxExpresionRegular = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.labelEnriquecimientoAplicado = new System.Windows.Forms.Label();
             this.buttonAplicarEnriquecimiento = new System.Windows.Forms.Button();
-            this.checkBoxOrden = new System.Windows.Forms.CheckBox();
-            this.checkBoxCursiva = new System.Windows.Forms.CheckBox();
-            this.checkBoxNegrita = new System.Windows.Forms.CheckBox();
-            this.checkBoxMetaTagsComunes = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.checkBoxTitulo = new System.Windows.Forms.CheckBox();
+            this.checkBoxMetaTags = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.checkBoxSoloSustantivos = new System.Windows.Forms.CheckBox();
-            this.checkBoxMayusYMinus = new System.Windows.Forms.CheckBox();
+            this.labelTratamientoAplicado = new System.Windows.Forms.Label();
             this.checkBoxEliminarLinks = new System.Windows.Forms.CheckBox();
-            this.checkBoxListaAbreviaturasDefecto = new System.Windows.Forms.CheckBox();
+            this.checkBoxListaAbreviaturasPorDefecto = new System.Windows.Forms.CheckBox();
             this.checkBoxReemplazarAbreviatura = new System.Windows.Forms.CheckBox();
             this.buttonAplicarTratamiento = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
@@ -84,12 +81,9 @@
             this.labelArchivosTxtTratamiento = new System.Windows.Forms.Label();
             this.buttonBuscarListaAbreviatura = new System.Windows.Forms.Button();
             this.textBoxDireccionAbreviaturas = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.checkBoxTitulo = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControlConfiguraciones.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -119,7 +113,7 @@
             listViewItem3,
             listViewItem4,
             listViewItem5});
-            this.listViewPreprocesamientos.Location = new System.Drawing.Point(432, 91);
+            this.listViewPreprocesamientos.Location = new System.Drawing.Point(365, 91);
             this.listViewPreprocesamientos.MultiSelect = false;
             this.listViewPreprocesamientos.Name = "listViewPreprocesamientos";
             this.listViewPreprocesamientos.Size = new System.Drawing.Size(154, 186);
@@ -138,23 +132,24 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(205, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(391, 13);
+            this.label1.Size = new System.Drawing.Size(470, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Seleccione las diferentes formas de preprocesamiento y el orden en que se aplica";
+            this.label1.Text = "Seleccione las diferentes formas de preprocesamiento de tweets y el orden en que " +
+    "se debe aplicar";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(251, 116);
+            this.label2.Location = new System.Drawing.Point(205, 114);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 52);
+            this.label2.Size = new System.Drawing.Size(154, 52);
             this.label2.TabIndex = 4;
             this.label2.Text = "Seleccione de la siguiente lista\r\nlos diferentes preprocesados,\r\nluego debera con" +
-    "figurar\r\nlos mismos segun corresponda";
+    "figurar\r\nlos mismos segun corresponda.";
             // 
             // buttonSeleccionar
             // 
-            this.buttonSeleccionar.Location = new System.Drawing.Point(607, 143);
+            this.buttonSeleccionar.Location = new System.Drawing.Point(535, 143);
             this.buttonSeleccionar.Name = "buttonSeleccionar";
             this.buttonSeleccionar.Size = new System.Drawing.Size(75, 23);
             this.buttonSeleccionar.TabIndex = 5;
@@ -167,7 +162,7 @@
             this.listViewOrdenPreprocesos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listViewOrdenPreprocesos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewOrdenPreprocesos.Location = new System.Drawing.Point(704, 91);
+            this.listViewOrdenPreprocesos.Location = new System.Drawing.Point(750, 91);
             this.listViewOrdenPreprocesos.MultiSelect = false;
             this.listViewOrdenPreprocesos.Name = "listViewOrdenPreprocesos";
             this.listViewOrdenPreprocesos.Size = new System.Drawing.Size(154, 186);
@@ -184,7 +179,7 @@
             // 
             // buttonQuitar
             // 
-            this.buttonQuitar.Location = new System.Drawing.Point(607, 172);
+            this.buttonQuitar.Location = new System.Drawing.Point(535, 172);
             this.buttonQuitar.Name = "buttonQuitar";
             this.buttonQuitar.Size = new System.Drawing.Size(75, 23);
             this.buttonQuitar.TabIndex = 7;
@@ -194,7 +189,7 @@
             // 
             // buttonSubir
             // 
-            this.buttonSubir.Location = new System.Drawing.Point(878, 143);
+            this.buttonSubir.Location = new System.Drawing.Point(919, 143);
             this.buttonSubir.Name = "buttonSubir";
             this.buttonSubir.Size = new System.Drawing.Size(75, 23);
             this.buttonSubir.TabIndex = 9;
@@ -204,7 +199,7 @@
             // 
             // buttonBajar
             // 
-            this.buttonBajar.Location = new System.Drawing.Point(878, 172);
+            this.buttonBajar.Location = new System.Drawing.Point(919, 172);
             this.buttonBajar.Name = "buttonBajar";
             this.buttonBajar.Size = new System.Drawing.Size(75, 23);
             this.buttonBajar.TabIndex = 10;
@@ -238,15 +233,15 @@
             this.textBoxDireccionStopWords.Size = new System.Drawing.Size(345, 20);
             this.textBoxDireccionStopWords.TabIndex = 3;
             // 
-            // checkBoxListaStopWordsDefecto
+            // checkBoxListaStopWordsPorDefecto
             // 
-            this.checkBoxListaStopWordsDefecto.AutoSize = true;
-            this.checkBoxListaStopWordsDefecto.Location = new System.Drawing.Point(129, 52);
-            this.checkBoxListaStopWordsDefecto.Name = "checkBoxListaStopWordsDefecto";
-            this.checkBoxListaStopWordsDefecto.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxListaStopWordsDefecto.TabIndex = 2;
-            this.checkBoxListaStopWordsDefecto.UseVisualStyleBackColor = true;
-            this.checkBoxListaStopWordsDefecto.CheckedChanged += new System.EventHandler(this.checkBoxListaStopWordsDefecto_CheckedChanged);
+            this.checkBoxListaStopWordsPorDefecto.AutoSize = true;
+            this.checkBoxListaStopWordsPorDefecto.Location = new System.Drawing.Point(129, 52);
+            this.checkBoxListaStopWordsPorDefecto.Name = "checkBoxListaStopWordsPorDefecto";
+            this.checkBoxListaStopWordsPorDefecto.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxListaStopWordsPorDefecto.TabIndex = 2;
+            this.checkBoxListaStopWordsPorDefecto.UseVisualStyleBackColor = true;
+            this.checkBoxListaStopWordsPorDefecto.CheckedChanged += new System.EventHandler(this.checkBoxListaStopWordsDefecto_CheckedChanged);
             // 
             // label6
             // 
@@ -304,13 +299,14 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.labelListaAplicadaStopWords);
             this.tabPage2.Controls.Add(this.buttonAplicarListaStopWords);
             this.tabPage2.Controls.Add(this.labelArchivosTxtStopWords);
             this.tabPage2.Controls.Add(this.buttonBuscarListStopWords);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.textBoxDireccionStopWords);
             this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.checkBoxListaStopWordsDefecto);
+            this.tabPage2.Controls.Add(this.checkBoxListaStopWordsPorDefecto);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -318,14 +314,26 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stop Words";
             // 
+            // labelListaAplicadaStopWords
+            // 
+            this.labelListaAplicadaStopWords.AutoSize = true;
+            this.labelListaAplicadaStopWords.ForeColor = System.Drawing.Color.Green;
+            this.labelListaAplicadaStopWords.Location = new System.Drawing.Point(533, 173);
+            this.labelListaAplicadaStopWords.Name = "labelListaAplicadaStopWords";
+            this.labelListaAplicadaStopWords.Size = new System.Drawing.Size(73, 13);
+            this.labelListaAplicadaStopWords.TabIndex = 7;
+            this.labelListaAplicadaStopWords.Text = "Lista Aplicada";
+            this.labelListaAplicadaStopWords.Visible = false;
+            // 
             // buttonAplicarListaStopWords
             // 
-            this.buttonAplicarListaStopWords.Location = new System.Drawing.Point(492, 159);
+            this.buttonAplicarListaStopWords.Location = new System.Drawing.Point(492, 144);
             this.buttonAplicarListaStopWords.Name = "buttonAplicarListaStopWords";
             this.buttonAplicarListaStopWords.Size = new System.Drawing.Size(154, 23);
             this.buttonAplicarListaStopWords.TabIndex = 6;
             this.buttonAplicarListaStopWords.Text = "Aplicar Lista";
             this.buttonAplicarListaStopWords.UseVisualStyleBackColor = true;
+            this.buttonAplicarListaStopWords.Click += new System.EventHandler(this.buttonAplicarListaStopWords_Click);
             // 
             // labelArchivosTxtStopWords
             // 
@@ -340,8 +348,9 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.labelExpresionRegularAplicada);
             this.tabPage3.Controls.Add(this.buttonAplicarExpresionRegular);
-            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.textBoxExpresionRegular);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -350,21 +359,34 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tokenizacion";
             // 
+            // labelExpresionRegularAplicada
+            // 
+            this.labelExpresionRegularAplicada.AutoSize = true;
+            this.labelExpresionRegularAplicada.ForeColor = System.Drawing.Color.Green;
+            this.labelExpresionRegularAplicada.Location = new System.Drawing.Point(500, 173);
+            this.labelExpresionRegularAplicada.Name = "labelExpresionRegularAplicada";
+            this.labelExpresionRegularAplicada.Size = new System.Drawing.Size(137, 13);
+            this.labelExpresionRegularAplicada.TabIndex = 3;
+            this.labelExpresionRegularAplicada.Text = "Expresión Regular Aplicada";
+            this.labelExpresionRegularAplicada.Visible = false;
+            // 
             // buttonAplicarExpresionRegular
             // 
-            this.buttonAplicarExpresionRegular.Location = new System.Drawing.Point(492, 159);
+            this.buttonAplicarExpresionRegular.Location = new System.Drawing.Point(492, 144);
             this.buttonAplicarExpresionRegular.Name = "buttonAplicarExpresionRegular";
             this.buttonAplicarExpresionRegular.Size = new System.Drawing.Size(154, 23);
             this.buttonAplicarExpresionRegular.TabIndex = 2;
             this.buttonAplicarExpresionRegular.Text = "Aplicar Expresión Regular";
             this.buttonAplicarExpresionRegular.UseVisualStyleBackColor = true;
+            this.buttonAplicarExpresionRegular.Click += new System.EventHandler(this.buttonAplicarExpresionRegular_Click);
             // 
-            // textBox1
+            // textBoxExpresionRegular
             // 
-            this.textBox1.Location = new System.Drawing.Point(269, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(377, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxExpresionRegular.Location = new System.Drawing.Point(269, 20);
+            this.textBoxExpresionRegular.Name = "textBoxExpresionRegular";
+            this.textBoxExpresionRegular.Size = new System.Drawing.Size(377, 20);
+            this.textBoxExpresionRegular.TabIndex = 1;
+            this.textBoxExpresionRegular.TextChanged += new System.EventHandler(this.textBoxExpresionRegular_TextChanged);
             // 
             // label7
             // 
@@ -378,17 +400,11 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.labelEnriquecimientoAplicado);
             this.tabPage4.Controls.Add(this.buttonAplicarEnriquecimiento);
-            this.tabPage4.Controls.Add(this.checkBoxOrden);
-            this.tabPage4.Controls.Add(this.checkBoxCursiva);
-            this.tabPage4.Controls.Add(this.checkBoxNegrita);
             this.tabPage4.Controls.Add(this.checkBoxTitulo);
-            this.tabPage4.Controls.Add(this.checkBoxMetaTagsComunes);
-            this.tabPage4.Controls.Add(this.label18);
-            this.tabPage4.Controls.Add(this.label17);
+            this.tabPage4.Controls.Add(this.checkBoxMetaTags);
             this.tabPage4.Controls.Add(this.label16);
-            this.tabPage4.Controls.Add(this.label14);
-            this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -397,95 +413,62 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Enriquecimiento";
             // 
+            // labelEnriquecimientoAplicado
+            // 
+            this.labelEnriquecimientoAplicado.AutoSize = true;
+            this.labelEnriquecimientoAplicado.ForeColor = System.Drawing.Color.Green;
+            this.labelEnriquecimientoAplicado.Location = new System.Drawing.Point(505, 173);
+            this.labelEnriquecimientoAplicado.Name = "labelEnriquecimientoAplicado";
+            this.labelEnriquecimientoAplicado.Size = new System.Drawing.Size(126, 13);
+            this.labelEnriquecimientoAplicado.TabIndex = 21;
+            this.labelEnriquecimientoAplicado.Text = "Enriquecimiento Aplicado";
+            this.labelEnriquecimientoAplicado.Visible = false;
+            // 
             // buttonAplicarEnriquecimiento
             // 
-            this.buttonAplicarEnriquecimiento.Location = new System.Drawing.Point(492, 159);
+            this.buttonAplicarEnriquecimiento.Location = new System.Drawing.Point(492, 144);
             this.buttonAplicarEnriquecimiento.Name = "buttonAplicarEnriquecimiento";
             this.buttonAplicarEnriquecimiento.Size = new System.Drawing.Size(154, 23);
             this.buttonAplicarEnriquecimiento.TabIndex = 20;
             this.buttonAplicarEnriquecimiento.Text = "Aplicar Enriquecimiento";
             this.buttonAplicarEnriquecimiento.UseVisualStyleBackColor = true;
+            this.buttonAplicarEnriquecimiento.Click += new System.EventHandler(this.buttonAplicarEnriquecimiento_Click);
             // 
-            // checkBoxOrden
+            // checkBoxTitulo
             // 
-            this.checkBoxOrden.AutoSize = true;
-            this.checkBoxOrden.Location = new System.Drawing.Point(220, 127);
-            this.checkBoxOrden.Name = "checkBoxOrden";
-            this.checkBoxOrden.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxOrden.TabIndex = 19;
-            this.checkBoxOrden.UseVisualStyleBackColor = true;
+            this.checkBoxTitulo.AutoSize = true;
+            this.checkBoxTitulo.Location = new System.Drawing.Point(140, 52);
+            this.checkBoxTitulo.Name = "checkBoxTitulo";
+            this.checkBoxTitulo.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxTitulo.TabIndex = 12;
+            this.checkBoxTitulo.UseVisualStyleBackColor = true;
             // 
-            // checkBoxCursiva
+            // checkBoxMetaTags
             // 
-            this.checkBoxCursiva.AutoSize = true;
-            this.checkBoxCursiva.Location = new System.Drawing.Point(220, 111);
-            this.checkBoxCursiva.Name = "checkBoxCursiva";
-            this.checkBoxCursiva.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxCursiva.TabIndex = 18;
-            this.checkBoxCursiva.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxNegrita
-            // 
-            this.checkBoxNegrita.AutoSize = true;
-            this.checkBoxNegrita.Location = new System.Drawing.Point(220, 95);
-            this.checkBoxNegrita.Name = "checkBoxNegrita";
-            this.checkBoxNegrita.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxNegrita.TabIndex = 17;
-            this.checkBoxNegrita.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMetaTagsComunes
-            // 
-            this.checkBoxMetaTagsComunes.AutoSize = true;
-            this.checkBoxMetaTagsComunes.Location = new System.Drawing.Point(220, 36);
-            this.checkBoxMetaTagsComunes.Name = "checkBoxMetaTagsComunes";
-            this.checkBoxMetaTagsComunes.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMetaTagsComunes.TabIndex = 11;
-            this.checkBoxMetaTagsComunes.UseVisualStyleBackColor = true;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(81, 127);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(98, 13);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "Orden de Aparición";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(20, 82);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 13);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Contemplar:";
+            this.checkBoxMetaTags.AutoSize = true;
+            this.checkBoxMetaTags.Location = new System.Drawing.Point(140, 36);
+            this.checkBoxMetaTags.Name = "checkBoxMetaTags";
+            this.checkBoxMetaTags.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxMetaTags.TabIndex = 11;
+            this.checkBoxMetaTags.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(65, 36);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 13);
+            this.label16.Size = new System.Drawing.Size(69, 13);
             this.label16.TabIndex = 8;
-            this.label16.Text = "META-TAGS comunes";
+            this.label16.Text = "META-TAGS";
             // 
-            // label14
+            // label9
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(81, 111);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(101, 13);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "Palabras en Cursiva";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(81, 95);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(100, 13);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Palabras en Negrita";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(65, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Titulo";
             // 
             // label8
             // 
@@ -499,10 +482,9 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage5.Controls.Add(this.checkBoxSoloSustantivos);
-            this.tabPage5.Controls.Add(this.checkBoxMayusYMinus);
+            this.tabPage5.Controls.Add(this.labelTratamientoAplicado);
             this.tabPage5.Controls.Add(this.checkBoxEliminarLinks);
-            this.tabPage5.Controls.Add(this.checkBoxListaAbreviaturasDefecto);
+            this.tabPage5.Controls.Add(this.checkBoxListaAbreviaturasPorDefecto);
             this.tabPage5.Controls.Add(this.checkBoxReemplazarAbreviatura);
             this.tabPage5.Controls.Add(this.buttonAplicarTratamiento);
             this.tabPage5.Controls.Add(this.label25);
@@ -510,8 +492,6 @@
             this.tabPage5.Controls.Add(this.labelArchivosTxtTratamiento);
             this.tabPage5.Controls.Add(this.buttonBuscarListaAbreviatura);
             this.tabPage5.Controls.Add(this.textBoxDireccionAbreviaturas);
-            this.tabPage5.Controls.Add(this.label22);
-            this.tabPage5.Controls.Add(this.label21);
             this.tabPage5.Controls.Add(this.label20);
             this.tabPage5.Controls.Add(this.label19);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
@@ -520,43 +500,36 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Tratamiento en Texto";
             // 
-            // checkBoxSoloSustantivos
+            // labelTratamientoAplicado
             // 
-            this.checkBoxSoloSustantivos.AutoSize = true;
-            this.checkBoxSoloSustantivos.Location = new System.Drawing.Point(231, 160);
-            this.checkBoxSoloSustantivos.Name = "checkBoxSoloSustantivos";
-            this.checkBoxSoloSustantivos.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSoloSustantivos.TabIndex = 14;
-            this.checkBoxSoloSustantivos.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMayusYMinus
-            // 
-            this.checkBoxMayusYMinus.AutoSize = true;
-            this.checkBoxMayusYMinus.Location = new System.Drawing.Point(231, 138);
-            this.checkBoxMayusYMinus.Name = "checkBoxMayusYMinus";
-            this.checkBoxMayusYMinus.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMayusYMinus.TabIndex = 13;
-            this.checkBoxMayusYMinus.UseVisualStyleBackColor = true;
+            this.labelTratamientoAplicado.AutoSize = true;
+            this.labelTratamientoAplicado.ForeColor = System.Drawing.Color.Green;
+            this.labelTratamientoAplicado.Location = new System.Drawing.Point(515, 173);
+            this.labelTratamientoAplicado.Name = "labelTratamientoAplicado";
+            this.labelTratamientoAplicado.Size = new System.Drawing.Size(107, 13);
+            this.labelTratamientoAplicado.TabIndex = 15;
+            this.labelTratamientoAplicado.Text = "Tratamiento Aplicado";
+            this.labelTratamientoAplicado.Visible = false;
             // 
             // checkBoxEliminarLinks
             // 
             this.checkBoxEliminarLinks.AutoSize = true;
-            this.checkBoxEliminarLinks.Location = new System.Drawing.Point(231, 115);
+            this.checkBoxEliminarLinks.Location = new System.Drawing.Point(149, 115);
             this.checkBoxEliminarLinks.Name = "checkBoxEliminarLinks";
             this.checkBoxEliminarLinks.Size = new System.Drawing.Size(15, 14);
             this.checkBoxEliminarLinks.TabIndex = 12;
             this.checkBoxEliminarLinks.UseVisualStyleBackColor = true;
             // 
-            // checkBoxListaAbreviaturasDefecto
+            // checkBoxListaAbreviaturasPorDefecto
             // 
-            this.checkBoxListaAbreviaturasDefecto.AutoSize = true;
-            this.checkBoxListaAbreviaturasDefecto.Enabled = false;
-            this.checkBoxListaAbreviaturasDefecto.Location = new System.Drawing.Point(161, 74);
-            this.checkBoxListaAbreviaturasDefecto.Name = "checkBoxListaAbreviaturasDefecto";
-            this.checkBoxListaAbreviaturasDefecto.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxListaAbreviaturasDefecto.TabIndex = 11;
-            this.checkBoxListaAbreviaturasDefecto.UseVisualStyleBackColor = true;
-            this.checkBoxListaAbreviaturasDefecto.CheckedChanged += new System.EventHandler(this.checkBoxListaAbreviaturasDefecto_CheckedChanged);
+            this.checkBoxListaAbreviaturasPorDefecto.AutoSize = true;
+            this.checkBoxListaAbreviaturasPorDefecto.Enabled = false;
+            this.checkBoxListaAbreviaturasPorDefecto.Location = new System.Drawing.Point(161, 74);
+            this.checkBoxListaAbreviaturasPorDefecto.Name = "checkBoxListaAbreviaturasPorDefecto";
+            this.checkBoxListaAbreviaturasPorDefecto.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxListaAbreviaturasPorDefecto.TabIndex = 11;
+            this.checkBoxListaAbreviaturasPorDefecto.UseVisualStyleBackColor = true;
+            this.checkBoxListaAbreviaturasPorDefecto.CheckedChanged += new System.EventHandler(this.checkBoxListaAbreviaturasDefecto_CheckedChanged);
             // 
             // checkBoxReemplazarAbreviatura
             // 
@@ -570,12 +543,13 @@
             // 
             // buttonAplicarTratamiento
             // 
-            this.buttonAplicarTratamiento.Location = new System.Drawing.Point(492, 159);
+            this.buttonAplicarTratamiento.Location = new System.Drawing.Point(492, 144);
             this.buttonAplicarTratamiento.Name = "buttonAplicarTratamiento";
             this.buttonAplicarTratamiento.Size = new System.Drawing.Size(154, 23);
             this.buttonAplicarTratamiento.TabIndex = 9;
             this.buttonAplicarTratamiento.Text = "Aplicar Tratamiento";
             this.buttonAplicarTratamiento.UseVisualStyleBackColor = true;
+            this.buttonAplicarTratamiento.Click += new System.EventHandler(this.buttonAplicarTratamiento_Click);
             // 
             // label25
             // 
@@ -624,24 +598,6 @@
             this.textBoxDireccionAbreviaturas.Size = new System.Drawing.Size(315, 20);
             this.textBoxDireccionAbreviaturas.TabIndex = 4;
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(19, 160);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(141, 13);
-            this.label22.TabIndex = 3;
-            this.label22.Text = "Seleccionar solo sustantivos";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(19, 138);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(206, 13);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "Diferenciar entre mayúsculas y minúsculas";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -660,29 +616,21 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Eliminar links";
             // 
-            // checkBoxTitulo
+            // label10
             // 
-            this.checkBoxTitulo.AutoSize = true;
-            this.checkBoxTitulo.Location = new System.Drawing.Point(220, 52);
-            this.checkBoxTitulo.Name = "checkBoxTitulo";
-            this.checkBoxTitulo.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxTitulo.TabIndex = 12;
-            this.checkBoxTitulo.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(65, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Titulo";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(650, 114);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 52);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Seleccione de la\r\nsiguiente lista para\r\nacceder a su\r\nconfiguración.";
             // 
             // FormPreprocesamiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.tabControlConfiguraciones);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonBajar);
@@ -728,7 +676,7 @@
         private System.Windows.Forms.Button buttonBajar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox checkBoxListaStopWordsDefecto;
+        private System.Windows.Forms.CheckBox checkBoxListaStopWordsPorDefecto;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonBuscarListStopWords;
         private System.Windows.Forms.TextBox textBoxDireccionStopWords;
@@ -738,25 +686,16 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label labelArchivosTxtStopWords;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxExpresionRegular;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonAplicarListaStopWords;
         private System.Windows.Forms.Button buttonAplicarExpresionRegular;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.CheckBox checkBoxOrden;
-        private System.Windows.Forms.CheckBox checkBoxCursiva;
-        private System.Windows.Forms.CheckBox checkBoxNegrita;
-        private System.Windows.Forms.CheckBox checkBoxMetaTagsComunes;
+        private System.Windows.Forms.CheckBox checkBoxMetaTags;
         private System.Windows.Forms.Button buttonAplicarEnriquecimiento;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button buttonBuscarListaAbreviatura;
@@ -766,12 +705,15 @@
         private System.Windows.Forms.Label labelArchivosTxtTratamiento;
         private System.Windows.Forms.CheckBox checkBoxReemplazarAbreviatura;
         private System.Windows.Forms.Button buttonAplicarTratamiento;
-        private System.Windows.Forms.CheckBox checkBoxListaAbreviaturasDefecto;
-        private System.Windows.Forms.CheckBox checkBoxSoloSustantivos;
-        private System.Windows.Forms.CheckBox checkBoxMayusYMinus;
+        private System.Windows.Forms.CheckBox checkBoxListaAbreviaturasPorDefecto;
         private System.Windows.Forms.CheckBox checkBoxEliminarLinks;
         private System.Windows.Forms.CheckBox checkBoxTitulo;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelListaAplicadaStopWords;
+        private System.Windows.Forms.Label labelExpresionRegularAplicada;
+        private System.Windows.Forms.Label labelEnriquecimientoAplicado;
+        private System.Windows.Forms.Label labelTratamientoAplicado;
 
     }
 }

@@ -28,53 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartComparaciones = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxArchivoSeleccionado = new System.Windows.Forms.TextBox();
             this.buttonBuscarPipe = new System.Windows.Forms.Button();
-            this.buttonSeleccionarPipe = new System.Windows.Forms.Button();
-            this.labelPipeCargado = new System.Windows.Forms.Label();
             this.listBoxPipes = new System.Windows.Forms.ListBox();
             this.buttonEliminarPipe = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxSeleccionarCategoria = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBoxPipe = new System.Windows.Forms.CheckBox();
+            this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartComparaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // chartComparaciones
             // 
             this.chartComparaciones.BackColor = System.Drawing.SystemColors.Control;
-            chartArea8.Name = "ChartArea1";
-            this.chartComparaciones.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chartComparaciones.Legends.Add(legend8);
-            this.chartComparaciones.Location = new System.Drawing.Point(178, 146);
+            chartArea1.Name = "Pipe";
+            chartArea2.Name = "Categoria";
+            chartArea2.Visible = false;
+            this.chartComparaciones.ChartAreas.Add(chartArea1);
+            this.chartComparaciones.ChartAreas.Add(chartArea2);
+            legend1.DockedToChartArea = "Pipe";
+            legend1.IsDockedInsideChartArea = false;
+            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Column;
+            legend1.Name = "Pipe";
+            legend2.DockedToChartArea = "Categoria";
+            legend2.IsDockedInsideChartArea = false;
+            legend2.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Column;
+            legend2.Name = "Categoria";
+            this.chartComparaciones.Legends.Add(legend1);
+            this.chartComparaciones.Legends.Add(legend2);
+            this.chartComparaciones.Location = new System.Drawing.Point(178, 128);
             this.chartComparaciones.Name = "chartComparaciones";
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series22.Legend = "Legend1";
-            series22.Name = "Series1";
-            series23.ChartArea = "ChartArea1";
-            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series23.Legend = "Legend1";
-            series23.Name = "Series2";
-            series24.ChartArea = "ChartArea1";
-            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series24.Legend = "Legend1";
-            series24.Name = "Series3";
-            this.chartComparaciones.Series.Add(series22);
-            this.chartComparaciones.Series.Add(series23);
-            this.chartComparaciones.Series.Add(series24);
-            this.chartComparaciones.Size = new System.Drawing.Size(669, 410);
+            series1.ChartArea = "Pipe";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn100;
+            series1.Color = System.Drawing.Color.Green;
+            series1.LabelForeColor = System.Drawing.Color.White;
+            series1.Legend = "Pipe";
+            series1.Name = "Exactitud de Pipe";
+            series2.ChartArea = "Pipe";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn100;
+            series2.Color = System.Drawing.Color.Red;
+            series2.LabelForeColor = System.Drawing.Color.White;
+            series2.Legend = "Pipe";
+            series2.Name = "Error de Pipe";
+            series3.ChartArea = "Categoria";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn100;
+            series3.Color = System.Drawing.Color.Green;
+            series3.LabelForeColor = System.Drawing.Color.White;
+            series3.Legend = "Categoria";
+            series3.Name = "Exactitud de Categoria";
+            series4.ChartArea = "Categoria";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn100;
+            series4.Color = System.Drawing.Color.Red;
+            series4.LabelForeColor = System.Drawing.Color.White;
+            series4.Legend = "Categoria";
+            series4.Name = "Error de Categoria";
+            this.chartComparaciones.Series.Add(series1);
+            this.chartComparaciones.Series.Add(series2);
+            this.chartComparaciones.Series.Add(series3);
+            this.chartComparaciones.Series.Add(series4);
+            this.chartComparaciones.Size = new System.Drawing.Size(669, 428);
             this.chartComparaciones.TabIndex = 0;
             this.chartComparaciones.Text = "Comparaciones";
+            title1.Name = "TitlePipes";
+            title1.Text = "COMPARACION DE EXACTITUD Y ERROR";
+            this.chartComparaciones.Titles.Add(title1);
             // 
             // label1
             // 
@@ -109,52 +142,30 @@
             this.textBoxArchivoSeleccionado.Location = new System.Drawing.Point(466, 98);
             this.textBoxArchivoSeleccionado.Name = "textBoxArchivoSeleccionado";
             this.textBoxArchivoSeleccionado.ReadOnly = true;
-            this.textBoxArchivoSeleccionado.Size = new System.Drawing.Size(270, 20);
+            this.textBoxArchivoSeleccionado.Size = new System.Drawing.Size(261, 20);
             this.textBoxArchivoSeleccionado.TabIndex = 10;
             // 
             // buttonBuscarPipe
             // 
-            this.buttonBuscarPipe.Location = new System.Drawing.Point(742, 96);
+            this.buttonBuscarPipe.Location = new System.Drawing.Point(733, 96);
             this.buttonBuscarPipe.Name = "buttonBuscarPipe";
-            this.buttonBuscarPipe.Size = new System.Drawing.Size(72, 23);
+            this.buttonBuscarPipe.Size = new System.Drawing.Size(95, 23);
             this.buttonBuscarPipe.TabIndex = 11;
-            this.buttonBuscarPipe.Text = "Buscar Pipe";
+            this.buttonBuscarPipe.Text = "Seleccionar Pipe";
             this.buttonBuscarPipe.UseVisualStyleBackColor = true;
             this.buttonBuscarPipe.Click += new System.EventHandler(this.buttonBuscarPipe_Click);
-            // 
-            // buttonSeleccionarPipe
-            // 
-            this.buttonSeleccionarPipe.Enabled = false;
-            this.buttonSeleccionarPipe.Location = new System.Drawing.Point(820, 96);
-            this.buttonSeleccionarPipe.Name = "buttonSeleccionarPipe";
-            this.buttonSeleccionarPipe.Size = new System.Drawing.Size(153, 23);
-            this.buttonSeleccionarPipe.TabIndex = 12;
-            this.buttonSeleccionarPipe.Text = "Agregar Pipe Encontrado";
-            this.buttonSeleccionarPipe.UseVisualStyleBackColor = true;
-            this.buttonSeleccionarPipe.Click += new System.EventHandler(this.buttonSeleccionarPipe_Click);
-            // 
-            // labelPipeCargado
-            // 
-            this.labelPipeCargado.AutoSize = true;
-            this.labelPipeCargado.ForeColor = System.Drawing.Color.Green;
-            this.labelPipeCargado.Location = new System.Drawing.Point(830, 124);
-            this.labelPipeCargado.Name = "labelPipeCargado";
-            this.labelPipeCargado.Size = new System.Drawing.Size(134, 13);
-            this.labelPipeCargado.TabIndex = 20;
-            this.labelPipeCargado.Text = "Pipe Cargado en el Gráfico";
-            this.labelPipeCargado.Visible = false;
             // 
             // listBoxPipes
             // 
             this.listBoxPipes.FormattingEnabled = true;
-            this.listBoxPipes.Location = new System.Drawing.Point(844, 178);
+            this.listBoxPipes.Location = new System.Drawing.Point(844, 210);
             this.listBoxPipes.Name = "listBoxPipes";
             this.listBoxPipes.Size = new System.Drawing.Size(120, 147);
             this.listBoxPipes.TabIndex = 21;
             // 
             // buttonEliminarPipe
             // 
-            this.buttonEliminarPipe.Location = new System.Drawing.Point(844, 331);
+            this.buttonEliminarPipe.Location = new System.Drawing.Point(844, 363);
             this.buttonEliminarPipe.Name = "buttonEliminarPipe";
             this.buttonEliminarPipe.Size = new System.Drawing.Size(120, 23);
             this.buttonEliminarPipe.TabIndex = 22;
@@ -165,32 +176,77 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(841, 157);
+            this.label4.Location = new System.Drawing.Point(841, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 23;
             this.label4.Text = "Pipes Elegidos";
             // 
+            // comboBoxSeleccionarCategoria
+            // 
+            this.comboBoxSeleccionarCategoria.FormattingEnabled = true;
+            this.comboBoxSeleccionarCategoria.Location = new System.Drawing.Point(844, 417);
+            this.comboBoxSeleccionarCategoria.Name = "comboBoxSeleccionarCategoria";
+            this.comboBoxSeleccionarCategoria.Size = new System.Drawing.Size(120, 21);
+            this.comboBoxSeleccionarCategoria.TabIndex = 24;
+            this.comboBoxSeleccionarCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBoxSeleccionarCategoria_SelectedIndexChanged);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(206, 134);
+            this.label5.Location = new System.Drawing.Point(844, 398);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(289, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "GRAFICO DE COMPARACION ENTRE DISTINTOS PIPES";
+            this.label5.Size = new System.Drawing.Size(107, 13);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Selecionar Categoría";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(841, 101);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 13);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "Selecionar Comparaciones";
+            // 
+            // checkBoxPipe
+            // 
+            this.checkBoxPipe.AutoSize = true;
+            this.checkBoxPipe.Checked = true;
+            this.checkBoxPipe.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPipe.Location = new System.Drawing.Point(844, 127);
+            this.checkBoxPipe.Name = "checkBoxPipe";
+            this.checkBoxPipe.Size = new System.Drawing.Size(52, 17);
+            this.checkBoxPipe.TabIndex = 28;
+            this.checkBoxPipe.Text = "Pipes";
+            this.checkBoxPipe.UseVisualStyleBackColor = true;
+            this.checkBoxPipe.CheckedChanged += new System.EventHandler(this.checkBoxPipe_CheckedChanged);
+            // 
+            // checkBoxCategoria
+            // 
+            this.checkBoxCategoria.AutoSize = true;
+            this.checkBoxCategoria.Location = new System.Drawing.Point(844, 151);
+            this.checkBoxCategoria.Name = "checkBoxCategoria";
+            this.checkBoxCategoria.Size = new System.Drawing.Size(76, 17);
+            this.checkBoxCategoria.TabIndex = 29;
+            this.checkBoxCategoria.Text = "Categorias";
+            this.checkBoxCategoria.UseVisualStyleBackColor = true;
+            this.checkBoxCategoria.CheckedChanged += new System.EventHandler(this.checkBoxCategoria_CheckedChanged);
             // 
             // FormCompararResultados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.checkBoxCategoria);
+            this.Controls.Add(this.checkBoxPipe);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBoxSeleccionarCategoria);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonEliminarPipe);
             this.Controls.Add(this.listBoxPipes);
-            this.Controls.Add(this.labelPipeCargado);
-            this.Controls.Add(this.buttonSeleccionarPipe);
             this.Controls.Add(this.textBoxArchivoSeleccionado);
             this.Controls.Add(this.buttonBuscarPipe);
             this.Controls.Add(this.label3);
@@ -214,11 +270,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxArchivoSeleccionado;
         private System.Windows.Forms.Button buttonBuscarPipe;
-        private System.Windows.Forms.Button buttonSeleccionarPipe;
-        private System.Windows.Forms.Label labelPipeCargado;
         private System.Windows.Forms.ListBox listBoxPipes;
         private System.Windows.Forms.Button buttonEliminarPipe;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxSeleccionarCategoria;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBoxPipe;
+        private System.Windows.Forms.CheckBox checkBoxCategoria;
     }
 }
