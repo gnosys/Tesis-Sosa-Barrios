@@ -10,6 +10,7 @@ using HtmlAgilityPack;
 namespace Tonkenizer.Filters.PreFilters
 {
 
+
     class HtmlDocDetails
     {
         public string Title { get; set; }
@@ -21,6 +22,11 @@ namespace Tonkenizer.Filters.PreFilters
 
     public class AddLinkContextPreFilter : PreFilter
     {
+
+        public bool Title { get; set; }
+        public bool Description { get; set; }
+        public bool Keywords { get; set; }
+
         public AddLinkContextPreFilter(PreFilter next) : base(next) { }
 
         protected override List<string> DoFilter(List<string> docs)
@@ -57,12 +63,12 @@ namespace Tonkenizer.Filters.PreFilters
                 {
                     foreach (var tag in metaTags)
                     {
-                        if (tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "description")
+                        if (Description && tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "description")
                         {
                             docDetails.Description = tag.Attributes["content"].Value;
                         }
 
-                        if (tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "keywords")
+                        if (Keywords && tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "keywords")
                         {
                             docDetails.Keywords = tag.Attributes["content"].Value;
                         }
@@ -70,8 +76,11 @@ namespace Tonkenizer.Filters.PreFilters
                 }
 
                 //To Get Title
-                string pageSource = document.DocumentNode.WriteContentTo();
-                docDetails.Title = Regex.Match(pageSource, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+                if (Title)
+                {
+                    string pageSource = document.DocumentNode.WriteContentTo();
+                    docDetails.Title = Regex.Match(pageSource, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+                }
 
 
                 return docDetails;

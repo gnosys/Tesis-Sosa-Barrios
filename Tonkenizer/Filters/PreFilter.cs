@@ -8,6 +8,17 @@ namespace Tonkenizer.Filters
 {
     public abstract class PreFilter
     {
+        public PreFilter Next {
+            get
+            {
+                return _next;
+            }
+            set
+            {
+                _next = value;
+            }
+        }
+
         private PreFilter _next;
 
         public PreFilter(PreFilter next)

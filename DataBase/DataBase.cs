@@ -593,7 +593,7 @@ namespace DataBaseSQL
                 {
                     foreach (string token in TFIDFInput.ElementAt(tweetIndex))
                     {
-                        builder.AppendLine(String.Format(@"INSERT INTO [dbo].[Token]([Text],[idPipe],[idTweet]) VALUES ('{0}','{1}','{2}')", token, guid, tweet.Id));
+                        builder.AppendLine(String.Format(@"INSERT INTO [dbo].[Token]([Text],[idPipe],[idTweet]) VALUES ('{0}','{1}',{2})", token.Replace("'","''"), guid, tweet.Id));
                         ++mod;
                         if (mod == 2000)
                         {

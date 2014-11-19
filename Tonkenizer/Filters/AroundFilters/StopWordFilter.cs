@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using System.IO;
 
 namespace Tonkenizer.Filters.AroundFilters
 {
@@ -479,13 +480,14 @@ namespace Tonkenizer.Filters.AroundFilters
 			return _stopwords.ContainsKey(str.ToLower());
 		}
 
-		public StopWordFilter(AroundFilter next) : base(next)
+		public StopWordFilter(AroundFilter next,bool byDefault, string filename) : base(next)
 		{
 			if (_stopwords == null)
 			{
 				_stopwords = new Hashtable();
 				double dummy = 0;
-				foreach (string word in stopWordsList)
+                string[] list = byDefault ? stopWordsList : File.ReadAllLines(filename);
+				foreach (string word in list)
 				{
 					AddElement(_stopwords, word, dummy);
 				}

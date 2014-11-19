@@ -1,6 +1,6 @@
 {
 	"database": {
-		"connectionString": "Data Source=np:\\\\.\\pipe\\LOCALDB#39790044\\tsql\\query;Initial Catalog=Tweets;Integrated Security=True"
+		"connectionString": "Data Source=np:\\\\.\\pipe\\LOCALDB#E35896D5\\tsql\\query;Initial Catalog=Tweets;Integrated Security=True"
 	},
 	"preprocessing": {
 		"guid": null,
@@ -10,7 +10,7 @@
         {
 			"_type": "stopWords",
 			"filename": null,
-            "byDefault": false
+            "byDefault": true
 		},
         {
 			"_type": "tokenizing",
@@ -20,8 +20,9 @@
 		},
         {
 			"_type": "richment",
-			"metatags": false,
-            "title": false
+			"description": false,
+            "title": false,
+            "keywords": false
 		},
         {
 			"_type": "words",
@@ -40,7 +41,7 @@
 	"svm": {
 		"c": "1",
 		"modelFilename": null,
-        "predictionsFilename": "C:\\Users\\Pablo\\Desktop\\predictions"
+        "predictionsFilename": null
 	},
 	"categoryLevel": 13
 }

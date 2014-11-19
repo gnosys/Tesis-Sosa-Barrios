@@ -131,7 +131,7 @@ namespace AppPrincipal
             {
                 if (db != null)
                     db.Dispose();
-                DataBase.connectionString = textBoxConeccionSQL.Text.Replace("\\\\","\\");
+                //DataBase.connectionString = textBoxConeccionSQL.Text.Replace("\\\\","\\");
                 db = DataBase.Instance;
                 if (db.CheckConnection())
                 {

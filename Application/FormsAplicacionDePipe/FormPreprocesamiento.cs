@@ -23,32 +23,6 @@ namespace AppPrincipal
 
         bool cambiarTabs = false;
 
-        private AroundFilter GetConfiguredAroundFilters(JToken config)
-        {
-            switch ((string)config["_type"])
-            {
-                case "stopWords": return new StopWordFilter(null);
-                case "stemming": return new StemmingFilter(null);
-            }
-            return null;
-        }
-
-        private AroundFilter GetAroundFilter(JArray configurations)
-        {
-            AroundFilter ret = null;
-            AroundFilter current = null;
-            foreach (var config in configurations)
-            {
-                current = GetConfiguredAroundFilters(config);
-                //current = current.Next;
-                if (ret == null)
-                {
-                    ret = current;
-                }
-            }
-            return ret;
-        }
-
         public FormPreprocesamiento(Form parent)
         {
             //configuration = JObject.Parse(jsonConf);
@@ -63,6 +37,66 @@ namespace AppPrincipal
 
         }
 
+
+        public PreFilter BuildPrefilter(JArray preprocessingFiltersConfiguration, int i = 0)
+        {
+            if (i == preprocessingFiltersConfiguration.Count) return null;
+
+            PreFilter ret = GetConfiguredPrefilter(preprocessingFiltersConfiguration.ElementAt(i));
+            if (ret != null)
+            {
+                ret.Next = BuildPrefilter(preprocessingFiltersConfiguration, i + 1);
+            }
+            else
+            {
+                ret = BuildPrefilter(preprocessingFiltersConfiguration, i + 1);
+            }
+            return ret;
+        }
+
+        private PreFilter GetConfiguredPrefilter(JToken jToken)
+        {
+            switch ((string)jToken["_type"])
+            {
+                case "richment": return new AddLinkContextPreFilter(null)
+                {
+                    Description = (bool)jToken["description"],
+                    Title = (bool)jToken["title"],
+                    Keywords = (bool)jToken["keywords"]
+                };
+                //case "words": return new OnlyWordsPreFilter(null);
+                default: return null;
+            }
+        }
+
+
+        public AroundFilter BuildAroundfilter(JArray preprocessingFiltersConfiguration, int i = 0)
+        {
+            if (i == preprocessingFiltersConfiguration.Count) return null;
+
+            AroundFilter ret = GetConfiguredAroundfilter(preprocessingFiltersConfiguration.ElementAt(i));
+            if (ret != null)
+            {
+                ret.Next = BuildAroundfilter(preprocessingFiltersConfiguration, i + 1);
+            }
+            else
+            {
+                ret = BuildAroundfilter(preprocessingFiltersConfiguration, i + 1);
+            }
+            return ret;
+        }
+
+        private AroundFilter GetConfiguredAroundfilter(JToken jToken)
+        {
+            switch ((string)jToken["_type"])
+            {
+                case "stopWords": return new StopWordFilter(null, (bool)jToken["byDefault"], (string)jToken["filename"]);
+                case "stemming": return new StemmingFilter(null);
+                default: return null;
+            }
+        }
+
+
         private void buttonPreprocesar_Click(object sender, EventArgs e)
         {
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
@@ -75,51 +109,21 @@ namespace AppPrincipal
             List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify(categoryLevel);
             List<string> docs = tweets.Select(x => x.Text).ToList();
 
-            foreach (ListViewItem preproceso in listViewOrdenPreprocesos.Items)
+            
+            dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
+            if ((bool)tokenizingConfiguration.byDefault)
             {
-                if (preproceso.Text.Equals("Stemmer"))
-                {
-
-                }
-                else if (preproceso.Text.Equals("Stop Words"))
-                {
-
-                }
-                else if (preproceso.Text.Equals("Tokenization"))
-                {
-                    dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
-                    if (tokenizingConfiguration.byDefault)
-                        delimiter = new Regex((string)tokenizingConfiguration.regexpByDefault);
-                    else
-                        delimiter = new Regex((string)tokenizingConfiguration.regexp);
-                }
-                else if (preproceso.Text.Equals("Enriquecimiento"))
-                {
-
-                }
-                else if (preproceso.Text.Equals("Tratamiento en Texto"))
-                {
-                    dynamic wordsConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words");
-                    if (wordsConfiguration.removeLinks)
-                        docs = borrarLinks(docs);
-                    if (wordsConfiguration.replaceAbbreviations)
-                    {
-                        if (wordsConfiguration.byDefault)
-                        {
-                            string[] lineasAbreviatura = File.ReadAllLines(@"Recursos\Abreviaturas\abbreviations.txt");
-                        }
-                        else
-                        {
-                            string[] lineasAbreviatura = File.ReadAllLines((string)wordsConfiguration.filename);
-                        }
-                    }
-                }
+                delimiter = new Regex((string)tokenizingConfiguration.regexpByDefault);
             }
+            else
+            {
+                delimiter = new Regex((string)tokenizingConfiguration.regexp);
+            }
+                
+            
 
-            //chain of responsability: docs and words transformations
-            //TODO: configure filters from PIPECONFIGURATION
-            preFilter = new EmptyPreFilter(null);
-            aroundFilter = new StopWordFilter(new StemmingFilter(null));
+            preFilter = BuildPrefilter(preprocessingFiltersConfiguration);
+            aroundFilter = BuildAroundfilter(preprocessingFiltersConfiguration);
 
             ////preprocessing
             tokenizer = new Tokenizer(delimiter, preFilter, aroundFilter);
