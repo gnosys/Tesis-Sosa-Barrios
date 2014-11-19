@@ -74,7 +74,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxConeccionSQL = new System.Windows.Forms.TextBox();
             this.buttonComprobarConeccion = new System.Windows.Forms.Button();
-            this.labelConeccion = new System.Windows.Forms.Label();
+            this.labelConexion = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonMostrarTextos = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -111,7 +111,7 @@
             this.panelSeleccionarCategoria.Controls.Add(this.label12);
             this.panelSeleccionarCategoria.Controls.Add(this.label11);
             this.panelSeleccionarCategoria.Controls.Add(this.label10);
-            this.panelSeleccionarCategoria.Location = new System.Drawing.Point(155, 2);
+            this.panelSeleccionarCategoria.Location = new System.Drawing.Point(157, 2);
             this.panelSeleccionarCategoria.Name = "panelSeleccionarCategoria";
             this.panelSeleccionarCategoria.Size = new System.Drawing.Size(834, 305);
             this.panelSeleccionarCategoria.TabIndex = 17;
@@ -120,7 +120,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 128);
+            this.label7.Location = new System.Drawing.Point(15, 128);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(288, 13);
             this.label7.TabIndex = 32;
@@ -158,7 +158,7 @@
             // labelTotalCantidadDeTwwets
             // 
             this.labelTotalCantidadDeTwwets.AutoSize = true;
-            this.labelTotalCantidadDeTwwets.Location = new System.Drawing.Point(141, 244);
+            this.labelTotalCantidadDeTwwets.Location = new System.Drawing.Point(136, 242);
             this.labelTotalCantidadDeTwwets.Name = "labelTotalCantidadDeTwwets";
             this.labelTotalCantidadDeTwwets.Size = new System.Drawing.Size(13, 13);
             this.labelTotalCantidadDeTwwets.TabIndex = 28;
@@ -167,7 +167,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(20, 244);
+            this.label21.Location = new System.Drawing.Point(15, 242);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(126, 13);
             this.label21.TabIndex = 27;
@@ -176,7 +176,7 @@
             // labelCantidadTweetProfundidadNivel
             // 
             this.labelCantidadTweetProfundidadNivel.AutoSize = true;
-            this.labelCantidadTweetProfundidadNivel.Location = new System.Drawing.Point(247, 225);
+            this.labelCantidadTweetProfundidadNivel.Location = new System.Drawing.Point(242, 223);
             this.labelCantidadTweetProfundidadNivel.Name = "labelCantidadTweetProfundidadNivel";
             this.labelCantidadTweetProfundidadNivel.Size = new System.Drawing.Size(13, 13);
             this.labelCantidadTweetProfundidadNivel.TabIndex = 26;
@@ -185,7 +185,7 @@
             // labelProfundidadNivelSeleccionado
             // 
             this.labelProfundidadNivelSeleccionado.AutoSize = true;
-            this.labelProfundidadNivelSeleccionado.Location = new System.Drawing.Point(155, 225);
+            this.labelProfundidadNivelSeleccionado.Location = new System.Drawing.Point(150, 223);
             this.labelProfundidadNivelSeleccionado.Name = "labelProfundidadNivelSeleccionado";
             this.labelProfundidadNivelSeleccionado.Size = new System.Drawing.Size(13, 13);
             this.labelProfundidadNivelSeleccionado.TabIndex = 25;
@@ -194,7 +194,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(20, 262);
+            this.label20.Location = new System.Drawing.Point(15, 260);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(321, 13);
             this.label20.TabIndex = 24;
@@ -203,7 +203,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(20, 225);
+            this.label19.Location = new System.Drawing.Point(15, 223);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(229, 13);
             this.label19.TabIndex = 23;
@@ -223,7 +223,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(17, 164);
+            this.label16.Location = new System.Drawing.Point(15, 164);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(128, 13);
             this.label16.TabIndex = 17;
@@ -232,7 +232,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(17, 186);
+            this.label18.Location = new System.Drawing.Point(15, 186);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(186, 13);
             this.label18.TabIndex = 15;
@@ -261,7 +261,7 @@
             // labelCantidadNiveles
             // 
             this.labelCantidadNiveles.AutoSize = true;
-            this.labelCantidadNiveles.Location = new System.Drawing.Point(143, 164);
+            this.labelCantidadNiveles.Location = new System.Drawing.Point(141, 164);
             this.labelCantidadNiveles.Name = "labelCantidadNiveles";
             this.labelCantidadNiveles.Size = new System.Drawing.Size(13, 13);
             this.labelCantidadNiveles.TabIndex = 11;
@@ -330,7 +330,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(17, 18);
+            this.label10.Location = new System.Drawing.Point(15, 18);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(649, 13);
             this.label10.TabIndex = 0;
@@ -511,20 +511,20 @@
             this.buttonComprobarConeccion.Name = "buttonComprobarConeccion";
             this.buttonComprobarConeccion.Size = new System.Drawing.Size(120, 23);
             this.buttonComprobarConeccion.TabIndex = 10;
-            this.buttonComprobarConeccion.Text = "Comprobar Coneccion";
+            this.buttonComprobarConeccion.Text = "Comprobar Conexión";
             this.buttonComprobarConeccion.UseVisualStyleBackColor = true;
             this.buttonComprobarConeccion.Click += new System.EventHandler(this.buttonComprobarConeccion_Click);
             // 
-            // labelConeccion
+            // labelConexion
             // 
-            this.labelConeccion.AutoSize = true;
-            this.labelConeccion.ForeColor = System.Drawing.Color.Green;
-            this.labelConeccion.Location = new System.Drawing.Point(872, 47);
-            this.labelConeccion.Name = "labelConeccion";
-            this.labelConeccion.Size = new System.Drawing.Size(101, 13);
-            this.labelConeccion.TabIndex = 11;
-            this.labelConeccion.Text = "Mensaje Coneccion";
-            this.labelConeccion.Visible = false;
+            this.labelConexion.AutoSize = true;
+            this.labelConexion.ForeColor = System.Drawing.Color.Green;
+            this.labelConexion.Location = new System.Drawing.Point(875, 47);
+            this.labelConexion.Name = "labelConexion";
+            this.labelConexion.Size = new System.Drawing.Size(94, 13);
+            this.labelConexion.TabIndex = 11;
+            this.labelConexion.Text = "Mensaje Conexion";
+            this.labelConexion.Visible = false;
             // 
             // label4
             // 
@@ -596,7 +596,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridViewTuplas);
             this.Controls.Add(this.dataGridViewDatos);
-            this.Controls.Add(this.labelConeccion);
+            this.Controls.Add(this.labelConexion);
             this.Controls.Add(this.buttonMostrarTuplas);
             this.Controls.Add(this.buttonComprobarConeccion);
             this.Controls.Add(this.SelectCantTuplas);
@@ -657,7 +657,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxConeccionSQL;
         private System.Windows.Forms.Button buttonComprobarConeccion;
-        private System.Windows.Forms.Label labelConeccion;
+        private System.Windows.Forms.Label labelConexion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonMostrarTextos;
         private System.Windows.Forms.Label label5;

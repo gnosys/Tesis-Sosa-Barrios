@@ -18,9 +18,13 @@ namespace AppPrincipal
         
         public bool IsValidConfiguration()
         {
-            DataBase.connectionString = textBoxConeccionSQL.Text;
-            db = DataBase.Instance;
-            return db.CheckConnection();
+            if (!String.IsNullOrEmpty(textBoxConeccionSQL.Text))
+            {
+                DataBase.connectionString = textBoxConeccionSQL.Text;
+                db = DataBase.Instance;
+                return db.CheckConnection();
+            }
+            return false;
         }
 
         public FormDataBaseYSeleccionarCategoria(Form parent)
@@ -32,7 +36,7 @@ namespace AppPrincipal
 
         private void cleanLabels()
         {
-            labelConeccion.Visible = false;
+            labelConexion.Visible = false;
         }
 
         private void enableForms()
@@ -127,12 +131,12 @@ namespace AppPrincipal
             {
                 if (db != null)
                     db.Dispose();
-                DataBase.connectionString = textBoxConeccionSQL.Text;
+                DataBase.connectionString = textBoxConeccionSQL.Text.Replace("\\\\","\\");
                 db = DataBase.Instance;
                 if (db.CheckConnection())
                 {
-                    labelConeccion.ForeColor = Color.Green;
-                    labelConeccion.Text = "Coneccion Establecida";
+                    labelConexion.ForeColor = Color.Green;
+                    labelConexion.Text = "Conexión Establecida";
                     enableForms();
                     if (db.ExistDataTableCategory())
                     {
@@ -145,11 +149,11 @@ namespace AppPrincipal
                 }
                 else
                 {
-                    labelConeccion.ForeColor = Color.Red;
-                    labelConeccion.Text = "Coneccion Fallida";
+                    labelConexion.ForeColor = Color.Red;
+                    labelConexion.Text = "Conexión Fallida";
                     disableForms();
                 }
-                labelConeccion.Visible = true;
+                labelConexion.Visible = true;
             }
         }
 
@@ -177,6 +181,7 @@ namespace AppPrincipal
                 labelNivelSeleccionado.Visible = true;
                 buttonMostrarTablaCategorias.Enabled = true;
                 ((App)this.MdiParent).PipeConfiguration.categoryLevel = textBoxSeleccionarNivel.Text;
+                ((App)this.MdiParent).ActivarBotonPreprocesamiento();
             }
         }
 

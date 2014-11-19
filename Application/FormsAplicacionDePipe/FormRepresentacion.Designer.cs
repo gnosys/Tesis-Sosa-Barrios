@@ -77,14 +77,14 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(189, 237);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(494, 13);
+            this.label3.Size = new System.Drawing.Size(479, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Se desea limitar el peso aceptado para la representación, agregue un valor en un " +
-    "rango de entre 0  y 1:";
+    "rango entre 0  y 1:";
             // 
             // textBoxMinWeight
             // 
-            this.textBoxMinWeight.Location = new System.Drawing.Point(683, 234);
+            this.textBoxMinWeight.Location = new System.Drawing.Point(669, 234);
             this.textBoxMinWeight.Name = "textBoxMinWeight";
             this.textBoxMinWeight.Size = new System.Drawing.Size(31, 20);
             this.textBoxMinWeight.TabIndex = 4;
@@ -96,9 +96,10 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(189, 265);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(398, 13);
+            this.label4.Size = new System.Drawing.Size(685, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Seleccione la carpeta de destino donde se grabara el archivo \"svm.dat\" generado:";
+            this.label4.Text = "Seleccione la carpeta de destino donde se grabaran los archivos \"svm-learn.dat\" y" +
+    " \"svm-classify.dat\" generados, para ser utilizados por el SVM:";
             // 
             // textBoxCarpetaDestino
             // 

@@ -40,7 +40,8 @@ namespace AppPrincipal
 
         public App()
         {
-            PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
+            //PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
+            PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-conf.pip"));
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             crearFormularios();
@@ -341,6 +342,16 @@ namespace AppPrincipal
                     correctosPrediccion += confusionMatrix[indexFila][j];
             }
             return (correctosPrediccion / totalPrediccionCategoria);
+        }
+
+        public void ActivarBotonPreprocesamiento()
+        {
+            buttonPreprocesamiento.Enabled = true;
+        }
+
+        public void ActivarBotonRepresentacion()
+        {
+            buttonRepresentacion.Enabled = true;
         }
     }
 }

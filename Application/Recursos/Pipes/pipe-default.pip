@@ -10,11 +10,13 @@
         {
 			"_type": "stopWords",
 			"filename": null,
-            "byDefault":  false
+            "byDefault": false
 		},
         {
 			"_type": "tokenizing",
-			"regexp": "([ \\\\t{}():;. \\n])"
+			"regexp": null,
+            "byDefault": true,
+            "regexpByDefault": "([ \\\\t{}():;. \\n])"
 		},
         {
 			"_type": "richment",

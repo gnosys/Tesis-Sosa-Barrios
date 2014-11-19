@@ -113,9 +113,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(16, 110);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 13);
+            this.label8.Size = new System.Drawing.Size(118, 13);
             this.label8.TabIndex = 14;
-            this.label8.Text = "Preprocesamientos";
+            this.label8.Text = "Pre-procesamientos";
             // 
             // label9
             // 
@@ -125,7 +125,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(116, 13);
             this.label9.TabIndex = 15;
-            this.label9.Text = "Aplicacion del Pipe";
+            this.label9.Text = "Aplicación del Pipe";
             // 
             // buttonPreprocesamiento
             // 
@@ -134,7 +134,7 @@
             this.buttonPreprocesamiento.Name = "buttonPreprocesamiento";
             this.buttonPreprocesamiento.Size = new System.Drawing.Size(130, 23);
             this.buttonPreprocesamiento.TabIndex = 16;
-            this.buttonPreprocesamiento.Text = "Preprocesamiento";
+            this.buttonPreprocesamiento.Text = "Pre-procesamiento";
             this.buttonPreprocesamiento.UseVisualStyleBackColor = true;
             this.buttonPreprocesamiento.Click += new System.EventHandler(this.buttonPreprocesamiento_Click);
             // 

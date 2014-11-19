@@ -31,46 +31,50 @@ namespace AppPrincipal.FormsCompararResultados
         {
             _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
             _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
-            matrices = new List<matrizPipe>();
 
             try
             {
-                string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
-                string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
+                if (!String.IsNullOrEmpty(_vsmClassificationFile) && !String.IsNullOrEmpty(_predictionsFile))
+                {
+                    matrices = new List<matrizPipe>();
 
-                int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-                int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-                var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
-                List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
-                
-                int[][] confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
+                    string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
+                    string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
 
-                matrices.Add(new matrizPipe("Actual", confusionMatrix));
+                    int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
+                    int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
+                    var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
+                    List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
 
-                float exactitud = (float)(Math.Round((double)((App)MdiParent).CalcularTasaDeExactitud(confusionMatrix), 3));
-                float error = (float)(Math.Round((double)((App)MdiParent).CalcularTasaDeError(confusionMatrix), 3));
+                    int[][] confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
 
-                chartComparaciones.Series["Exactitud de Pipe"].Points.AddXY(1, exactitud * 100);
-                if (exactitud > 0)
-                    chartComparaciones.Series["Exactitud de Pipe"].Points[0].Label = (exactitud * 100).ToString() + "%";
-                chartComparaciones.Series["Exactitud de Pipe"].Points[0].AxisLabel = "Actual";
-                chartComparaciones.Series["Error de Pipe"].Points.AddXY(1, error * 100);
-                if (error > 0)
-                    chartComparaciones.Series["Error de Pipe"].Points[0].Label = (error * 100).ToString() + "%";
+                    matrices.Add(new matrizPipe("Actual", confusionMatrix));
 
-                float precision = (float)(Math.Round((double)((App)MdiParent).CalcularPresicion(confusionMatrix, 0), 3));
+                    float exactitud = (float)(Math.Round((double)((App)MdiParent).CalcularTasaDeExactitud(confusionMatrix), 3));
+                    float error = (float)(Math.Round((double)((App)MdiParent).CalcularTasaDeError(confusionMatrix), 3));
 
-                chartComparaciones.Series["Exactitud de Categoria"].Points.AddXY(1, precision * 100);
-                if (precision > 0)
-                    chartComparaciones.Series["Exactitud de Categoria"].Points[0].Label = (precision * 100).ToString() + "%";
-                chartComparaciones.Series["Exactitud de Categoria"].Points[0].AxisLabel = "Actual";
-                chartComparaciones.Series["Error de Categoria"].Points.AddXY(1, (1 - precision) * 100);
-                if (precision < 1)
-                    chartComparaciones.Series["Error de Categoria"].Points[0].Label = ((1 - precision) * 100).ToString() + "%";
+                    chartComparaciones.Series["Exactitud de Pipe"].Points.AddXY(1, exactitud * 100);
+                    if (exactitud > 0)
+                        chartComparaciones.Series["Exactitud de Pipe"].Points[0].Label = (exactitud * 100).ToString() + "%";
+                    chartComparaciones.Series["Exactitud de Pipe"].Points[0].AxisLabel = "Actual";
+                    chartComparaciones.Series["Error de Pipe"].Points.AddXY(1, error * 100);
+                    if (error > 0)
+                        chartComparaciones.Series["Error de Pipe"].Points[0].Label = (error * 100).ToString() + "%";
 
-                DataBase.connectionString = (string)(((App)MdiParent).PipeConfiguration).database.connectionString;
-                List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
-                comboBoxSeleccionarCategoria.DataSource = labels;
+                    float precision = (float)(Math.Round((double)((App)MdiParent).CalcularPresicion(confusionMatrix, 0), 3));
+
+                    chartComparaciones.Series["Exactitud de Categoria"].Points.AddXY(1, precision * 100);
+                    if (precision > 0)
+                        chartComparaciones.Series["Exactitud de Categoria"].Points[0].Label = (precision * 100).ToString() + "%";
+                    chartComparaciones.Series["Exactitud de Categoria"].Points[0].AxisLabel = "Actual";
+                    chartComparaciones.Series["Error de Categoria"].Points.AddXY(1, (1 - precision) * 100);
+                    if (precision < 1)
+                        chartComparaciones.Series["Error de Categoria"].Points[0].Label = ((1 - precision) * 100).ToString() + "%";
+
+                    DataBase.connectionString = (string)(((App)MdiParent).PipeConfiguration).database.connectionString;
+                    List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
+                    comboBoxSeleccionarCategoria.DataSource = labels;
+                }
             }
             catch
             {
