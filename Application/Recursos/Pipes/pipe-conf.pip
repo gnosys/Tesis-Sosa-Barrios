@@ -5,26 +5,42 @@
 	"preprocessing": {
 		"guid": "65460317-2ac0-47be-b447-3cc303a9934c",
 		"filters": [{
-			"_type": "tokenizing",
-			"regexp": "([ \\\\t{}():;. \\n])"
-		},
-		{
-			"_type": "stopWords",
-			"filename": "C:\\temp\\stopwordlists\\stp1.txt"
-		},
-		{
 			"_type": "stemming"
 		},
-		{
-			"_type": "contextRichment",
-			"scopes": ["webAnalytics",
-			"metatags",
-			"shareTags"]
+        {
+			"_type": "stopWords",
+			"filename": null,
+            "byDefault": false
+		},
+        {
+			"_type": "tokenizing",
+			"regexp": null,
+            "byDefault": true,
+            "regexpByDefault": "([ \\\\t{}():;. \\n])"
+		},
+        {
+			"_type": "richment",
+			"metatags": false,
+            "title": false
+		},
+        {
+			"_type": "words",
+			"replaceAbbreviations": false,
+            "filename": null,
+            "byDefault":  false,
+            "removeLinks": false
 		}]
 	},
 	"representation": {
+		"trainingPercentage": 75,
 		"minWeight": 0,
-		"discardEquals": false
+		"discardEquals": false,
+		"directoryFilePath": "C:\\Users\\Mati\\Desktop"
+	},
+	"svm": {
+		"c": "1",
+		"modelFilename": null,
+        "predictionsFilename": "C:\\Users\\Mati\\Desktop\\predictions"
 	},
 	"categoryLevel": 13
 }

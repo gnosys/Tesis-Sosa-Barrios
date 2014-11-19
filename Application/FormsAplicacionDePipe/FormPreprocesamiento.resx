@@ -117,4 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Seleccione las diferentes formas de pre-procesamiento de tweets y el orden en que se debe aplicar, si un pre-proceso necesita de uno anterior para darle 
+sentido al mismo, se ordenaran automaticamente.</value>
+  </data>
 </root>

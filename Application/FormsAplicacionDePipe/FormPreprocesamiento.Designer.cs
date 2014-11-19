@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Stemmer");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Stop Words");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Tokenizacion");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Stemmer");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Stop Words");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Tokenization");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPreprocesamiento));
             this.buttonPreprocesar = new System.Windows.Forms.Button();
             this.listViewPreprocesamientos = new System.Windows.Forms.ListView();
             this.columnHeaderListaSeleccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,6 +59,8 @@
             this.buttonAplicarListaStopWords = new System.Windows.Forms.Button();
             this.labelArchivosTxtStopWords = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBoxERPorDefecto = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.labelExpresionRegularAplicada = new System.Windows.Forms.Label();
             this.buttonAplicarExpresionRegular = new System.Windows.Forms.Button();
             this.textBoxExpresionRegular = new System.Windows.Forms.TextBox();
@@ -84,6 +87,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.labelPreprocesadoAplicado = new System.Windows.Forms.Label();
             this.tabControlConfiguraciones.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -98,7 +102,7 @@
             this.buttonPreprocesar.Name = "buttonPreprocesar";
             this.buttonPreprocesar.Size = new System.Drawing.Size(116, 23);
             this.buttonPreprocesar.TabIndex = 0;
-            this.buttonPreprocesar.Text = "Preprocesar";
+            this.buttonPreprocesar.Text = "Pre-procesar";
             this.buttonPreprocesar.UseVisualStyleBackColor = true;
             this.buttonPreprocesar.Click += new System.EventHandler(this.buttonPreprocesar_Click);
             // 
@@ -108,11 +112,11 @@
             this.columnHeaderListaSeleccion});
             this.listViewPreprocesamientos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewPreprocesamientos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5});
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10});
             this.listViewPreprocesamientos.Location = new System.Drawing.Point(365, 91);
             this.listViewPreprocesamientos.MultiSelect = false;
             this.listViewPreprocesamientos.Name = "listViewPreprocesamientos";
@@ -124,7 +128,7 @@
             // 
             // columnHeaderListaSeleccion
             // 
-            this.columnHeaderListaSeleccion.Text = "Preprocesamientos";
+            this.columnHeaderListaSeleccion.Text = "Pre-procesamientos";
             this.columnHeaderListaSeleccion.Width = 150;
             // 
             // label1
@@ -132,10 +136,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(205, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(470, 13);
+            this.label1.Size = new System.Drawing.Size(730, 26);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Seleccione las diferentes formas de preprocesamiento de tweets y el orden en que " +
-    "se debe aplicar";
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // label2
             // 
@@ -144,8 +147,8 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 52);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Seleccione de la siguiente lista\r\nlos diferentes preprocesados,\r\nluego debera con" +
-    "figurar\r\nlos mismos segun corresponda.";
+            this.label2.Text = "Seleccione de la siguiente lista\r\nlos diferentes pre-procesados,\r\nluego debera co" +
+    "nfigurar\r\nlos mismos segun corresponda.";
             // 
             // buttonSeleccionar
             // 
@@ -174,7 +177,7 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Orden de Preprocesos";
+            this.columnHeader1.Text = "Orden de Pre-procesos";
             this.columnHeader1.Width = 150;
             // 
             // buttonQuitar
@@ -212,9 +215,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(205, 303);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 13);
+            this.label3.Size = new System.Drawing.Size(159, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Configuracion de Preprocesado";
+            this.label3.Text = "Configuracion de Pre-procesado";
             // 
             // buttonBuscarListStopWords
             // 
@@ -266,9 +269,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(19, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(284, 13);
+            this.label4.Size = new System.Drawing.Size(289, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Este preproceso no necesita una configuracion especifica.";
+            this.label4.Text = "Este pre-proceso no necesita una configuración específica.";
             // 
             // tabControlConfiguraciones
             // 
@@ -348,6 +351,8 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.checkBoxERPorDefecto);
+            this.tabPage3.Controls.Add(this.label11);
             this.tabPage3.Controls.Add(this.labelExpresionRegularAplicada);
             this.tabPage3.Controls.Add(this.buttonAplicarExpresionRegular);
             this.tabPage3.Controls.Add(this.textBoxExpresionRegular);
@@ -357,7 +362,26 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(656, 198);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Tokenizacion";
+            this.tabPage3.Text = "Tokenization";
+            // 
+            // checkBoxERPorDefecto
+            // 
+            this.checkBoxERPorDefecto.AutoSize = true;
+            this.checkBoxERPorDefecto.Location = new System.Drawing.Point(191, 52);
+            this.checkBoxERPorDefecto.Name = "checkBoxERPorDefecto";
+            this.checkBoxERPorDefecto.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxERPorDefecto.TabIndex = 5;
+            this.checkBoxERPorDefecto.UseVisualStyleBackColor = true;
+            this.checkBoxERPorDefecto.CheckedChanged += new System.EventHandler(this.checkBoxERPorDefecto_CheckedChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(19, 51);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(172, 13);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Usar expresión regular por defecto ";
             // 
             // labelExpresionRegularAplicada
             // 
@@ -625,11 +649,23 @@
             this.label10.TabIndex = 15;
             this.label10.Text = "Seleccione de la\r\nsiguiente lista para\r\nacceder a su\r\nconfiguración.";
             // 
+            // labelPreprocesadoAplicado
+            // 
+            this.labelPreprocesadoAplicado.AutoSize = true;
+            this.labelPreprocesadoAplicado.ForeColor = System.Drawing.Color.Green;
+            this.labelPreprocesadoAplicado.Location = new System.Drawing.Point(877, 396);
+            this.labelPreprocesadoAplicado.Name = "labelPreprocesadoAplicado";
+            this.labelPreprocesadoAplicado.Size = new System.Drawing.Size(120, 13);
+            this.labelPreprocesadoAplicado.TabIndex = 16;
+            this.labelPreprocesadoAplicado.Text = "Pre-procesado Aplicado";
+            this.labelPreprocesadoAplicado.Visible = false;
+            // 
             // FormPreprocesamiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.labelPreprocesadoAplicado);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tabControlConfiguraciones);
             this.Controls.Add(this.label3);
@@ -714,6 +750,9 @@
         private System.Windows.Forms.Label labelExpresionRegularAplicada;
         private System.Windows.Forms.Label labelEnriquecimientoAplicado;
         private System.Windows.Forms.Label labelTratamientoAplicado;
+        private System.Windows.Forms.CheckBox checkBoxERPorDefecto;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelPreprocesadoAplicado;
 
     }
 }
