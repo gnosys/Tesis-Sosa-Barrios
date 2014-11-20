@@ -136,6 +136,50 @@ namespace AppPrincipal
             labelPreprocesadoAplicado.Show();
         }
         
+        private void updatePipe(ListViewItem seleccion)
+        {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            
+            if (seleccion.Text.Equals("Stemmer"))
+            {
+                preprocessingFiltersConfiguration.Add(new { _type = "stemming" });
+            }
+            else if (seleccion.Text.Equals("Stop Words"))
+            {
+                preprocessingFiltersConfiguration.Add(new { _type = "stopWords", filename = "null", byDefault = false });
+            }
+            else
+            {
+                char[] delimitadores = new char[] { '[', ']' };
+                int indexTokenizing = int.Parse(preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing").Path.Split(delimitadores)[1]);
+
+                if (seleccion.Text.Equals("Enriquecimiento"))
+                {
+                    var nuevoFiltro = new { _type = "richment", keywords = false, title = false, description = false };
+                    preprocessingFiltersConfiguration[indexTokenizing].AddBeforeSelf(nuevoFiltro);
+                }
+                else if (seleccion.Text.Equals("Tratamiento en Texto"))
+                {
+                    var nuevoFiltro = new { _type = "words", replaceAbbreviations = false, filename = "null", byDefault = false, removeLinks = false };
+                    preprocessingFiltersConfiguration[indexTokenizing].AddBeforeSelf(nuevoFiltro);
+                }
+            }
+        }
+
+        private void ubicarSeleccion(ListViewItem seleccion)
+        {
+            if (seleccion.Text == "Enriquecimiento" || seleccion.Text == "Tratamiento en Texto")
+            {
+                int indexTokenization = listViewOrdenPreprocesos.FindItemWithText("Tokenization").Index;
+                listViewOrdenPreprocesos.Items.Insert(indexTokenization, seleccion);
+            }
+            else if (seleccion.Text == "Stemmer" || seleccion.Text == "Stop Words")
+            {
+                listViewOrdenPreprocesos.Items.Add(seleccion);
+            }
+            listViewOrdenPreprocesos.Focus();
+        }
+
         private void buttonSeleccionar_Click(object sender, EventArgs e)
         {
             labelPreprocesadoAplicado.Hide();
@@ -143,15 +187,15 @@ namespace AppPrincipal
             {
                 ListViewItem seleccion = listViewPreprocesamientos.SelectedItems[0];
                 listViewPreprocesamientos.SelectedItems[0].Remove();
-                listViewOrdenPreprocesos.Items.Add(seleccion);
-                listViewOrdenPreprocesos.Focus();
+                ubicarSeleccion(seleccion);
+                updatePipe(seleccion);
             }
         }
 
         private void buttonQuitar_Click(object sender, EventArgs e)
         {
             labelPreprocesadoAplicado.Hide();
-            if (listViewOrdenPreprocesos.SelectedItems.Count > 0)
+            if (listViewOrdenPreprocesos.SelectedItems.Count > 0 && !listViewOrdenPreprocesos.SelectedItems[0].Text.Equals("Tokenization"))
             {
                 ListViewItem seleccion = listViewOrdenPreprocesos.SelectedItems[0];
                 listViewOrdenPreprocesos.SelectedItems[0].Remove();
@@ -167,11 +211,24 @@ namespace AppPrincipal
             if (listViewOrdenPreprocesos.SelectedItems.Count > 0)
             {
                 ListViewItem seleccion = listViewOrdenPreprocesos.SelectedItems[0];
-                if (seleccion.Index > 0)
+                if (seleccion.Text == "Enriquecimiento" || seleccion.Text == "Tratamiento en Texto")
                 {
-                    int pos = seleccion.Index - 1;
-                    listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
-                    listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                    if (seleccion.Index > 0)
+                    {
+                        int pos = seleccion.Index - 1;
+                        listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
+                        listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                    }
+                }
+                else if (seleccion.Text == "Stemmer" || seleccion.Text == "Stop Words")
+                {
+                    int indexTokenization = listViewOrdenPreprocesos.FindItemWithText("Tokenization").Index;
+                    if (seleccion.Index > 0 && seleccion.Index > indexTokenization + 1)
+                    {
+                        int pos = seleccion.Index - 1;
+                        listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
+                        listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                    }
                 }
             }
             listViewOrdenPreprocesos.Focus();
@@ -183,11 +240,24 @@ namespace AppPrincipal
             if (listViewOrdenPreprocesos.SelectedItems.Count > 0)
             {
                 ListViewItem seleccion = listViewOrdenPreprocesos.SelectedItems[0];
-                if (seleccion.Index < (listViewOrdenPreprocesos.Items.Count - 1))
+                if (seleccion.Text == "Enriquecimiento" || seleccion.Text == "Tratamiento en Texto")
                 {
-                    int pos = seleccion.Index + 1;
-                    listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
-                    listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                    int indexTokenization = listViewOrdenPreprocesos.FindItemWithText("Tokenization").Index;
+                    if (seleccion.Index < (listViewOrdenPreprocesos.Items.Count - 1) && seleccion.Index + 1 < indexTokenization)
+                    {
+                        int pos = seleccion.Index + 1;
+                        listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
+                        listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                    }
+                }
+                else if (seleccion.Text == "Stemmer" || seleccion.Text == "Stop Words")
+                {
+                    if (seleccion.Index < (listViewOrdenPreprocesos.Items.Count - 1))
+                    {
+                        int pos = seleccion.Index + 1;
+                        listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
+                        listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                    }
                 }
             }
             listViewOrdenPreprocesos.Focus();
@@ -352,8 +422,9 @@ namespace AppPrincipal
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             dynamic richmentConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment");
 
-            richmentConfiguration.metatags = checkBoxMetaTags.Checked;
+            richmentConfiguration.keywords = checkBoxKeywords.Checked;
             richmentConfiguration.title = checkBoxTitulo.Checked;
+            richmentConfiguration.description = checkBoxDescripcion.Checked;
 
             labelEnriquecimientoAplicado.Show();
         }

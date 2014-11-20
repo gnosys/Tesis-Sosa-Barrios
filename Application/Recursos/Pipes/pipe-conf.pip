@@ -20,9 +20,9 @@
 		},
         {
 			"_type": "richment",
-			"description": false,
+			"keywords": false,
             "title": false,
-            "keywords": false
+            "description": false
 		},
         {
 			"_type": "words",

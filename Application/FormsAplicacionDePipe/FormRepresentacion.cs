@@ -47,7 +47,8 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 ((App)MdiParent).ValidateConfiguration();
                 ((App)MdiParent).formMatrizDeConfusion.Init();
                 labelRepresentacionObtenida.Show();
-                buttonVisualizarRepresentacion.Enabled = true;
+                buttonVisualizarSVMLearn.Enabled = true;
+                buttonVisualizarSVMClassify.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;
             }
             else
@@ -74,7 +75,46 @@ namespace AppPrincipal.FormsAplicacionDePipe
             Process.Start("explorer.exe", carpetaDestino);
         }
 
-        private void buttonVisualizarRepresentacion_Click(object sender, EventArgs e)
+
+
+        internal void Init()
+        {
+            string directoryFilePath = (string)((App)MdiParent).PipeConfiguration.representation.directoryFilePath;
+            if (!String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify)))
+            {
+                int lastSlash = directoryFilePath.LastIndexOf('/');
+                directoryFilePath = (lastSlash > -1) ? directoryFilePath.Substring(0, lastSlash) : directoryFilePath;
+                textBoxCarpetaDestino.Text = directoryFilePath ?? String.Empty;
+                carpetaDestino = directoryFilePath;
+                buttonVisualizarSVMLearn.Enabled = true;
+                buttonVisualizarSVMClassify.Enabled = true;
+                buttonAbrirCarpetaContenedora.Enabled = true;
+            }
+        }
+
+        private void buttonVisualizarSVMClassify_Click(object sender, EventArgs e)
+        {
+            labelRepresentacionObtenida.Hide();
+            string line;
+            texto.Clear();
+            try
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(String.Format(@"{0}\{1}", textBoxCarpetaDestino.Text, nombreArchivoClassify));
+                while ((line = file.ReadLine()) != null)
+                {
+                    texto.Append(line);
+                    texto.AppendLine();
+                }
+                richTextBoxTextoArchivo.Text = texto.ToString();
+                richTextBoxTextoArchivo.Enabled = true;
+            }
+            catch
+            {
+                DialogResult result = MessageBox.Show("El archivo no existe", "Archivo Inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonVisualizarSVMLearn_Click(object sender, EventArgs e)
         {
             labelRepresentacionObtenida.Hide();
             string line;
@@ -96,18 +136,5 @@ namespace AppPrincipal.FormsAplicacionDePipe
             }
         }
 
-        internal void Init()
-        {
-            string directoryFilePath = (string)((App)MdiParent).PipeConfiguration.representation.directoryFilePath;
-            if (!String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify)))
-            {
-                int lastSlash = directoryFilePath.LastIndexOf('/');
-                directoryFilePath = (lastSlash > -1) ? directoryFilePath.Substring(0, lastSlash) : directoryFilePath;
-                textBoxCarpetaDestino.Text = directoryFilePath ?? String.Empty;
-                carpetaDestino = directoryFilePath;
-                buttonVisualizarRepresentacion.Enabled = true;
-                buttonAbrirCarpetaContenedora.Enabled = true;
-            }
-        }
     }
 }
