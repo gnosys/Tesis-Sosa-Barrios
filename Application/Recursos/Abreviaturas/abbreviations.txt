@@ -1,171 +1,170 @@
 TIA	Thanks In Advance
 IOW	In Other Words
 FTF	Face to Face
-CHK Check
-BYOD Bring Your Own Device
-ELO Electric Light Orchestra
-GIF Graphics Interchange Format
-LAN Local Area Network
-PSA Public Service Announcement
-ROFLMAO Rolling On Floor Laughing My Ass Off
-TXT Text
-XFER Transfer
-YT YouTube
-YMMV Your Mileage May Vary
-F2F Face to Face
-FYI For Your Information
-JK Just Kidding
-BFN Bye For Now
-LOL Laugh Out Loud
-TY Thank You
-WTF What The Fuck
-AFAIK As Far As I Know
-BTW By The Way
-LMAO Laughing My Ass Off
-YW You're Welcome
-w/ With
-IMHO In My Humble Opinion
-TYT Take Your Time
-FTW For The Win
-LMK Let Me Know
-TTYL Talk To You Later
-IRL In Real Life
-W With
-OMG Oh My God
-B4 Before
-plz Please
-GR8 Great
-PPL People
-B/C Because
-TYVM Thank You Very Much
-TTYS Talk To You Soon
-J/K Just Kidding
-L8 Late
-IC I see
-IM Instant Message
-ABT About
-YVW You're Very Welcome
-JSYK Just so you know
-Yr Your
-Wazzup What's Up
-blieve Believe
-Fab Fabulous
-EML Email
-YW Your Welcome
-BR Best regards
-C See
-FTL For The Loss
-UR Your
-DM Direct Message
-KEWL Cool
-Peeps People
-ROFL Rolling On The Floor Laughing
-U You
-TMB Tweet Me Back
-frnd Friend
-L8er Later
-deets Details
-4U For You
-FB Facebook
-4 For
-D Direct
-itz It is
-BGD Background
-K Okay
-props Proper Respect
-KK Cool Cool
-bst Best
-bt About
-LMAO Laugh My Ass Of
-HT Hat-Tip
-EMA Email Address
-wld Would
-whatddup What's Up
-V2V Voice To Voice
-u've You Have
-Tword Twitter Word
-Twoops Twitter Oops
-Twollower Twitter Follower
-Twittonary Twitter Dictionary
-Twistory Twitter Story
-Twike Twitter Bike
-Twiends Twitter Friends
-Twexplanation Twitter Explanation
-Twerminology Twitter Terminology
-Tweeps Twitter Updates
-shld Should
-pple People
-OH Overheard
-njoy Enjoy
-Mil Million
-Fav Favorite
-Em Email
-Dweet Drunk Tweet
-clk Click
-cld Could
-4ward Forward
-Dweet Tweet while drunk
-RT Retweet
-PRT Please Retweet
-PRT Partial Retweet
-W/E Weekend
-Ab About
-IM Institutent Message
-DGAF Don't give a fuck
-NW No Way
-R Are
-TU Thank you
-RU Are you
-PWN Own
-woz Was
-Twittworking Twitter Networking
-Twittsomnia Twitter Insomnia
-thx tx Thanks
-Tu Thank You
-AFDA A Few Days Ago
-AHFY Always here for you
-AOMM Always on my mind
-ANFSCD And Now For Something Completely Different
-AYPI And Your Point Is
-Agl Angel
-A3 Anyplace, Anywhere, Anytime
-AWHFY Are We Having Fun Yet
-AYC Are you coming
-AYSOS Are You Stupid Or Something
-AAMOF As A Matter Of Fact
-AFAICS As Far As I Can See
-AFAYC As Far As You're Concerned
-AISI As I See It
-ASAIC As Soon As I Can
-AMA Ask Me Anything
-ATM At The Moment
-Attwaction Attraction To A Twitter User
-BITS Back in the Saddle
-BUP Backup Plan
-BAMF Bad Ass Motherfucker
-BBQ Barbecue
-BBL Be Back Later
-BBW Be back whenever
-BRB Be Right Back
-Hot Beautiful
-BION Believe It or Not
-BESTIE Best Friend
-BFFN Best friend for now
-BFF4L Best Friends Forever For Life
-BFTD Best friends till death
-BGF Best Girl Friend
-BMA Best mates always
-BW Best Wishes
-BCO Big crush on
-BD Big Deal
-BFK Big Fat Kiss
-BUF Big, Ugly, Fat
-bday Birthday
-Swag Boasting About One's Skills
-BCBG Bon Chic Bon Genre
-BBB Boring Beyond Belief
-Bootsie Boring Person
-BF Boyfriend
+CHK	Check
+BYOD	Bring Your Own Device
+ELO	Electric Light Orchestra
+GIF	Graphics Interchange Format
+LAN	Local Area Network
+PSA	Public Service Announcement
+ROFLMAO	Rolling On Floor Laughing My Ass Off
+TXT	Text
+XFER	Transfer
+YT	YouTube
+YMMV	Your Mileage May Vary
+F2F	Face to Face
+FYI	For Your Information
+JK	Just Kidding
+BFN	Bye For Now
+LOL	Laugh Out Loud
+TY	Thank You
+WTF	What The Fuck
+AFAIK	As Far As I Know
+BTW	By The Way
+LMAO	Laughing My Ass Off
+YW	You're Welcome
+w/	With
+IMHO	In My Humble Opinion
+TYT	Take Your Time
+FTW	For The Win
+LMK	Let Me Know
+TTYL	Talk To You Later
+IRL	In Real Life
+W	With
+OMG	Oh My God
+B4	Before
+plz	Please
+GR8	Great
+PPL	People
+B/C	Because
+TYVM	Thank You Very Much
+TTYS	Talk To You Soon
+J/K	Just Kidding
+L8	Late
+IC	I see
+IM	Instant Message
+ABT	About
+YVW	You're Very Welcome
+JSYK	Just so you know
+Yr	Your
+Wazzup	What's Up
+blieve	Believe
+Fab	Fabulous
+EML	Email
+BR	Best regards
+C	See
+FTL	For The Loss
+UR	Your
+DM	Direct Message
+KEWL	Cool
+Peeps	People
+ROFL	Rolling On The Floor Laughing
+U	You
+TMB	Tweet Me Back
+frnd	Friend
+L8er	Later
+deets	Details
+4U	For You
+FB	Facebook
+4	For
+D	Direct
+itz	It is
+BGD	Background
+K	Okay
+props	Proper Respect
+KK	Cool Cool
+bst	Best
+bt	About
+LMAO	Laugh My Ass Of
+HT	Hat-Tip
+EMA	Email Address
+wld	Would
+whatddup	What's Up
+V2V	Voice To Voice
+u've	You Have
+Tword	Twitter Word
+Twoops	Twitter Oops
+Twollower	Twitter Follower
+Twittonary	Twitter Dictionary
+Twistory	Twitter Story
+Twike	Twitter Bike
+Twiends	Twitter Friends
+Twexplanation	Twitter Explanation
+Twerminology	Twitter Terminology
+Tweeps	Twitter Updates
+shld	Should
+pple	People
+OH	Overheard
+njoy	Enjoy
+Mil	Million
+Fav	Favorite
+Em	Email
+Dweet	Drunk Tweet
+clk	Click
+cld	Could
+4ward	Forward
+Dweet	Tweet while drunk
+RT	Retweet
+PRT	Please Retweet
+PRT	Partial Retweet
+W/E	Weekend
+Ab	About
+IM	Institutent Message
+DGAF	Don't give a fuck
+NW	No Way
+R	Are
+TU	Thank you
+RU	Are you
+PWN	Own
+woz	Was
+Twittworking	Twitter Networking
+Twittsomnia	Twitter Insomnia
+thx	tx Thanks
+Tu	Thank You
+AFDA	A Few Days Ago
+AHFY	Always here for you
+AOMM	Always on my mind
+ANFSCD	And Now For Something Completely Different
+AYPI	And Your Point Is
+Agl	Angel
+A3	Anyplace, Anywhere, Anytime
+AWHFY	Are We Having Fun Yet
+AYC	Are you coming
+AYSOS	Are You Stupid Or Something
+AAMOF	As A Matter Of Fact
+AFAICS	As Far As I Can See
+AFAYC	As Far As You're Concerned
+AISI	As I See It
+ASAIC	As Soon As I Can
+AMA	Ask Me Anything
+ATM	At The Moment
+Attwaction	Attraction To A Twitter User
+BITS	Back in the Saddle
+BUP	Backup Plan
+BAMF	Bad Ass Motherfucker
+BBQ	Barbecue
+BBL	Be Back Later
+BBW	Be back whenever
+BRB	Be Right Back
+Hot	Beautiful
+BION	Believe It or Not
+BESTIE	Best Friend
+BFFN	Best friend for now
+BFF4L	Best Friends Forever For Life
+BFTD	Best friends till death
+BGF	Best Girl Friend
+BMA	Best mates always
+BW	Best Wishes
+BCO	Big crush on
+BD	Big Deal
+BFK	Big Fat Kiss
+BUF	Big, Ugly, Fat
+bday	Birthday
+Swag	Boasting About One's Skills
+BCBG	Bon Chic Bon Genre
+BBB	Boring Beyond Belief
+Bootsie	Boring Person
+BF	Boyfriend
 BNO Boys night out
 BB Bright blessings
 BAF Bring A Friend

@@ -64,7 +64,7 @@ namespace AppPrincipal
                     Title = (bool)jToken["title"],
                     Keywords = (bool)jToken["keywords"]
                 };
-                //case "words": return new OnlyWordsPreFilter(null);
+                case "words": return new OnlyWordsPreFilter(null, (bool)jToken["removeLinks"], (bool)jToken["replaceAbbreviations"], (bool)jToken["byDefault"], (string)jToken["filename"]);
                 default: return null;
             }
         }
@@ -135,21 +135,7 @@ namespace AppPrincipal
             ((App)this.MdiParent).ActivarBotonRepresentacion();
             labelPreprocesadoAplicado.Show();
         }
-
-        private List<string> borrarLinks(List<string> docs)
-        {
-            Regex esLink = new Regex("www|http");
-            List<string> docsSinLinks = new List<string>();
-            
-            foreach (string text in docs)
-            {
-                if (!esLink.IsMatch(text))
-                    docsSinLinks.Add(text);
-            }
-
-            return docsSinLinks;
-        }
-
+        
         private void buttonSeleccionar_Click(object sender, EventArgs e)
         {
             labelPreprocesadoAplicado.Hide();

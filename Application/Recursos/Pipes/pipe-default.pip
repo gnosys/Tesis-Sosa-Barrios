@@ -19,17 +19,11 @@
             "regexpByDefault": "([ \\\\t{}():;. \\n])"
 		},
         {
-			"_type": "richment",
-			"description": false,
-            "title": false,
-            "keywords": false
-		},
-        {
 			"_type": "words",
-			"replaceAbbreviations": false,
-            "filename": null,
+			"replaceAbbreviations": true,
+            "filename": "E:\\tesis\\fuentes\\Tesis-Sosa-Barrios\\Application\\Recursos\\Abreviaturas\\abbreviations.txt",
             "byDefault":  false,
-            "removeLinks": false
+            "removeLinks": true
 		}]
 	},
 	"representation": {
