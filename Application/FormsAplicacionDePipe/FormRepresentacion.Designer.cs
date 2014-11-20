@@ -38,10 +38,11 @@
             this.textBoxCarpetaDestino = new System.Windows.Forms.TextBox();
             this.buttonSeleccionarCarpeta = new System.Windows.Forms.Button();
             this.labelRepresentacionObtenida = new System.Windows.Forms.Label();
-            this.buttonVisualizarRepresentacion = new System.Windows.Forms.Button();
+            this.buttonVisualizarSVMLearn = new System.Windows.Forms.Button();
             this.buttonAbrirCarpetaContenedora = new System.Windows.Forms.Button();
             this.labelErrorCarpeta = new System.Windows.Forms.Label();
             this.richTextBoxTextoArchivo = new System.Windows.Forms.RichTextBox();
+            this.buttonVisualizarSVMClassify = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonObtenerRepresentacion
@@ -130,21 +131,21 @@
             this.labelRepresentacionObtenida.Text = "Representación Obtenida";
             this.labelRepresentacionObtenida.Visible = false;
             // 
-            // buttonVisualizarRepresentacion
+            // buttonVisualizarSVMLearn
             // 
-            this.buttonVisualizarRepresentacion.Enabled = false;
-            this.buttonVisualizarRepresentacion.Location = new System.Drawing.Point(192, 412);
-            this.buttonVisualizarRepresentacion.Name = "buttonVisualizarRepresentacion";
-            this.buttonVisualizarRepresentacion.Size = new System.Drawing.Size(146, 23);
-            this.buttonVisualizarRepresentacion.TabIndex = 9;
-            this.buttonVisualizarRepresentacion.Text = "Visualizar Representación";
-            this.buttonVisualizarRepresentacion.UseVisualStyleBackColor = true;
-            this.buttonVisualizarRepresentacion.Click += new System.EventHandler(this.buttonVisualizarRepresentacion_Click);
+            this.buttonVisualizarSVMLearn.Enabled = false;
+            this.buttonVisualizarSVMLearn.Location = new System.Drawing.Point(192, 412);
+            this.buttonVisualizarSVMLearn.Name = "buttonVisualizarSVMLearn";
+            this.buttonVisualizarSVMLearn.Size = new System.Drawing.Size(146, 23);
+            this.buttonVisualizarSVMLearn.TabIndex = 9;
+            this.buttonVisualizarSVMLearn.Text = "Visualizar \"svm-learn.dat\"";
+            this.buttonVisualizarSVMLearn.UseVisualStyleBackColor = true;
+            this.buttonVisualizarSVMLearn.Click += new System.EventHandler(this.buttonVisualizarSVMLearn_Click);
             // 
             // buttonAbrirCarpetaContenedora
             // 
             this.buttonAbrirCarpetaContenedora.Enabled = false;
-            this.buttonAbrirCarpetaContenedora.Location = new System.Drawing.Point(192, 442);
+            this.buttonAbrirCarpetaContenedora.Location = new System.Drawing.Point(192, 470);
             this.buttonAbrirCarpetaContenedora.Name = "buttonAbrirCarpetaContenedora";
             this.buttonAbrirCarpetaContenedora.Size = new System.Drawing.Size(146, 23);
             this.buttonAbrirCarpetaContenedora.TabIndex = 10;
@@ -174,15 +175,27 @@
             this.richTextBoxTextoArchivo.Text = "";
             this.richTextBoxTextoArchivo.WordWrap = false;
             // 
+            // buttonVisualizarSVMClassify
+            // 
+            this.buttonVisualizarSVMClassify.Enabled = false;
+            this.buttonVisualizarSVMClassify.Location = new System.Drawing.Point(192, 441);
+            this.buttonVisualizarSVMClassify.Name = "buttonVisualizarSVMClassify";
+            this.buttonVisualizarSVMClassify.Size = new System.Drawing.Size(146, 23);
+            this.buttonVisualizarSVMClassify.TabIndex = 14;
+            this.buttonVisualizarSVMClassify.Text = "Visualizar \"svm-classify.dat\"";
+            this.buttonVisualizarSVMClassify.UseVisualStyleBackColor = true;
+            this.buttonVisualizarSVMClassify.Click += new System.EventHandler(this.buttonVisualizarSVMClassify_Click);
+            // 
             // FormRepresentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.buttonVisualizarSVMClassify);
             this.Controls.Add(this.richTextBoxTextoArchivo);
             this.Controls.Add(this.labelErrorCarpeta);
             this.Controls.Add(this.buttonAbrirCarpetaContenedora);
-            this.Controls.Add(this.buttonVisualizarRepresentacion);
+            this.Controls.Add(this.buttonVisualizarSVMLearn);
             this.Controls.Add(this.labelRepresentacionObtenida);
             this.Controls.Add(this.buttonSeleccionarCarpeta);
             this.Controls.Add(this.textBoxCarpetaDestino);
@@ -211,9 +224,10 @@
         private System.Windows.Forms.TextBox textBoxCarpetaDestino;
         private System.Windows.Forms.Button buttonSeleccionarCarpeta;
         private System.Windows.Forms.Label labelRepresentacionObtenida;
-        private System.Windows.Forms.Button buttonVisualizarRepresentacion;
+        private System.Windows.Forms.Button buttonVisualizarSVMLearn;
         private System.Windows.Forms.Button buttonAbrirCarpetaContenedora;
         private System.Windows.Forms.Label labelErrorCarpeta;
         private System.Windows.Forms.RichTextBox richTextBoxTextoArchivo;
+        private System.Windows.Forms.Button buttonVisualizarSVMClassify;
     }
 }

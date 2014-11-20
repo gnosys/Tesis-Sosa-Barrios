@@ -119,6 +119,6 @@
   </resheader>
   <data name="label1.Text" xml:space="preserve">
     <value>Seleccione las diferentes formas de pre-procesamiento de tweets y el orden en que se debe aplicar, si un pre-proceso necesita de uno anterior para darle 
-sentido al mismo, se ordenaran automaticamente.</value>
+sentido al mismo, se ordenaran automaticamente, como sucede con la Tokenization que es un filtro inherente al pre-procesamiento.</value>
   </data>
 </root>

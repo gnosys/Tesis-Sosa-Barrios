@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Stemmer");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Stop Words");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Tokenization");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Stemmer");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Stop Words");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPreprocesamiento));
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Tokenization");
             this.buttonPreprocesar = new System.Windows.Forms.Button();
             this.listViewPreprocesamientos = new System.Windows.Forms.ListView();
             this.columnHeaderListaSeleccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,7 +69,7 @@
             this.labelEnriquecimientoAplicado = new System.Windows.Forms.Label();
             this.buttonAplicarEnriquecimiento = new System.Windows.Forms.Button();
             this.checkBoxTitulo = new System.Windows.Forms.CheckBox();
-            this.checkBoxMetaTags = new System.Windows.Forms.CheckBox();
+            this.checkBoxKeywords = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -88,6 +88,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelPreprocesadoAplicado = new System.Windows.Forms.Label();
+            this.checkBoxDescripcion = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControlConfiguraciones.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -112,11 +114,10 @@
             this.columnHeaderListaSeleccion});
             this.listViewPreprocesamientos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewPreprocesamientos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4});
             this.listViewPreprocesamientos.Location = new System.Drawing.Point(365, 91);
             this.listViewPreprocesamientos.MultiSelect = false;
             this.listViewPreprocesamientos.Name = "listViewPreprocesamientos";
@@ -165,6 +166,8 @@
             this.listViewOrdenPreprocesos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listViewOrdenPreprocesos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewOrdenPreprocesos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem5});
             this.listViewOrdenPreprocesos.Location = new System.Drawing.Point(750, 91);
             this.listViewOrdenPreprocesos.MultiSelect = false;
             this.listViewOrdenPreprocesos.Name = "listViewOrdenPreprocesos";
@@ -424,10 +427,12 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.checkBoxDescripcion);
+            this.tabPage4.Controls.Add(this.label12);
             this.tabPage4.Controls.Add(this.labelEnriquecimientoAplicado);
             this.tabPage4.Controls.Add(this.buttonAplicarEnriquecimiento);
             this.tabPage4.Controls.Add(this.checkBoxTitulo);
-            this.tabPage4.Controls.Add(this.checkBoxMetaTags);
+            this.tabPage4.Controls.Add(this.checkBoxKeywords);
             this.tabPage4.Controls.Add(this.label16);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.label8);
@@ -467,23 +472,23 @@
             this.checkBoxTitulo.TabIndex = 12;
             this.checkBoxTitulo.UseVisualStyleBackColor = true;
             // 
-            // checkBoxMetaTags
+            // checkBoxKeywords
             // 
-            this.checkBoxMetaTags.AutoSize = true;
-            this.checkBoxMetaTags.Location = new System.Drawing.Point(140, 36);
-            this.checkBoxMetaTags.Name = "checkBoxMetaTags";
-            this.checkBoxMetaTags.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMetaTags.TabIndex = 11;
-            this.checkBoxMetaTags.UseVisualStyleBackColor = true;
+            this.checkBoxKeywords.AutoSize = true;
+            this.checkBoxKeywords.Location = new System.Drawing.Point(140, 36);
+            this.checkBoxKeywords.Name = "checkBoxKeywords";
+            this.checkBoxKeywords.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxKeywords.TabIndex = 11;
+            this.checkBoxKeywords.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(65, 36);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(69, 13);
+            this.label16.Size = new System.Drawing.Size(53, 13);
             this.label16.TabIndex = 8;
-            this.label16.Text = "META-TAGS";
+            this.label16.Text = "Keywords";
             // 
             // label9
             // 
@@ -660,6 +665,24 @@
             this.labelPreprocesadoAplicado.Text = "Pre-procesado Aplicado";
             this.labelPreprocesadoAplicado.Visible = false;
             // 
+            // checkBoxDescripcion
+            // 
+            this.checkBoxDescripcion.AutoSize = true;
+            this.checkBoxDescripcion.Location = new System.Drawing.Point(140, 68);
+            this.checkBoxDescripcion.Name = "checkBoxDescripcion";
+            this.checkBoxDescripcion.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxDescripcion.TabIndex = 23;
+            this.checkBoxDescripcion.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(65, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 13);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Descripción";
+            // 
             // FormPreprocesamiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,7 +752,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.CheckBox checkBoxMetaTags;
+        private System.Windows.Forms.CheckBox checkBoxKeywords;
         private System.Windows.Forms.Button buttonAplicarEnriquecimiento;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label label20;
@@ -753,6 +776,8 @@
         private System.Windows.Forms.CheckBox checkBoxERPorDefecto;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label labelPreprocesadoAplicado;
+        private System.Windows.Forms.CheckBox checkBoxDescripcion;
+        private System.Windows.Forms.Label label12;
 
     }
 }
