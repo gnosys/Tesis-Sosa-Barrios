@@ -20,15 +20,15 @@
 		},
         {
 			"_type": "richment",
-			"keywords": false,
-            "title": false,
-            "description": false
+			"keywords": true,
+            "title": true,
+            "description": true
 		},
         {
 			"_type": "words",
 			"replaceAbbreviations": false,
             "filename": null,
-            "byDefault":  false,
+            "byDefault":  true,
             "removeLinks": false
 		}]
 	},
