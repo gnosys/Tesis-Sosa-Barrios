@@ -20,13 +20,10 @@ namespace AppPrincipal
 {
     public partial class FormPreprocesamiento : Form
     {
-
         bool cambiarTabs = false;
 
         public FormPreprocesamiento(Form parent)
         {
-            //configuration = JObject.Parse(jsonConf);
-            //dynamic tokenizingConfiguration = ((JArray)configuration.preprocessing).First(x => (string)x["_type"] == "tokenizing" );
             InitializeComponent();
             this.MdiParent = parent;
             Init();
@@ -34,9 +31,54 @@ namespace AppPrincipal
 
         public void Init()
         {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            ListViewItem seleccion;
+            string nombreFiltro = String.Empty;
 
+            foreach (var filter in preprocessingFiltersConfiguration)
+            {
+                switch ((string)filter["_type"])
+                {
+                    case "richment": { nombreFiltro = "Enriquecimiento"; break; }
+                    case "words": { nombreFiltro = "Tratamiento en Texto"; break; }
+                    case "tokenizing": { nombreFiltro = "Tokenization"; break; }
+                    case "stemming": { nombreFiltro = "Stemmer"; break; }
+                    case "stopWords": { nombreFiltro = "Stop Words"; break; }
+                }
+
+                if (nombreFiltro.Equals("Tokenization"))
+                {
+                    textBoxExpresionRegular.Text = (string)filter["regexp"] ?? "";
+                    checkBoxERPorDefecto.Checked = (bool)filter["byDefault"];
+                }
+                else 
+                {
+                    seleccion = listViewPreprocesamientos.FindItemWithText(nombreFiltro);
+                    listViewPreprocesamientos.Items.Remove(seleccion);
+
+                    if (nombreFiltro.Equals("Enriquecimiento"))
+                    {
+                        checkBoxKeywords.Checked = (bool)filter["keywords"];
+                        checkBoxTitulo.Checked = (bool)filter["title"];
+                        checkBoxDescripcion.Checked = (bool)filter["description"];
+                    }
+                    else if (nombreFiltro.Equals("Tratamiento en Texto"))
+                    {
+                        checkBoxReemplazarAbreviatura.Checked = (bool)filter["replaceAbbreviations"];
+                        textBoxDireccionAbreviaturas.Text = (string)filter["filename"] ?? "";
+                        checkBoxListaAbreviaturasPorDefecto.Checked = (bool)filter["byDefault"];
+                        checkBoxEliminarLinks.Checked = (bool)filter["removeLinks"];
+                    }
+                    else if (nombreFiltro.Equals("Stop Words"))
+                    {
+                        textBoxDireccionStopWords.Text = (string)filter["filename"] ?? "";
+                        checkBoxListaStopWordsPorDefecto.Checked = (bool)filter["byDefault"];
+                    }
+
+                    ubicarSeleccion(seleccion);
+                }
+            }
         }
-
 
         public PreFilter BuildPrefilter(JArray preprocessingFiltersConfiguration, int i = 0)
         {

@@ -5,20 +5,6 @@
 	"preprocessing": {
 		"guid": null,
 		"filters": [{
-			"_type": "stemming"
-		},
-        {
-			"_type": "stopWords",
-			"filename": null,
-            "byDefault": true
-		},
-        {
-			"_type": "tokenizing",
-			"regexp": null,
-            "byDefault": true,
-            "regexpByDefault": "([ \\\\t{}():;. \\n])"
-		},
-        {
 			"_type": "richment",
 			"keywords": true,
             "title": true,
@@ -30,6 +16,20 @@
             "filename": null,
             "byDefault":  true,
             "removeLinks": false
+		},
+        {
+			"_type": "tokenizing",
+			"regexp": null,
+            "byDefault": true,
+            "regexpByDefault": "([ \\\\t{}():;. \\n])"
+		},
+        {
+			"_type": "stopWords",
+			"filename": null,
+            "byDefault": true
+		},
+        {
+			"_type": "stemming"
 		}]
 	},
 	"representation": {
