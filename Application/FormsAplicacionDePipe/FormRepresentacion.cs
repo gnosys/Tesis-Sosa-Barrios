@@ -16,7 +16,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
 {
     public partial class FormRepresentacion : Form
     {
-
         private string nombreArchivoLearn = "svm-learn.dat";
         private string nombreArchivoClassify = "svm-classify.dat";
         private string carpetaDestino = string.Empty;
@@ -26,7 +25,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
         {
             InitializeComponent();
             this.MdiParent = mdiParent;
-            Init();
         }
 
         private void buttonObtenerRepresentacion_Click(object sender, EventArgs e)
@@ -44,8 +42,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 var categories = tweets.Select(t => t.Id_Category).ToArray();
                 representation.CreateRepresentationFiles(tokens, tokens.Count, categories, @"" + textBoxCarpetaDestino.Text, parsedMinWheight, trainingPercentage);
                 ((App)MdiParent).PipeConfiguration.representation.directoryFilePath = textBoxCarpetaDestino.Text;
-                ((App)MdiParent).ValidateConfiguration();
-                ((App)MdiParent).formMatrizDeConfusion.Init();
                 labelRepresentacionObtenida.Show();
                 buttonVisualizarSVMLearn.Enabled = true;
                 buttonVisualizarSVMClassify.Enabled = true;
@@ -75,8 +71,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
             Process.Start("explorer.exe", carpetaDestino);
         }
 
-
-
         internal void Init()
         {
             string directoryFilePath = (string)((App)MdiParent).PipeConfiguration.representation.directoryFilePath;
@@ -89,6 +83,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 buttonVisualizarSVMLearn.Enabled = true;
                 buttonVisualizarSVMClassify.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;
+                ((App)MdiParent).ActivarBotonSVM();
             }
         }
 

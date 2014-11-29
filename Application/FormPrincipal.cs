@@ -31,7 +31,7 @@ namespace AppPrincipal
         FormTratamientoEnTexto formTratamientoEnTexto;
         FormRepresentacion formRepresentacion;
         FormSVMLigth formSVMLigth;
-        FormCompararResultados formCompararResultados;
+        public FormCompararResultados formCompararResultados;
         public FormMatrizDeConfusion formMatrizDeConfusion;
         AboutBox1 aboutBox;
 
@@ -40,8 +40,8 @@ namespace AppPrincipal
 
         public App()
         {
-            PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
-            //PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-conf.pip"));
+            //PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
+            PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-conf.pip"));
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             crearFormularios();
@@ -94,20 +94,7 @@ namespace AppPrincipal
             aboutBox = new AboutBox1();
             aboutBox.StartPosition = FormStartPosition.CenterScreen;
 
-            ValidateConfiguration();
-        }
-
-        public void ValidateConfiguration()
-        {
-            string nombreArchivoLearn = "svm-learn.dat";
-            string nombreArchivoClassify = "svm-classify.dat";
-            string directoryFilePath = (string)PipeConfiguration.representation.directoryFilePath;
-
-            this.buttonPreprocesamiento.Enabled = formDataBaseYSeleccionarCategoria.IsValidConfiguration();
-            this.buttonRepresentacion.Enabled = buttonPreprocesamiento.Enabled && !String.IsNullOrWhiteSpace((string)PipeConfiguration.preprocessing.guid) && DataBase.Instance.ExistTokens((string)PipeConfiguration.preprocessing.guid);
-            this.buttonEjecutarSVMLigth.Enabled = buttonRepresentacion.Enabled && !String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify));
-            this.buttonMatrizConfusion.Enabled = File.Exists((string)PipeConfiguration.svm.predictionsFilename);
-            this.buttonCompararResultados.Enabled = this.buttonMatrizConfusion.Enabled && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify));
+            //ValidateConfiguration();
         }
 
         // Oculta todos los formularios.
@@ -170,11 +157,12 @@ namespace AppPrincipal
 
         private void cargarDatosDePipeEnFormularios()
         {
-            formDataBaseYSeleccionarCategoria.setTextBoxConeccionSQL((string)PipeConfiguration.database.connectionString ?? "");
-            formDataBaseYSeleccionarCategoria.setTextBoxSeleccionarNivel((string)PipeConfiguration.categoryLevel ?? "");
+            formDataBaseYSeleccionarCategoria.Init();
+            formPreprocesamiento.Init();
             formRepresentacion.Init();
             formSVMLigth.Init();
             formMatrizDeConfusion.Init();
+            formCompararResultados.Init();
         }
 
         private void cargarPipeToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -191,7 +179,6 @@ namespace AppPrincipal
                     PipeConfiguration = JObject.Parse(readText);
                     cargarDatosDePipeEnFormularios();
                     DialogResult result = MessageBox.Show("Su configuracion fue cargada exitosamente", "Carga Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ValidateConfiguration();
                 }
                 catch
                 {
@@ -352,6 +339,26 @@ namespace AppPrincipal
         public void ActivarBotonRepresentacion()
         {
             buttonRepresentacion.Enabled = true;
+        }
+
+        public void ActivarBotonCategoria()
+        {
+            buttonSeleccionarCategoria.Enabled = true;
+        }
+
+        public void ActivarBotonMatriz()
+        {
+            buttonMatrizConfusion.Enabled = true;
+        }
+
+        public void ActivarBotonComparar()
+        {
+            buttonCompararResultados.Enabled = true;
+        }
+
+        public void ActivarBotonSVM()
+        {
+            buttonEjecutarSVMLigth.Enabled = true;
         }
     }
 }

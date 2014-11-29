@@ -26,7 +26,6 @@ namespace AppPrincipal
         {
             InitializeComponent();
             this.MdiParent = parent;
-            Init();
         }
 
         public void Init()
@@ -77,6 +76,11 @@ namespace AppPrincipal
 
                     ubicarSeleccion(seleccion);
                 }
+            }
+
+            if (!String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)) && DataBase.Instance.ExistTokens((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)))
+            {
+                ((App)MdiParent).ActivarBotonRepresentacion();
             }
         }
 
@@ -173,7 +177,6 @@ namespace AppPrincipal
 
             string preprocessingGuid = DataBase.Instance.SavePreprocessingTokens(tweets, TFIDFInput);
             ((App)this.MdiParent).PipeConfiguration.preprocessing.guid = preprocessingGuid;
-            ((App)this.MdiParent).ValidateConfiguration();
             ((App)this.MdiParent).ActivarBotonRepresentacion();
             labelPreprocesadoAplicado.Show();
         }

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,6 @@ namespace AppPrincipal.FormsAplicacionDePipe
         {
             InitializeComponent();
             this.MdiParent = parent;
-            Init();            
         }
 
         public void Init()
@@ -34,23 +34,33 @@ namespace AppPrincipal.FormsAplicacionDePipe
             this.c = (string)(((App)MdiParent).PipeConfiguration).svm.c;
 
             string modelFilename = (string)(((App)MdiParent).PipeConfiguration).svm.modelFilename;
-            textBoxCarpetaDestinoModelo.Text = String.IsNullOrWhiteSpace(modelFilename) ? nombreArchivoModelo : modelFilename;
-            carpetaDestinoModelo = String.IsNullOrWhiteSpace(modelFilename) ? String.Empty : modelFilename.Substring(0, modelFilename.Length - 7);
-            
-            this.buttonAbrirCarpetaContenedoraModelo.Enabled = 
-            this.buttonVisualizarModelo.Enabled =
-            this.buttonGenerarPrediccion.Enabled = !String.IsNullOrWhiteSpace(modelFilename);
+
+            if (!String.IsNullOrWhiteSpace(modelFilename))
+            {
+                textBoxCarpetaDestinoModelo.Text = modelFilename;
+                carpetaDestinoModelo = modelFilename.Substring(0, modelFilename.Length - 7);
+
+                if (File.Exists(String.Format(@"{0}\{1}", modelFilename, nombreArchivoModelo)))
+                {
+                    this.buttonAbrirCarpetaContenedoraModelo.Enabled = true;
+                    this.buttonVisualizarModelo.Enabled = true;
+                    this.buttonGenerarPrediccion.Enabled = true;
+                }
+            }
 
             string predictionsFilename = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
-            textBoxCarpetaDestinoPrediccion.Text = String.IsNullOrWhiteSpace(predictionsFilename) ? nombreArchivoPrediccion : predictionsFilename;
-            carpetaDestinoPrediccion = String.IsNullOrWhiteSpace(predictionsFilename) ? String.Empty : predictionsFilename.Substring(0, predictionsFilename.Length - 13);
-            textBoxCarpetaDestinoPrediccion.Text = nombreArchivoPrediccion;
 
+            if (!String.IsNullOrWhiteSpace(predictionsFilename))
+            {
+                textBoxCarpetaDestinoPrediccion.Text = predictionsFilename;
+                carpetaDestinoPrediccion = predictionsFilename.Substring(0, predictionsFilename.Length - 13);
 
-            this.buttonAbrirCarpetaContenedoraPrediccion.Enabled =
-            this.buttonVisualizarPrediccion.Enabled = !String.IsNullOrWhiteSpace(predictionsFilename);
-
-            textBoxCarpetaDestinoPrediccion.Text = nombreArchivoPrediccion;
+                if (File.Exists(String.Format(@"{0}\{1}", predictionsFilename, nombreArchivoPrediccion)))
+                {
+                    this.buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
+                    this.buttonVisualizarPrediccion.Enabled = true;
+                }
+            }
         }
 
         private void buttonSeleccionarCarpetaModelo_Click(object sender, EventArgs e)
@@ -150,14 +160,13 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 string directoryFilePath = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath;
                 string vsmFileName = String.Format(@"{0}\svm-classify.dat", directoryFilePath);
 
-
                 svm.Classify(vsmFileName, modelFilename, textBoxCarpetaDestinoPrediccion.Text);
                 (((App)MdiParent).PipeConfiguration).svm.predictionsFilename = textBoxCarpetaDestinoPrediccion.Text;
                 labelPrediccionesGeneradas.Show();
                 buttonVisualizarPrediccion.Enabled = true;
                 buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
                 ((App)MdiParent).formMatrizDeConfusion.Init();
-                ((App)this.MdiParent).ValidateConfiguration();
+                ((App)MdiParent).formCompararResultados.Init();
             }
             else
             {

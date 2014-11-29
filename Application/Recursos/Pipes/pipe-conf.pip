@@ -1,41 +1,20 @@
 {
 	"database": {
-		"connectionString": "Data Source=MATI-PC\\SQLEXPRESS;Initial Catalog=Tweets;Integrated Security=True"
+		"connectionString": null
 	},
 	"preprocessing": {
 		"guid": null,
 		"filters": [{
-			"_type": "richment",
-			"keywords": true,
-            "title": true,
-            "description": true
-		},
-        {
-			"_type": "words",
-			"replaceAbbreviations": false,
-            "filename": null,
-            "byDefault":  true,
-            "removeLinks": false
-		},
-        {
 			"_type": "tokenizing",
 			"regexp": null,
-            "byDefault": true,
+            "byDefault": false,
             "regexpByDefault": "([ \\\\t{}():;. \\n])"
-		},
-        {
-			"_type": "stopWords",
-			"filename": null,
-            "byDefault": true
-		},
-        {
-			"_type": "stemming"
 		}]
 	},
 	"representation": {
 		"trainingPercentage": 75,
 		"minWeight": 0,
-		"discardEquals": false,
+		"discardEquals": null,
 		"directoryFilePath": null
 	},
 	"svm": {
@@ -43,5 +22,5 @@
 		"modelFilename": null,
         "predictionsFilename": null
 	},
-	"categoryLevel": 13
+	"categoryLevel": null
 }

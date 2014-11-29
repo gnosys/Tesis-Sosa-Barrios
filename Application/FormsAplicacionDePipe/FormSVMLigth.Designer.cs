@@ -89,9 +89,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 38);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(381, 13);
+            this.label4.Size = new System.Drawing.Size(372, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Seleccione la carpeta de destino donde guardar el archivo \"modelo\" generado:";
+            this.label4.Text = "Seleccione la carpeta de destino para guardar el archivo \"modelo\" generado:";
             // 
             // textBoxCarpetaDestinoModelo
             // 
@@ -100,6 +100,7 @@
             this.textBoxCarpetaDestinoModelo.ReadOnly = true;
             this.textBoxCarpetaDestinoModelo.Size = new System.Drawing.Size(270, 20);
             this.textBoxCarpetaDestinoModelo.TabIndex = 7;
+            this.textBoxCarpetaDestinoModelo.Text = "modelo";
             // 
             // buttonSeleccionarCarpetaModelo
             // 
@@ -116,9 +117,10 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 38);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(396, 13);
+            this.label6.Size = new System.Drawing.Size(398, 13);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Seleccione la carpeta de destino donde guardar el archivo \"prediccion\" generado:";
+            this.label6.Text = "Seleccione la carpeta de destino para guardar el archivo \"predicciones\" generado:" +
+    "";
             // 
             // label5
             // 
@@ -146,6 +148,7 @@
             this.textBoxCarpetaDestinoPrediccion.ReadOnly = true;
             this.textBoxCarpetaDestinoPrediccion.Size = new System.Drawing.Size(271, 20);
             this.textBoxCarpetaDestinoPrediccion.TabIndex = 12;
+            this.textBoxCarpetaDestinoPrediccion.Text = "predicciones";
             // 
             // buttonGenerarModelo
             // 

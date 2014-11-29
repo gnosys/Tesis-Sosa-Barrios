@@ -18,23 +18,24 @@ namespace AppPrincipal.FormsCompararResultados
     {
         private string _vsmClassificationFile;
         private string _predictionsFile;
+        private string nombreArchivoClassify = "svm-classify.dat";
+        private string nombreArchivoPrediccion = "predicciones";
         List<matrizPipe> matrices;
 
         public FormCompararResultados(Form parent)
         {
             InitializeComponent();
             this.MdiParent = parent;
-            Init();
         }
 
         public void Init()
         {
-            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
-            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify;
+            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename + "\\" + nombreArchivoPrediccion;
 
             try
             {
-                if (!String.IsNullOrEmpty(_vsmClassificationFile) && !String.IsNullOrEmpty(_predictionsFile))
+                if (File.Exists(String.Format(@"{0}\{1}", _vsmClassificationFile, nombreArchivoClassify)) && File.Exists(String.Format(@"{0}\{1}", _predictionsFile, nombreArchivoPrediccion)))
                 {
                     matrices = new List<matrizPipe>();
 
@@ -74,6 +75,8 @@ namespace AppPrincipal.FormsCompararResultados
                     DataBase.connectionString = (string)(((App)MdiParent).PipeConfiguration).database.connectionString;
                     List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
                     comboBoxSeleccionarCategoria.DataSource = labels;
+
+                    ((App)MdiParent).ActivarBotonComparar();
                 }
             }
             catch
@@ -116,8 +119,8 @@ namespace AppPrincipal.FormsCompararResultados
         {
             try
             {
-                _vsmClassificationFileCompare = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
-                _predictionsFileCompare = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+                _vsmClassificationFileCompare = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify;
+                _predictionsFileCompare = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename + "\\" + nombreArchivoPrediccion;
                 return true;
             }
             catch

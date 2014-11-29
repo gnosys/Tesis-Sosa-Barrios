@@ -18,9 +18,12 @@ namespace AppPrincipal.FormsCompararResultados
 {
     public partial class FormMatrizDeConfusion : Form
     {
-        private string _vsmClassificationFile;
-        private string _predictionsFile;
+        private string _vsmClassificationFile = string.Empty;
+        private string _predictionsFile = string.Empty;
         private string carpetaDestinoModelo = string.Empty;
+        private string nombreArchivoLearn = "svm-learn.dat";
+        private string nombreArchivoClassify = "svm-classify.dat";
+        private string nombreArchivoPrediccion = "predicciones";
         private string nombreArchivoExcel = "Matriz_De_Confusion.xlsx";
         private int[][] confusionMatrix;
 
@@ -28,55 +31,62 @@ namespace AppPrincipal.FormsCompararResultados
         {
             InitializeComponent();
             this.MdiParent = parent;
-            Init();
         }
 
         public void Init()
         {
-            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
-            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify;
+            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename + "\\" + nombreArchivoPrediccion;
+
+            if (File.Exists(String.Format(@"{0}\{1}", _vsmClassificationFile, nombreArchivoClassify)) && File.Exists(String.Format(@"{0}\{1}", _predictionsFile, nombreArchivoPrediccion)))
+            {
+                ((App)MdiParent).ActivarBotonMatriz();
+            }
         }
 
         private void buttonObtenerMatriz_Click(object sender, EventArgs e)
         {
-            string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
-            string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
-
-            int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-            int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-            var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
-            List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
-
-            confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
-
-            dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length;
-            dataGridViewMatrizConfusion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewMatrizConfusion.RowCount = confusionMatrix.Length;
-            dataGridViewMatrizConfusion.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            string[] fila = new string[confusionMatrix.Length];
-
-            List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
-
-            for (int i = 0; i < confusionMatrix.Length; i++)
+            if (!String.IsNullOrEmpty(_vsmClassificationFile) && !String.IsNullOrEmpty(_predictionsFile))
             {
-                dataGridViewMatrizConfusion.Columns[i].Name = labels.ElementAt(i);
-                dataGridViewMatrizConfusion.Rows[i].HeaderCell.Value = labels.ElementAt(i);
+                string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
+                string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
 
-                for (int j = 0; j < confusionMatrix.Length; j++)
-                    fila[j] = confusionMatrix[i][j].ToString();
+                int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
+                int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
+                var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
+                List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
 
-                dataGridViewMatrizConfusion.Rows[i].SetValues(fila);
+                confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
+
+                dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length;
+                dataGridViewMatrizConfusion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridViewMatrizConfusion.RowCount = confusionMatrix.Length;
+                dataGridViewMatrizConfusion.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+                string[] fila = new string[confusionMatrix.Length];
+
+                List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
+
+                for (int i = 0; i < confusionMatrix.Length; i++)
+                {
+                    dataGridViewMatrizConfusion.Columns[i].Name = labels.ElementAt(i);
+                    dataGridViewMatrizConfusion.Rows[i].HeaderCell.Value = labels.ElementAt(i);
+
+                    for (int j = 0; j < confusionMatrix.Length; j++)
+                        fila[j] = confusionMatrix[i][j].ToString();
+
+                    dataGridViewMatrizConfusion.Rows[i].SetValues(fila);
+                }
+
+                DrawConfusionMatrix(confusionMatrix);
+                foreach (string categoria in labels)
+                {
+                    comboBoxCategorias.Items.Add(categoria);
+                }
+
+                buttonCalcularMetricas.Enabled = true;
+                buttonSeleccionarCarpetaExcel.Enabled = true;
+                labelObtenerMatriz.Show();
             }
-             
-            DrawConfusionMatrix(confusionMatrix);
-            foreach (string categoria in labels)
-            {
-                comboBoxCategorias.Items.Add(categoria);
-            }
-
-            buttonCalcularMetricas.Enabled = true;
-            buttonSeleccionarCarpetaExcel.Enabled = true;
-            labelObtenerMatriz.Show();
         }
 
         private int _bitmapLength;

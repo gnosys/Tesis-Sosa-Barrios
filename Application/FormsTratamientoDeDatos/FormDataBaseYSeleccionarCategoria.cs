@@ -31,7 +31,21 @@ namespace AppPrincipal
         {
             InitializeComponent();
             this.MdiParent = parent;
-            textBoxConeccionSQL.Text = (string)(((App)parent).PipeConfiguration).database.connectionString;
+        }
+
+        public void Init()
+        {
+            textBoxConeccionSQL.Text = (string)(((App)MdiParent).PipeConfiguration).database.connectionString;
+            if (!String.IsNullOrEmpty(textBoxConeccionSQL.Text))
+            {
+                this.buttonComprobarConeccion_Click(new object(), new EventArgs());
+            }
+
+            textBoxSeleccionarNivel.Text = (string)(((App)MdiParent).PipeConfiguration).categoryLevel;
+            if (!String.IsNullOrEmpty(textBoxSeleccionarNivel.Text) && db.ExistDataTableCategory())
+            {
+                ((App)MdiParent).ActivarBotonPreprocesamiento();
+            }
         }
 
         private void cleanLabels()
@@ -137,6 +151,7 @@ namespace AppPrincipal
                 {
                     labelConexion.ForeColor = Color.Green;
                     labelConexion.Text = "Conexión Establecida";
+                    ((App)this.MdiParent).ActivarBotonCategoria();
                     enableForms();
                     if (db.ExistDataTableCategory())
                     {
@@ -159,7 +174,7 @@ namespace AppPrincipal
 
         private void buttonSeleccionarNivel_Click(object sender, System.EventArgs e)
         {
-            if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text))
+            if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text) && db.ExistDataTableCategory())
             {
                 labelNivelSeleccionado.Visible = false;
                 int amountTweetWithNivels = 0;
