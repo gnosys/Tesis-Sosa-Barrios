@@ -16,10 +16,9 @@ namespace AppPrincipal.FormsAplicacionDePipe
     public partial class FormSVMLigth : Form
     {
         private string nombreArchivoModelo = "modelo";
-        private string carpetaDestinoModelo = string.Empty;
-        private StringBuilder textoModelo = new StringBuilder();
         private string nombreArchivoPrediccion = "predicciones";
-        private string carpetaDestinoPrediccion = string.Empty;
+        private string carpetaDestino = string.Empty;
+        private StringBuilder textoModelo = new StringBuilder();
         private StringBuilder textoPrediccion = new StringBuilder();
         private string c;
 
@@ -33,85 +32,68 @@ namespace AppPrincipal.FormsAplicacionDePipe
         {
             this.c = (string)(((App)MdiParent).PipeConfiguration).svm.c;
 
-            string modelFilename = (string)(((App)MdiParent).PipeConfiguration).svm.modelFilename;
+            string directoryFilesPath = (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath;
 
-            if (!String.IsNullOrWhiteSpace(modelFilename) && File.Exists(String.Format(@"{0}\{1}", modelFilename, nombreArchivoModelo)))
+            if (!String.IsNullOrWhiteSpace(directoryFilesPath))
             {
-                textBoxCarpetaDestinoModelo.Text = modelFilename + "\\" + nombreArchivoModelo;
-                carpetaDestinoModelo = modelFilename;
-                this.buttonAbrirCarpetaContenedoraModelo.Enabled = true;
-                this.buttonVisualizarModelo.Enabled = true;
-                this.buttonGenerarPrediccion.Enabled = true;
-            }
+                textBoxCarpetaDestino.Text = directoryFilesPath;
+                carpetaDestino = directoryFilesPath;
 
-            string predictionsFilename = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+                if (File.Exists(String.Format(@"{0}\{1}", directoryFilesPath, nombreArchivoModelo)))
+                {
+                    this.buttonVisualizarModelo.Enabled = true;
+                    this.buttonGenerarPrediccion.Enabled = true;
+                    this.buttonAbrirCarpetaContenedora.Enabled = true;
+                }
 
-            if (!String.IsNullOrWhiteSpace(predictionsFilename) && File.Exists(String.Format(@"{0}\{1}", predictionsFilename, nombreArchivoPrediccion)))
-            {
-                textBoxCarpetaDestinoPrediccion.Text = predictionsFilename + "\\" + nombreArchivoPrediccion;
-                carpetaDestinoPrediccion = predictionsFilename;
-                this.buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
-                this.buttonVisualizarPrediccion.Enabled = true;
+                if (File.Exists(String.Format(@"{0}\{1}", directoryFilesPath, nombreArchivoPrediccion)))
+                {
+                    this.buttonVisualizarPrediccion.Enabled = true;
+                    this.buttonAbrirCarpetaContenedora.Enabled = true;
+                }
             }
         }
 
         private void buttonSeleccionarCarpetaModelo_Click(object sender, EventArgs e)
         {
-            labelErrorCarpetaModelo.Hide();
+            labelErrorCarpeta.Hide();
             labelModeloGenerado.Hide();
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                carpetaDestinoModelo = folderBrowserDialog.SelectedPath;
-                textBoxCarpetaDestinoModelo.Text = carpetaDestinoModelo + "\\" + nombreArchivoModelo;
-            }
-        }
-
-        private void buttonSeleccionarCarpetaPrediccion_Click(object sender, EventArgs e)
-        {
-            labelErrorCarpetaPrediccion.Hide();
-            labelPrediccionesGeneradas.Hide();
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                carpetaDestinoPrediccion = folderBrowserDialog.SelectedPath;
-                textBoxCarpetaDestinoPrediccion.Text = carpetaDestinoPrediccion + "\\" + nombreArchivoPrediccion;
+                carpetaDestino = folderBrowserDialog.SelectedPath;
+                textBoxCarpetaDestino.Text = carpetaDestino;
+                (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath = textBoxCarpetaDestino.Text;
             }
         }
 
         private void buttonAbrirCarpetaContenedoraModelo_Click(object sender, EventArgs e)
         {
             labelModeloGenerado.Hide();
-            Process.Start("explorer.exe", carpetaDestinoModelo);
-        }
-
-        private void buttonAbrirCarpetaContenedoraPrediccion_Click(object sender, EventArgs e)
-        {
-            labelPrediccionesGeneradas.Hide();
-            Process.Start("explorer.exe", carpetaDestinoPrediccion);
+            Process.Start("explorer.exe", carpetaDestino);
         }
 
         private void buttonGenerarModelo_Click(object sender, EventArgs e)
         {
-            if (!textBoxCarpetaDestinoModelo.Text.Equals(nombreArchivoModelo))
+            if (!String.IsNullOrEmpty(textBoxCarpetaDestino.Text))
             {
-                labelErrorCarpetaModelo.Hide();
+                labelErrorCarpeta.Hide();
                 labelModeloGenerado.Hide();
                 richTextBoxTextoModelo.Enabled = false;
                 richTextBoxTextoModelo.Text = string.Empty;
                 ISVMMulticlass svm = new SVMMulticlass();
                 string directoryFilePath = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath;
+                string directoryFilesPath = (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath;
                 string vsmFileName = String.Format(@"{0}\svm-learn.dat", directoryFilePath);
-                svm.Learn(vsmFileName, textBoxCarpetaDestinoModelo.Text, c);
-                (((App)MdiParent).PipeConfiguration).svm.modelFilename = textBoxCarpetaDestinoModelo.Text;
+                svm.Learn(vsmFileName, directoryFilesPath + "\\" + nombreArchivoModelo, c);
                 labelModeloGenerado.Show();
                 buttonVisualizarModelo.Enabled = true;
-                buttonAbrirCarpetaContenedoraModelo.Enabled = true;
+                buttonAbrirCarpetaContenedora.Enabled = true;
                 buttonGenerarPrediccion.Enabled = true;
             }
             else
             {
-                labelErrorCarpetaModelo.Show();
+                labelErrorCarpeta.Show();
             }
         }
 
@@ -122,7 +104,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
             textoModelo.Clear();
             try
             {
-                System.IO.StreamReader file = new System.IO.StreamReader(@"" + textBoxCarpetaDestinoModelo.Text);
+                System.IO.StreamReader file = new System.IO.StreamReader(@"" + textBoxCarpetaDestino.Text + "\\" + nombreArchivoModelo);
                 while ((line = file.ReadLine()) != null)
                 {
                     textoModelo.Append(line);
@@ -139,30 +121,31 @@ namespace AppPrincipal.FormsAplicacionDePipe
 
         private void buttonGenerarPrediccion_Click(object sender, EventArgs e)
         {
-            if (!textBoxCarpetaDestinoPrediccion.Text.Equals(nombreArchivoPrediccion))
+            if (!String.IsNullOrEmpty(textBoxCarpetaDestino.Text))
             {
-                labelErrorCarpetaPrediccion.Hide();
+                labelErrorCarpeta.Hide();
                 labelPrediccionesGeneradas.Hide();
                 richTextBoxTextoPrediccion.Enabled = false;
                 richTextBoxTextoPrediccion.Text = string.Empty;
 
                 ISVMMulticlass svm = new SVMMulticlass();
-                string modelFilename = (string)(((App)MdiParent).PipeConfiguration).svm.modelFilename;
 
                 string directoryFilePath = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath;
+                string directoryFilesPath = (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath;
+
                 string vsmFileName = String.Format(@"{0}\svm-classify.dat", directoryFilePath);
 
-                svm.Classify(vsmFileName, modelFilename, textBoxCarpetaDestinoPrediccion.Text);
-                (((App)MdiParent).PipeConfiguration).svm.predictionsFilename = textBoxCarpetaDestinoPrediccion.Text;
+                svm.Classify(vsmFileName, directoryFilesPath + "\\" + nombreArchivoModelo, directoryFilesPath + "\\" + nombreArchivoPrediccion);
                 labelPrediccionesGeneradas.Show();
                 buttonVisualizarPrediccion.Enabled = true;
-                buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
+                buttonAbrirCarpetaContenedora.Enabled = true;
                 ((App)MdiParent).ActivarBotonMatriz();
+                ((App)MdiParent).formCompararResultados.Init();
                 ((App)MdiParent).ActivarBotonComparar();
             }
             else
             {
-                labelErrorCarpetaPrediccion.Show();
+                labelErrorCarpeta.Show();
             }
         }
 
@@ -173,7 +156,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
             textoPrediccion.Clear();
             try
             {
-                System.IO.StreamReader file = new System.IO.StreamReader(@"" + textBoxCarpetaDestinoPrediccion.Text);
+                System.IO.StreamReader file = new System.IO.StreamReader(@"" + textBoxCarpetaDestino.Text + "\\" + nombreArchivoPrediccion);
                 while ((line = file.ReadLine()) != null)
                 {
                     textoPrediccion.Append(line);

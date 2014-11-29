@@ -16,8 +16,6 @@ namespace AppPrincipal.FormsCompararResultados
 {
     public partial class FormCompararResultados : Form
     {
-        private string _vsmClassificationFile;
-        private string _predictionsFile;
         private string nombreArchivoClassify = "svm-classify.dat";
         private string nombreArchivoPrediccion = "predicciones";
         List<matrizPipe> matrices;
@@ -30,8 +28,8 @@ namespace AppPrincipal.FormsCompararResultados
 
         public void Init()
         {
-            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify;
-            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename + "\\" + nombreArchivoPrediccion;
+            string _vsmClassificationFile = (((App)MdiParent).PipeConfiguration).representation.directoryFilePath != null ? (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify : null;
+            string _predictionsFile = (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath != null ? (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion : null;
 
             try
             {
@@ -119,8 +117,8 @@ namespace AppPrincipal.FormsCompararResultados
         {
             try
             {
-                _vsmClassificationFileCompare = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify;
-                _predictionsFileCompare = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename + "\\" + nombreArchivoPrediccion;
+                _vsmClassificationFileCompare = (((App)MdiParent).PipeConfiguration).representation.directoryFilePath != null ? (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify : null;
+                _predictionsFileCompare = (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath != null ? (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion : null;
                 return true;
             }
             catch

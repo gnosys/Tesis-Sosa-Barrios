@@ -18,10 +18,7 @@ namespace AppPrincipal.FormsCompararResultados
 {
     public partial class FormMatrizDeConfusion : Form
     {
-        private string _vsmClassificationFile = string.Empty;
-        private string _predictionsFile = string.Empty;
-        private string carpetaDestinoModelo = string.Empty;
-        private string nombreArchivoLearn = "svm-learn.dat";
+        private string carpetaDestinoExcel = string.Empty;
         private string nombreArchivoClassify = "svm-classify.dat";
         private string nombreArchivoPrediccion = "predicciones";
         private string nombreArchivoExcel = "Matriz_De_Confusion.xlsx";
@@ -35,8 +32,8 @@ namespace AppPrincipal.FormsCompararResultados
 
         public void Init()
         {
-            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify;
-            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename + "\\" + nombreArchivoPrediccion;
+            string _vsmClassificationFile = (((App)MdiParent).PipeConfiguration).representation.directoryFilePath != null ? (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify : null;
+            string _predictionsFile = (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath != null ? (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion : null;
 
             if (File.Exists(_vsmClassificationFile) && File.Exists(_predictionsFile))
             {
@@ -46,10 +43,10 @@ namespace AppPrincipal.FormsCompararResultados
 
         private void buttonObtenerMatriz_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(_vsmClassificationFile) && !String.IsNullOrEmpty(_predictionsFile))
+            if (!String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath) && !String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath))
             {
-                string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
-                string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
+                string[] linesActualCategories = File.ReadAllLines((string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify);
+                string[] linesPredictedCategories = File.ReadAllLines((string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion);
 
                 int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
                 int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
@@ -118,7 +115,7 @@ namespace AppPrincipal.FormsCompararResultados
             int minX = j * n;
             Color squareColor = GetColor(weight, minValue, maxValue);
             dataGridViewMatrizConfusion[j, i].Style.BackColor = squareColor;
-            Color fontColor = Color.FromArgb(255 - squareColor.R, 255 - squareColor.G, 255 - squareColor.B);
+            dataGridViewMatrizConfusion[j, i].Style.ForeColor = Color.Gray;
             using(Graphics g = Graphics.FromImage(bitmap))
             {
                 g.FillRectangle(new SolidBrush(squareColor), new Rectangle(minX, minY, 10, 10));
@@ -183,18 +180,18 @@ namespace AppPrincipal.FormsCompararResultados
                         hoja.Cells[IndeceFila + 1, IndiceColumna] = row.Cells[col.Name].Value;
                         hoja.Cells[IndeceFila + 1, IndiceColumna].Interior.Color = row.Cells[col.Name].Style.BackColor;
                         hoja.Cells[IndeceFila + 1, IndiceColumna].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                        hoja.Cells[IndeceFila + 1, IndiceColumna].Font.ColorIndex = 2;
-                        hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                        hoja.Cells[IndeceFila + 1, IndiceColumna].Font.ColorIndex = 16;
+                        hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
                         if (IndeceFila == IndiceColumna)
                         {
                             hoja.Cells[IndeceFila + 1, IndiceColumna].BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick, Excel.XlColorIndex.xlColorIndexNone, Excel.XlColorIndex.xlColorIndexNone);
-                            hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                            hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gray);
                         }
                     }
                 }
 
                 libro.Saved = true;
-                libro.SaveAs(carpetaDestinoModelo);
+                libro.SaveAs(carpetaDestinoExcel);
 
                 libro.Close();
                 releaseObject(libro);
@@ -249,8 +246,8 @@ namespace AppPrincipal.FormsCompararResultados
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                carpetaDestinoModelo = folderBrowserDialog.SelectedPath + "\\" + nombreArchivoExcel;
-                textBoxCarpetaDestinoExcel.Text = carpetaDestinoModelo;
+                carpetaDestinoExcel = folderBrowserDialog.SelectedPath + "\\" + nombreArchivoExcel;
+                textBoxCarpetaDestinoExcel.Text = carpetaDestinoExcel;
                 buttonExportarAExcel.Enabled = true;
             }
         }
