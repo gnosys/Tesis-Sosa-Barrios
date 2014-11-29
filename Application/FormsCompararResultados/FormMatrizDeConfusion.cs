@@ -38,7 +38,7 @@ namespace AppPrincipal.FormsCompararResultados
             _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify;
             _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename + "\\" + nombreArchivoPrediccion;
 
-            if (File.Exists(String.Format(@"{0}\{1}", _vsmClassificationFile, nombreArchivoClassify)) && File.Exists(String.Format(@"{0}\{1}", _predictionsFile, nombreArchivoPrediccion)))
+            if (File.Exists(_vsmClassificationFile) && File.Exists(_predictionsFile))
             {
                 ((App)MdiParent).ActivarBotonMatriz();
             }

@@ -206,6 +206,7 @@
             // 
             // buttonGenerarPrediccion
             // 
+            this.buttonGenerarPrediccion.Enabled = false;
             this.buttonGenerarPrediccion.Location = new System.Drawing.Point(9, 99);
             this.buttonGenerarPrediccion.Name = "buttonGenerarPrediccion";
             this.buttonGenerarPrediccion.Size = new System.Drawing.Size(107, 23);

@@ -35,31 +35,23 @@ namespace AppPrincipal.FormsAplicacionDePipe
 
             string modelFilename = (string)(((App)MdiParent).PipeConfiguration).svm.modelFilename;
 
-            if (!String.IsNullOrWhiteSpace(modelFilename))
+            if (!String.IsNullOrWhiteSpace(modelFilename) && File.Exists(String.Format(@"{0}\{1}", modelFilename, nombreArchivoModelo)))
             {
-                textBoxCarpetaDestinoModelo.Text = modelFilename;
-                carpetaDestinoModelo = modelFilename.Substring(0, modelFilename.Length - 7);
-
-                if (File.Exists(String.Format(@"{0}\{1}", modelFilename, nombreArchivoModelo)))
-                {
-                    this.buttonAbrirCarpetaContenedoraModelo.Enabled = true;
-                    this.buttonVisualizarModelo.Enabled = true;
-                    this.buttonGenerarPrediccion.Enabled = true;
-                }
+                textBoxCarpetaDestinoModelo.Text = modelFilename + "\\" + nombreArchivoModelo;
+                carpetaDestinoModelo = modelFilename;
+                this.buttonAbrirCarpetaContenedoraModelo.Enabled = true;
+                this.buttonVisualizarModelo.Enabled = true;
+                this.buttonGenerarPrediccion.Enabled = true;
             }
 
             string predictionsFilename = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
 
-            if (!String.IsNullOrWhiteSpace(predictionsFilename))
+            if (!String.IsNullOrWhiteSpace(predictionsFilename) && File.Exists(String.Format(@"{0}\{1}", predictionsFilename, nombreArchivoPrediccion)))
             {
-                textBoxCarpetaDestinoPrediccion.Text = predictionsFilename;
-                carpetaDestinoPrediccion = predictionsFilename.Substring(0, predictionsFilename.Length - 13);
-
-                if (File.Exists(String.Format(@"{0}\{1}", predictionsFilename, nombreArchivoPrediccion)))
-                {
-                    this.buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
-                    this.buttonVisualizarPrediccion.Enabled = true;
-                }
+                textBoxCarpetaDestinoPrediccion.Text = predictionsFilename + "\\" + nombreArchivoPrediccion;
+                carpetaDestinoPrediccion = predictionsFilename;
+                this.buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
+                this.buttonVisualizarPrediccion.Enabled = true;
             }
         }
 
@@ -165,8 +157,8 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 labelPrediccionesGeneradas.Show();
                 buttonVisualizarPrediccion.Enabled = true;
                 buttonAbrirCarpetaContenedoraPrediccion.Enabled = true;
-                ((App)MdiParent).formMatrizDeConfusion.Init();
-                ((App)MdiParent).formCompararResultados.Init();
+                ((App)MdiParent).ActivarBotonMatriz();
+                ((App)MdiParent).ActivarBotonComparar();
             }
             else
             {
