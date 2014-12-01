@@ -16,25 +16,24 @@ namespace AppPrincipal.FormsCompararResultados
 {
     public partial class FormCompararResultados : Form
     {
-        private string _vsmClassificationFile;
-        private string _predictionsFile;
+        private string nombreArchivoClassify = "svm-classify.dat";
+        private string nombreArchivoPrediccion = "predicciones";
         List<matrizPipe> matrices;
 
         public FormCompararResultados(Form parent)
         {
             InitializeComponent();
             this.MdiParent = parent;
-            Init();
         }
 
         public void Init()
         {
-            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
-            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+            string _vsmClassificationFile = (((App)MdiParent).PipeConfiguration).representation.directoryFilePath != null ? (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify : null;
+            string _predictionsFile = (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath != null ? (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion : null;
 
             try
             {
-                if (!String.IsNullOrEmpty(_vsmClassificationFile) && !String.IsNullOrEmpty(_predictionsFile))
+                if (File.Exists(_vsmClassificationFile) && File.Exists(_predictionsFile))
                 {
                     matrices = new List<matrizPipe>();
 
@@ -74,6 +73,8 @@ namespace AppPrincipal.FormsCompararResultados
                     DataBase.connectionString = (string)(((App)MdiParent).PipeConfiguration).database.connectionString;
                     List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
                     comboBoxSeleccionarCategoria.DataSource = labels;
+
+                    ((App)MdiParent).ActivarBotonComparar();
                 }
             }
             catch
@@ -82,6 +83,19 @@ namespace AppPrincipal.FormsCompararResultados
             }
         }
         
+        public void Clean()
+        {
+            textBoxArchivoSeleccionado.Clear();
+            checkBoxPipe.Checked = true;
+            checkBoxCategoria.Checked = false;
+            listBoxPipes.Items.Clear();
+            foreach (Series serie in chartComparaciones.Series)
+            {
+                serie.Points.Clear();
+            }
+            comboBoxSeleccionarCategoria.DataBindings.Clear();
+        }
+
         private void buttonBuscarPipe_Click(object sender, EventArgs e)
         {
             OpenFileDialog buscarArchivo = new OpenFileDialog();
@@ -116,8 +130,8 @@ namespace AppPrincipal.FormsCompararResultados
         {
             try
             {
-                _vsmClassificationFileCompare = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
-                _predictionsFileCompare = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+                _vsmClassificationFileCompare = (((App)MdiParent).PipeConfiguration).representation.directoryFilePath != null ? (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify : null;
+                _predictionsFileCompare = (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath != null ? (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion : null;
                 return true;
             }
             catch

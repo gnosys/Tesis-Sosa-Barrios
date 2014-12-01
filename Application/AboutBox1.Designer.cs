@@ -136,7 +136,7 @@
             this.textBoxDescription.Size = new System.Drawing.Size(271, 126);
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = " Software desarrollado por: Barrios, Pablo Jesus y Sosa, Matias Sebastian";
+            this.textBoxDescription.Text = "Software desarrollado por:\r\n\r\n-Barrios, Pablo Jesus\r\n-Sosa, Matias Sebastian";
             // 
             // okButton
             // 

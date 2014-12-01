@@ -18,9 +18,9 @@ namespace AppPrincipal.FormsCompararResultados
 {
     public partial class FormMatrizDeConfusion : Form
     {
-        private string _vsmClassificationFile;
-        private string _predictionsFile;
-        private string carpetaDestinoModelo = string.Empty;
+        private string carpetaDestinoExcel = string.Empty;
+        private string nombreArchivoClassify = "svm-classify.dat";
+        private string nombreArchivoPrediccion = "predicciones";
         private string nombreArchivoExcel = "Matriz_De_Confusion.xlsx";
         private int[][] confusionMatrix;
 
@@ -28,55 +28,80 @@ namespace AppPrincipal.FormsCompararResultados
         {
             InitializeComponent();
             this.MdiParent = parent;
-            Init();
         }
 
         public void Init()
         {
-            _vsmClassificationFile = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\svm-classify.dat";
-            _predictionsFile = (string)(((App)MdiParent).PipeConfiguration).svm.predictionsFilename;
+            string _vsmClassificationFile = (((App)MdiParent).PipeConfiguration).representation.directoryFilePath != null ? (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify : null;
+            string _predictionsFile = (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath != null ? (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion : null;
+
+            if (File.Exists(_vsmClassificationFile) && File.Exists(_predictionsFile))
+            {
+                ((App)MdiParent).ActivarBotonMatriz();
+            }
+        }
+
+        public void Clean()
+        {
+            labelObtenerMatriz.Hide();
+            labelMatrizExportada.Hide();
+            textBoxCarpetaDestinoExcel.Clear();
+            buttonCalcularMetricas.Enabled = false;
+            buttonSeleccionarCarpetaExcel.Enabled = false;
+            buttonExportarAExcel.Enabled = false;
+            labelExactitud.Text = "";
+            labelError.Text = "";
+            comboBoxCategorias.Items.Clear();
+            comboBoxCategorias.Enabled = false;
+            labelMetricasCalculadas.Hide();
+            labelPresicion.Text = "";
+            dataGridViewMatrizConfusion.Rows.Clear();
+            dataGridViewMatrizConfusion.Columns.Clear();
         }
 
         private void buttonObtenerMatriz_Click(object sender, EventArgs e)
         {
-            string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFile);
-            string[] linesPredictedCategories = File.ReadAllLines(_predictionsFile);
-
-            int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-            int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-            var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
-            List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
-
-            confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
-
-            dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length;
-            dataGridViewMatrizConfusion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewMatrizConfusion.RowCount = confusionMatrix.Length;
-            dataGridViewMatrizConfusion.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            string[] fila = new string[confusionMatrix.Length];
-
-            List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
-
-            for (int i = 0; i < confusionMatrix.Length; i++)
+            if (!String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath) && !String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath))
             {
-                dataGridViewMatrizConfusion.Columns[i].Name = labels.ElementAt(i);
-                dataGridViewMatrizConfusion.Rows[i].HeaderCell.Value = labels.ElementAt(i);
+                string[] linesActualCategories = File.ReadAllLines((string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify);
+                string[] linesPredictedCategories = File.ReadAllLines((string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion);
 
-                for (int j = 0; j < confusionMatrix.Length; j++)
-                    fila[j] = confusionMatrix[i][j].ToString();
+                int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
+                int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
+                var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
+                List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
 
-                dataGridViewMatrizConfusion.Rows[i].SetValues(fila);
+                confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
+
+                dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length;
+                dataGridViewMatrizConfusion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridViewMatrizConfusion.RowCount = confusionMatrix.Length;
+                dataGridViewMatrizConfusion.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+                string[] fila = new string[confusionMatrix.Length];
+
+                List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
+
+                for (int i = 0; i < confusionMatrix.Length; i++)
+                {
+                    dataGridViewMatrizConfusion.Columns[i].Name = labels.ElementAt(i);
+                    dataGridViewMatrizConfusion.Rows[i].HeaderCell.Value = labels.ElementAt(i);
+
+                    for (int j = 0; j < confusionMatrix.Length; j++)
+                        fila[j] = confusionMatrix[i][j].ToString();
+
+                    dataGridViewMatrizConfusion.Rows[i].SetValues(fila);
+                }
+
+                DrawConfusionMatrix(confusionMatrix);
+                foreach (string categoria in labels)
+                {
+                    comboBoxCategorias.Items.Add(categoria);
+                }
+
+                buttonCalcularMetricas.Enabled = true;
+                buttonSeleccionarCarpetaExcel.Enabled = true;
+                labelObtenerMatriz.Show();
             }
-             
-            DrawConfusionMatrix(confusionMatrix);
-            foreach (string categoria in labels)
-            {
-                comboBoxCategorias.Items.Add(categoria);
-            }
-
-            buttonCalcularMetricas.Enabled = true;
-            buttonSeleccionarCarpetaExcel.Enabled = true;
-            labelObtenerMatriz.Show();
         }
 
         private int _bitmapLength;
@@ -108,7 +133,7 @@ namespace AppPrincipal.FormsCompararResultados
             int minX = j * n;
             Color squareColor = GetColor(weight, minValue, maxValue);
             dataGridViewMatrizConfusion[j, i].Style.BackColor = squareColor;
-            Color fontColor = Color.FromArgb(255 - squareColor.R, 255 - squareColor.G, 255 - squareColor.B);
+            dataGridViewMatrizConfusion[j, i].Style.ForeColor = Color.Gray;
             using(Graphics g = Graphics.FromImage(bitmap))
             {
                 g.FillRectangle(new SolidBrush(squareColor), new Rectangle(minX, minY, 10, 10));
@@ -173,18 +198,18 @@ namespace AppPrincipal.FormsCompararResultados
                         hoja.Cells[IndeceFila + 1, IndiceColumna] = row.Cells[col.Name].Value;
                         hoja.Cells[IndeceFila + 1, IndiceColumna].Interior.Color = row.Cells[col.Name].Style.BackColor;
                         hoja.Cells[IndeceFila + 1, IndiceColumna].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                        hoja.Cells[IndeceFila + 1, IndiceColumna].Font.ColorIndex = 2;
-                        hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                        hoja.Cells[IndeceFila + 1, IndiceColumna].Font.ColorIndex = 16;
+                        hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
                         if (IndeceFila == IndiceColumna)
                         {
                             hoja.Cells[IndeceFila + 1, IndiceColumna].BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick, Excel.XlColorIndex.xlColorIndexNone, Excel.XlColorIndex.xlColorIndexNone);
-                            hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                            hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gray);
                         }
                     }
                 }
 
                 libro.Saved = true;
-                libro.SaveAs(carpetaDestinoModelo);
+                libro.SaveAs(carpetaDestinoExcel);
 
                 libro.Close();
                 releaseObject(libro);
@@ -239,8 +264,8 @@ namespace AppPrincipal.FormsCompararResultados
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                carpetaDestinoModelo = folderBrowserDialog.SelectedPath + "\\" + nombreArchivoExcel;
-                textBoxCarpetaDestinoExcel.Text = carpetaDestinoModelo;
+                carpetaDestinoExcel = folderBrowserDialog.SelectedPath + "\\" + nombreArchivoExcel;
+                textBoxCarpetaDestinoExcel.Text = carpetaDestinoExcel;
                 buttonExportarAExcel.Enabled = true;
             }
         }

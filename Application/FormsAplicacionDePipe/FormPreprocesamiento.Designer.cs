@@ -66,6 +66,8 @@
             this.textBoxExpresionRegular = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.checkBoxDescripcion = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.labelEnriquecimientoAplicado = new System.Windows.Forms.Label();
             this.buttonAplicarEnriquecimiento = new System.Windows.Forms.Button();
             this.checkBoxTitulo = new System.Windows.Forms.CheckBox();
@@ -88,8 +90,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelPreprocesadoAplicado = new System.Windows.Forms.Label();
-            this.checkBoxDescripcion = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.tabControlConfiguraciones.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -442,6 +442,24 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Enriquecimiento";
             // 
+            // checkBoxDescripcion
+            // 
+            this.checkBoxDescripcion.AutoSize = true;
+            this.checkBoxDescripcion.Location = new System.Drawing.Point(140, 68);
+            this.checkBoxDescripcion.Name = "checkBoxDescripcion";
+            this.checkBoxDescripcion.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxDescripcion.TabIndex = 23;
+            this.checkBoxDescripcion.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(65, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 13);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Descripción";
+            // 
             // labelEnriquecimientoAplicado
             // 
             this.labelEnriquecimientoAplicado.AutoSize = true;
@@ -495,9 +513,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(65, 52);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 1;
-            this.label9.Text = "Titulo";
+            this.label9.Text = "Título";
             // 
             // label8
             // 
@@ -664,24 +682,6 @@
             this.labelPreprocesadoAplicado.TabIndex = 16;
             this.labelPreprocesadoAplicado.Text = "Pre-procesado Aplicado";
             this.labelPreprocesadoAplicado.Visible = false;
-            // 
-            // checkBoxDescripcion
-            // 
-            this.checkBoxDescripcion.AutoSize = true;
-            this.checkBoxDescripcion.Location = new System.Drawing.Point(140, 68);
-            this.checkBoxDescripcion.Name = "checkBoxDescripcion";
-            this.checkBoxDescripcion.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxDescripcion.TabIndex = 23;
-            this.checkBoxDescripcion.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(65, 68);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 13);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "Descripción";
             // 
             // FormPreprocesamiento
             // 

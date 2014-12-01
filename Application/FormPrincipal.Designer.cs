@@ -89,6 +89,7 @@
             // 
             // buttonSeleccionarCategoria
             // 
+            this.buttonSeleccionarCategoria.Enabled = false;
             this.buttonSeleccionarCategoria.Location = new System.Drawing.Point(16, 65);
             this.buttonSeleccionarCategoria.Name = "buttonSeleccionarCategoria";
             this.buttonSeleccionarCategoria.Size = new System.Drawing.Size(130, 23);
@@ -298,8 +299,8 @@
             // acercaPreprocesadorToolStripMenuItem
             // 
             this.acercaPreprocesadorToolStripMenuItem.Name = "acercaPreprocesadorToolStripMenuItem";
-            this.acercaPreprocesadorToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.acercaPreprocesadorToolStripMenuItem.Text = "Acerca Preprocesador";
+            this.acercaPreprocesadorToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.acercaPreprocesadorToolStripMenuItem.Text = "Acerca Aplicación";
             this.acercaPreprocesadorToolStripMenuItem.Click += new System.EventHandler(this.acercaPreprocesadorToolStripMenuItem_Click);
             // 
             // App

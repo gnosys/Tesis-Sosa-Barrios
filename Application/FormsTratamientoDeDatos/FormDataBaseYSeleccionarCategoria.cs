@@ -31,7 +31,26 @@ namespace AppPrincipal
         {
             InitializeComponent();
             this.MdiParent = parent;
-            textBoxConeccionSQL.Text = (string)(((App)parent).PipeConfiguration).database.connectionString;
+        }
+
+        public void Init()
+        {
+            textBoxConeccionSQL.Text = (string)(((App)MdiParent).PipeConfiguration).database.connectionString;
+            if (!String.IsNullOrEmpty(textBoxConeccionSQL.Text))
+            {
+                this.buttonComprobarConeccion_Click(new object(), new EventArgs());
+            }
+
+            textBoxSeleccionarNivel.Text = (string)(((App)MdiParent).PipeConfiguration).categoryLevel;
+            if (!String.IsNullOrEmpty(textBoxSeleccionarNivel.Text) && db.ExistDataTableCategory())
+            {
+                ((App)MdiParent).ActivarBotonPreprocesamiento();
+            }
+        }
+
+        public void Clean()
+        {
+            disableForms();
         }
 
         private void cleanLabels()
@@ -52,13 +71,32 @@ namespace AppPrincipal
 
         private void disableForms()
         {
+            labelConexion.Hide();
+            labelCategoriasCreadas.Hide();
+            labelNivelSeleccionado.Hide();
+            labelCantidadNiveles.Text = "0";
+            labelProfundidadNivelSeleccionado.Text = "0";
+            labelProfundidadNivelSeleccionado.ForeColor = Color.Black;
+            labelTotalCantidadDeTwwets.Text = "0";
+            labelTotalCantidadDeTwwets.ForeColor = Color.Black;
+            labelCantidadDeCategoriasACrear.Text = "0";
+            labelCantidadDeCategoriasACrear.ForeColor = Color.Black;
+            labelCantidadTweetProfundidadNivel.Text = "0";
+            labelCantidadTweetProfundidadNivel.ForeColor = Color.Black;
+            SelectCantTuplas.Clear();
+            SelectCantDatos.Clear();
+            textBoxSeleccionarNivel.Clear();
             SelectCantTuplas.Enabled = false;
             SelectCantDatos.Enabled = false;
+            textBoxSeleccionarNivel.Enabled = false;
             buttonMostrarTuplas.Enabled = false;
             buttonMostrarCategorias.Enabled = false;
             buttonMostrarTextos.Enabled = false;
             buttonCrearCategorias.Enabled = false;
+            buttonSeleccionarNivel.Enabled = false;
             cleanGrid();
+            ((App)MdiParent).DesactivarBotonCategoria();
+            ((App)MdiParent).DesactivarBotonPreprocesamiento();
         }
 
         private void cleanGrid()
@@ -137,6 +175,7 @@ namespace AppPrincipal
                 {
                     labelConexion.ForeColor = Color.Green;
                     labelConexion.Text = "Conexión Establecida";
+                    ((App)this.MdiParent).ActivarBotonCategoria();
                     enableForms();
                     if (db.ExistDataTableCategory())
                     {
@@ -159,7 +198,7 @@ namespace AppPrincipal
 
         private void buttonSeleccionarNivel_Click(object sender, System.EventArgs e)
         {
-            if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text))
+            if (textBoxSeleccionarNivel.Text != "" && int.Parse(textBoxSeleccionarNivel.Text) <= int.Parse(labelCantidadNiveles.Text) && db.ExistDataTableCategory())
             {
                 labelNivelSeleccionado.Visible = false;
                 int amountTweetWithNivels = 0;

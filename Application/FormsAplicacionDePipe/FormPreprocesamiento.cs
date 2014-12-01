@@ -20,23 +20,93 @@ namespace AppPrincipal
 {
     public partial class FormPreprocesamiento : Form
     {
-
         bool cambiarTabs = false;
 
         public FormPreprocesamiento(Form parent)
         {
-            //configuration = JObject.Parse(jsonConf);
-            //dynamic tokenizingConfiguration = ((JArray)configuration.preprocessing).First(x => (string)x["_type"] == "tokenizing" );
             InitializeComponent();
             this.MdiParent = parent;
-            Init();
+        }
+
+        private void acomodarFiltros(JArray preprocessingFiltersConfiguration)
+        {
+            ListViewItem seleccion;
+            string nombreFiltro = String.Empty;
+
+            foreach (var filter in preprocessingFiltersConfiguration)
+            {
+                switch ((string)filter["_type"])
+                {
+                    case "richment": { nombreFiltro = "Enriquecimiento"; break; }
+                    case "words": { nombreFiltro = "Tratamiento en Texto"; break; }
+                    case "tokenizing": { nombreFiltro = "Tokenization"; break; }
+                    case "stemming": { nombreFiltro = "Stemmer"; break; }
+                    case "stopWords": { nombreFiltro = "Stop Words"; break; }
+                }
+
+                if (nombreFiltro.Equals("Tokenization"))
+                {
+                    textBoxExpresionRegular.Text = (string)filter["regexp"] ?? "";
+                    checkBoxERPorDefecto.Checked = (bool)filter["byDefault"];
+                }
+                else
+                {
+                    seleccion = listViewPreprocesamientos.FindItemWithText(nombreFiltro);
+                    listViewPreprocesamientos.Items.Remove(seleccion);
+
+                    if (nombreFiltro.Equals("Enriquecimiento"))
+                    {
+                        checkBoxKeywords.Checked = (bool)filter["keywords"];
+                        checkBoxTitulo.Checked = (bool)filter["title"];
+                        checkBoxDescripcion.Checked = (bool)filter["description"];
+                    }
+                    else if (nombreFiltro.Equals("Tratamiento en Texto"))
+                    {
+                        checkBoxReemplazarAbreviatura.Checked = (bool)filter["replaceAbbreviations"];
+                        textBoxDireccionAbreviaturas.Text = (string)filter["filename"] ?? "";
+                        checkBoxListaAbreviaturasPorDefecto.Checked = (bool)filter["byDefault"];
+                        checkBoxEliminarLinks.Checked = (bool)filter["removeLinks"];
+                    }
+                    else if (nombreFiltro.Equals("Stop Words"))
+                    {
+                        textBoxDireccionStopWords.Text = (string)filter["filename"] ?? "";
+                        checkBoxListaStopWordsPorDefecto.Checked = (bool)filter["byDefault"];
+                    }
+
+                    ubicarSeleccion(seleccion);
+                }
+            }
         }
 
         public void Init()
         {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
 
+            acomodarFiltros(preprocessingFiltersConfiguration);
+
+            if (!String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)) && DataBase.Instance.ExistTokens((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)))
+            {
+                ((App)MdiParent).ActivarBotonRepresentacion();
+            }
         }
 
+        public void Clean()
+        {
+            foreach (ListViewItem item in listViewOrdenPreprocesos.Items)
+            {
+                if (item.Text != "Tokenization")
+                {
+                    listViewOrdenPreprocesos.Items.Remove(item);
+                    listViewPreprocesamientos.Items.Add(item);
+                }
+            }
+            labelPreprocesadoAplicado.Hide();
+            labelEnriquecimientoAplicado.Hide();
+            labelExpresionRegularAplicada.Hide();
+            labelTratamientoAplicado.Hide();
+            labelListaAplicadaStopWords.Hide();
+            ((App)MdiParent).DesactivarBotonRepresentacion();
+        }
 
         public PreFilter BuildPrefilter(JArray preprocessingFiltersConfiguration, int i = 0)
         {
@@ -108,7 +178,6 @@ namespace AppPrincipal
             int categoryLevel = (int)((App)this.MdiParent).PipeConfiguration.categoryLevel;
             List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify(categoryLevel);
             List<string> docs = tweets.Select(x => x.Text).ToList();
-
             
             dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
             if ((bool)tokenizingConfiguration.byDefault)
@@ -119,8 +188,6 @@ namespace AppPrincipal
             {
                 delimiter = new Regex((string)tokenizingConfiguration.regexp);
             }
-                
-            
 
             preFilter = BuildPrefilter(preprocessingFiltersConfiguration);
             aroundFilter = BuildAroundfilter(preprocessingFiltersConfiguration);
@@ -131,22 +198,25 @@ namespace AppPrincipal
 
             string preprocessingGuid = DataBase.Instance.SavePreprocessingTokens(tweets, TFIDFInput);
             ((App)this.MdiParent).PipeConfiguration.preprocessing.guid = preprocessingGuid;
-            ((App)this.MdiParent).ValidateConfiguration();
             ((App)this.MdiParent).ActivarBotonRepresentacion();
             labelPreprocesadoAplicado.Show();
         }
         
-        private void updatePipe(ListViewItem seleccion)
+        private void agregarFiltroAlPipe(ListViewItem seleccion)
         {
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             
             if (seleccion.Text.Equals("Stemmer"))
             {
-                preprocessingFiltersConfiguration.Add(new { _type = "stemming" });
+                var nuevoJson = JObject.Parse(@"{ ""_type"" : ""stemming"" }");
+                var nuevoJtokenFiltro = nuevoJson as JToken;
+                preprocessingFiltersConfiguration.Add(nuevoJtokenFiltro);
             }
             else if (seleccion.Text.Equals("Stop Words"))
             {
-                preprocessingFiltersConfiguration.Add(new { _type = "stopWords", filename = "null", byDefault = false });
+                var nuevoJson = JObject.Parse(@"{ ""_type"" : ""stopWords"", ""filename"" : null, ""byDefault"" : true }");
+                var nuevoJtokenFiltro = nuevoJson as JToken;
+                preprocessingFiltersConfiguration.Add(nuevoJtokenFiltro);
             }
             else
             {
@@ -155,13 +225,15 @@ namespace AppPrincipal
 
                 if (seleccion.Text.Equals("Enriquecimiento"))
                 {
-                    var nuevoFiltro = new { _type = "richment", keywords = false, title = false, description = false };
-                    preprocessingFiltersConfiguration[indexTokenizing].AddBeforeSelf(nuevoFiltro);
+                    var nuevoJson = JObject.Parse(@"{ ""_type"" : ""richment"", ""keywords"" : true, ""title"" : true, ""description"" : true }");
+                    var nuevoJtokenFiltro = nuevoJson as JToken;
+                    preprocessingFiltersConfiguration[indexTokenizing].AddBeforeSelf(nuevoJtokenFiltro);
                 }
                 else if (seleccion.Text.Equals("Tratamiento en Texto"))
                 {
-                    var nuevoFiltro = new { _type = "words", replaceAbbreviations = false, filename = "null", byDefault = false, removeLinks = false };
-                    preprocessingFiltersConfiguration[indexTokenizing].AddBeforeSelf(nuevoFiltro);
+                    var nuevoJson = JObject.Parse(@"{ ""_type"" : ""words"", ""replaceAbbreviations"" : false, ""filename"" : null, ""byDefault"" : true, ""removeLinks"" : false }");
+                    var nuevoJtokenFiltro = nuevoJson as JToken;
+                    preprocessingFiltersConfiguration[indexTokenizing].AddBeforeSelf(nuevoJtokenFiltro);
                 }
             }
         }
@@ -188,7 +260,29 @@ namespace AppPrincipal
                 ListViewItem seleccion = listViewPreprocesamientos.SelectedItems[0];
                 listViewPreprocesamientos.SelectedItems[0].Remove();
                 ubicarSeleccion(seleccion);
-                updatePipe(seleccion);
+                agregarFiltroAlPipe(seleccion);
+            }
+        }
+
+        private void borrarFiltroAlPipe(ListViewItem seleccion)
+        {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+
+            if (seleccion.Text.Equals("Stemmer"))
+            {
+                preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stemming").Remove();
+            }
+            else if (seleccion.Text.Equals("Stop Words"))
+            {
+                preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stopWords").Remove();
+            }
+            else if (seleccion.Text.Equals("Enriquecimiento"))
+            {
+                preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment").Remove();
+            }
+            else if (seleccion.Text.Equals("Tratamiento en Texto"))
+            {
+                preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words").Remove();
             }
         }
 
@@ -202,12 +296,16 @@ namespace AppPrincipal
                 listViewPreprocesamientos.Items.Add(seleccion);
                 listViewPreprocesamientos.Focus();
                 tabControlConfiguraciones.Hide();
+                borrarFiltroAlPipe(seleccion);
             }
         }
 
         private void buttonSubir_Click(object sender, EventArgs e)
         {
             labelPreprocesadoAplicado.Hide();
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            JToken filtro;
+
             if (listViewOrdenPreprocesos.SelectedItems.Count > 0)
             {
                 ListViewItem seleccion = listViewOrdenPreprocesos.SelectedItems[0];
@@ -218,16 +316,39 @@ namespace AppPrincipal
                         int pos = seleccion.Index - 1;
                         listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
                         listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                        if (seleccion.Text == "Enriquecimiento")
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment").Remove();
+                        }
+                        else
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words").Remove();
+                        }
+                        preprocessingFiltersConfiguration[0].AddBeforeSelf(filtro);
                     }
                 }
                 else if (seleccion.Text == "Stemmer" || seleccion.Text == "Stop Words")
                 {
                     int indexTokenization = listViewOrdenPreprocesos.FindItemWithText("Tokenization").Index;
+
                     if (seleccion.Index > 0 && seleccion.Index > indexTokenization + 1)
                     {
                         int pos = seleccion.Index - 1;
                         listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
                         listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                        if (seleccion.Text == "Stemmer")
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stemming");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stemming").Remove();
+                        }
+                        else
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stopWords");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stopWords").Remove();
+                        }
+                        preprocessingFiltersConfiguration[indexTokenization].AddAfterSelf(filtro);
                     }
                 }
             }
@@ -237,6 +358,9 @@ namespace AppPrincipal
         private void buttonBajar_Click(object sender, EventArgs e)
         {
             labelPreprocesadoAplicado.Hide();
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+            JToken filtro;
+
             if (listViewOrdenPreprocesos.SelectedItems.Count > 0)
             {
                 ListViewItem seleccion = listViewOrdenPreprocesos.SelectedItems[0];
@@ -248,6 +372,17 @@ namespace AppPrincipal
                         int pos = seleccion.Index + 1;
                         listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
                         listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                        if (seleccion.Text == "Enriquecimiento")
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment").Remove();
+                        }
+                        else
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words").Remove();
+                        }
+                        preprocessingFiltersConfiguration[indexTokenization - 1].AddBeforeSelf(filtro);
                     }
                 }
                 else if (seleccion.Text == "Stemmer" || seleccion.Text == "Stop Words")
@@ -257,6 +392,17 @@ namespace AppPrincipal
                         int pos = seleccion.Index + 1;
                         listViewOrdenPreprocesos.Items.RemoveAt(seleccion.Index);
                         listViewOrdenPreprocesos.Items.Insert(pos, seleccion);
+                        if (seleccion.Text == "Stemmer")
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stemming");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stemming").Remove();
+                        }
+                        else
+                        {
+                            filtro = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stopWords");
+                            preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stopWords").Remove();
+                        }
+                        preprocessingFiltersConfiguration.Add(filtro);
                     }
                 }
             }

@@ -55,15 +55,5 @@ namespace TFIDFWeighting
             File.WriteAllLines(String.Format(@"{0}\svm-classify.dat", directoryFilePath), linesClassify);
         }
 
-        private static void CreateBOWFile(string[] words)
-        {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"BOW.txt"))
-            {
-                foreach (string line in words)
-                {
-                    file.WriteLine(line);
-                }
-            }
-        }
     }
 }

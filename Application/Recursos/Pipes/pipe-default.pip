@@ -34,8 +34,7 @@
 	},
 	"svm": {
 		"c": "1",
-		"modelFilename": null,
-        "predictionsFilename": null
+        "directoryFilesPath": null
 	},
 	"categoryLevel": 13
 }
