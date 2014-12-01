@@ -7,7 +7,7 @@
 		"filters": [{
 			"_type": "tokenizing",
 			"regexp": null,
-            "byDefault": false,
+            "byDefault": true,
             "regexpByDefault": "([ \\\\t{}():;. \\n])"
 		}]
 	},

@@ -54,6 +54,21 @@ namespace AppPrincipal.FormsAplicacionDePipe
             }
         }
 
+        public void Clean()
+        {
+            labelErrorCarpeta.Hide();
+            labelModeloGenerado.Hide();
+            labelPrediccionesGeneradas.Hide();
+            textBoxCarpetaDestino.Clear();
+            this.buttonVisualizarModelo.Enabled = false;
+            this.buttonGenerarPrediccion.Enabled = false;
+            this.buttonVisualizarPrediccion.Enabled = false;
+            this.buttonAbrirCarpetaContenedora.Enabled = false;
+            ((App)MdiParent).DesactivarBotonMatriz();
+            ((App)MdiParent).DesactivarBotonComparar();
+        }
+
+
         private void buttonSeleccionarCarpetaModelo_Click(object sender, EventArgs e)
         {
             labelErrorCarpeta.Hide();

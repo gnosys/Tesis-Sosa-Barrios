@@ -71,7 +71,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
             Process.Start("explorer.exe", carpetaDestino);
         }
 
-        internal void Init()
+        public void Init()
         {
             string directoryFilePath = (string)((App)MdiParent).PipeConfiguration.representation.directoryFilePath;
             if (!String.IsNullOrWhiteSpace(directoryFilePath) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoLearn)) && File.Exists(String.Format(@"{0}\{1}", directoryFilePath, nombreArchivoClassify)))
@@ -85,6 +85,19 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 buttonAbrirCarpetaContenedora.Enabled = true;
                 ((App)MdiParent).ActivarBotonSVM();
             }
+        }
+
+        public void Clean()
+        {
+            textBoxMinWeight.Text = "0";
+            textBoxCarpetaDestino.Clear();
+            labelErrorCarpeta.Hide();
+            labelRepresentacionObtenida.Hide();
+            richTextBoxTextoArchivo.Clear();
+            buttonVisualizarSVMLearn.Enabled = false;
+            buttonVisualizarSVMClassify.Enabled = false;
+            buttonAbrirCarpetaContenedora.Enabled = false;
+            ((App)MdiParent).DesactivarBotonSVM();
         }
 
         private void buttonVisualizarSVMClassify_Click(object sender, EventArgs e)

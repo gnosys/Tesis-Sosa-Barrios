@@ -93,8 +93,6 @@ namespace AppPrincipal
 
             aboutBox = new AboutBox1();
             aboutBox.StartPosition = FormStartPosition.CenterScreen;
-
-            //ValidateConfiguration();
         }
 
         // Oculta todos los formularios.
@@ -155,6 +153,17 @@ namespace AppPrincipal
             this.Close();
         }
 
+        private void limpiarFormularios()
+        {
+            formDataBaseYSeleccionarCategoria.Clean();
+            formPreprocesamiento.Clean();
+            formRepresentacion.Clean();
+            formSVMLigth.Clean();
+            formMatrizDeConfusion.Clean();
+            formCompararResultados.Clean();
+            buttonDataBase_Click(new object(), new EventArgs());
+        }
+
         private void cargarDatosDePipeEnFormularios()
         {
             formDataBaseYSeleccionarCategoria.Init();
@@ -175,6 +184,7 @@ namespace AppPrincipal
             {
                 try
                 {
+                    limpiarFormularios();
                     string readText = File.ReadAllText(path);
                     PipeConfiguration = JObject.Parse(readText);
                     cargarDatosDePipeEnFormularios();
@@ -255,8 +265,6 @@ namespace AppPrincipal
 
         private void acercaPreprocesadorToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            //DialogResult result = MessageBox.Show(" Software desarrollado por:\n\n Barrios, Pablo Jesus\n Sosa, Matias Sebastian", "Acerca de Preprocesado", MessageBoxButtons.OK);
-
             aboutBox.Show();
         }
 
@@ -336,14 +344,29 @@ namespace AppPrincipal
             buttonPreprocesamiento.Enabled = true;
         }
 
+        public void DesactivarBotonPreprocesamiento()
+        {
+            buttonPreprocesamiento.Enabled = false;
+        }
+
         public void ActivarBotonRepresentacion()
         {
             buttonRepresentacion.Enabled = true;
         }
 
+        public void DesactivarBotonRepresentacion()
+        {
+            buttonRepresentacion.Enabled = false;
+        }
+
         public void ActivarBotonCategoria()
         {
             buttonSeleccionarCategoria.Enabled = true;
+        }
+
+        public void DesactivarBotonCategoria()
+        {
+            buttonSeleccionarCategoria.Enabled = false;
         }
 
         public void ActivarBotonMatriz()
@@ -356,9 +379,24 @@ namespace AppPrincipal
             buttonCompararResultados.Enabled = true;
         }
 
+        public void DesactivarBotonMatriz()
+        {
+            buttonMatrizConfusion.Enabled = false;
+        }
+
+        public void DesactivarBotonComparar()
+        {
+            buttonCompararResultados.Enabled = false;
+        }
+
         public void ActivarBotonSVM()
         {
             buttonEjecutarSVMLigth.Enabled = true;
+        }
+
+        public void DesactivarBotonSVM()
+        {
+            buttonEjecutarSVMLigth.Enabled = false;
         }
     }
 }

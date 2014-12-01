@@ -48,6 +48,11 @@ namespace AppPrincipal
             }
         }
 
+        public void Clean()
+        {
+            disableForms();
+        }
+
         private void cleanLabels()
         {
             labelConexion.Visible = false;
@@ -66,13 +71,32 @@ namespace AppPrincipal
 
         private void disableForms()
         {
+            labelConexion.Hide();
+            labelCategoriasCreadas.Hide();
+            labelNivelSeleccionado.Hide();
+            labelCantidadNiveles.Text = "0";
+            labelProfundidadNivelSeleccionado.Text = "0";
+            labelProfundidadNivelSeleccionado.ForeColor = Color.Black;
+            labelTotalCantidadDeTwwets.Text = "0";
+            labelTotalCantidadDeTwwets.ForeColor = Color.Black;
+            labelCantidadDeCategoriasACrear.Text = "0";
+            labelCantidadDeCategoriasACrear.ForeColor = Color.Black;
+            labelCantidadTweetProfundidadNivel.Text = "0";
+            labelCantidadTweetProfundidadNivel.ForeColor = Color.Black;
+            SelectCantTuplas.Clear();
+            SelectCantDatos.Clear();
+            textBoxSeleccionarNivel.Clear();
             SelectCantTuplas.Enabled = false;
             SelectCantDatos.Enabled = false;
+            textBoxSeleccionarNivel.Enabled = false;
             buttonMostrarTuplas.Enabled = false;
             buttonMostrarCategorias.Enabled = false;
             buttonMostrarTextos.Enabled = false;
             buttonCrearCategorias.Enabled = false;
+            buttonSeleccionarNivel.Enabled = false;
             cleanGrid();
+            ((App)MdiParent).DesactivarBotonCategoria();
+            ((App)MdiParent).DesactivarBotonPreprocesamiento();
         }
 
         private void cleanGrid()

@@ -43,8 +43,8 @@
             this.buttonGenerarPrediccion = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelModeloGenerado = new System.Windows.Forms.Label();
-            this.labelErrorCarpeta = new System.Windows.Forms.Label();
             this.richTextBoxTextoModelo = new System.Windows.Forms.RichTextBox();
+            this.labelErrorCarpeta = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelPrediccionesGeneradas = new System.Windows.Forms.Label();
             this.richTextBoxTextoPrediccion = new System.Windows.Forms.RichTextBox();
@@ -166,7 +166,7 @@
             this.buttonGenerarPrediccion.Name = "buttonGenerarPrediccion";
             this.buttonGenerarPrediccion.Size = new System.Drawing.Size(194, 23);
             this.buttonGenerarPrediccion.TabIndex = 17;
-            this.buttonGenerarPrediccion.Text = "Generar Predicción";
+            this.buttonGenerarPrediccion.Text = "Generar Predicciones";
             this.buttonGenerarPrediccion.UseVisualStyleBackColor = true;
             this.buttonGenerarPrediccion.Click += new System.EventHandler(this.buttonGenerarPrediccion_Click);
             // 
@@ -194,17 +194,6 @@
             this.labelModeloGenerado.Text = "Modelo Generado";
             this.labelModeloGenerado.Visible = false;
             // 
-            // labelErrorCarpeta
-            // 
-            this.labelErrorCarpeta.AutoSize = true;
-            this.labelErrorCarpeta.ForeColor = System.Drawing.Color.Red;
-            this.labelErrorCarpeta.Location = new System.Drawing.Point(839, 150);
-            this.labelErrorCarpeta.Name = "labelErrorCarpeta";
-            this.labelErrorCarpeta.Size = new System.Drawing.Size(150, 13);
-            this.labelErrorCarpeta.TabIndex = 18;
-            this.labelErrorCarpeta.Text = "Debe seleccionar una carpeta";
-            this.labelErrorCarpeta.Visible = false;
-            // 
             // richTextBoxTextoModelo
             // 
             this.richTextBoxTextoModelo.Enabled = false;
@@ -215,6 +204,17 @@
             this.richTextBoxTextoModelo.TabIndex = 17;
             this.richTextBoxTextoModelo.Text = "";
             this.richTextBoxTextoModelo.WordWrap = false;
+            // 
+            // labelErrorCarpeta
+            // 
+            this.labelErrorCarpeta.AutoSize = true;
+            this.labelErrorCarpeta.ForeColor = System.Drawing.Color.Red;
+            this.labelErrorCarpeta.Location = new System.Drawing.Point(839, 150);
+            this.labelErrorCarpeta.Name = "labelErrorCarpeta";
+            this.labelErrorCarpeta.Size = new System.Drawing.Size(150, 13);
+            this.labelErrorCarpeta.TabIndex = 18;
+            this.labelErrorCarpeta.Text = "Debe seleccionar una carpeta";
+            this.labelErrorCarpeta.Visible = false;
             // 
             // panel2
             // 

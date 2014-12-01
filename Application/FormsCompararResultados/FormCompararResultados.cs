@@ -83,6 +83,19 @@ namespace AppPrincipal.FormsCompararResultados
             }
         }
         
+        public void Clean()
+        {
+            textBoxArchivoSeleccionado.Clear();
+            checkBoxPipe.Checked = true;
+            checkBoxCategoria.Checked = false;
+            listBoxPipes.Items.Clear();
+            foreach (Series serie in chartComparaciones.Series)
+            {
+                serie.Points.Clear();
+            }
+            comboBoxSeleccionarCategoria.DataBindings.Clear();
+        }
+
         private void buttonBuscarPipe_Click(object sender, EventArgs e)
         {
             OpenFileDialog buscarArchivo = new OpenFileDialog();

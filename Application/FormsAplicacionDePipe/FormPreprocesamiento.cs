@@ -28,9 +28,8 @@ namespace AppPrincipal
             this.MdiParent = parent;
         }
 
-        public void Init()
+        private void acomodarFiltros(JArray preprocessingFiltersConfiguration)
         {
-            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             ListViewItem seleccion;
             string nombreFiltro = String.Empty;
 
@@ -50,7 +49,7 @@ namespace AppPrincipal
                     textBoxExpresionRegular.Text = (string)filter["regexp"] ?? "";
                     checkBoxERPorDefecto.Checked = (bool)filter["byDefault"];
                 }
-                else 
+                else
                 {
                     seleccion = listViewPreprocesamientos.FindItemWithText(nombreFiltro);
                     listViewPreprocesamientos.Items.Remove(seleccion);
@@ -77,11 +76,36 @@ namespace AppPrincipal
                     ubicarSeleccion(seleccion);
                 }
             }
+        }
+
+        public void Init()
+        {
+            JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
+
+            acomodarFiltros(preprocessingFiltersConfiguration);
 
             if (!String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)) && DataBase.Instance.ExistTokens((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)))
             {
                 ((App)MdiParent).ActivarBotonRepresentacion();
             }
+        }
+
+        public void Clean()
+        {
+            foreach (ListViewItem item in listViewOrdenPreprocesos.Items)
+            {
+                if (item.Text != "Tokenization")
+                {
+                    listViewOrdenPreprocesos.Items.Remove(item);
+                    listViewPreprocesamientos.Items.Add(item);
+                }
+            }
+            labelPreprocesadoAplicado.Hide();
+            labelEnriquecimientoAplicado.Hide();
+            labelExpresionRegularAplicada.Hide();
+            labelTratamientoAplicado.Hide();
+            labelListaAplicadaStopWords.Hide();
+            ((App)MdiParent).DesactivarBotonRepresentacion();
         }
 
         public PreFilter BuildPrefilter(JArray preprocessingFiltersConfiguration, int i = 0)
@@ -154,7 +178,6 @@ namespace AppPrincipal
             int categoryLevel = (int)((App)this.MdiParent).PipeConfiguration.categoryLevel;
             List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify(categoryLevel);
             List<string> docs = tweets.Select(x => x.Text).ToList();
-
             
             dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
             if ((bool)tokenizingConfiguration.byDefault)
@@ -165,8 +188,6 @@ namespace AppPrincipal
             {
                 delimiter = new Regex((string)tokenizingConfiguration.regexp);
             }
-                
-            
 
             preFilter = BuildPrefilter(preprocessingFiltersConfiguration);
             aroundFilter = BuildAroundfilter(preprocessingFiltersConfiguration);

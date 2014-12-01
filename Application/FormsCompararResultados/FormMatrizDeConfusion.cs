@@ -41,6 +41,24 @@ namespace AppPrincipal.FormsCompararResultados
             }
         }
 
+        public void Clean()
+        {
+            labelObtenerMatriz.Hide();
+            labelMatrizExportada.Hide();
+            textBoxCarpetaDestinoExcel.Clear();
+            buttonCalcularMetricas.Enabled = false;
+            buttonSeleccionarCarpetaExcel.Enabled = false;
+            buttonExportarAExcel.Enabled = false;
+            labelExactitud.Text = "";
+            labelError.Text = "";
+            comboBoxCategorias.Items.Clear();
+            comboBoxCategorias.Enabled = false;
+            labelMetricasCalculadas.Hide();
+            labelPresicion.Text = "";
+            dataGridViewMatrizConfusion.Rows.Clear();
+            dataGridViewMatrizConfusion.Columns.Clear();
+        }
+
         private void buttonObtenerMatriz_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath) && !String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath))
