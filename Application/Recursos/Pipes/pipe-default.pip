@@ -1,40 +1,26 @@
 {
 	"database": {
-		"connectionString": "Data Source=np:\\\\.\\pipe\\LOCALDB#E35896D5\\tsql\\query;Initial Catalog=Tweets;Integrated Security=True"
+		"connectionString": null
 	},
 	"preprocessing": {
 		"guid": null,
 		"filters": [{
-			"_type": "stemming"
-		},
-        {
-			"_type": "stopWords",
-			"filename": null,
-            "byDefault": true
-		},
-        {
 			"_type": "tokenizing",
 			"regexp": null,
             "byDefault": true,
             "regexpByDefault": "([ \\\\t{}():;. \\n])"
-		},
-        {
-			"_type": "words",
-			"replaceAbbreviations": true,
-            "filename": "E:\\tesis\\fuentes\\Tesis-Sosa-Barrios\\Application\\Recursos\\Abreviaturas\\abbreviations.txt",
-            "byDefault":  false,
-            "removeLinks": true
 		}]
 	},
 	"representation": {
 		"trainingPercentage": 75,
 		"minWeight": 0,
-		"discardEquals": false,
+		"discardEquals": null,
 		"directoryFilePath": null
 	},
 	"svm": {
-		"c": "1",
-        "directoryFilesPath": null
+		"c": "5000",
+		"modelFilename": null,
+        "predictionsFilename": null
 	},
-	"categoryLevel": 13
+	"categoryLevel": null
 }

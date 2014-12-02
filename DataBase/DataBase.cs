@@ -94,16 +94,16 @@ namespace DataBaseSQL
             {
                 if (connection != null)
                 {
-
                     connection.Dispose();
-                    connection = new SqlConnection(connectionString);
-                    connection.Open();
-                    if (connection.State.Equals(ConnectionState.Open))
-                    {
-                        connection.Close();
-                        return true;
-                    }
                 }
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                if (connection.State.Equals(ConnectionState.Open))
+                {
+                    connection.Close();
+                    return true;
+                }
+                
                 return false;
             }
             catch

@@ -26,7 +26,7 @@ namespace Tonkenizer.Core
         public IEnumerable<string[]> Tokenize(List<string> docs)
         {
             //here we pre process the docs
-            List<string> preprocessedDocs = _prefilter.Filter(docs);
+            List<string> preprocessedDocs =  _prefilter != null ? _prefilter.Filter(docs) : docs;
             
             if (preprocessedDocs != null && preprocessedDocs.Count > 0)
             {
@@ -55,7 +55,7 @@ namespace Tonkenizer.Core
                 if (mc.Count <= 0 && tokens[i].Trim().Length > 0)
                 {
                     //here we filter the word
-                    string filteredToken = _aroundFilter.Filter(tokens[i]);
+                    string filteredToken = _aroundFilter != null ? _aroundFilter.Filter(tokens[i]) : tokens[i];
                     if (filteredToken != null && filteredToken.Trim().Length > 0)
                     {
                         filter.Add(filteredToken);

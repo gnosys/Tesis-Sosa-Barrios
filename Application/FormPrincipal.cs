@@ -40,8 +40,7 @@ namespace AppPrincipal
 
         public App()
         {
-            //PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
-            PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-conf.pip"));
+            PipeConfiguration = JObject.Parse(File.ReadAllText(@"Recursos\Pipes\pipe-default.pip"));
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             crearFormularios();

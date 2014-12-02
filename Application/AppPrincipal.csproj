@@ -190,9 +190,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Recursos\Pipes\pipe-conf.pip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Recursos\Pipes\pipe-default.pip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
