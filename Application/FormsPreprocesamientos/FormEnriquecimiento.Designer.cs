@@ -38,7 +38,7 @@
             this.labelDescripcionStemmer.AutoSize = true;
             this.labelDescripcionStemmer.Location = new System.Drawing.Point(190, 70);
             this.labelDescripcionStemmer.Name = "labelDescripcionStemmer";
-            this.labelDescripcionStemmer.Size = new System.Drawing.Size(716, 65);
+            this.labelDescripcionStemmer.Size = new System.Drawing.Size(799, 403);
             this.labelDescripcionStemmer.TabIndex = 7;
             this.labelDescripcionStemmer.Text = resources.GetString("labelDescripcionStemmer.Text");
             // 

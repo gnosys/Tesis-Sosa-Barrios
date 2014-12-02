@@ -118,14 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelDescripcionStemmer.Text" xml:space="preserve">
-    <value>Stemming es un método para reducir una palabra a su raíz o (en inglés) a un stem o lema. Hay algunos algoritmos de stemming que ayudan en sistemas de 
+    <value>   Stemming es un método para reducir una palabra a su raíz o (en inglés) a un stem o lema. Hay algunos algoritmos de stemming que ayudan en sistemas de 
 recuperación de información. Stemming aumenta el recall que es una medida sobre el número de documentos que se pueden encontrar con una consulta. 
 Por ejemplo una consulta sobre "bibliotecas" también encuentra documentos en los que solo aparezca "bibliotecario" porque el stem de las dos palabras es el 
 mismo ("bibliotec"). De esta manera se amplía el espectro de buscada que realiza el buscador; que también busque por palabras raíces, y derivadas del lexema 
 original. Con eso se mejora la búsqueda porque también busca las palabras en plural/singular, masculino/femenino, en diferentes tiempos verbales, gerundio, etc. 
 Desde hace poco tiempo Google utiliza stemming al igual que MSN search (donde tiene que activarse explícitamente).
 
-
-EN ESTE TRABAJO UTILIZAMOS BLA BLA BLA INCRICHIIII</value>
+   En esta aplicación se utilizó el algoritmo más común para stemming, el algoritmo de Porter. Existen además métodos basados en análisis lexicográfico y otros
+algoritmos similares (KSTEM, stemming con cuerpo, métodos lingüísticos...).
+   Se descargó el algoritmo de la url "http://tartarus.org/~martin/PorterStemmer/", ésta es la página "oficial" para la distribución de The Porter Stemming Algorithm,
+escrita y mantenida por su autor, Martin Porter . El algoritmo de stemming Porter (o 'Porter stemmer') es un procedimiento para eliminar las terminaciones
+morfológicas y flexivas de las palabras en Inglés. Su uso principal es como parte de un proceso de normalización de términos que se suele hacer cuando se establecen
+sistemas de recuperación de información.
+   En esta dirección podemos encontrar diferentes tipos de codificación del algoritmo, a continuacción mostraremos una tabla de los lenguajes utilizados:</value>
   </data>
 </root>

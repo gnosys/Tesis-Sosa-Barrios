@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStemmer));
             this.labelDescripcionStemmer = new System.Windows.Forms.Label();
             this.labelTituloStemmer = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // labelDescripcionStemmer
@@ -38,7 +39,7 @@
             this.labelDescripcionStemmer.AutoSize = true;
             this.labelDescripcionStemmer.Location = new System.Drawing.Point(190, 70);
             this.labelDescripcionStemmer.Name = "labelDescripcionStemmer";
-            this.labelDescripcionStemmer.Size = new System.Drawing.Size(769, 117);
+            this.labelDescripcionStemmer.Size = new System.Drawing.Size(794, 182);
             this.labelDescripcionStemmer.TabIndex = 5;
             this.labelDescripcionStemmer.Text = resources.GetString("labelDescripcionStemmer.Text");
             // 
@@ -51,11 +52,20 @@
             this.labelTituloStemmer.TabIndex = 4;
             this.labelTituloStemmer.Text = "STEMMER";
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::AppPrincipal.Properties.Resources.vs;
+            this.panel1.Location = new System.Drawing.Point(304, 267);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(505, 278);
+            this.panel1.TabIndex = 6;
+            // 
             // FormStemmer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelDescripcionStemmer);
             this.Controls.Add(this.labelTituloStemmer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -70,5 +80,6 @@
 
         private System.Windows.Forms.Label labelDescripcionStemmer;
         private System.Windows.Forms.Label labelTituloStemmer;
+        private System.Windows.Forms.Panel panel1;
     }
 }

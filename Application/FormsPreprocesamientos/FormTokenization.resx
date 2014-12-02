@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelDescripcionTokenization.Text" xml:space="preserve">
-    <value>La Tokenización es el proceso de dividir un flujo de texto en palabras, frases, símbolos u otros elementos significativos llamados tokens. 
+    <value>   La Tokenización es el proceso de dividir un flujo de texto en palabras, frases, símbolos u otros elementos significativos llamados tokens. 
 La lista de tokens se realiza para las tareas tales como el análisis o la minería de texto. La Tokenización es útil tanto en la lingüística (donde es una forma de 
 segmentación de texto) y en ciencias de la computación, donde forma parte del análisis léxico. Típicamente, la tokenización se produce a nivel de palabra. 
 Sin embargo, a veces es difícil de definir qué se entiende por una "palabra".
 
-A menudo, un tokenizador se basa en una heurística simple, por ejemplo:
+   A menudo, un tokenizador se basa en una heurística simple, por ejemplo:
 
 1) Todas las cadenas contiguas de caracteres alfabéticos son parte de un token, del mismo modo con los números.
 2) Los tokens están separados por espacios en blanco, como un espacio o un salto de línea, o caracteres de puntuación.
 3) La puntuación y espacios en blanco pueden o no estar incluidos en la lista resultante de tokens.
 
-En lenguajes que usan espacios entre palabras (como la mayoría que utilizan el alfabeto latino, y la mayoría de los lenguajes de programación), este método es 
+   En lenguajes que usan espacios entre palabras (como la mayoría que utilizan el alfabeto latino, y la mayoría de los lenguajes de programación), este método es 
 bastante sencillo. Sin embargo, hay muchos casos tales como contracciones, palabras separadas por guiones, emoticones, y construcciones, como URI (que para 
 algunos fines puede contar como tokens individuales). Un ejemplo clásico es "New York-based", que un tokenizador ingenuo podría romperse en el espacio a 
 pesar de que el mejor break es (posiblemente) en el guión. 
@@ -137,8 +137,13 @@ La tokenizacion es particularmente difícil para los idiomas escritos en Scripti
 chino o tailandés. Algunas formas de abordar los problemas más difíciles incluyen el desarrollo de heurísticas más complejas en donde se consulta una tabla de 
 casos especiales comunes, o encajando las fichas a un modelo de lenguaje que identifica las colocaciones en una etapa de procesamiento posterior.
 
-
-
-EN ESTE TRABAJO UTILIZAMOS BLA BLA BLA INCRICHIIII</value>
+   En esta aplicación se utilizó un codigo extraido de la web desde esta dirección
+"http://www.codeproject.com/Articles/12098/Term-frequency-Inverse-document-frequency-implemen", éste codigo implementa la frecuencia de 
+término - frecuencia inversa de un documento (TF-IDF), o sea, la frecuencia de ocurrencia del término en la colección de documentos y como sub-proceso
+contiene un módulo destinado a la Tokenización de los datos expuestos al proceso principal, en este caso los tweets. En este proceso se determina la
+forma de crear los tokens a travez de una expresión regular, esta aplicación consta con una expresión regular incorporada por defecto pero también tiene la 
+posibilidad de que el usuario ingrese una expresión propia que le permita manipular la información de una forma especifica conveniente al conjunto de datos
+aportado.
+</value>
   </data>
 </root>

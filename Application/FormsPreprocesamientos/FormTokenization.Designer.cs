@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTokenization));
             this.labelTituloTokenization = new System.Windows.Forms.Label();
             this.labelDescripcionTokenization = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // labelTituloTokenization
@@ -47,15 +48,24 @@
             this.labelDescripcionTokenization.AutoSize = true;
             this.labelDescripcionTokenization.Location = new System.Drawing.Point(193, 70);
             this.labelDescripcionTokenization.Name = "labelDescripcionTokenization";
-            this.labelDescripcionTokenization.Size = new System.Drawing.Size(776, 286);
+            this.labelDescripcionTokenization.Size = new System.Drawing.Size(776, 338);
             this.labelDescripcionTokenization.TabIndex = 1;
             this.labelDescripcionTokenization.Text = resources.GetString("labelDescripcionTokenization.Text");
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::AppPrincipal.Properties.Resources.er;
+            this.panel1.Location = new System.Drawing.Point(279, 421);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(590, 103);
+            this.panel1.TabIndex = 2;
             // 
             // FormTokenization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelDescripcionTokenization);
             this.Controls.Add(this.labelTituloTokenization);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -70,5 +80,6 @@
 
         private System.Windows.Forms.Label labelTituloTokenization;
         private System.Windows.Forms.Label labelDescripcionTokenization;
+        private System.Windows.Forms.Panel panel1;
     }
 }
