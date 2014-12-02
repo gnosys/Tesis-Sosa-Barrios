@@ -66,7 +66,6 @@ L8er	Later
 deets	Details
 4U	For You
 FB	Facebook
-4	For
 D	Direct
 itz	It is
 BGD	Background
@@ -119,15 +118,15 @@ PWN	Own
 woz	Was
 Twittworking	Twitter Networking
 Twittsomnia	Twitter Insomnia
-thx	tx Thanks
-Tu	Thank You
+thx	Thanks
+tx	Thanks
 AFDA	A Few Days Ago
 AHFY	Always here for you
 AOMM	Always on my mind
 ANFSCD	And Now For Something Completely Different
 AYPI	And Your Point Is
 Agl	Angel
-A3	Anyplace, Anywhere, Anytime
+A3	"Anyplace, ""Anywhere,"" Anytime"
 AWHFY	Are We Having Fun Yet
 AYC	Are you coming
 AYSOS	Are You Stupid Or Something
@@ -146,7 +145,6 @@ BBQ	Barbecue
 BBL	Be Back Later
 BBW	Be back whenever
 BRB	Be Right Back
-Hot	Beautiful
 BION	Believe It or Not
 BESTIE	Best Friend
 BFFN	Best friend for now
@@ -158,392 +156,387 @@ BW	Best Wishes
 BCO	Big crush on
 BD	Big Deal
 BFK	Big Fat Kiss
-BUF	Big, Ugly, Fat
+BUF	"Big, ""Ugly,"" Fat"
 bday	Birthday
 Swag	Boasting About One's Skills
 BCBG	Bon Chic Bon Genre
 BBB	Boring Beyond Belief
-Bootsie	Boring Person
 BF	Boyfriend
-BNO Boys night out
-BB Bright blessings
-BAF Bring A Friend
-Bro Brother
-BIL Brother In Law
-BTWITILY By the way, I think I love you
-CRTLA Can't Remember The Three Letter Acronym
-CSL Can't stop laughing
-CYL Catch ya later
-CTO Check This Out
-CYF Check your Facebook
-CYM Check your MySpace
-CHILLAX Chill and relax
-CNRHKYITF Chuck Norris roundhouse kick you in the face
-Gz Congratulations
-CSB Cool Story, Bro
-CPE Coolest Person Ever
-CMIIW Correct Me If I'm Wrong
-CX Correction
-cre8 Create
-XTL Cross The Line
-DYAC Damn You Auto Correct
-DGYF Dang Girl, You're Fine
-DU Darn you
-DIL Daughter-in-law
-dc Daycare
-DF Dear Fiance
-DH Dear Hubby
-DH Dear Husband
-DP Dear partner
-DS Dear Son
-DYK Did You Know
-DUCT Did You See That
-DGA Digital Guardian Angel
-ugh Disgusted
-DTRT Do The Right Thing
-DILLIGAFF Does it look like I give a flying flip
-DL Doing Laundry
-DBTS Don't Believe That Stuff
-D/C Don't care
-DFTBA Don't forget to be awesome
-DMY Don't Mess Yourself
-DYD Don't you dare
-DITG Down in the Gutter
-DTF Down to Fuck
-EOR End Of Rant
-Fri Endless Friend
-enuf Enough
-Meh Equivalent To Shrugging One's Shoulders
-e1 Everyone
-xbf Ex-Boyfriend
-EYC Excited Yet Calm
-xgf Ex-Girlfriend
-FBC FaceBook Chat
-FBF Facebook Friend
-FBO Facebook Official
-FIL Father In Law
-favs Favorites
-FOMO Fear of Missing Out
-FOMOH Fear Of Missing Out On Hockey
-F9 Fine
-FBF Flashback Friday
-FF Follow Friday
-FNB Football and beer
-FAWC For Anyone Who Cares
-FCOL For Crying Out Loud
-FFS For Fuck's Sake
-4RL For real
-FTR For The Record
-FTTB For The Time Being
-FWIW For What It's Worth
-FYA For Your Amusement
-FYE For Your Entertainment
-4N Foreign
-4ever Forever
-FUSIT Fouled up situation
-FOB Fresh Off the Boat
-FF Friends Forever
-FHO Friends Hanging Out
-FYF From your Friend
-FML Fuck My Life
-FOH Fuck Outta Here
-FAF Funny as fluff
-FH Future Husband
-FW Future Wife
-G9 Genius
-GTFO Get The Fuck Out
-GF Girlfriend
-GNO Girls night out
-GMAB Give Me A Break
-GBY God bless you
-GIC God's in control
-GPS God's Positioning System
-GFN Gone For Now
-GG Good Game
-GGGB Good girl gone bad
-GTG Good To Go
-G2TU Got to tell you
-GGG Gotta get a grip
-gma Grandma
-GPOY Gratuitous Picture Of Yourself
-GPOYW Gratuitous Picture Of Yourself Wednesday
-GBH&K Great Big Hug And Kiss
-Crew Group Of Friends
-HBBD Happy Belated Birthday
-HLBD Happy late birthday
-HNY Happy New Year
-HPDC Happy People Don't Complain
-H/T Hat Tip
-H8t Hate
-H8 Hate
-HML Hate My Life
-HOPE Have Only Positive Expectations
-HT Heard Through
-<3 Heart
-HYFR Heck Ya, Fucking Right
-HMP Help Me, Please
-HWU Hey, what's up
-HMB Hit Me Back
-HMU Hit me up
-HOM Hit or miss
-HUN Honey
-HUMM Hope You Miss Me
-HRU How Are You
-HC How cool
-HB Hug back
-H&K Hugs and kisses
-hmp Humph
-IA I agree
-IAGSMSOL I am getting some money sooner or later
-IAIL I am in love
-ion I Don't
-IDC I don't care
-IDEK I don't even know
-IFSFY I feel sorry for you
-IFVB I feel very bad
-IHU I hate you
-IJDGAF I just don't give a fuck
-IJWTS I Just Want To Say
-IKR I Know Right
-ILMM I love my man
-143 I Love You
-ILUGTD I love you guys to death
-ILYLC I love you like crazy
-ILYL I love you lots
-IMU I Miss You
-IOU I owe you
-IWU I want you
-IIR If I Remember
-IIRC If I Remember Correctly
-IAB In a bit
-ICYWW In Case You Were Wondering
-IMAO In My Arrogant Opinion
-IMD In my dreams
-IME In My Experience
-IMO In My Opinion
-IMPO In My Personal Opinion
-IMSO In my sovereign opinion
-ITMT In the meantime
-IDD Indeed
-IR8 Irate
-IRSTBO It really sucks the big one
-IAG It's all good
-JFC Jesus Fucking Christ
-JFK Just Fucking Kidding
-JLMK Just let me know
-JMO Just My Opinion
-JTLYK Just to let you know
-JUIL Just you I love
-KYSOTI Keep your stick on the ice
-KIR Keepin' it real
-KMSL Killing Myself Laughing
-XO Kiss and Hug
-KHYF Know How You Feel
-KWIM Know What I Mean
-L8R Later
-LFTD Laugh for the day
-LOLZ Laugh out louds
-LA Laughing a lot
-LBVS Laughing But Very Serious
-LLS Laughing like shit
-LMFAO Laughing My Fat Ass Off
-LLPOF Liar Liar Pants On Fire
-LIG Life is good
-lk Like
-LMS Like MY Status
-LI LinkedIn
-L2M Listening to Music
-LIL Little
-LOC Load of crap
-LSS Long story short
-LTR Long Term Relationship
-LOLOL Lots of laugh out louds
-LOL Lots Of Love
-LAFS Love at first sight
-LEP Love emo people
-LML Love My Life
-LUGLS Love you guys like sisters
-LYLAB Love You Like A Brother
-LUM Love you man
-LYSM Love You So Much
-LTD Lovers till death
-MCM Mancrush Monday
-MCM Man-Crush Monday
-MYOB Mind Your Own Business
-MRT Modified Retweet
-mum Mom
-MTF More To Follow
-MIL Mother In Law
-MOFO Motherfucker
-MM Music Monday
-MLIA My life is average
-M02 My two cents
-Mysp MySpace
-nvm Nevermind
-NBD No Big Deal
-NLT No Later Than
-NP No Problem
-NOMB None of my business
-NOBMR None of my business, right
-NOYB None Of Your Business
-NB Not bad
-NGL Not Gonna Lie
-NM Not Much
-NSFW Not Safe For Work
-NSFW Not suitable for women
-NTW Not To Worry
-NTS Note to self
-Obv Obviously
-OME Oh my Edward
-ZOMG Oh My God
-OMGD Oh my gosh, duh
-ONYD Oh No You Didn't
-O RLY Oh Really
-OIC Oh, I see
-OMFG Oh, My Fucking God
-OMW On My Way
-OTS On the Scene
-OLTL One Life to Live
-OOMF One Of My Followers
-OG Original Gangster
-OOH Out of here
-OOTD Outfit of the day
-OTE Over the edge
-Pwnd Owned
-PITA Pain in the Ass
-PIO Pass it on
-PTFO Passed The Fuck Out
-POTB Pat on the back
-PBUH Peace be upon him
-PLJ Peace, love, joy
-PIMP Peeing In My Pants
-POTD Photo of the Day
-Pic Picture
-PC4PC Picture comment for picture comment
-POS Piece Of Shit
-PL0X Please
-PTL Praise the Lord
-POTUS President of the United States
-Poser Pretender
-PDH Pretty darn hot
-PMKI Pretty Much Killing It
-PDA Public Display Of Affection
-PSOG Pure stroke of genius
-Q Question
-RATM Rage Against the Machine
-o_O Raised Eyebrow
-RDF Real deal feeling
-RLRT Real Life Retweet
-RLY Really
-rthx Retweet Thanks
-ridic Ridiculous
-rox Rocks
-ROTF Rolling On The Floor
-SFW Safe For Work
-SPST Same place, same time
-CU2MR See you tomorrow
-SOH Sense Of Humor
-srs Serious
-SMH Shakes My Head
-SMFH Shaking My Fucking Head
-S4S Share For Share
-SOL Shit Outta Luck
-STFU Shut The Fuck Up
-SIL Sister In Law
-SFF So freaking funny
-SMF So Much Fun
-SLM Socially limiting maneuver
-SOS Someone Special
-SOAB Son of a Bitch
-SAT Sorry about that
-SAHD Stay-At-Home Dad
-SAHM Stay-at-home mom
-SAHP Stay-at-Home Parent
-SUX Sucks
-SD Sweet Dreams
-TC Take Care
-TCOB Takin' Care of Business
-TTY Talk To You
-TTYN Talk To You Never
-TTYOOTD Talk to you one of these days
-TMAI Tell Me About It
-TGFF Thank God For Friday
-TGIF Thank God It's Friday
-TQVM Thank you very much
-THX Thanks
-TFTA Thanks for the Add
-TAC That Ain't Cool
-TISNF That Is So Not Fair
-TITF That is too funny
-TRS That really sucks
-TWSI That was so ironic
-TWTI That was totally ironic
-TMG That's My Girl
-TWSS That's what she said
-TOH The other half
-TTTT These Things Take Time
-TAY Thinking about you
-TBT Throwback Thursday
-TL Time Line
-TBH To Be Honest
-TBR To Be Read
-TMDF To my dearest friend
-2U2 To you too
-TIL Today I Learned
-2MR Tomorrow
-TIC Tongue In Cheek
-2C4U Too cool for you
-2DFM Too dumb for me
-2FB Too Freaking Bad
-2H2H Too hot to handle
-2L8 Too Late
-TLDR Too Long, Didn't Read
-TMFT Too Much Free Time
-TMI Too Much Information
-TPT Trailer park trash
-TT Trending Topic
-TPM Tweets Per Minute
-TFF Twitter Follower-Friend
-MMK Umm, Ok
-ul Unlucky
-U2U Up to you
-Vacay Vacation
-VBG Very Big Grin
-W2G Way To Go
-W2F Way too funny
-WDYT What do you think
-WTFE What the frick ever
-WTFNF What the fucking fuck
-WTV Whatever
-sup What's Up
-WL Whatta loser
-WEG Wicked Evil Grin
-WYWH Wish You Were Here
-WV With
-WADR With All Due Respect
-WCW Womancrush Wednesday
-WCW Woman-Crush Wednesday
-YYSS Yeah yeah, sure sure
-YRAG You are a geek
-YRL You are lame
-URTB You Are The Best
-YDI You deserved it
-YGG You go girl
-YKWIM You Know What I Mean
-ULKGR8 You look great
-YOLO You Only Live Once
-UOME You owe me
-YSJ You're so jealin
-YM You're Welcome
-Alt A lot
-AWOL Absent while online
-Addy Address
-ASP After Show Party
-AML All my love
-ATW All the way
-ADPIC Always Dependably Politically Incorrect
-BMGWL Busting my gut with laughter
-C&G Chuckle and Grin
-C4N Ciao For Now
-GUFN Grounded Until Further Notice
-ICYMI In case you missed it
+BNO	Boys night out
+BB	Bright blessings
+BAF	Bring A Friend
+Bro	Brother
+BIL	Brother In Law
+BTWITILY	"By the ""way,"" I think I love you"
+CRTLA	Can't Remember The Three Letter Acronym
+CSL	Can't stop laughing
+CYL	Catch ya later
+CTO	Check This Out
+CYF	Check your Facebook
+CYM	Check your MySpace
+CHILLAX	Chill and relax
+CNRHKYITF	Chuck Norris roundhouse kick you in the face
+Gz	Congratulations
+CSB	"Cool ""Story,"" Bro"
+CPE	Coolest Person Ever
+CMIIW	Correct Me If I'm Wrong
+CX	Correction
+cre8	Create
+XTL	Cross The Line
+DYAC	Damn You Auto Correct
+DGYF	"Dang ""Girl,"" You're Fine"
+DU	Darn you
+DIL	Daughter-in-law
+dc	Daycare
+DF	Dear Fiance
+DH	Dear Hubby
+DH	Dear Husband
+DP	Dear partner
+DS	Dear Son
+DYK	Did You Know
+DUCT	Did You See That
+DGA	Digital Guardian Angel
+ugh	Disgusted
+DTRT	Do The Right Thing
+DILLIGAFF	Does it look like I give a flying flip
+DL	Doing Laundry
+DBTS	Don't Believe That Stuff
+D/C	Don't care
+DFTBA	Don't forget to be awesome
+DMY	Don't Mess Yourself
+DYD	Don't you dare
+DITG	Down in the Gutter
+DTF	Down to Fuck
+EOR	End Of Rant
+Fri	Endless Friend
+enuf	Enough
+Meh	Equivalent To Shrugging One's Shoulders
+e1	Everyone
+xbf	Ex-Boyfriend
+EYC	Excited Yet Calm
+xgf	Ex-Girlfriend
+FBC	FaceBook Chat
+FBF	Facebook Friend
+FBO	Facebook Official
+FIL	Father In Law
+favs	Favorites
+FOMO	Fear of Missing Out
+FOMOH	Fear Of Missing Out On Hockey
+F9	Fine
+FBF	Flashback Friday
+FF	Follow Friday
+FNB	Football and beer
+FAWC	For Anyone Who Cares
+FCOL	For Crying Out Loud
+FFS	For Fuck's Sake
+4RL	For real
+FTR	For The Record
+FTTB	For The Time Being
+FWIW	For What It's Worth
+FYA	For Your Amusement
+FYE	For Your Entertainment
+4N	Foreign
+4ever	Forever
+FUSIT	Fouled up situation
+FOB	Fresh Off the Boat
+FF	Friends Forever
+FHO	Friends Hanging Out
+FYF	From your Friend
+FML	Fuck My Life
+FOH	Fuck Outta Here
+FAF	Funny as fluff
+FH	Future Husband
+FW	Future Wife
+G9	Genius
+GTFO	Get The Fuck Out
+GF	Girlfriend
+GNO	Girls night out
+GMAB	Give Me A Break
+GBY	God bless you
+GIC	God's in control
+GPS	God's Positioning System
+GFN	Gone For Now
+GG	Good Game
+GGGB	Good girl gone bad
+GTG	Good To Go
+G2TU	Got to tell you
+GGG	Gotta get a grip
+gma	Grandma
+GPOY	Gratuitous Picture Of Yourself
+GPOYW	Gratuitous Picture Of Yourself Wednesday
+GBH&K	Great Big Hug And Kiss
+Crew	Group Of Friends
+HBBD	Happy Belated Birthday
+HLBD	Happy late birthday
+HNY	Happy New Year
+HPDC	Happy People Don't Complain
+H/T	Hat Tip
+H8t	Hate
+H8	Hate
+HML	Hate My Life
+HOPE	Have Only Positive Expectations
+HT	Heard Through
+<3	Heart
+HYFR	"Heck ""Ya,"" Fucking Right"
+HMP	"Help ""Me,"" Please"
+HWU	"Hey, what's up"
+HMB	Hit Me Back
+HMU	Hit me up
+HOM	Hit or miss
+HUN	Honey
+HUMM	Hope You Miss Me
+HRU	How Are You
+HC	How cool
+HB	Hug back
+H&K	Hugs and kisses
+hmp	Humph
+IA	I agree
+IAGSMSOL	I am getting some money sooner or later
+IAIL	I am in love
+ion	I Don't
+IDC	I don't care
+IDEK	I don't even know
+IFSFY	I feel sorry for you
+IFVB	I feel very bad
+IHU	I hate you
+IJDGAF	I just don't give a fuck
+IJWTS	I Just Want To Say
+IKR	I Know Right
+ILMM	I love my man
+ILUGTD	I love you guys to death
+ILYLC	I love you like crazy
+ILYL	I love you lots
+IMU	I Miss You
+IOU	I owe you
+IWU	I want you
+IIR	If I Remember
+IIRC	If I Remember Correctly
+IAB	In a bit
+ICYWW	In Case You Were Wondering
+IMAO	In My Arrogant Opinion
+IMD	In my dreams
+IME	In My Experience
+IMO	In My Opinion
+IMPO	In My Personal Opinion
+IMSO	In my sovereign opinion
+ITMT	In the meantime
+IDD	Indeed
+IR8	Irate
+IRSTBO	It really sucks the big one
+IAG	It's all good
+JFK	Just Fucking Kidding
+JLMK	Just let me know
+JMO	Just My Opinion
+JTLYK	Just to let you know
+JUIL	Just you I love
+KYSOTI	Keep your stick on the ice
+KIR	Keepin' it real
+KMSL	Killing Myself Laughing
+XO	Kiss and Hug
+KHYF	Know How You Feel
+KWIM	Know What I Mean
+L8R	Later
+LFTD	Laugh for the day
+LOLZ	Laugh out louds
+LA	Laughing a lot
+LBVS	Laughing But Very Serious
+LLS	Laughing like shit
+LMFAO	Laughing My Fat Ass Off
+LLPOF	Liar Liar Pants On Fire
+LIG	Life is good
+lk	Like
+LMS	Like MY Status
+LI	LinkedIn
+L2M	Listening to Music
+LIL	Little
+LOC	Load of crap
+LSS	Long story short
+LTR	Long Term Relationship
+LOLOL	Lots of laugh out louds
+LOL	Lots Of Love
+LAFS	Love at first sight
+LEP	Love emo people
+LML	Love My Life
+LUGLS	Love you guys like sisters
+LYLAB	Love You Like A Brother
+LUM	Love you man
+LYSM	Love You So Much
+LTD	Lovers till death
+MCM	Mancrush Monday
+MCM	Man-Crush Monday
+MYOB	Mind Your Own Business
+MRT	Modified Retweet
+mum	Mom
+MTF	More To Follow
+MIL	Mother In Law
+MOFO	Motherfucker
+MM	Music Monday
+MLIA	My life is average
+M02	My two cents
+Mysp	MySpace
+nvm	Nevermind
+NBD	No Big Deal
+NLT	No Later Than
+NP	No Problem
+NOMB	None of my business
+NOBMR	"None of my ""business,"" right"
+NOYB	None Of Your Business
+NB	Not bad
+NGL	Not Gonna Lie
+NM	Not Much
+NSFW	Not Safe For Work
+NSFW	Not suitable for women
+NTW	Not To Worry
+NTS	Note to self
+Obv	Obviously
+OME	Oh my Edward
+ZOMG	Oh My God
+OMGD	"Oh my ""gosh,"" duh"
+ONYD	Oh No You Didn't
+O RLY	Oh Really
+OIC	"Oh, I see"
+OMW	On My Way
+OTS	On the Scene
+OLTL	One Life to Live
+OOMF	One Of My Followers
+OG	Original Gangster
+OOH	Out of here
+OOTD	Outfit of the day
+OTE	Over the edge
+Pwnd	Owned
+PITA	Pain in the Ass
+PIO	Pass it on
+PTFO	Passed The Fuck Out
+POTB	Pat on the back
+PBUH	Peace be upon him
+PLJ	"Peace, ""love,"" joy"
+PIMP	Peeing In My Pants
+POTD	Photo of the Day
+Pic	Picture
+PC4PC	Picture comment for picture comment
+POS	Piece Of Shit
+PL0X	Please
+PTL	Praise the Lord
+POTUS	President of the United States
+Poser	Pretender
+PDH	Pretty darn hot
+PMKI	Pretty Much Killing It
+PDA	Public Display Of Affection
+PSOG	Pure stroke of genius
+Q	Question
+RATM	Rage Against the Machine
+o_O	Raised Eyebrow
+RDF	Real deal feeling
+RLRT	Real Life Retweet
+RLY	Really
+rthx	Retweet Thanks
+ridic	Ridiculous
+rox	Rocks
+ROTF	Rolling On The Floor
+SFW	Safe For Work
+SPST	"Same ""place,"" same time"
+CU2MR	See you tomorrow
+SOH	Sense Of Humor
+srs	Serious
+SMH	Shakes My Head
+SMFH	Shaking My Fucking Head
+S4S	Share For Share
+SOL	Shit Outta Luck
+STFU	Shut The Fuck Up
+SIL	Sister In Law
+SFF	So freaking funny
+SMF	So Much Fun
+SLM	Socially limiting maneuver
+SOS	Someone Special
+SOAB	Son of a Bitch
+SAT	Sorry about that
+SAHD	Stay-At-Home Dad
+SAHM	Stay-at-home mom
+SAHP	Stay-at-Home Parent
+SUX	Sucks
+SD	Sweet Dreams
+TC	Take Care
+TCOB	Takin' Care of Business
+TTY	Talk To You
+TTYN	Talk To You Never
+TTYOOTD	Talk to you one of these days
+TMAI	Tell Me About It
+TGFF	Thank God For Friday
+TGIF	Thank God It's Friday
+TQVM	Thank you very much
+TFTA	Thanks for the Add
+TAC	That Ain't Cool
+TISNF	That Is So Not Fair
+TITF	That is too funny
+TRS	That really sucks
+TWSI	That was so ironic
+TWTI	That was totally ironic
+TMG	That's My Girl
+TWSS	That's what she said
+TOH	The other half
+TTTT	These Things Take Time
+TAY	Thinking about you
+TBT	Throwback Thursday
+TL	Time Line
+TBH	To Be Honest
+TBR	To Be Read
+TMDF	To my dearest friend
+2U2	To you too
+TIL	Today I Learned
+2MR	Tomorrow
+TIC	Tongue In Cheek
+2C4U	Too cool for you
+2DFM	Too dumb for me
+2FB	Too Freaking Bad
+2H2H	Too hot to handle
+2L8	Too Late
+TLDR	"Too ""Long,"" Didn't Read"
+TMFT	Too Much Free Time
+TMI	Too Much Information
+TPT	Trailer park trash
+TT	Trending Topic
+TPM	Tweets Per Minute
+TFF	Twitter Follower-Friend
+MMK	"Umm, Ok"
+ul	Unlucky
+U2U	Up to you
+Vacay	Vacation
+VBG	Very Big Grin
+W2G	Way To Go
+W2F	Way too funny
+WDYT	What do you think
+WTFE	What the frick ever
+WTFNF	What the fucking fuck
+WTV	Whatever
+sup	What's Up
+WL	Whatta loser
+WEG	Wicked Evil Grin
+WYWH	Wish You Were Here
+WV	With
+WADR	With All Due Respect
+WCW	Womancrush Wednesday
+WCW	Woman-Crush Wednesday
+YYSS	"Yeah ""yeah,"" sure sure"
+YRAG	You are a geek
+YRL	You are lame
+URTB	You Are The Best
+YDI	You deserved it
+YGG	You go girl
+YKWIM	You Know What I Mean
+ULKGR8	You look great
+YOLO	You Only Live Once
+UOME	You owe me
+YSJ	You're so jealin
+YM	You're Welcome
+Alt	A lot
+AWOL	Absent while online
+Addy	Address
+ASP	After Show Party
+AML	All my love
+ATW	All the way
+ADPIC	Always Dependably Politically Incorrect
+BMGWL	Busting my gut with laughter
+C&G	Chuckle and Grin
+C4N	Ciao For Now
+GUFN	Grounded Until Further Notice
+ICYMI	In case you missed it
