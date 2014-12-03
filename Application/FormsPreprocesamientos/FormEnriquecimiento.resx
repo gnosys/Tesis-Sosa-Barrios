@@ -118,10 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelDescripcionStemmer.Text" xml:space="preserve">
-    <value>El enriquecimiento de contexto es la accion de aumentar el contenido y por consecuente la informacion acerca y relacionada de un tema en cuestion, 
+    <value>   El enriquecimiento de contexto es la accion de aumentar el contenido y por consecuente la informacion acerca y relacionada de un tema en cuestion, 
 de este modo y a traves de esta nueva informacion, nos facilita su estudio y podemos obtener una solucion mas acertada.
+   Este enriquecimiento extraído desde un link que se detectacomo token se compone de distintas partes que pueden ser tratadas como un conjunto de solución 
+a este enriquecimiento. Entonces ahora, solamente debemos detectar y conocer en el documento obtenido cuales palabras son relevantes para nuestro fin. Una
+forma de identificar palabras relevantes dentro de un documento es a través de los llamados metatags, keywords y demás, pero no hay que dejar pasar por alto que 
+en la actualidad ya estarían empezando a quedar deprecados y a cambio de eso los medios sociales se están inclinando a utilizar otras técnicas como los metatags
+de Open Graff. Por lo tanto debemos agregar el análisis sobre estas nuevas prácticas para obtener una mejor performance y obtener un mejor resultado esperado.
+Lo que encontramos en los metatag de Opengraf sería lo justo y necesario para compartir, sería una fuente mínima para compartir y leer rápido. De no tener estos
+metatags se puede utilizar los titles y si tampoco no se encuentran se puede utilizar un criterio para aplicar sobre el contenido del documento, como por ejemplo el H1,
+ya que supuestamente se encuentra en forma reducida, una descripción importante del texto, algo más que se puede aplicar, sobre estos elementos, es la identificación
+de su estilo, por ejemplo y generalmente, las palabras en cursiva o negrita son las más representativas, luego del H1 se podría ir por toda la familia de los H's, en el caso
+de una estructura acertada, se debería buscar dentro de una etiqueta p. Otra forma de análisis es tomar las palabras de los H's y ver cuántas veces está dentro de
+los p, etc, dentro del documento y así identificar su peso real en el mismo, también podemos obtener los b o strong y de esa manera aumentar su peso. De todas
+maneras podemos encontrar dentro de los H's, diferentes elementos como por ejemplo una imagen, ya que estos elementos se alojaban allí por la creencia que
+desde ese modo se obtenía un mejor ranking. Volcándonos un poco más sobre el diseño y las etiquetas H's se puede tener en cuenta el orden en que los encontramos
+dentro del documento, ya que por ejemplo un H3 puede aparecer antes que un H2 y este H3 es más importante que el H2 y por decisiones de diseño se lo utilizo así.
+Yendo un poco más profundo, podríamos encontrar microformats, que son bloques semánticos de tags comunes con una estructura específica para una determinada
+función, por ejemplo, en google se utilizan para representar cierta información conjunta en una determinada búsqueda. Estos microformats nos dan información
+adicional al documento en cuestión que no necesariamente tiene que estar relacionada con la información que nosotros buscamos, puede ser que si o puede ser
+que no, pero es información relacionada, por ejemplo nos puede dar información relacionada con el autor, pero no con el documento en sí, ni de lo que se trata en
+ese momento. Otra cosa que se podría utilizar son los site Maps, el cual contiene urls que podemos encontrar para profundizar aún más la búsqueda de información.
+Otro factor a analizar son los areas labels que le dan un rol a una etiqueta, por ejemplo la etiqueta header se puede usar muchas veces, pero el browser no sabe cuál es
+la principal y estos area label le dan ese propósito y así se puede identificar como tal, de este modo podemos acotar las búsquedas y afinar mejor la misma y recaer
+sobre lo verdaderamente importante dentro del documento.
+   Todas estas formas de identificar las palabras relevantes también dependen del diseño, del buen uso de estas buenas prácticas, ya que no hay una forma concreta y
+definitiva para hacerlo, debido a la amplia manera de aplicar diseños que encontramos hoy en día y de la forma correcta de hacerlo, pero la corriente web en general,
+estaría apuntando a estas nuevas prácticas.
 
-
-EN ESTE TRABAJO UTILIZAMOS BLA BLA BLA INCRICHIIII</value>
+   En esta aplicación se utilizan solo tres elementos, los cuales se consideran mas relevantes, son los keywords, los titles y la descripción. Se decidio optar por estos 
+elementos ya que son los que podemos encontrar siempre a primera vista, en el caso de no poder hallarlos seran pasados por alto y no se consideraran ni aportaran
+nada al enrequicimiento, a todo esto solo se utilizarán aquellos que se puedan obtener al navegar por el link en cuestión.</value>
   </data>
 </root>

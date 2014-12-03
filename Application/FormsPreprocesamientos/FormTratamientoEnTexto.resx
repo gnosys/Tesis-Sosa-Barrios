@@ -118,10 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelDescripcionStopWords.Text" xml:space="preserve">
-    <value>En esta seccion se puede aplicar todo lo que significa una modificacion, anulación o forma de tomar en cuenta los datos para su proceso futuro.
+    <value>   En esta seccion se puede aplicar todo lo que significa una modificacion, anulación o forma de tomar en cuenta los datos para su proceso futuro. Lo que se busca
+en este segmento es preparar de cierta forma a los datos que se utilizaran para obtener un mayor provecho y no destinar enfuerzo innecesario de proceso sobre datos
+que no aportaran nada al resultado final.
 
-
-
-EN ESTE TRABAJO UTILIZAMOS BLA BLA BLA INCRICHIIII</value>
+   En esta aplicación se optará por hacer incapie sobre la aparición de posibles abreviaturas. Las abreviaturas pueden ser confusas y tener oculta cierta información
+relevante y de interés para nuestro proceso final; una cierta abreviatura puede brindar una cierta cantidad de tokens que llegan a enriquecer el contexto, por lo cual
+se podra realizar un mayor entrenamiento y mayor diserción de los tweets. Para aplicar esta posibilidad se extrajo de internet una serie de abreviaturas utilizadas
+comunmente en las redes sociales (Twitter, Facebook. etc), y esta fueron aplicadas en una lista por defecto que se pueden aplicar, sino el usuario tendra la posibilidad
+de ingresar una propia y aplicarla al proceso.
+   Por otra parte, se tiene la opción de eliminar los links para limitar los datos y ganar en tiempo de ejecución, esta opción decrecera la posibilidad de una mejor
+legibilidad de los datos, pero debemos tener en cuenta que a veces, enriquecer el contexto puede jugarnos en contra, entorpeciendo de ese modo, el desarrollo
+y en definitiva la solución final.</value>
   </data>
 </root>

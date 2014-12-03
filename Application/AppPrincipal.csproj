@@ -248,6 +248,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Recursos\Abreviaturas\abbreviations.txt" />
+    <None Include="Resources\sw.PNG" />
+    <None Include="Resources\vs.png" />
+    <None Include="Resources\er.PNG" />
+    <None Include="Resources\abn.PNG" />
     <Content Include="Resources\Photos.png" />
     <Content Include="Recursos\Imagenes\logo.ico" />
     <Content Include="Recursos\Imagenes\logo.png" />

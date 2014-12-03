@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTratamientoEnTexto));
             this.labelDescripcionStopWords = new System.Windows.Forms.Label();
             this.labelTituloStopWords = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // labelDescripcionStopWords
@@ -38,7 +39,7 @@
             this.labelDescripcionStopWords.AutoSize = true;
             this.labelDescripcionStopWords.Location = new System.Drawing.Point(193, 70);
             this.labelDescripcionStopWords.Name = "labelDescripcionStopWords";
-            this.labelDescripcionStopWords.Size = new System.Drawing.Size(686, 65);
+            this.labelDescripcionStopWords.Size = new System.Drawing.Size(791, 156);
             this.labelDescripcionStopWords.TabIndex = 5;
             this.labelDescripcionStopWords.Text = resources.GetString("labelDescripcionStopWords.Text");
             // 
@@ -51,11 +52,20 @@
             this.labelTituloStopWords.TabIndex = 4;
             this.labelTituloStopWords.Text = "TRATAMIENTO EN TEXTO";
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::AppPrincipal.Properties.Resources.abn;
+            this.panel1.Location = new System.Drawing.Point(277, 249);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(584, 265);
+            this.panel1.TabIndex = 6;
+            // 
             // FormTratamientoEnTexto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelDescripcionStopWords);
             this.Controls.Add(this.labelTituloStopWords);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -70,5 +80,6 @@
 
         private System.Windows.Forms.Label labelDescripcionStopWords;
         private System.Windows.Forms.Label labelTituloStopWords;
+        private System.Windows.Forms.Panel panel1;
     }
 }
