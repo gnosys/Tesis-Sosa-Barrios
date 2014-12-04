@@ -545,6 +545,21 @@ namespace DataBaseSQL
                     
                 }
                 mod = ExecuteBatch(mod, queryBuilder);
+
+
+                queryString = @"delete from Category where ID in 
+                                (
+                                (select IdCategory from Category  c
+                                join
+                                TweetLevelCategory t
+                                on t.IdCategory = c.Id
+                                group by [Level],IdCategory
+                                having COUNT(*) <= 10
+                                )
+                                )";
+                command = new SqlCommand(queryString, connection);
+                command.ExecuteNonQuery();
+
             }
             finally
             {
