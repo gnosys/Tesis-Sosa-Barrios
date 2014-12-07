@@ -15,6 +15,8 @@ namespace Tonkenizer.Core
         private PreFilter _prefilter;
         private AroundFilter _aroundFilter;
         private Regex _delimiter;
+        private Regex linkParser = new Regex(@"\b(?:https?://|www\.)\S+\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
 
         public Tokenizer(Regex delimiter, PreFilter prefilter, AroundFilter aroundFilter)
         {
@@ -27,19 +29,27 @@ namespace Tonkenizer.Core
         {
             //here we pre process the docs
             List<string> preprocessedDocs =  _prefilter != null ? _prefilter.Filter(docs) : docs;
-            
+
+            List<string[]> tokensList = new List<string[]>();
             if (preprocessedDocs != null && preprocessedDocs.Count > 0)
             {
                 foreach(string doc in preprocessedDocs)
                 {
-                    string[] ret = Partition(doc);
-                    if (ret != null && ret.Length > 0)
+                    var links = linkParser.Matches(doc);
+                    string docWithoutLinks = linkParser.Replace(doc, String.Empty);
+                    List<string> currentTokens = new List<string>();
+                    if (docWithoutLinks.Length > 0)
                     {
-                        yield return ret;
+                        currentTokens = Partition(docWithoutLinks).ToList();
                     }
+                    foreach (Match link in links)
+                    {
+                        currentTokens.Add(link.Value);
+                    }
+                    tokensList.Add(currentTokens.ToArray());
                 }
             }
-
+            return tokensList;
         }
 
 

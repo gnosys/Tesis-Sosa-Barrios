@@ -11,6 +11,8 @@ namespace DataBaseSQL
 {
     public class DataBase : IDisposable
     {
+
+        public const int MMC = 100;
         public static string connectionString;
         protected string queryString;
         protected SqlConnection connection = null;
@@ -547,16 +549,16 @@ namespace DataBaseSQL
                 mod = ExecuteBatch(mod, queryBuilder);
 
 
-                queryString = @"delete from Category where ID in 
+                queryString = String.Format(@"delete from Category where ID in 
                                 (
                                 (select IdCategory from Category  c
                                 join
                                 TweetLevelCategory t
                                 on t.IdCategory = c.Id
                                 group by [Level],IdCategory
-                                having COUNT(*) <= 10
+                                having COUNT(*) <= {0}
                                 )
-                                )";
+                                )",MMC);
                 command = new SqlCommand(queryString, connection);
                 command.ExecuteNonQuery();
 
