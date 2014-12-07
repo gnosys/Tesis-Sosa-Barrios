@@ -283,12 +283,14 @@ namespace AppPrincipal
 
             for (int i = 0; i < length; i++)
             {
-                confusionMatrix[i] = new int[length];
+                confusionMatrix[i] = new int[length + 1];
             }
             for (int i = 0; i < actualCategories.Length; i++)
             {
                 int actualCategory = categoryLabels.IndexOf(actualCategories[i]);
                 int predictedCategory = categoryLabels.IndexOf(predictedCategories[i]);
+                if (predictedCategory == -1)
+                    predictedCategory = length;
                 confusionMatrix[actualCategory][predictedCategory]++;
             }
 

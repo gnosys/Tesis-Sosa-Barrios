@@ -38,13 +38,17 @@ namespace Tonkenizer.Core
                     var links = linkParser.Matches(doc);
                     string docWithoutLinks = linkParser.Replace(doc, String.Empty);
                     List<string> currentTokens = new List<string>();
-                    if (docWithoutLinks.Length > 0)
+                    if (!String.IsNullOrWhiteSpace(docWithoutLinks))
                     {
                         currentTokens = Partition(docWithoutLinks).ToList();
                     }
                     foreach (Match link in links)
                     {
                         currentTokens.Add(link.Value);
+                    }
+                    if (!currentTokens.Any())
+                    {
+                        currentTokens.Add(String.Empty);
                     }
                     tokensList.Add(currentTokens.ToArray());
                 }

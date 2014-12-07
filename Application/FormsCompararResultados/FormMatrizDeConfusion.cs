@@ -68,31 +68,32 @@ namespace AppPrincipal.FormsCompararResultados
 
                 int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
                 int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-                var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
-                List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
+                List<int> categoryLabels = actualCategories.Distinct().ToList();
 
                 confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
 
-                dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length;
-                dataGridViewMatrizConfusion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridViewMatrizConfusion.ColumnCount = confusionMatrix.Length + 1;
                 dataGridViewMatrizConfusion.RowCount = confusionMatrix.Length;
                 dataGridViewMatrizConfusion.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-                string[] fila = new string[confusionMatrix.Length];
+                string[] fila = new string[confusionMatrix.Length + 1];
 
                 List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
+                labels.Add("Desconocido");
 
-                for (int i = 0; i < confusionMatrix.Length; i++)
+                for (int i = 0; i < labels.Count; i++)
                 {
                     dataGridViewMatrizConfusion.Columns[i].Name = labels.ElementAt(i);
-                    dataGridViewMatrizConfusion.Rows[i].HeaderCell.Value = labels.ElementAt(i);
-
-                    for (int j = 0; j < confusionMatrix.Length; j++)
-                        fila[j] = confusionMatrix[i][j].ToString();
-
-                    dataGridViewMatrizConfusion.Rows[i].SetValues(fila);
+                    if (i + 1 < labels.Count)
+                    {
+                        dataGridViewMatrizConfusion.Rows[i].HeaderCell.Value = labels.ElementAt(i);
+                        for (int j = 0; j < fila.Length; j++)
+                            fila[j] = confusionMatrix[i][j].ToString();
+                        dataGridViewMatrizConfusion.Rows[i].SetValues(fila);
+                    }
                 }
 
                 DrawConfusionMatrix(confusionMatrix);
+                labels.Remove("Desconocido");
                 foreach (string categoria in labels)
                 {
                     comboBoxCategorias.Items.Add(categoria);
@@ -108,12 +109,12 @@ namespace AppPrincipal.FormsCompararResultados
 
         private void DrawConfusionMatrix(int[][] confusionMatrix)
         {
-            int length = confusionMatrix.Length;
+            int length = confusionMatrix.Length + 1;
             _bitmapLength = length * 10;
 
             Bitmap bitmap = new Bitmap(_bitmapLength, _bitmapLength);
             int n = _bitmapLength / length;
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < length - 1; i++)
             {
                 int maxValue = confusionMatrix[i].Sum();
                 int minValue = confusionMatrix[i].Min();

@@ -42,8 +42,7 @@ namespace AppPrincipal.FormsCompararResultados
 
                     int[] actualCategories = linesActualCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
                     int[] predictedCategories = linesPredictedCategories.Select(x => int.Parse(x.Split(' ').ElementAt(0))).ToArray();
-                    var missingCategories = predictedCategories.Where(x => !actualCategories.Contains(x)).ToList();
-                    List<int> categoryLabels = actualCategories.Union(missingCategories).ToList();
+                    List<int> categoryLabels = actualCategories.Distinct().ToList();
 
                     int[][] confusionMatrix = ((App)MdiParent).BuildConfusionMatrix(actualCategories, predictedCategories, categoryLabels);
 
