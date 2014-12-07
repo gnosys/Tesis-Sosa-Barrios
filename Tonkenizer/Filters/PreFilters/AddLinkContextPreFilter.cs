@@ -58,28 +58,31 @@ namespace Tonkenizer.Filters.PreFilters
                 //Get Meta Tags
                 var webGet = new HtmlWeb();
                 var document = webGet.Load(strUrl);
-                var metaTags = document.DocumentNode.SelectNodes("//meta");
-                if (metaTags != null)
+                if (webGet.StatusCode == HttpStatusCode.OK)
                 {
-                    foreach (var tag in metaTags)
+                    var metaTags = document.DocumentNode.SelectNodes("//meta");
+                    if (metaTags != null)
                     {
-                        if (Description && tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "description")
+                        foreach (var tag in metaTags)
                         {
-                            docDetails.Description = tag.Attributes["content"].Value;
-                        }
+                            if (Description && tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "description")
+                            {
+                                docDetails.Description = tag.Attributes["content"].Value;
+                            }
 
-                        if (Keywords && tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "keywords")
-                        {
-                            docDetails.Keywords = tag.Attributes["content"].Value;
+                            if (Keywords && tag.Attributes["name"] != null && tag.Attributes["content"] != null && tag.Attributes["name"].Value == "keywords")
+                            {
+                                docDetails.Keywords = tag.Attributes["content"].Value;
+                            }
                         }
                     }
-                }
 
-                //To Get Title
-                if (Title)
-                {
-                    string pageSource = document.DocumentNode.WriteContentTo();
-                    docDetails.Title = Regex.Match(pageSource, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+                    //To Get Title
+                    if (Title)
+                    {
+                        string pageSource = document.DocumentNode.WriteContentTo();
+                        docDetails.Title = Regex.Match(pageSource, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+                    }
                 }
 
 

@@ -9,7 +9,7 @@
     ON UPDATE NO ACTION,
 	CONSTRAINT FK_TweetLevelCategory_Category FOREIGN KEY (IdCategory) 
     REFERENCES Category (Id) 
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
 	CONSTRAINT UQ_TweetLevelCategory UNIQUE (IdTweet,IdCategory)
 

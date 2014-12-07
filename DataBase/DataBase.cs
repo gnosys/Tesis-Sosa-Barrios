@@ -524,7 +524,7 @@ namespace DataBaseSQL
                 {
                     queryBuilder.AppendLine(String.Format(@"INSERT INTO [Tweets].[dbo].[Category] ([Id],[Name],[Level]) VALUES ({0},'{1}',{2})", category.Id, category.Name, category.Level));
                     mod++;
-                    if (mod == 100)
+                    if (mod == 1000)
                     {
                         mod = ExecuteBatch(mod, queryBuilder);
                     }

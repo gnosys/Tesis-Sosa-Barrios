@@ -92,6 +92,8 @@ namespace AppPrincipal
 
             aboutBox = new AboutBox1();
             aboutBox.StartPosition = FormStartPosition.CenterScreen;
+
+            cargarDatosDePipeEnFormularios();
         }
 
         // Oculta todos los formularios.
