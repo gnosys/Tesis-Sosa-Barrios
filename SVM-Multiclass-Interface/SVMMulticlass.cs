@@ -10,7 +10,7 @@ namespace SVM_Multiclass_Interface
 {
     public class SVMMulticlass : ISVMMulticlass
     {
-        public string Learn(string example_file, string model_file, string c)
+        public string Learn(string example_file, string model_file, string c, ref int code)
         {
             // Start the child process.
             Process p = new Process();
@@ -29,11 +29,12 @@ namespace SVM_Multiclass_Interface
             string output = p.StandardOutput.ReadToEnd();
             string error = p.StandardError.ReadToEnd();
             p.WaitForExit();
+            code = p.ExitCode;
             p.Close();
             return output;
         }
 
-        public string Classify(string example_file, string model_file, string predictions_file)
+        public string Classify(string example_file, string model_file, string predictions_file, ref int code)
         {
             // Start the child process.
             Process p = new Process();
@@ -50,6 +51,7 @@ namespace SVM_Multiclass_Interface
             // Read the output stream first and then wait.
             string output = p.StandardOutput.ReadToEnd();
             p.WaitForExit();
+            code = p.ExitCode;
             p.Close();
             return output;
         }

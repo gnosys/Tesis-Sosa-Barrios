@@ -166,9 +166,10 @@ namespace AppPrincipal
             }
         }
 
-
         private void buttonPreprocesar_Click(object sender, EventArgs e)
         {
+            labelPreprocesadoAplicado.Hide();
+            ((App)this.MdiParent).limpiarFormSinRepresentacion();
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             PreFilter preFilter = null;
             AroundFilter aroundFilter = null;
@@ -231,7 +232,7 @@ namespace AppPrincipal
                 }
                 else if (seleccion.Text.Equals("Tratamiento en Texto"))
                 {
-                    var nuevoJson = JObject.Parse(@"{ ""_type"" : ""words"", ""replaceAbbreviations"" : false, ""filename"" : null, ""byDefault"" : true, ""removeLinks"" : false }");
+                    var nuevoJson = JObject.Parse(@"{ ""_type"" : ""words"", ""replaceAbbreviations"" : true, ""filename"" : null, ""byDefault"" : true, ""removeLinks"" : false }");
                     var nuevoJtokenFiltro = nuevoJson as JToken;
                     preprocessingFiltersConfiguration[indexTokenizing].AddBeforeSelf(nuevoJtokenFiltro);
                 }

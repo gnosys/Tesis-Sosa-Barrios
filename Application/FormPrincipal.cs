@@ -165,6 +165,23 @@ namespace AppPrincipal
             buttonDataBase_Click(new object(), new EventArgs());
         }
 
+        public void limpiarFormSinDB()
+        {
+            formPreprocesamiento.Clean();
+            formRepresentacion.Clean();
+            formSVMLigth.Clean();
+            formMatrizDeConfusion.Clean();
+            formCompararResultados.Clean();
+        }
+
+        public void limpiarFormSinRepresentacion()
+        {
+            formRepresentacion.Clean();
+            formSVMLigth.Clean();
+            formMatrizDeConfusion.Clean();
+            formCompararResultados.Clean();
+        }
+
         private void cargarDatosDePipeEnFormularios()
         {
             formDataBaseYSeleccionarCategoria.Init();

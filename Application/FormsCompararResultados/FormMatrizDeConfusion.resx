@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label2.Text" xml:space="preserve">
-    <value>En el campo de la inteligencia artificial una matriz de confusión es una herramienta de visualización que se emplea en aprendizaje supervisado. Cada columna de 
-la matriz representa el número de predicciones de cada clase, mientras que cada fila representa a las instancias en la clase real. Uno de los beneficios de las matrices 
-de confusión es que facilitan ver si el sistema está confundiendo dos clases.</value>
+    <value>   En el campo de la inteligencia artificial una matriz de confusión es una herramienta de visualización que se emplea en aprendizaje supervisado. Cada columna de 
+la matriz representa el número de predicciones de cada clase, mientras que cada fila representa las instancias en la clase real. Uno de los beneficios de las matrices 
+de confusión es que identifica si el sistema está confundiendo las clases. A continuación se muestra la matriz con el porcentaje de datos seleccionado para clasificar. </value>
   </data>
 </root>

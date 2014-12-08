@@ -99,6 +99,35 @@ namespace AppPrincipal
             ((App)MdiParent).DesactivarBotonPreprocesamiento();
         }
 
+        private void cleanClickSeleccionarNivel()
+        {
+            labelNivelSeleccionado.Hide();
+            labelCantidadNiveles.Text = "0";
+            labelProfundidadNivelSeleccionado.Text = "0";
+            labelProfundidadNivelSeleccionado.ForeColor = Color.Black;
+            labelTotalCantidadDeTwwets.Text = "0";
+            labelTotalCantidadDeTwwets.ForeColor = Color.Black;
+            labelCantidadDeCategoriasACrear.Text = "0";
+            labelCantidadDeCategoriasACrear.ForeColor = Color.Black;
+            labelCantidadTweetProfundidadNivel.Text = "0";
+            labelCantidadTweetProfundidadNivel.ForeColor = Color.Black;
+            SelectCantTuplas.Clear();
+            SelectCantDatos.Clear();
+            textBoxSeleccionarNivel.Clear();
+            SelectCantTuplas.Enabled = false;
+            SelectCantDatos.Enabled = false;
+            textBoxSeleccionarNivel.Enabled = false;
+            buttonMostrarTuplas.Enabled = false;
+            buttonMostrarCategorias.Enabled = false;
+            buttonMostrarTextos.Enabled = false;
+            buttonCrearCategorias.Enabled = false;
+            buttonSeleccionarNivel.Enabled = false;
+            cleanGrid();
+            ((App)MdiParent).DesactivarBotonCategoria();
+            ((App)MdiParent).DesactivarBotonPreprocesamiento();
+            ((App)MdiParent).limpiarFormSinDB();
+        }
+
         private void cleanGrid()
         {
             dataGridViewTuplas.Rows.Clear();
@@ -124,6 +153,7 @@ namespace AppPrincipal
         {
             if (SelectCantDatos.Text != "" && int.Parse(SelectCantDatos.Text) > 0 && int.Parse(SelectCantDatos.Text) < 10001)
             {
+                cleanClickSeleccionarNivel();
                 List<string> categorias = db.CategoriesTableTweet(int.Parse(SelectCantDatos.Text));
                 dataGridViewDatos.Rows.Clear();
                 dataGridViewDatos.Columns.Clear();
@@ -173,6 +203,7 @@ namespace AppPrincipal
                 db = DataBase.Instance;
                 if (db.CheckConnection())
                 {
+                    disableForms();
                     labelConexion.ForeColor = Color.Green;
                     labelConexion.Text = "Conexión Establecida";
                     ((App)this.MdiParent).ActivarBotonCategoria();
