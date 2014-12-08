@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Stemmer");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Stop Words");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("Enriquecimiento");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("Stemmer");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("Stop Words");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("Tratamiento en Texto");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPreprocesamiento));
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Tokenization");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("Tokenization");
             this.buttonPreprocesar = new System.Windows.Forms.Button();
             this.listViewPreprocesamientos = new System.Windows.Forms.ListView();
             this.columnHeaderListaSeleccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -114,10 +114,10 @@
             this.columnHeaderListaSeleccion});
             this.listViewPreprocesamientos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewPreprocesamientos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14});
             this.listViewPreprocesamientos.Location = new System.Drawing.Point(365, 91);
             this.listViewPreprocesamientos.MultiSelect = false;
             this.listViewPreprocesamientos.Name = "listViewPreprocesamientos";
@@ -137,7 +137,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(205, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(730, 26);
+            this.label1.Size = new System.Drawing.Size(739, 26);
             this.label1.TabIndex = 3;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -167,7 +167,7 @@
             this.columnHeader1});
             this.listViewOrdenPreprocesos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewOrdenPreprocesos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5});
+            listViewItem15});
             this.listViewOrdenPreprocesos.Location = new System.Drawing.Point(750, 91);
             this.listViewOrdenPreprocesos.MultiSelect = false;
             this.listViewOrdenPreprocesos.Name = "listViewOrdenPreprocesos";
@@ -242,6 +242,8 @@
             // checkBoxListaStopWordsPorDefecto
             // 
             this.checkBoxListaStopWordsPorDefecto.AutoSize = true;
+            this.checkBoxListaStopWordsPorDefecto.Checked = true;
+            this.checkBoxListaStopWordsPorDefecto.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxListaStopWordsPorDefecto.Location = new System.Drawing.Point(129, 52);
             this.checkBoxListaStopWordsPorDefecto.Name = "checkBoxListaStopWordsPorDefecto";
             this.checkBoxListaStopWordsPorDefecto.Size = new System.Drawing.Size(15, 14);
@@ -370,6 +372,8 @@
             // checkBoxERPorDefecto
             // 
             this.checkBoxERPorDefecto.AutoSize = true;
+            this.checkBoxERPorDefecto.Checked = true;
+            this.checkBoxERPorDefecto.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxERPorDefecto.Location = new System.Drawing.Point(191, 52);
             this.checkBoxERPorDefecto.Name = "checkBoxERPorDefecto";
             this.checkBoxERPorDefecto.Size = new System.Drawing.Size(15, 14);
@@ -445,6 +449,8 @@
             // checkBoxDescripcion
             // 
             this.checkBoxDescripcion.AutoSize = true;
+            this.checkBoxDescripcion.Checked = true;
+            this.checkBoxDescripcion.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxDescripcion.Location = new System.Drawing.Point(140, 68);
             this.checkBoxDescripcion.Name = "checkBoxDescripcion";
             this.checkBoxDescripcion.Size = new System.Drawing.Size(15, 14);
@@ -484,6 +490,8 @@
             // checkBoxTitulo
             // 
             this.checkBoxTitulo.AutoSize = true;
+            this.checkBoxTitulo.Checked = true;
+            this.checkBoxTitulo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxTitulo.Location = new System.Drawing.Point(140, 52);
             this.checkBoxTitulo.Name = "checkBoxTitulo";
             this.checkBoxTitulo.Size = new System.Drawing.Size(15, 14);
@@ -493,6 +501,8 @@
             // checkBoxKeywords
             // 
             this.checkBoxKeywords.AutoSize = true;
+            this.checkBoxKeywords.Checked = true;
+            this.checkBoxKeywords.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxKeywords.Location = new System.Drawing.Point(140, 36);
             this.checkBoxKeywords.Name = "checkBoxKeywords";
             this.checkBoxKeywords.Size = new System.Drawing.Size(15, 14);
@@ -570,7 +580,8 @@
             // checkBoxListaAbreviaturasPorDefecto
             // 
             this.checkBoxListaAbreviaturasPorDefecto.AutoSize = true;
-            this.checkBoxListaAbreviaturasPorDefecto.Enabled = false;
+            this.checkBoxListaAbreviaturasPorDefecto.Checked = true;
+            this.checkBoxListaAbreviaturasPorDefecto.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxListaAbreviaturasPorDefecto.Location = new System.Drawing.Point(161, 74);
             this.checkBoxListaAbreviaturasPorDefecto.Name = "checkBoxListaAbreviaturasPorDefecto";
             this.checkBoxListaAbreviaturasPorDefecto.Size = new System.Drawing.Size(15, 14);
@@ -581,6 +592,8 @@
             // checkBoxReemplazarAbreviatura
             // 
             this.checkBoxReemplazarAbreviatura.AutoSize = true;
+            this.checkBoxReemplazarAbreviatura.Checked = true;
+            this.checkBoxReemplazarAbreviatura.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxReemplazarAbreviatura.Location = new System.Drawing.Point(149, 24);
             this.checkBoxReemplazarAbreviatura.Name = "checkBoxReemplazarAbreviatura";
             this.checkBoxReemplazarAbreviatura.Size = new System.Drawing.Size(15, 14);

@@ -45,7 +45,7 @@ namespace DataBaseSQL
 
         public List<string[]> GetTokens(string guid)
         {
-            queryString = string.Format(@"SELECT [IdTweet],[Text] FROM [Tweets].[dbo].[Token] WHERE [idPipe] = '{0}'",guid);
+            queryString = string.Format(@"SELECT [IdTweet],[Text] FROM " + connection.Database + ".[dbo].[Token] WHERE [idPipe] = '{0}'", guid);
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -116,7 +116,7 @@ namespace DataBaseSQL
 
         public bool ExistDataTableCategory()
         {
-            queryString = string.Format(@"SELECT count(Id) FROM [Tweets].[dbo].[Category]");
+            queryString = string.Format(@"SELECT count(Id) FROM " + connection.Database + ".[dbo].[Category]");
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -141,7 +141,7 @@ namespace DataBaseSQL
         public List<Tweet> SearchTweets(int cantTuplas)
         {
             List<Tweet> list = new List<Tweet>();
-            queryString = string.Format(@"SELECT TOP {0} * FROM [Tweets].[dbo].[Tweet]", cantTuplas);
+            queryString = string.Format(@"SELECT TOP {0} * FROM " + connection.Database + ".[dbo].[Tweet]", cantTuplas);
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -171,7 +171,7 @@ namespace DataBaseSQL
         public List<Tweet> SearchTweetsUpdates(int cantTuplas)
         {
             List<Tweet> list = new List<Tweet>();
-            queryString = string.Format(@"SELECT {0} {1} * FROM [Tweets].[dbo].[Tweet]", cantTuplas == 0 ? String.Empty : "TOP", cantTuplas == 0 ? String.Empty : cantTuplas.ToString());
+            queryString = string.Format(@"SELECT {0} {1} * FROM " + connection.Database + ".[dbo].[Tweet]", cantTuplas == 0 ? String.Empty : "TOP", cantTuplas == 0 ? String.Empty : cantTuplas.ToString());
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -202,7 +202,7 @@ namespace DataBaseSQL
         public List<string> CategoriesTableTweet(int cantTuplas)
         {
             List<string> list = new List<string>();
-            queryString = string.Format(@"SELECT TOP {0} [Category] FROM [Tweets].[dbo].[Tweet]", cantTuplas);
+            queryString = string.Format(@"SELECT TOP {0} [Category] FROM " + connection.Database + ".[dbo].[Tweet]", cantTuplas);
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -225,7 +225,7 @@ namespace DataBaseSQL
         public List<string> TextsTableTweet(int cantTuplas)
         {
             List<string> list = new List<string>();
-            queryString = string.Format(@"SELECT TOP {0} [Text] FROM [Tweets].[dbo].[Tweet]", cantTuplas);
+            queryString = string.Format(@"SELECT TOP {0} [Text] FROM " + connection.Database + ".[dbo].[Tweet]", cantTuplas);
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -248,7 +248,7 @@ namespace DataBaseSQL
         public List<string> CategoriesTableTweet()
         {
             List<string> list = new List<string>();
-            queryString = string.Format(@"SELECT [Category] FROM [Tweets].[dbo].[Tweet]");
+            queryString = string.Format(@"SELECT [Category] FROM " + connection.Database + ".[dbo].[Tweet]");
             command = new SqlCommand(queryString, connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -388,7 +388,7 @@ namespace DataBaseSQL
         void CuantitativeAnalysis()
         {
             List<string> list = new List<string>();
-            queryString = @"SELECT Text FROM [Tweets].[dbo].[Tweet]";
+            queryString = @"SELECT Text FROM " + connection.Database + ".[dbo].[Tweet]";
 
             command = new SqlCommand(queryString, connection);
             connection.Open();
@@ -524,7 +524,7 @@ namespace DataBaseSQL
                 StringBuilder queryBuilder = new StringBuilder();
                 foreach (var category in categories)
                 {
-                    queryBuilder.AppendLine(String.Format(@"INSERT INTO [Tweets].[dbo].[Category] ([Id],[Name],[Level]) VALUES ({0},'{1}',{2})", category.Id, category.Name, category.Level));
+                    queryBuilder.AppendLine(String.Format(@"INSERT INTO " + connection.Database + ".[dbo].[Category] ([Id],[Name],[Level]) VALUES ({0},'{1}',{2})", category.Id, category.Name, category.Level));
                     mod++;
                     if (mod == 1000)
                     {
@@ -537,7 +537,7 @@ namespace DataBaseSQL
                 int i = 1;
                 foreach (var tweetLevelCategory in tweetLevelCategories)
                 {
-                    queryBuilder.AppendLine(String.Format(@"INSERT INTO [Tweets].[dbo].[TweetLevelCategory] ([Id], [IdTweet],[IdCategory]) VALUES ({0},{1},{2})", i, tweetLevelCategory.IdTweet, tweetLevelCategory.IdCategory));
+                    queryBuilder.AppendLine(String.Format(@"INSERT INTO " + connection.Database + ".[dbo].[TweetLevelCategory] ([Id], [IdTweet],[IdCategory]) VALUES ({0},{1},{2})", i, tweetLevelCategory.IdTweet, tweetLevelCategory.IdCategory));
                     i++;
                     mod++;
                     if (mod == 2000)

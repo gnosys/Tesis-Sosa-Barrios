@@ -94,17 +94,22 @@ namespace AppPrincipal.FormsAplicacionDePipe
             {
                 labelErrorCarpeta.Hide();
                 labelModeloGenerado.Hide();
+                labelPrediccionesGeneradas.Hide();
                 richTextBoxTextoModelo.Enabled = false;
                 richTextBoxTextoModelo.Text = string.Empty;
                 ISVMMulticlass svm = new SVMMulticlass();
                 string directoryFilePath = (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath;
                 string directoryFilesPath = (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath;
                 string vsmFileName = String.Format(@"{0}\svm-learn.dat", directoryFilePath);
-                svm.Learn(vsmFileName, directoryFilesPath + "\\" + nombreArchivoModelo, c);
-                labelModeloGenerado.Show();
-                buttonVisualizarModelo.Enabled = true;
-                buttonAbrirCarpetaContenedora.Enabled = true;
-                buttonGenerarPrediccion.Enabled = true;
+                int code = 0;
+                svm.Learn(vsmFileName, directoryFilesPath + "\\" + nombreArchivoModelo, c, ref code);
+                if (code.Equals(0))
+                {
+                    labelModeloGenerado.Show();
+                    buttonVisualizarModelo.Enabled = true;
+                    buttonAbrirCarpetaContenedora.Enabled = true;
+                    buttonGenerarPrediccion.Enabled = true;
+                }
             }
             else
             {
@@ -149,14 +154,17 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 string directoryFilesPath = (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath;
 
                 string vsmFileName = String.Format(@"{0}\svm-classify.dat", directoryFilePath);
-
-                svm.Classify(vsmFileName, directoryFilesPath + "\\" + nombreArchivoModelo, directoryFilesPath + "\\" + nombreArchivoPrediccion);
-                labelPrediccionesGeneradas.Show();
-                buttonVisualizarPrediccion.Enabled = true;
-                buttonAbrirCarpetaContenedora.Enabled = true;
-                ((App)MdiParent).ActivarBotonMatriz();
-                ((App)MdiParent).formCompararResultados.Init();
-                ((App)MdiParent).ActivarBotonComparar();
+                int code = 0;
+                svm.Classify(vsmFileName, directoryFilesPath + "\\" + nombreArchivoModelo, directoryFilesPath + "\\" + nombreArchivoPrediccion, ref code);
+                if (code.Equals(0))
+                {
+                    labelPrediccionesGeneradas.Show();
+                    buttonVisualizarPrediccion.Enabled = true;
+                    buttonAbrirCarpetaContenedora.Enabled = true;
+                    ((App)MdiParent).ActivarBotonMatriz();
+                    ((App)MdiParent).formCompararResultados.Init();
+                    ((App)MdiParent).ActivarBotonComparar();
+                }
             }
             else
             {
