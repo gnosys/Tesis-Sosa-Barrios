@@ -129,9 +129,10 @@ namespace AppPrincipal.FormsCompararResultados
         {
             try
             {
-                _vsmClassificationFileCompare = (((App)MdiParent).PipeConfiguration).representation.directoryFilePath != null ? (string)(((App)MdiParent).PipeConfiguration).representation.directoryFilePath + "\\" + nombreArchivoClassify : null;
-                _predictionsFileCompare = (((App)MdiParent).PipeConfiguration).svm.directoryFilesPath != null ? (string)(((App)MdiParent).PipeConfiguration).svm.directoryFilesPath + "\\" + nombreArchivoPrediccion : null;
-                return true;
+                _vsmClassificationFileCompare = (pipeComparativo.representation.directoryFilePath != null) ? (string)(pipeComparativo.representation.directoryFilePath + "\\" + nombreArchivoClassify) : null;
+                _predictionsFileCompare = (pipeComparativo.svm.directoryFilesPath != null) ? (string)(pipeComparativo.svm.directoryFilesPath + "\\" + nombreArchivoPrediccion) : null;
+              
+                return  File.Exists(_vsmClassificationFileCompare) && File.Exists(_predictionsFileCompare);
             }
             catch
             {
@@ -149,7 +150,10 @@ namespace AppPrincipal.FormsCompararResultados
             if (NoExistePipe(nombrePipe))
             {
                 dynamic pipeComparativo = JObject.Parse(File.ReadAllText(textBoxArchivoSeleccionado.Text));
-                if (metricasCompletas(pipeComparativo, ref _vsmClassificationFileCompare, ref _predictionsFileCompare))
+                int currentLevel = (int)(((App)MdiParent).PipeConfiguration).categoryLevel;
+                int levelcomparativo = (int)pipeComparativo.categoryLevel;
+                bool isSameLevel = (currentLevel == levelcomparativo);
+                if (metricasCompletas(pipeComparativo, ref _vsmClassificationFileCompare, ref _predictionsFileCompare) && isSameLevel)
                 {
                     string[] linesActualCategories = File.ReadAllLines(_vsmClassificationFileCompare);
                     string[] linesPredictedCategories = File.ReadAllLines(_predictionsFileCompare);
@@ -190,7 +194,8 @@ namespace AppPrincipal.FormsCompararResultados
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show("El Pipe seleccionado no tiene el proceso completo para obtener las metricas", "Pipe Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string msg = !isSameLevel ? "Los pipes no son del mismo nivel" : "El Pipe seleccionado no tiene el proceso completo para obtener las metricas o no se encontraron los archivos";
+                    DialogResult result = MessageBox.Show(msg, "Pipe Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -216,7 +221,7 @@ namespace AppPrincipal.FormsCompararResultados
                     chartComparaciones.Series["Error de Categoria"].Points[i].XValue--;
                 }
 
-                matrices.RemoveAt(listBoxPipes.SelectedIndex + 1);
+                matrices.RemoveAt(listBoxPipes.SelectedIndex);
                 listBoxPipes.Items.RemoveAt(listBoxPipes.SelectedIndex);
             }
         }
