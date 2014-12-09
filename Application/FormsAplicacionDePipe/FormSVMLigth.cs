@@ -44,12 +44,14 @@ namespace AppPrincipal.FormsAplicacionDePipe
                     this.buttonVisualizarModelo.Enabled = true;
                     this.buttonGenerarPrediccion.Enabled = true;
                     this.buttonAbrirCarpetaContenedora.Enabled = true;
+                    labelModeloGenerado.Show();
                 }
 
                 if (File.Exists(String.Format(@"{0}\{1}", directoryFilesPath, nombreArchivoPrediccion)))
                 {
                     this.buttonVisualizarPrediccion.Enabled = true;
                     this.buttonAbrirCarpetaContenedora.Enabled = true;
+                    labelPrediccionesGeneradas.Show();
                 }
             }
         }

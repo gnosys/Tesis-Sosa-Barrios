@@ -84,6 +84,7 @@ namespace AppPrincipal.FormsAplicacionDePipe
                 buttonVisualizarSVMLearn.Enabled = true;
                 buttonVisualizarSVMClassify.Enabled = true;
                 buttonAbrirCarpetaContenedora.Enabled = true;
+                labelRepresentacionObtenida.Show();
                 ((App)MdiParent).ActivarBotonSVM();
             }
         }

@@ -78,7 +78,7 @@ namespace AppPrincipal.FormsCompararResultados
             }
             catch
             {
-                DialogResult result = MessageBox.Show("Se produjo un error al cargar los resultados", "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show("Se produjo un error al cargar los resultados para comparar", "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
