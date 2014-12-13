@@ -176,7 +176,7 @@ namespace AppPrincipal.FormsCompararResultados
                 hoja = (Excel._Worksheet)libro.Worksheets.Add();
                 hoja.Name = "MATRIZ DE CONFUSION";
 
-                int IndiceColumna = 0;
+                int IndiceColumna = 1;
 
                 foreach (DataGridViewColumn col in tabla.Columns)
                 {
@@ -184,6 +184,13 @@ namespace AppPrincipal.FormsCompararResultados
                     hoja.Cells[1, IndiceColumna] = col.Name;
                     hoja.Cells[1, IndiceColumna].ColumnWidth = col.Name.Length + 4;
                     hoja.Cells[1, IndiceColumna].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    if (IndiceColumna <= tabla.ColumnCount)
+                    {
+                        hoja.Cells[IndiceColumna, 1] = col.Name;
+                        hoja.Cells[IndiceColumna, 1].ColumnWidth = col.Name.Length + 4;
+                        hoja.Cells[IndiceColumna, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    }
                 }
 
                 int IndeceFila = 0;
@@ -191,7 +198,7 @@ namespace AppPrincipal.FormsCompararResultados
                 foreach (DataGridViewRow row in tabla.Rows)
                 {
                     IndeceFila++;
-                    IndiceColumna = 0;
+                    IndiceColumna = 1;
 
                     foreach (DataGridViewColumn col in tabla.Columns)
                     {
@@ -201,7 +208,7 @@ namespace AppPrincipal.FormsCompararResultados
                         hoja.Cells[IndeceFila + 1, IndiceColumna].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                         hoja.Cells[IndeceFila + 1, IndiceColumna].Font.ColorIndex = 16;
                         hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
-                        if (IndeceFila == IndiceColumna)
+                        if (IndeceFila + 1 == IndiceColumna)
                         {
                             hoja.Cells[IndeceFila + 1, IndiceColumna].BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick, Excel.XlColorIndex.xlColorIndexNone, Excel.XlColorIndex.xlColorIndexNone);
                             hoja.Cells[IndeceFila + 1, IndiceColumna].Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gray);

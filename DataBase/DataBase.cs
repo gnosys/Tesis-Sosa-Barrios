@@ -425,8 +425,8 @@ namespace DataBaseSQL
         public List<Tweet> GetTweetsForClassify(int level)
         {
             List<Tweet> ret = new List<Tweet>();
-            queryString = string.Format(@"SELECT t.Id,t.[Text],tc.IdCategory FROM
-                                            (SELECT Id,[text] FROM [dbo].[Tweet]) t
+            queryString = string.Format(@"SELECT t.Id,t.[Text], t.[TextEnrich],tc.IdCategory FROM
+                                            (SELECT Id,[text],[TextEnrich] FROM [dbo].[Tweet]) t
                                             JOIN
                                             (SELECT [IdCategory],[IdTweet] FROM .[dbo].[TweetLevelCategory]) tc
                                             ON t.Id = tc.IdTweet
@@ -445,7 +445,8 @@ namespace DataBaseSQL
                     {
                         Id = reader.GetInt32(0),
                         Text = reader.GetValue(1).ToString(),
-                        Id_Category = reader.GetInt32(2)
+                        TextEnrich = reader.GetValue(2).ToString(),
+                        Id_Category = reader.GetInt32(3)
                     });
                 }
             }
@@ -681,6 +682,58 @@ namespace DataBaseSQL
             command.Dispose();
 
             return list;
+        }
+
+        public List<Tweet> GetAllTweetsForEnrich()
+        {
+            List<Tweet> list = new List<Tweet>();
+            queryString = "SELECT id,Text FROM [dbo].[Tweet]";
+            command = new SqlCommand(queryString, connection);
+            connection.Open();
+            reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    list.Add(new Tweet()
+                    {
+                        Id = reader.GetInt32(0),
+                        Text = reader.GetString(1)
+                    });
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            connection.Close();
+            command.Dispose();
+            return list;
+        }
+
+        public void UpdateTweetsEnrich(List<Tweet> tweets)
+        {
+            try
+            {
+                connection.Open();
+                StringBuilder builder = new StringBuilder();
+                int mod = 0;
+                foreach (var tweet in tweets)
+                {
+                    builder.AppendLine(String.Format("UPDATE [dbo].[Tweet] SET TextEnrich = '{0}'  WHERE Id = {1};", tweet.TextEnrich.Replace("'","''"), tweet.Id));
+                    ++mod;
+                    if (mod == 2000)
+                    {
+                        mod = ExecuteBatch(mod, builder);
+                    }
+                }
+                mod = ExecuteBatch(mod, builder);
+            }
+            finally
+            {
+                connection.Close();
+                command.Dispose();
+            }
         }
     }
 }

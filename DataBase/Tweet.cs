@@ -106,5 +106,20 @@ namespace DataBaseSQL
             }
         }
 
+
+        public string TextEnrich
+        {
+            get
+            {
+                return this._textEnrich;
+            }
+            set
+            {
+                this._textEnrich = value;
+            }
+        }
+
+
+        private string _textEnrich { get; set; }
     }
 }

@@ -78,6 +78,24 @@ namespace AppPrincipal
             }
         }
 
+        public void EnriquecerTweets()
+        {
+            AddLinkContextPreFilter filter = new AddLinkContextPreFilter(null)
+            {
+                Description = true,
+                Keywords = true,
+                Title = true
+            };
+
+            List<Tweet> tweets = DataBase.Instance.GetAllTweetsForEnrich();
+            List<string> textosEnriquecidos = filter.Filter(tweets.Select(x => x.Text).ToList());
+            for(int i = 0; i < tweets.Count; i++)
+            {
+                tweets[i].TextEnrich = textosEnriquecidos[i]; 
+            }
+            DataBase.Instance.UpdateTweetsEnrich(tweets);
+        }
+
         public void Init()
         {
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
@@ -129,12 +147,13 @@ namespace AppPrincipal
         {
             switch ((string)jToken["_type"])
             {
-                case "richment": return new AddLinkContextPreFilter(null)
-                {
-                    Description = (bool)jToken["description"],
-                    Title = (bool)jToken["title"],
-                    Keywords = (bool)jToken["keywords"]
-                };
+                case "richment": return null;
+                //return new AddLinkContextPreFilter(null)
+                //{
+                //    Description = (bool)jToken["description"],
+                //    Title = (bool)jToken["title"],
+                //    Keywords = (bool)jToken["keywords"]
+                //};
                 case "words": return new OnlyWordsPreFilter(null, (bool)jToken["removeLinks"], (bool)jToken["replaceAbbreviations"], (bool)jToken["byDefault"], (string)jToken["filename"]);
                 default: return null;
             }
@@ -179,7 +198,7 @@ namespace AppPrincipal
 
             int categoryLevel = (int)((App)this.MdiParent).PipeConfiguration.categoryLevel;
             List<Tweet> tweets = DataBase.Instance.GetTweetsForClassify(categoryLevel);
-            List<string> docs = tweets.Select(x => x.Text).ToList();
+            
             
             dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
             if ((bool)tokenizingConfiguration.byDefault)
@@ -192,6 +211,24 @@ namespace AppPrincipal
             }
 
             preFilter = BuildPrefilter(preprocessingFiltersConfiguration);
+
+            List<string> docs = new List<string>();
+            if (preprocessingFiltersConfiguration.Any(x => (string)x["_type"] == "richment"))
+            {
+                bool missingEnrich = tweets.Any(x => String.IsNullOrEmpty(x.TextEnrich));
+                if (missingEnrich)
+                {
+                    DialogResult result = MessageBox.Show("Para preprocesar debe aplicar el filtro de enriquecimiento", "Configuracion faltante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                docs = tweets.Select(x => x.TextEnrich).ToList();
+            }
+            else
+            {
+                docs = tweets.Select(x => x.Text).ToList();
+            }
+
+
             aroundFilter = BuildAroundfilter(preprocessingFiltersConfiguration);
 
             ////preprocessing
@@ -569,6 +606,8 @@ namespace AppPrincipal
 
         private void buttonAplicarEnriquecimiento_Click(object sender, EventArgs e)
         {
+            EnriquecerTweets();
+            
             ((App)this.MdiParent).limpiarFormSinRepresentacion();
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             dynamic richmentConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment");

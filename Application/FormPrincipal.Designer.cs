@@ -53,8 +53,12 @@
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaPreprocesadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.panelBotonera.SuspendLayout();
             this.menuStripSolapas.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDataBase
@@ -179,9 +183,9 @@
             this.panelBotonera.Controls.Add(this.buttonSeleccionarCategoria);
             this.panelBotonera.Controls.Add(this.label8);
             this.panelBotonera.Controls.Add(this.label7);
-            this.panelBotonera.Location = new System.Drawing.Point(1, 26);
+            this.panelBotonera.Location = new System.Drawing.Point(1, 52);
             this.panelBotonera.Name = "panelBotonera";
-            this.panelBotonera.Size = new System.Drawing.Size(164, 569);
+            this.panelBotonera.Size = new System.Drawing.Size(164, 561);
             this.panelBotonera.TabIndex = 19;
             // 
             // buttonMatrizConfusion
@@ -303,6 +307,37 @@
             this.acercaPreprocesadorToolStripMenuItem.Text = "Acerca Aplicación";
             this.acercaPreprocesadorToolStripMenuItem.Click += new System.EventHandler(this.acercaPreprocesadorToolStripMenuItem_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1007, 25);
+            this.toolStrip1.TabIndex = 21;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::AppPrincipal.Properties.Resources.Save_icon;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,7 +345,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AppPrincipal.Properties.Resources.logo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1007, 597);
+            this.ClientSize = new System.Drawing.Size(1007, 611);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panelBotonera);
             this.Controls.Add(this.menuStripSolapas);
             this.DoubleBuffered = true;
@@ -322,6 +358,8 @@
             this.panelBotonera.PerformLayout();
             this.menuStripSolapas.ResumeLayout(false);
             this.menuStripSolapas.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,6 +391,9 @@
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaPreprocesadorToolStripMenuItem;
         private System.Windows.Forms.Button buttonMatrizConfusion;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
 

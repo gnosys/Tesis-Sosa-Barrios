@@ -52,6 +52,7 @@
     <Content Include="Scripts\Data_3.sql" />
     <Content Include="Scripts\Data_4.sql" />
     <Content Include="Scripts\SQLQueryCreateDatabase.sql" />
+    <Content Include="Scripts\Tweets-Tratados.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

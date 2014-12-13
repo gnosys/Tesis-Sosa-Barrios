@@ -418,5 +418,15 @@ namespace AppPrincipal
         {
             buttonEjecutarSVMLigth.Enabled = false;
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            cargarPipeToolStripMenuItem_Click(sender, e);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            guardarPipeToolStripMenuItem_Click(sender, e);
+        }
     }
 }
