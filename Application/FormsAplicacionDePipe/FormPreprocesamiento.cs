@@ -86,6 +86,7 @@ namespace AppPrincipal
 
             if (!String.IsNullOrEmpty((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)) && DataBase.Instance.ExistTokens((string)(((App)MdiParent).PipeConfiguration.preprocessing.guid)))
             {
+                labelPreprocesadoAplicado.Show();
                 ((App)MdiParent).ActivarBotonRepresentacion();
             }
         }
@@ -542,6 +543,7 @@ namespace AppPrincipal
 
         private void buttonAplicarListaStopWords_Click(object sender, EventArgs e)
         {
+            ((App)this.MdiParent).limpiarFormSinRepresentacion();
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             dynamic stopWordsConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "stopWords");
 
@@ -554,6 +556,7 @@ namespace AppPrincipal
 
         private void buttonAplicarExpresionRegular_Click(object sender, EventArgs e)
         {
+            ((App)this.MdiParent).limpiarFormSinRepresentacion();
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             dynamic tokenizingConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "tokenizing");
 
@@ -566,6 +569,7 @@ namespace AppPrincipal
 
         private void buttonAplicarEnriquecimiento_Click(object sender, EventArgs e)
         {
+            ((App)this.MdiParent).limpiarFormSinRepresentacion();
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             dynamic richmentConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "richment");
 
@@ -578,6 +582,7 @@ namespace AppPrincipal
 
         private void buttonAplicarTratamiento_Click(object sender, EventArgs e)
         {
+            ((App)this.MdiParent).limpiarFormSinRepresentacion();
             JArray preprocessingFiltersConfiguration = ((App)this.MdiParent).PipeConfiguration.preprocessing.filters;
             dynamic wordsConfiguration = preprocessingFiltersConfiguration.First(x => (string)x["_type"] == "words");
 

@@ -44,6 +44,7 @@ namespace AppPrincipal
             textBoxSeleccionarNivel.Text = (string)(((App)MdiParent).PipeConfiguration).categoryLevel;
             if (!String.IsNullOrEmpty(textBoxSeleccionarNivel.Text) && db.ExistDataTableCategory())
             {
+                labelNivelSeleccionado.Show();
                 ((App)MdiParent).ActivarBotonPreprocesamiento();
             }
         }
@@ -296,5 +297,6 @@ namespace AppPrincipal
         {
             textBoxSeleccionarNivel.Text = nivel;
         }
+
     }
 }
