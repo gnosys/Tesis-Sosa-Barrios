@@ -53,21 +53,21 @@ namespace AppPrincipal.FormsCompararResultados
 
                     chartComparaciones.Series["Exactitud de Pipe"].Points.AddXY(1, exactitud * 100);
                     if (exactitud > 0)
-                        chartComparaciones.Series["Exactitud de Pipe"].Points[0].Label = (exactitud * 100).ToString() + "%";
+                        chartComparaciones.Series["Exactitud de Pipe"].Points[0].Label = (exactitud * 100).ToString("0.0") + "%";
                     chartComparaciones.Series["Exactitud de Pipe"].Points[0].AxisLabel = "Actual";
                     chartComparaciones.Series["Error de Pipe"].Points.AddXY(1, error * 100);
                     if (error > 0)
-                        chartComparaciones.Series["Error de Pipe"].Points[0].Label = (error * 100).ToString() + "%";
+                        chartComparaciones.Series["Error de Pipe"].Points[0].Label = (error * 100).ToString("0.0") + "%";
 
                     float precision = (float)(Math.Round((double)((App)MdiParent).CalcularPresicion(confusionMatrix, 0), 3));
 
                     chartComparaciones.Series["Exactitud de Categoria"].Points.AddXY(1, precision * 100);
                     if (precision > 0)
-                        chartComparaciones.Series["Exactitud de Categoria"].Points[0].Label = (precision * 100).ToString() + "%";
+                        chartComparaciones.Series["Exactitud de Categoria"].Points[0].Label = (precision * 100).ToString("0.0") + "%";
                     chartComparaciones.Series["Exactitud de Categoria"].Points[0].AxisLabel = "Actual";
                     chartComparaciones.Series["Error de Categoria"].Points.AddXY(1, (1 - precision) * 100);
                     if (precision < 1)
-                        chartComparaciones.Series["Error de Categoria"].Points[0].Label = ((1 - precision) * 100).ToString() + "%";
+                        chartComparaciones.Series["Error de Categoria"].Points[0].Label = ((1 - precision) * 100).ToString("0.0") + "%";
 
                     DataBase.connectionString = (string)(((App)MdiParent).PipeConfiguration).database.connectionString;
                     List<string> labels = DataBase.Instance.GetCategoryLabels(categoryLabels);
@@ -174,21 +174,21 @@ namespace AppPrincipal.FormsCompararResultados
 
                     chartComparaciones.Series["Exactitud de Pipe"].Points.AddXY(cantBarras + 1, exactitudComparativa * 100);
                     if (exactitudComparativa > 0)
-                        chartComparaciones.Series["Exactitud de Pipe"].Points.Last().Label = (exactitudComparativa * 100).ToString() + "%";
+                        chartComparaciones.Series["Exactitud de Pipe"].Points.Last().Label = (exactitudComparativa * 100).ToString("0.0") + "%";
                     chartComparaciones.Series["Exactitud de Pipe"].Points.Last().AxisLabel = nombrePipe;
                     chartComparaciones.Series["Error de Pipe"].Points.AddXY(cantBarras + 1, errorComparativa * 100);
                     if (errorComparativa > 0)
-                        chartComparaciones.Series["Error de Pipe"].Points.Last().Label = (errorComparativa * 100).ToString() + "%";
+                        chartComparaciones.Series["Error de Pipe"].Points.Last().Label = (errorComparativa * 100).ToString("0.0") + "%";
 
                     float presicionComparativa = (float)(Math.Round((double)((App)MdiParent).CalcularPresicion(confusionMatrixComparative, comboBoxSeleccionarCategoria.SelectedIndex), 3));
 
                     chartComparaciones.Series["Exactitud de Categoria"].Points.AddXY(cantBarras + 1, presicionComparativa * 100);
                     if (presicionComparativa > 0)
-                        chartComparaciones.Series["Exactitud de Categoria"].Points.Last().Label = (presicionComparativa * 100).ToString() + "%";
+                        chartComparaciones.Series["Exactitud de Categoria"].Points.Last().Label = (presicionComparativa * 100).ToString("0.0") + "%";
                     chartComparaciones.Series["Exactitud de Categoria"].Points.Last().AxisLabel = nombrePipe;
                     chartComparaciones.Series["Error de Categoria"].Points.AddXY(cantBarras + 1, (1 - presicionComparativa) * 100);
                     if (presicionComparativa < 1)
-                        chartComparaciones.Series["Error de Categoria"].Points.Last().Label = ((1 - presicionComparativa) * 100).ToString() + "%";
+                        chartComparaciones.Series["Error de Categoria"].Points.Last().Label = ((1 - presicionComparativa) * 100).ToString("0.0") + "%";
 
                     listBoxPipes.Items.Add(nombrePipe);
                 }
@@ -254,11 +254,11 @@ namespace AppPrincipal.FormsCompararResultados
                 presicionComparativa = (float)(Math.Round((double)((App)MdiParent).CalcularPresicion(m.matrizDeConfusion, comboBoxSeleccionarCategoria.SelectedIndex), 3));
                 chartComparaciones.Series["Exactitud de Categoria"].Points.AddXY(indice + 1, presicionComparativa * 100);
                 if (presicionComparativa > 0)
-                    chartComparaciones.Series["Exactitud de Categoria"].Points.Last().Label = (presicionComparativa * 100).ToString() + "%";
+                    chartComparaciones.Series["Exactitud de Categoria"].Points.Last().Label = (presicionComparativa * 100).ToString("0.0") + "%";
                 chartComparaciones.Series["Exactitud de Categoria"].Points.Last().AxisLabel = m.nombrePipe;
                 chartComparaciones.Series["Error de Categoria"].Points.AddXY(indice + 1, (1 - presicionComparativa) * 100);
                 if (presicionComparativa < 1)
-                    chartComparaciones.Series["Error de Categoria"].Points.Last().Label = ((1 - presicionComparativa) * 100).ToString() + "%";
+                    chartComparaciones.Series["Error de Categoria"].Points.Last().Label = ((1 - presicionComparativa) * 100).ToString("0.0") + "%";
                 indice++;
             }
         }

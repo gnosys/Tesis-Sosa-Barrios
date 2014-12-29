@@ -14,7 +14,6 @@
 	"representation": {
 		"trainingPercentage": 75,
 		"minWeight": 0,
-		"discardEquals": null,
 		"directoryFilePath": null
 	},
 	"svm": {
