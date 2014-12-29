@@ -264,6 +264,7 @@ namespace AppPrincipal.FormsCompararResultados
         private void comboBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelPresicion.Text = ((App)MdiParent).CalcularPresicion(confusionMatrix, comboBoxCategorias.SelectedIndex).ToString("0.000");
+            labelRecall.Text = ((App)MdiParent).CalcularRecall(confusionMatrix, comboBoxCategorias.SelectedIndex).ToString("0.000");
         }
 
         private void buttonSeleccionarCarpetaExcel_Click(object sender, EventArgs e)

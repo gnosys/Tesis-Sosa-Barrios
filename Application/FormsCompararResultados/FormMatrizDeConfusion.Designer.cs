@@ -57,6 +57,8 @@
             this.textBoxCarpetaDestinoExcel = new System.Windows.Forms.TextBox();
             this.buttonSeleccionarCarpetaExcel = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
+            this.labelRecall = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMatrizConfusion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,9 +178,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(688, 528);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(209, 13);
+            this.label9.Size = new System.Drawing.Size(171, 13);
             this.label9.TabIndex = 17;
-            this.label9.Text = "La tasa de presición de la categoría es de:";
+            this.label9.Text = "La precisión de la categoría es de:";
             // 
             // label10
             // 
@@ -194,9 +196,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(688, 456);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(156, 13);
+            this.label11.Size = new System.Drawing.Size(210, 13);
             this.label11.TabIndex = 15;
-            this.label11.Text = "PRESICION POR CATEGORIA";
+            this.label11.Text = "PRECISIÓN Y RECALL POR CATEGORIA";
             // 
             // label12
             // 
@@ -325,11 +327,31 @@
             this.label14.TabIndex = 28;
             this.label14.Text = "Seleccionar carpeta a exportar";
             // 
+            // labelRecall
+            // 
+            this.labelRecall.AutoSize = true;
+            this.labelRecall.ForeColor = System.Drawing.Color.Green;
+            this.labelRecall.Location = new System.Drawing.Point(894, 547);
+            this.labelRecall.Name = "labelRecall";
+            this.labelRecall.Size = new System.Drawing.Size(0, 13);
+            this.labelRecall.TabIndex = 31;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(688, 547);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(151, 13);
+            this.label17.TabIndex = 30;
+            this.label17.Text = "El recall de la categoría es de:";
+            // 
             // FormMatrizDeConfusion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 568);
+            this.Controls.Add(this.labelRecall);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.textBoxCarpetaDestinoExcel);
             this.Controls.Add(this.buttonSeleccionarCarpetaExcel);
@@ -395,5 +417,7 @@
         private System.Windows.Forms.TextBox textBoxCarpetaDestinoExcel;
         private System.Windows.Forms.Button buttonSeleccionarCarpetaExcel;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelRecall;
+        private System.Windows.Forms.Label label17;
     }
 }

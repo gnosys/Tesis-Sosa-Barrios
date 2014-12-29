@@ -346,17 +346,32 @@ namespace AppPrincipal
             return (incorrectos / total);
         }
 
-        public float CalcularPresicion(int[][] confusionMatrix, int indexFila)
+
+        public float CalcularRecall(int[][] confusionMatrix, int indexFila)
         {
             float totalPrediccionCategoria = 0;
             float correctosPrediccion = 0;
-            for (int j = 0; j < confusionMatrix.Length; j++)
+            for (int j = 0; j <= confusionMatrix.Length; j++)
             {
                 totalPrediccionCategoria += confusionMatrix[indexFila][j];
                 if (indexFila == j)
                     correctosPrediccion += confusionMatrix[indexFila][j];
             }
             return (correctosPrediccion / totalPrediccionCategoria);
+        }
+
+        public float CalcularPresicion(int[][] confusionMatrix, int indexColumna)
+        {
+            float totalPrediccionCategoria = 0;
+            float correctosPrediccion = 0;
+            for (int j = 0; j < confusionMatrix.Length; j++)
+            {
+                totalPrediccionCategoria += confusionMatrix[j][indexColumna];
+                if (indexColumna == j)
+                    correctosPrediccion += confusionMatrix[j][indexColumna];
+            }
+            return (correctosPrediccion / totalPrediccionCategoria);
+
         }
 
         public void ActivarBotonPreprocesamiento()
